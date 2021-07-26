@@ -1,0 +1,3 @@
+# AdminSoftware
+
+Software de Gestión
