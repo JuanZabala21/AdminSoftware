@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
-    templateUrl: 'user.component.html'
+    templateUrl: 'doctora.component.html'
 })
 
-export class UserComponent implements OnInit{
+export class DoctoraComponent implements OnInit{
     ngOnInit(){
     }
 }

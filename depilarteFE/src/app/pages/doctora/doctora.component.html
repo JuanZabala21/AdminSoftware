@@ -113,86 +113,140 @@
       </div>
     </div>
   </div> -->
-  <div class="col-md-8">
-    <div class="card card-user">
+  <div class="col-md-8" >
+    <div class="card card-user" style="width: 150%;">
       <div class="card-header">
-        <h5 class="card-title">Edit Profile</h5>
+        <h5 class="card-title">Registrar Paciente</h5>
       </div>
       <div class="card-body">
         <form>
           <div class="row">
-            <div class="col-md-5 pr-1">
+            <div class="col-md-4 pr-1">
               <div class="form-group">
-                <label>Company </label>
-                <input type="text" class="form-control"  placeholder="Company">
+                <label>Nombre </label>
+                <input type="text" class="form-control"  placeholder="Nombre">
               </div>
             </div>
-            <div class="col-md-3 px-1">
+            <div class="col-md-4 px-1">
               <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" placeholder="Username" value="michael23">
+                <label>Apellido</label>
+                <input type="text" class="form-control" placeholder="Apellido">
               </div>
             </div>
-            <div class="col-md-4 pl-1">
+            <div class="col-md-2 pl-1">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" placeholder="Email">
+                <label>Cedula</label>
+                <input type="text" class="form-control" placeholder="Cedula">
+              </div>
+            </div>
+            <div class="col-md-2 pl-1">
+              <div class="form-group">
+                <label>Edad</label>
+                <input type="number" class="form-control" placeholder="Edad">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control" placeholder="Company" value="Chet">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" placeholder="email@hotmail.com">
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Last Name" value="Faker">
+                <label>Fecha de aplicación</label>
+                <input type="date" class="form-control" placeholder="">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Home Address" value="Melbourne, Australia">
+                <label>Dirección</label>
+                <input type="text" class="form-control" placeholder="Dirección">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
-                <label>City</label>
-                <input type="text" class="form-control" placeholder="City" value="Melbourne">
+                <label>Tratamiento</label>
+                <input type="text" class="form-control" placeholder="Tratamiento" >
               </div>
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <label>Country</label>
-                <input type="text" class="form-control" placeholder="Country" value="Australia">
+                <label>Tipo de tratamiento</label>
+                <input type="text" class="form-control" placeholder="Tipo de tratamiento" >
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label>Postal Code</label>
-                <input type="number" class="form-control" placeholder="ZIP Code">
+                <label>Zona del tratamiento</label>
+                <input type="select" class="form-control" placeholder="Zona del tratamiento">
               </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Cantidad de Sesiones</label>
+                <input type="number" class="form-control" placeholder="Cantidad de sesiones" >
+              </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <label>Asistencia</label>
+                <input type="text" class="form-control" placeholder="Asistencia" >
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Producto Utilizado</label>
+                <input type="text" class="form-control" placeholder="Producto">
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <label>Especialista Encargada</label>
+                <input type="text" class="form-control" placeholder="Doctora" >
+              </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <label>Forma de Pago</label>
+                <input type="text" class="form-control" placeholder="Forma de pago" >
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Abonado</label>
+                <input type="number" class="form-control" placeholder="Abonado">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 pl-1">
+            <div class="form-group">
+              <label>Total de la Venta</label>
+              <input type="number" class="form-control" placeholder="Total">
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>About Me</label>
-                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
+                <label>Nota</label>
+                <textarea class="form-control textarea" placeholder="Comentario"></textarea>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+              <button type="submit" class="btn btn-primary btn-round">Registrar</button>
             </div>
           </div>
         </form>
