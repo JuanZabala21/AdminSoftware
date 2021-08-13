@@ -8,10 +8,12 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
+import {HistorialComponent} from '../../pages/historial/historial.component';
 
 export const AdminLayoutRoutes: Routes = [
     //{ path: 'dashboard',      component: DashboardComponent },
     { path: 'table',          component: TableComponent },
     { path: 'operadora',      component: operadoraComponent},
-    { path: 'doctora',      component: DoctoraComponent}
+    { path: 'doctora',        component: DoctoraComponent},
+    { path: 'historial',      component: HistorialComponent}
 ];

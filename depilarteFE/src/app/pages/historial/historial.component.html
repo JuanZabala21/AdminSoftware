@@ -1,0 +1,87 @@
+<div fxLayout="column">
+
+  <form [formGroup]="filters">
+
+    <div class="col-md-12">
+
+      <div class="card">
+
+        <div class="card-header">
+
+          <mat-label class="card-title"> Pacientes</mat-label>
+
+        </div>
+
+        <div class="card-body">
+
+          <div class="row">
+
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <input type="text" class="form-control"  placeholder="Nombre">
+              </div>
+            </div>
+
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Apellido">
+              </div>
+            </div>
+
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Cedula">
+              </div>
+            </div>
+
+
+            <div style="position:relative; top:50%; left:33%;" class="row">
+              <button style="height:40px; width:200px;"
+                      type="button" class="btn btn-outline-primary">Buscar</button>
+              <button style="height:40px; width:200px;" type="button" class="btn btn-outline-primary">Descargar Excel</button>
+            </div>
+
+          </div>
+          </div>
+        </div>
+      </div>
+  </form>
+
+        <mat-card class="mat-elevation-z4">
+          <div fxlayout="column">
+            <div class="flex-p container-tab">
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+
+            <ng-container  matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="dateA">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de atención </th>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.dateA}} </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="treatment">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tratamiento </th>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatment}} </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.price}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+            </div>
+             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" ></mat-paginator>
+          </div>
+        </mat-card>
+      </div>

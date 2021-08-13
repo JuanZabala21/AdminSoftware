@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     //{ path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
     { path: '/operadora',     title: 'Operadora',                     icon:'nc-single-02',  class: '' },
     { path: '/doctora',          title: 'Doctora',                       icon:'nc-single-02',  class: '' },
-    { path: '/#',         title: 'Historial de Registros',        icon:'nc-tile-56',    class: '' },
+    { path: '/historial',         title: 'Historial de Registros',        icon:'nc-tile-56',    class: '' },
     { path: '/table',         title: 'Inventario',                    icon:'nc-tile-56',    class: '' },
     //{ path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
     //{ path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
