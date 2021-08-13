@@ -255,6 +255,16 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary">Foto antes de la sesión</button>
+                <input type="file" (change)="uploadFile($event)">
+                <button  class="btn btn-outline-primary">Foto despues de la sesión</button>
+                <input type="file" (change)="uploadFile($event)" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="update ml-auto mr-auto">
               <button type="submit" class="btn btn-primary btn-round">Registrar</button>
             </div>

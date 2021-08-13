@@ -10,4 +10,11 @@ export class operadoraComponent implements OnInit{
     private appModule: AppModule;
     ngOnInit(){
     }
+
+    uploadFile(event){
+        const file= event.target.files[0];
+        const dir = './../../../assets/img';
+       
+        
+    }
 }
