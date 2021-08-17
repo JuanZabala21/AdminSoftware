@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { ROUTES } from '../../sidebar/sidebar.component';
+import { REGISTER } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
 
@@ -9,7 +9,7 @@ import { Location} from '@angular/common';
     templateUrl: 'navbar.component.html'
 })
 
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {  
     private listTitles: any[];
     location: Location;
     private nativeElement: Node;
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit{
     }
 
     ngOnInit(){
-        this.listTitles = ROUTES.filter(listTitle => listTitle);
+        this.listTitles = REGISTER.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
         this.router.events.subscribe((event) => {

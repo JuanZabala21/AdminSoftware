@@ -66,7 +66,7 @@ export class HistorialDocComponent implements OnInit {
       identification: new FormControl(),
       initialDate: new FormControl(),
       finalDate: new FormControl(),
-      user: new FormControl()
+      doctor: new FormControl()
     });
   }
 

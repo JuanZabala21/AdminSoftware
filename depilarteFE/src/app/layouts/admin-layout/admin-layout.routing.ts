@@ -9,11 +9,17 @@ import { MapsComponent } from '../../pages/various/maps/maps.component';
 import { NotificationsComponent } from '../../pages/various/notifications/notifications.component';
 import { UpgradeComponent } from '../../pages/various/upgrade/upgrade.component';
 import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
+import {InventarioComponent} from '../../pages/productos/inventario/inventario.component';
+import {TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
+import {HistorialOpeComponent} from '../../pages/historial/operadoraHistorial/historialOpe.component';
 
 export const AdminLayoutRoutes: Routes = [
     //{ path: 'Inicio',      component: DashboardComponent },
-    { path: 'table',          component: TableComponent },
-    { path: 'operadora',      component: OperadoraComponent},
-    { path: 'doctora',        component: DoctoraComponent},
-    { path: 'historial',      component: HistorialDocComponent}
+    { path: 'operadora',              component: OperadoraComponent},
+    { path: 'doctora',                component: DoctoraComponent},
+    { path: 'historial-doctora',      component: HistorialDocComponent},
+    { path: 'historial-operadora',    component: HistorialOpeComponent},
+    { path: 'tratamiento',             component: TratamientoComponent},
+    { path: 'inventario',             component: InventarioComponent},
+
 ];
