@@ -11,7 +11,7 @@ interface Operadora {
     value: string;
     viewValue: string;
   }
-  interface Tratamiento {
+  interface Zona {
     value: string;
     viewValue: string;
   }
@@ -36,10 +36,19 @@ export class OperadoraComponent implements OnInit{
         {value: 'pago-1', viewValue: 'Zelle'},
         {value: 'pago-2', viewValue: 'Bolivares'}
       ];
-      tratamiento: Tratamiento[] = [
-        {value: 'tratamiento-0', viewValue: 'Bozo'},
-        {value: 'tratamiento-1', viewValue: 'Barbilla'},
-        {value: 'tratamiento-2', viewValue: 'Cuello'}
+      zona: Zona[] = [
+        {value: 'zona-0', viewValue: 'Bozo'},
+        {value: 'zona-1', viewValue: 'Barbilla'},
+        {value: 'zona-2', viewValue: 'Cuello'},
+        {value: 'zona-3', viewValue: 'Axilas'},
+        {value: 'zona-4', viewValue: 'Linea/Bikini'},
+        {value: 'zona-5', viewValue: 'Bikini'},
+        {value: 'zona-6', viewValue: 'Brasilero'},
+        {value: 'zona-7', viewValue: 'Pantorrilla'},
+        {value: 'zona-8', viewValue: 'Piernas Completas'},
+        {value: 'zona-9', viewValue: 'Glúteos'},
+        {value: 'zona-10', viewValue: 'Brazos'},
+        {value: 'zona-11', viewValue: 'Ante Brazos'}
       ];
     uploadFile(event){
         const file= event.target.files[0];
