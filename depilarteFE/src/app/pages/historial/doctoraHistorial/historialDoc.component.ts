@@ -24,7 +24,7 @@ import {MatSort} from '@angular/material/sort';
 }
 
 @Component({
-  selector: 'historial',
+  selector: 'historialDoc',
   moduleId: module.id,
   templateUrl: 'historialDoc.component.html',
   styleUrls: ['historialDoc.component.scss']

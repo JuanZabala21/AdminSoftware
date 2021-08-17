@@ -41,6 +41,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   ],
   exports: [
     MatFormFieldModule,
+    MatDatepickerModule,
     MatInputModule
   ],
   providers: [
