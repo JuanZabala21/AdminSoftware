@@ -15,11 +15,9 @@ import { UpgradeComponent }         from '../../pages/various/upgrade/upgrade.co
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OperadoraComponent } from 'app/pages/registrar/operadorRegistro/operadora.component';
-import { DoctoraComponent } from 'app/pages/registrar/doctoraRegistro/doctora.component';
 import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
 import {TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
 import {InventarioComponent} from '../../pages/productos/inventario/inventario.component';
-import { HistorialOpeComponent } from '../../pages/historial/operadoraHistorial/historialOpe.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
@@ -50,10 +48,11 @@ import {MatSelectModule} from '@angular/material/select';
   ],
   declarations: [
     DashboardComponent,
-    DoctoraComponent,
     TableComponent,
     HistorialDocComponent,
     UpgradeComponent,
+    TratamientoComponent,
+    InventarioComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,

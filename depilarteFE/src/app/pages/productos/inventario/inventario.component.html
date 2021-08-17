@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div style="overflow-x: hidden" fxLayout="column">
+  <form [formGroup]="filters">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <mat-label class="card-title">Tratamientos</mat-label>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <mat-form-field>
+                <mat-label>Nombre del tratamiento</mat-label>
+                <input matInput formControlName="name" >
+                <mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 px-1">
+              <mat-form-field>
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="identification" >
+                <mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div style="position:relative; top:50%; left:33%;" class="row">
+            <button style="height:40px; width:200px;"
+                    type="button" class="btn btn-outline-primary">Buscar</button>
+            <button style="height:40px; width:200px;" type="button" class="btn btn-outline-primary">Descargar Excel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -9,17 +9,15 @@ export interface RouteInfo {
 }
 
 export const REGISTER: RouteInfo[] = [
-    { path: '/operadora',     title: 'Operadora',                    icon:'nc-single-02',  class: '' },
-    { path: '/doctora',          title: 'Doctora',                       icon:'nc-single-02',  class: '' },
+    { path: '/registrar-paciente',     title: 'Pacientes',                    icon:'nc-single-02',  class: '' },
 ];
 
 export const HISTORIAL: RouteInfo[] = [
-  { path: '/historial-doctora',         title: 'Doctora',        icon:'nc-tile-56',    class: '' },
-  { path: '/historial-operadora',         title: 'Operadora',        icon:'nc-tile-56',    class: '' }
+  { path: '/historial',         title: 'Pacientes',           icon:'nc-tile-56',    class: '' },
 ];
 
 export const PRODUCTS: RouteInfo[] = [
-  { path: '/tratamiento',         title: 'Tratamiento',        icon:'nc-tile-56',    class: '' },
+  { path: '/tratamiento',         title: 'Tratamiento',      icon:'nc-tile-56',    class: '' },
   { path: '/inventario',         title: 'Inventario',        icon:'nc-tile-56',    class: '' }
 ];
 

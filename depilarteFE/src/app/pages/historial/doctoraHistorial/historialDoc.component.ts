@@ -13,7 +13,11 @@ import {MatSort} from '@angular/material/sort';
    age: String,
    treatment: String;
    treatmentZone: String,
+   pistolBefore: String,
+   pistolAfter: String,
+   diferentShot: String,
    countSession: String,
+   operator: String,
    assistent: String,
    product: String,
    doctor: String,
@@ -32,6 +36,10 @@ import {MatSort} from '@angular/material/sort';
 
 export class HistorialDocComponent implements OnInit {
   filters: FormGroup;
+  usuarioList = [
+    {value: 1, desc: 'Doctora'},
+    {value: 2, desc: 'Operadora'}
+    ];
   displayedColumns: string[] =
     [
       'dateA',
@@ -42,6 +50,10 @@ export class HistorialDocComponent implements OnInit {
       'treatment',
       'treatmentType',
       'treatmentZone',
+      'pistolBefore',
+      'pistolAfter',
+      'diferentShot',
+      'operator',
       'countSession',
       'assistent',
       'product',
@@ -66,7 +78,8 @@ export class HistorialDocComponent implements OnInit {
       identification: new FormControl(),
       initialDate: new FormControl(),
       finalDate: new FormControl(),
-      doctor: new FormControl()
+      user: new FormControl(),
+      userName: new FormControl()
     });
   }
 
