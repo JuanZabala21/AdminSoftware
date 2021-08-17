@@ -1,119 +1,5 @@
 <div class="row">
-  <!-- <div class="col-md-4">
-    <div class="card card-user">
-      <div class="image">
-        <img src="assets/img/damir-bosnjak.jpg" alt="...">
-      </div>
-      <div class="card-body">
-        <div class="author">
-          <a href="#">
-            <img class="avatar border-gray" src="assets/img/mike.jpg" alt="...">
-            <h5 class="title">Chet Faker</h5>
-          </a>
-          <p class="description">
-            @chetfaker
-          </p>
-        </div>
-        <p class="description text-center">
-          "I like the way you work it
-          <br> No diggity
-          <br> I wanna bag it up"
-        </p>
-      </div>
-      <div class="card-footer">
-        <hr>
-        <div class="button-container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-6 ml-auto">
-              <h5>12
-                <br>
-                <small>Files</small>
-              </h5>
-            </div>
-            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>2GB
-                <br>
-                <small>Used</small>
-              </h5>
-            </div>
-            <div class="col-lg-3 mr-auto">
-              <h5>24,6$
-                <br>
-                <small>Spent</small>
-              </h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Team Members</h4>
-      </div>
-      <div class="card-body">
-        <ul class="list-unstyled team-members">
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                DJ Khaled
-                <br />
-                <span class="text-muted">
-                  <small>Offline</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                Creative Tim
-                <br />
-                <span class="text-success">
-                  <small>Available</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-ms-7 col-7">
-                Flume
-                <br />
-                <span class="text-danger">
-                  <small>Busy</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
-  <div class="col-md-8" >
+ <div class="col-md-8" >
     <div class="card card-user" style="width: 150%;">
       <div class="card-header">
         <h5 class="card-title">Registrar Paciente</h5>
@@ -123,25 +9,25 @@
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
-                <label>Nombre </label>
-                <input type="text" class="form-control"  placeholder="Nombre">
-              </div>
+                <mat-label>Nombre</mat-label>
+                <input type="text" class="form-control" placeholder="Nombre">
+              </div>     
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <label>Apellido</label>
+                <mat-label>Apellido</mat-label>
                 <input type="text" class="form-control" placeholder="Apellido">
               </div>
             </div>
             <div class="col-md-2 pl-1">
               <div class="form-group">
-                <label>Cedula</label>
+                <mat-label>Cedula</mat-label>
                 <input type="text" class="form-control" placeholder="Cedula">
               </div>
             </div>
             <div class="col-md-2 pl-1">
               <div class="form-group">
-                <label>Edad</label>
+                <mat-label>Edad</mat-label>
                 <input type="number" class="form-control" placeholder="Edad">
               </div>
             </div>
@@ -149,13 +35,13 @@
           <div class="row">
             <div class="col-md-6 pr-1">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
+                <mat-label for="exampleInputEmail1">Email</mat-label>
                 <input type="email" class="form-control" placeholder="email@hotmail.com">
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
-                <label>Fecha</label>
+                <mat-label>Fecha de cumpleaños</mat-label>
                 <input type="date" class="form-control" placeholder="Fecha de registro | date:'yyyy-MM-dd'">
               </div>
             </div>
@@ -164,7 +50,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Dirección</label>
+                <mat-label>Dirección</mat-label>
                 <input type="text" class="form-control" placeholder="Dirección">
               </div>
             </div>
@@ -172,19 +58,26 @@
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
-                <label>Tratamiento</label>
-                <input type="text" class="form-control" placeholder="Tratamiento" >
-              </div>
+                <mat-label>Tratamiento</mat-label>
+              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-label>Tratamiento</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
+                  <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
+                    {{tratamiento.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <label>Tipo de tratamiento</label>
+                <mat-label>Tipo de tratamiento</mat-label>
                 <input type="text" class="form-control" placeholder="Tipo de tratamiento" >
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label>Zona del tratamiento</label>
+                <mat-label>Zona del tratamiento</mat-label>
                 <input type="select" class="form-control" placeholder="Zona del tratamiento">
               </div>
             </div>
@@ -193,19 +86,19 @@
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
-                <label>Disparos de la Pistola</label>
+                <mat-label>Disparos de la Pistola</mat-label>
                 <input type="number" class="form-control" placeholder="Antes" >
               </div>
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <label>Disparos de la Pistola</label>
+                <mat-label>Disparos de la Pistola</mat-label>
                 <input type="number" class="form-control pistola-despues" placeholder="Despues" >
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label>Diferencia</label>
+                <mat-label>Diferencia</mat-label>
                 <input type="number" class="form-control" placeholder="">
               </div>
             </div>
@@ -213,20 +106,30 @@
           
           <div class="row">
             <div class="col-md-4 pr-1">
-              <div class="form-group">
-                <label>Operadora Encargada</label>
-                <input type="text" class="form-control" placeholder="Operadora" >
-              </div>
+              <mat-label>Operadora Encargada</mat-label>
+              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-label>Operadora Encargada</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="Operadora">
+                  <mat-option *ngFor="let operadora of operadora" [value]="operadora.value">
+                    {{operadora.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
             <div class="col-md-4 px-1">
-              <div class="form-group">
-                <label>Forma de Pago</label>
-                <input type="text" class="form-control" placeholder="Forma de pago" >
-              </div>
+              <mat-label>Forma de pago</mat-label>
+              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-label>Forma de pago</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="Pago">
+                  <mat-option *ngFor="let pago of pago" [value]="pago.value">
+                    {{pago.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label>Abonado</label>
+                <mat-label>Abonado</mat-label>
                 <input type="number" class="form-control" placeholder="Abonado">
               </div>
             </div>
@@ -234,14 +137,14 @@
           <div class="row">
           <div class="col-md-4 pl-3">
             <div class="form-group">
-              <label>Total de la Venta</label>
+              <mat-label>Total de la Venta</mat-label>
               <input type="number" disabled class="form-control" placeholder="Total">
             </div>
             
           </div>
           <div class="col-md-4 pl-1">
             <div class="form-group">
-              <label>Comisión de la Operadora</label>
+              <mat-label>Comisión de la Operadora</mat-label>
               <input type="number" disabled class="form-control" placeholder="Comisión">
             </div>
           </div>
@@ -249,7 +152,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Nota</label>
+                <mat-label>Nota</mat-label>
                 <textarea class="form-control textarea" placeholder="Comentario"></textarea>
               </div>
             </div>
