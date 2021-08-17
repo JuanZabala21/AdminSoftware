@@ -5,23 +5,27 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
-import { DashboardComponent }       from '../../pages/dashboard/dashboard.component';
-import { TableComponent }           from '../../pages/table/table.component';
-import { TypographyComponent }      from '../../pages/typography/typography.component';
-import { IconsComponent }           from '../../pages/icons/icons.component';
-import { MapsComponent }            from '../../pages/maps/maps.component';
-import { NotificationsComponent }   from '../../pages/notifications/notifications.component';
-import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component';
+import { DashboardComponent }       from '../../pages/Inicio/dashboard.component';
+import { TableComponent }           from '../../pages/various/table/table.component';
+import { TypographyComponent }      from '../../pages/various/typography/typography.component';
+import { IconsComponent }           from '../../pages/various/icons/icons.component';
+import { MapsComponent }            from '../../pages/various/maps/maps.component';
+import { NotificationsComponent }   from '../../pages/various/notifications/notifications.component';
+import { UpgradeComponent }         from '../../pages/various/upgrade/upgrade.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { operadoraComponent } from 'app/pages/operadora/operadora.component';
-import { DoctoraComponent } from 'app/pages/doctora/doctora.component';
-import {HistorialComponent} from '../../pages/historial/historial.component';
+import { OperadoraComponent } from 'app/pages/registrar/operadorRegistro/operadora.component';
+import { DoctoraComponent } from 'app/pages/registrar/doctoraRegistro/doctora.component';
+import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -34,19 +38,24 @@ import {MatCardModule} from '@angular/material/card';
     MatSortModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   declarations: [
     DashboardComponent,
     DoctoraComponent,
     TableComponent,
-    HistorialComponent,
+    HistorialDocComponent,
     UpgradeComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    operadoraComponent
+    OperadoraComponent
   ]
 })
 

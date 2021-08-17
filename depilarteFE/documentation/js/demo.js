@@ -941,7 +941,7 @@ demo = {
 
     	$.notify({
         	icon: "ti-gift",
-        	message: "Welcome to <b>Paper Dashboard</b> - a beautiful dashboard for every web developer."
+        	message: "Welcome to <b>Paper Dashboard</b> - a beautiful Inicio for every web developer."
 
         },{
             type: type[color],

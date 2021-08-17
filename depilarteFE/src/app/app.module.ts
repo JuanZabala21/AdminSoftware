@@ -13,6 +13,10 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { FormsModule } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule.forRoot(AppRoutes,{
       useHash: true
     }),
@@ -31,7 +39,14 @@ import { FormsModule } from '@angular/forms';
     FixedPluginModule,
     FormsModule
   ],
-  providers: [],
+  exports: [
+    MatFormFieldModule,
+    MatInputModule
+  ],
+  providers: [
+    MatDatepickerModule,
+    MatInputModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

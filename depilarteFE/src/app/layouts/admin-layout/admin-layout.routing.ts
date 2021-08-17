@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { operadoraComponent } from 'app/pages/operadora/operadora.component';
-import { DoctoraComponent } from 'app/pages/doctora/doctora.component';
-import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-import { TableComponent } from '../../pages/table/table.component';
-import { TypographyComponent } from '../../pages/typography/typography.component';
-import { IconsComponent } from '../../pages/icons/icons.component';
-import { MapsComponent } from '../../pages/maps/maps.component';
-import { NotificationsComponent } from '../../pages/notifications/notifications.component';
-import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
-import {HistorialComponent} from '../../pages/historial/historial.component';
+import { OperadoraComponent } from 'app/pages/registrar/operadorRegistro/operadora.component';
+import { DoctoraComponent } from 'app/pages/registrar/doctoraRegistro/doctora.component';
+import { DashboardComponent } from '../../pages/Inicio/dashboard.component';
+import { TableComponent } from '../../pages/various/table/table.component';
+import { TypographyComponent } from '../../pages/various/typography/typography.component';
+import { IconsComponent } from '../../pages/various/icons/icons.component';
+import { MapsComponent } from '../../pages/various/maps/maps.component';
+import { NotificationsComponent } from '../../pages/various/notifications/notifications.component';
+import { UpgradeComponent } from '../../pages/various/upgrade/upgrade.component';
+import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
 
 export const AdminLayoutRoutes: Routes = [
-    //{ path: 'dashboard',      component: DashboardComponent },
+    //{ path: 'Inicio',      component: DashboardComponent },
     { path: 'table',          component: TableComponent },
-    { path: 'operadora',      component: operadoraComponent},
+    { path: 'operadora',      component: OperadoraComponent},
     { path: 'doctora',        component: DoctoraComponent},
-    { path: 'historial',      component: HistorialComponent}
+    { path: 'historial',      component: HistorialDocComponent}
 ];

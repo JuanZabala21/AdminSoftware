@@ -947,7 +947,7 @@
                 widget.off('click', '[data-action]');
                 widget.off('mousedown', false);
 
-                // Creative Tim Changes - we remove the ".open" class, then, fter 400 ms call the .hide() method, in this way the animations will be the same with the other dropdowns from the dashboard
+                // Creative Tim Changes - we remove the ".open" class, then, fter 400 ms call the .hide() method, in this way the animations will be the same with the other dropdowns from the Inicio
 
                 widget.removeClass('open');
 

@@ -10,12 +10,42 @@
       DEPILARTE
     </a>
   </div>
+
     <ul class="nav">
+      <mat-expansion-panel class="mat-elevation-z0" style="width: 99%">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p>Registrar</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
         <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
-            <a [routerLink]="[menuItem.path]">
-                <i class="nc-icon {{menuItem.icon}}"></i>
-                <p>{{menuItem.title}}</p>
-            </a>
+          <a [routerLink]="[menuItem.path]">
+            <i class="nc-icon {{menuItem.icon}}"></i>
+            <p>{{menuItem.title}}</p>
+          </a>
         </li>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="mat-elevation-z0" style="width: 99%" >
+        <mat-expansion-panel-header >
+            <p>Historial</p>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+        <li *ngFor="let menuItem2 of menuItems2" routerLinkActive="active" class="{{menuItem2.class}}">
+          <a [routerLink]="[menuItem2.path]">
+            <i class="nc-icon {{menuItem2.icon}}"></i>
+            <p>{{menuItem2.title}}</p>
+          </a>
+        </li>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <li *ngFor="let menuItem3 of menuItems3" routerLinkActive="active" class="{{menuItem3.class}}">
+        <a [routerLink]="[menuItem3.path]">
+          <i class="nc-icon {{menuItem3.icon}}"></i>
+          <p>{{menuItem3.title}}</p>
+        </a>
+      </li>
     </ul>
+
 </div>

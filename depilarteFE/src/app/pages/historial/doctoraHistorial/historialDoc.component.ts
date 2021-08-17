@@ -6,26 +6,49 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 
  interface HistorialData {
-  name: String;
-  dateA: String;
-  treatment: String;
-  price: String;
+   dateA: String;
+   name: String;
+   lastName: String,
+   identification: String,
+   age: String,
+   treatment: String;
+   treatmentZone: String,
+   countSession: String,
+   assistent: String,
+   product: String,
+   doctor: String,
+   payForm: String,
+   subscriber: String,
+   comission: String,
+   price: String;
 }
 
 @Component({
   selector: 'historial',
   moduleId: module.id,
-  templateUrl: 'historial.component.html',
-  styleUrls: ['historial.component.scss']
+  templateUrl: 'historialDoc.component.html',
+  styleUrls: ['historialDoc.component.scss']
 })
 
-export class HistorialComponent implements OnInit {
+export class HistorialDocComponent implements OnInit {
   filters: FormGroup;
   displayedColumns: string[] =
     [
-      'name',
       'dateA',
+      'name',
+      'lastName',
+      'identification',
+      'age',
       'treatment',
+      'treatmentType',
+      'treatmentZone',
+      'countSession',
+      'assistent',
+      'product',
+      'doctor',
+      'payForm',
+      'subscriber',
+      'comission',
       'price',
       'actions'
     ];
@@ -40,7 +63,10 @@ export class HistorialComponent implements OnInit {
     this.filters = fb.group({
       name: new FormControl(),
       lastName: new FormControl(),
-      identification: new FormControl()
+      identification: new FormControl(),
+      initialDate: new FormControl(),
+      finalDate: new FormControl(),
+      user: new FormControl()
     });
   }
 
