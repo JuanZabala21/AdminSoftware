@@ -67,10 +67,10 @@
                 </mat-form-field>
             </div>
           </div>
-          <div style="position:relative; top:50%; left:33%;" class="row">
-            <button style="height:40px; width:200px;"
-                    type="button" class="btn btn-outline-primary">Buscar</button>
-            <button style="height:40px; width:200px;" type="button" class="btn btn-outline-primary">Descargar Excel</button>
+          <div style="position:relative; top:50%; display: flex; justify-content: space-around;" class="row">
+            <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
+                    type="button" class="">Buscar</button>
+            <button mat-raised-button mat-stroked-button style="height:40px; width:200px;" type="" class="">Descargar Excel</button>
           </div>
         </div>
       </div>
@@ -82,12 +82,12 @@
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
 
           <ng-container  matColumnDef="dateA">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de atención </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Fecha de atención </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.dateA}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nombre </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
           </ng-container>
 

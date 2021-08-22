@@ -15,6 +15,16 @@ interface Operadora {
     value: string;
     viewValue: string;
   }
+
+  interface Tratamiento {
+    value: string;
+    viewValue: string;
+  }
+  interface ZonaDra {
+    value: string;
+    viewValue: string;
+  }
+
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
@@ -26,7 +36,7 @@ export class OperadoraComponent implements OnInit{
     ngOnInit(){
     }
     operadora: Operadora[] = [
-        {value: 'operadora-0', viewValue: 'Maria'},
+        {value: 'operadora-0', viewValue: 'Francis Reyes'},
         {value: 'operadora-1', viewValue: 'Anna'},
         {value: 'operadora-2', viewValue: 'Juan'}
       ];
@@ -50,6 +60,31 @@ export class OperadoraComponent implements OnInit{
         {value: 'zona-10', viewValue: 'Brazos'},
         {value: 'zona-11', viewValue: 'Ante Brazos'}
       ];
+
+      zonaDra: ZonaDra[]=[
+        {value: 'zonaDra-0', viewValue: 'Rostro tercio superior'},
+        {value: 'zonaDra-1', viewValue: 'Axilas (hiperhidrosis)'},
+        {value: 'zonaDra-1', viewValue: 'Axilas (hiperhidrosis)'},
+        {value: 'zonaDra-1', viewValue: 'Axilas (hiperhidrosis)'},
+        {value: 'zonaDra-1', viewValue: 'Axilas (hiperhidrosis)'},
+        {value: 'zonaDra-1', viewValue: 'Axilas (hiperhidrosis)'},
+        {value: 'zonaDra-1', viewValue: 'Axilas (hiperhidrosis)'},
+
+      ]
+
+      tratamiento: Tratamiento[]=[
+        {value: 'tratamiento-0', viewValue: 'Botox'},
+        {value: 'tratamiento-0', viewValue: 'Acido hialuronico'},
+        {value: 'tratamiento-0', viewValue: 'Plasma Rico en Plaquetas'},
+        {value: 'tratamiento-0', viewValue: 'Limpieza facial básica'},
+        {value: 'tratamiento-0', viewValue: 'Limpieza facial profunda'},
+        {value: 'tratamiento-0', viewValue: 'Extracción de verrugas'},
+        {value: 'tratamiento-0', viewValue: 'Quemadores de grasa'},
+        {value: 'tratamiento-0', viewValue: 'Botox'},
+        {value: 'tratamiento-0', viewValue: 'Botox'},
+
+      ]
+
     uploadFile(event){
         const file= event.target.files[0];
         const dir = './../../../assets/img';

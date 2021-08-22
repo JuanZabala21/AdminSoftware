@@ -60,7 +60,6 @@
               <div class="form-group">
                 <mat-label>Fecha de cumpleaños</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Fecha de cumpleaños</mat-label>
                   <input matInput type="date">
                 </mat-form-field>
               </div>
@@ -115,6 +114,48 @@
                   <mat-select [(ngModel)]="selectedValue" name="Zona">
                     <mat-option *ngFor="let zona of zona" [value]="zona.value">
                       {{zona.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <mat-label>Tratamiento</mat-label>
+              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-label>Tratamiento</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
+                  <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
+                    {{tratamiento.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            </div>
+            <div class="col-md-4 px-1">
+              <div class="form-group">
+                <mat-label>Tipo de Tratamiento</mat-label>
+                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                  <mat-label>Tipo</mat-label>
+                  <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
+                    <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
+                      {{tratamiento.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <mat-label>Zona de Tratamiento</mat-label>
+                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                  <mat-label>Zona</mat-label>
+                  <mat-select [(ngModel)]="selectedValue" name="Zona">
+                    <mat-option *ngFor="let zonaDra of zonaDra" [value]="zonaDra.value">
+                      {{zonaDra.viewValue}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
