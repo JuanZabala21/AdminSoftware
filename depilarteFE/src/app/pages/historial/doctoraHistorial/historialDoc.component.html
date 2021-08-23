@@ -79,111 +79,112 @@
   <mat-card class="mat-elevation-z4">
     <div fxlayout="column">
       <div class="flex-p container-tab">
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 170%;">
 
-          <ng-container  matColumnDef="dateA">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header > Fecha de atención </th>
+          <ng-container  matColumnDef="dateA" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Fecha de atención </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.dateA}} </td>
+            
           </ng-container>
 
           <ng-container  matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nombre </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Nombre </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Apellido </th>
         <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.lastName}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="identification">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cédula </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cédula </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.dateA}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Edad </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Edad </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.age}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="treatment">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tratamiento </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Tratamiento </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatment}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="treatmentType">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Tratamiento </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Tipo de Tratamiento </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentType}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="treatmentZone">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Zona de Tratamiento </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Zona de Tratamiento </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentZone}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="pistolBefore">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Disparos de la pistola antes</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Disparos de la pistola antes</th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.pistolBefore}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="pistolAfter">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Disparos de la pistola despues</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Disparos de la pistola despues</th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.pistolAfter}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="diferentShot">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Diferencia </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Diferencia </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.diferentShot}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="operator">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Operadora </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Operadora </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.operator}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="countSession">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad de Sesiones </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad de Sesiones </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.countSession}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="assistent">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Asistencia </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Asistencia </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.Assistent}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="product">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Producto </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Producto </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.product}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="doctor">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctora </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Doctora </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.doctor}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="payForm">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Forma de Pago </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Forma de Pago </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.payForm}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="subscriber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Abonado </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Abonado </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.subscriber}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="comission">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Comisión </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Comisión </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.commission}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Precio </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.price}} </td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">  </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
