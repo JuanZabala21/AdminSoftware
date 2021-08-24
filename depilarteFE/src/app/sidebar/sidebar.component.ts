@@ -10,6 +10,7 @@ export interface RouteInfo {
 
 export const REGISTER: RouteInfo[] = [
     { path: '/registrar-paciente',     title: 'Pacientes',                    icon:'nc-single-02',  class: '' },
+    { path: '/registrar-tratamiento',     title: 'Tratamientos',                    icon:'nc-single-02',  class: '' }
 ];
 
 export const HISTORIAL: RouteInfo[] = [

@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-md-8" >
+       <div class="card card-user" style="width: 150%;">
+         <div class="card-header">
+           <h5 class="card-title">Registrar Tratamiento</h5>
+         </div>
+         <div class="card-body">
+           <form>
+             
+             <div class="row">
+               <div class="col-md-4 pr-1">
+                 <div class="form-group">
+                   <mat-label>Nombre del Tratamiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Tratamiento</mat-label>
+                     <input matInput type="text">
+                   </mat-form-field>
+                 </div>     
+               </div>
+               <div class="col-md-4 px-1">
+                 <div class="form-group">
+                   <mat-label>Tipos de tratamiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Tipos</mat-label>
+                     <input matInput type="text">
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-4 pl-1">
+                 <div class="form-group">
+                   <mat-label>Zonas del tratamiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Zonas</mat-label>
+                     <input matInput type="text">
+                   </mat-form-field>
+                 </div>
+               </div>
+             </div>
+   
+             <div class="row">
+               <div class="col-md-4 pr-1">
+                 <div class="form-group">
+                   <mat-label>Especialista Encargada</mat-label>
+                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                   <mat-label>Especialista</mat-label>
+                   <mat-select [(ngModel)]="selectedValue" name="usuarioList">
+                    <mat-option *ngFor="let el of user" [value]="el.value">
+                      {{el.desc}}
+                    </mat-option>
+                   </mat-select>
+                 </mat-form-field>
+               </div>
+               </div>
+               <div class="col-md-4 px-1">
+                 <div class="form-group">
+                   <mat-label>Cantidad de sesiones</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                    <mat-label>Sesiones</mat-label>
+                     <input matInput type="number">
+                   </mat-form-field>
+                 </div>
+               </div>
+             </div>
+   
+             <div class="row">
+               <div class="col-md-4 pr-1">
+                 <div class="form-group">
+                   <mat-label>Precio del tratamiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>precio</mat-label>
+                     <input matInput type="number">
+                     <span matPrefix>$&nbsp;</span>
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-4 px-1">
+                 <div class="form-group">
+                   <mat-label>Comisión de la Operadora</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Comision</mat-label>
+                     <input matInput type="number">
+                     <span matPrefix>%&nbsp;</span>
+                   </mat-form-field>
+                 </div>
+               </div>
+           </div>
+   
+             <div class="row">
+               <div class="col-md-12">
+                 <div class="form-group">
+                   <mat-label>Nota</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Comentario</mat-label>
+                     <textarea matInput type="text"></textarea>
+                   </mat-form-field>
+                 </div>
+               </div>
+             </div>
+   
+             <div class="row">
+               <div class="update ml-auto mr-auto">
+                 <button mat-raised-button  color="warn" type="submit">Registrar</button>
+               </div>
+             </div>
+   
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+   

@@ -15,6 +15,7 @@ import { UpgradeComponent }         from '../../pages/various/upgrade/upgrade.co
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OperadoraComponent } from 'app/pages/registrar/operadorRegistro/operadora.component';
+import { TratamientoRegistrarComponent } from 'app/pages/registrar/tratamientoRegistrar/tratamientoRegistrar.component';
 import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
 import {TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
 import {InventarioComponent} from '../../pages/productos/inventario/inventario.component';
@@ -60,7 +61,8 @@ import {MatButtonModule} from '@angular/material/button';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    OperadoraComponent
+    OperadoraComponent,
+    TratamientoRegistrarComponent
   ]
 })
 
