@@ -5,24 +5,40 @@
         <h5 class="card-title">Registrar Paciente</h5>
       </div>
       <div class="card-body">
-        <form>
-          
+        <form [formGroup]="form">
+
+          <div class="row">
+          <div class="col-md-3 pr-1">
+            <div class="form-group">
+              <mat-label>Usuario registrante</mat-label>
+              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-label>Usuario registrante</mat-label>
+                <mat-select formControlName="userRegister">
+                  <mat-option *ngFor="let us of userList" [value]="us.value">
+                    {{us.desc}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          </div>
+
           <div class="row">
             <div class="col-md-4 pr-1">
-              <div class="form-group">
+              <div class="formControl">
                 <mat-label>Nombre</mat-label>
-                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-form-field  appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Nombre</mat-label>
-                  <input matInput type="text">
+                  <input matInput formControlName="name" type="text">
                 </mat-form-field>
-              </div>     
+              </div>
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
                 <mat-label>Apellido</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Apellido</mat-label>
-                  <input matInput type="text">
+                  <input matInput formControlName="lastName" type="text">
                 </mat-form-field>
               </div>
             </div>
@@ -31,7 +47,7 @@
                 <mat-label>Cedula</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Cedula</mat-label>
-                  <input matInput type="number">
+                  <input matInput  formControlName="identification" type="number">
                 </mat-form-field>
               </div>
             </div>
@@ -40,7 +56,7 @@
                 <mat-label>Edad</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Edad</mat-label>
-                  <input matInput type="number">
+                  <input matInput formControlName="age" type="number">
                 </mat-form-field>
               </div>
             </div>
@@ -52,7 +68,7 @@
                 <mat-label for="exampleInputEmail1">Email</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Email</mat-label>
-                  <input matInput type="email" placeholder="email@gmail.com">
+                  <input matInput formControlName="email" type="email" placeholder="email@gmail.com">
                 </mat-form-field>
               </div>
             </div>
@@ -60,11 +76,11 @@
               <div class="form-group">
                 <mat-label>Fecha de cumpleaños</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <input matInput type="date">
+                  <input matInput  formControlName="birthday" type="date">
                 </mat-form-field>
               </div>
             </div>
-            
+
           </div>
 
           <div class="row">
@@ -73,19 +89,19 @@
                 <mat-label>Dirección</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Dirección</mat-label>
-                  <input matInput type="text">
+                  <input matInput  formControlName="address" type="text">
                 </mat-form-field>
               </div>
             </div>
           </div>
 
-          <div class="row">
+          <div  class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
                 <mat-label>Tratamiento</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Tratamiento</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
+                <mat-select  formControlName="treatment" [(ngModel)]="selectedValue" name="Tratamiento">
                   <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
                     {{tratamiento.viewValue}}
                   </mat-option>
@@ -98,7 +114,7 @@
                 <mat-label>Tipo de Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Tipo</mat-label>
-                  <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
+                  <mat-select  formControlName="treatmentType" [(ngModel)]="selectedValue" name="Tratamiento">
                     <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
                       {{tratamiento.viewValue}}
                     </mat-option>
@@ -111,7 +127,7 @@
                 <mat-label>Zona de Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Zona</mat-label>
-                  <mat-select [(ngModel)]="selectedValue" name="Zona">
+                  <mat-select  formControlName="treatmentZone" [(ngModel)]="selectedValue" name="Zona">
                     <mat-option *ngFor="let zona of zona" [value]="zona.value">
                       {{zona.viewValue}}
                     </mat-option>
@@ -121,55 +137,13 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-4 pr-1">
-              <div class="form-group">
-                <mat-label>Tratamiento</mat-label>
-              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                <mat-label>Tratamiento</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
-                  <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
-                    {{tratamiento.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            </div>
-            <div class="col-md-4 px-1">
-              <div class="form-group">
-                <mat-label>Tipo de Tratamiento</mat-label>
-                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Tipo</mat-label>
-                  <mat-select [(ngModel)]="selectedValue" name="Tratamiento">
-                    <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
-                      {{tratamiento.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <mat-label>Zona de Tratamiento</mat-label>
-                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Zona</mat-label>
-                  <mat-select [(ngModel)]="selectedValue" name="Zona">
-                    <mat-option *ngFor="let zonaDra of zonaDra" [value]="zonaDra.value">
-                      {{zonaDra.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
+          <div *ngIf="showDoctor"  class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
                 <mat-label>Cantidad de sesiones</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Sesiones</mat-label>
-                  <input matInput type="number">
+                  <input matInput  formControlName="sessions" type="number">
                 </mat-form-field>
               </div>
             </div>
@@ -178,7 +152,7 @@
                 <mat-label>Asistencia</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Asistencia</mat-label>
-                  <input matInput type="number" placeholder="Sesiones">
+                  <input matInput  formControlName="assistent" type="number" placeholder="Sesiones">
                 </mat-form-field>
               </div>
             </div>
@@ -187,19 +161,19 @@
                 <mat-label>Producto Utilizado</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Producto</mat-label>
-                  <input matInput type="text">
+                  <input matInput  formControlName="product" type="text">
                 </mat-form-field>
               </div>
             </div>
           </div>
 
-          <div class="row">
+          <div *ngIf="showOperative" class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Antes</mat-label>
-                  <input matInput type="number" placeholder="Antes">
+                  <input matInput  formControlName="beforeShots" type="number" placeholder="Antes">
                 </mat-form-field>
               </div>
             </div>
@@ -208,7 +182,7 @@
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Despues</mat-label>
-                  <input matInput type="number" placeholder="Despues">
+                  <input matInput type="number" formControlName="afterShots" placeholder="Despues">
                 </mat-form-field>
               </div>
             </div>
@@ -217,29 +191,29 @@
                 <mat-label>Diferencia</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Diferencia</mat-label>
-                  <input matInput type="number">
+                  <input matInput formControlName="diferents" type="number">
                 </mat-form-field>
               </div>
             </div>
           </div>
-          
+
           <div class="row">
-            <div class="col-md-4 pr-1">
+            <div *ngIf="showOperative" class="col-md-4 pr-1">
               <mat-label>Operadora Encargada</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Operadora Encargada</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="Operadora">
+                <mat-select  formControlName="userOp"  [(ngModel)]="selectedValue" name="Operadora">
                   <mat-option *ngFor="let operadora of operadora" [value]="operadora.value">
                     {{operadora.viewValue}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col-md-4 px-1">
+            <div  *ngIf="showDoctor" class="col-md-4 px-1">
               <mat-label>Doctora Encargada</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Doctora Encargada</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="Operadora">
+                <mat-select  formControlName="userDoc" [(ngModel)]="selectedValue" name="Operadora">
                   <mat-option *ngFor="let operadora of operadora" [value]="operadora.value">
                     {{operadora.viewValue}}
                   </mat-option>
@@ -250,7 +224,7 @@
               <mat-label>Forma de pago</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Forma de pago</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="Pago">
+                <mat-select  formControlName="payment" [(ngModel)]="selectedValue" name="Pago">
                   <mat-option *ngFor="let pago of pago" [value]="pago.value">
                     {{pago.viewValue}}
                   </mat-option>
@@ -265,7 +239,7 @@
                 <mat-label>Abonado</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Abonado</mat-label>
-                  <input matInput type="number">
+                  <input matInput  formControlName="bono" type="number">
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -275,7 +249,7 @@
                 <mat-label>Total de la Venta</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Total</mat-label>
-                  <input matInput type="number" disabled>
+                  <input matInput  formControlName="totalPrice" type="number" disabled>
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -285,7 +259,7 @@
                 <mat-label>Comisión de la Operadora</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Comision</mat-label>
-                  <input matInput type="number" disabled>
+                  <input matInput  formControlName="comission" type="number" disabled>
                   <span matPrefix>%&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -298,7 +272,7 @@
                 <mat-label>Nota</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Comentario</mat-label>
-                  <textarea matInput type="text"></textarea>
+                  <textarea matInput formControlName="note" type="text"></textarea>
                 </mat-form-field>
               </div>
             </div>
@@ -307,8 +281,8 @@
           <div class="row">
               <div class="form-group">
                 <div class="col-md-4 pr-1">
-                  <button 
-                    mat-raised-button color="primary"  
+                  <button
+                    mat-raised-button color="primary"
                     type="file" (change)="uploadFile($event)">
                     Foto antes de la sesión
                     <input type="file" (change)="uploadFile($event)" >

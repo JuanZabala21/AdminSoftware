@@ -6,25 +6,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 
 interface HistorialData {
-  dateA: String;
-  name: String;
-  lastName: String,
-  identification: String,
-  age: String,
-  treatment: String;
+  treatmentName: String;
+  treatmentType: String;
   treatmentZone: String,
-  pistolBefore: String,
-  pistolAfter: String,
-  diferentShot: String,
-  countSession: String,
-  operator: String,
-  assistent: String,
-  product: String,
-  doctor: String,
-  payForm: String,
-  subscriber: String,
-  comission: String,
-  price: String;
+  sessions: String,
+  priceTreatment: String,
+  operativeComission: String;
 }
 
 @Component({
@@ -42,26 +29,13 @@ export class InventarioComponent implements OnInit {
   ];
   displayedColumns: string[] =
     [
-      'dateA',
-      'name',
-      'lastName',
-      'identification',
-      'age',
-      'treatment',
+      'treatmentName',
       'treatmentType',
       'treatmentZone',
-      'pistolBefore',
-      'pistolAfter',
-      'diferentShot',
-      'operator',
-      'countSession',
-      'assistent',
-      'product',
-      'doctor',
-      'payForm',
-      'subscriber',
-      'comission',
-      'price',
+      'user',
+      'sessions',
+      'priceTreatment',
+      'operativeComission',
       'actions'
     ];
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppModule } from '../../../app.module';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 
@@ -33,9 +35,66 @@ interface Operadora {
 
 export class OperadoraComponent implements OnInit{
     private appModule: AppModule;
-    ngOnInit(){
+    form: FormGroup;
+   userList = [
+     {value: 1, desc: 'Doctora'},
+     {value: 2, desc: 'Operadora'}
+   ];
+   disabled = true;
+   showOperative: boolean = true;
+   showDoctor: boolean = true;
+    ngOnInit() {
     }
-    operadora: Operadora[] = [
+
+    constructor(
+      private fb: FormBuilder,
+      private router: Router,
+      private route: ActivatedRoute,
+    ) {
+      this.form = fb.group({
+        userRegister: new FormControl('',[Validators.required]),
+        name: new FormControl(),
+        lastName: new FormControl(),
+        identification: new FormControl(),
+        age: new FormControl(),
+        email: new FormControl(),
+        birthday: new FormControl(),
+        address: new FormControl(),
+        treatment: new FormControl(),
+        treatmentType: new FormControl(),
+        treatmentZone: new FormControl(),
+        sessions: new FormControl(),
+        assistent: new FormControl(),
+        product: new FormControl(),
+        beforeShots: new FormControl(),
+        afterShots: new FormControl(),
+        diferents: new FormControl(),
+        userOp: new FormControl(),
+        userDoc: new FormControl(),
+        payment: new FormControl(),
+        bono: new FormControl(),
+        totalPrice: new FormControl(),
+        comission: new FormControl(),
+        note: new FormControl()
+        });
+      this.form.controls.userRegister.valueChanges.subscribe(
+        value => {
+          switch(value){
+            case 1:
+              this.showDoctor = true;
+              this.showOperative = false;
+              break;
+            case 2:
+              this.showDoctor = false;
+              this.showOperative = true;
+              break;
+          }
+        });
+    }
+
+
+
+    /**operadora: Operadora[] = [
         {value: 'operadora-0', viewValue: 'Francis Reyes'},
         {value: 'operadora-1', viewValue: 'Anna'},
         {value: 'operadora-2', viewValue: 'Juan'}
@@ -83,12 +142,10 @@ export class OperadoraComponent implements OnInit{
         {value: 'tratamiento-0', viewValue: 'Botox'},
         {value: 'tratamiento-0', viewValue: 'Botox'},
 
-      ]
+      ]**/
 
     uploadFile(event){
         const file= event.target.files[0];
         const dir = './../../../assets/img';
-
-
     }
 }
