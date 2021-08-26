@@ -1,10 +1,10 @@
-package com.example.depilarteBE;
+package com.depilartebe.depilarteBackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DepilarteBeApplicationTests {
+class DepilarteBackendApplicationTests {
 
 	@Test
 	void contextLoads() {
