@@ -57,6 +57,7 @@ export class OperadoraComponent implements OnInit{
         lastName: new FormControl(),
         identification: new FormControl(),
         age: new FormControl(),
+        phone: new FormControl(),
         email: new FormControl(),
         birthday: new FormControl(),
         address: new FormControl(),

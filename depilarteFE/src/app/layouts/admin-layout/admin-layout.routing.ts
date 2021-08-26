@@ -4,6 +4,7 @@ import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/hist
 import {InventarioComponent} from '../../pages/productos/inventario/inventario.component';
 import {TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
 import {TratamientoRegistrarComponent} from '../../pages/registrar/tratamientoRegistrar/tratamientoRegistrar.component';
+import { UsuarioRegistroComponent } from '../../pages/registrar/usuario-registro/usuario-registro.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'registrar-paciente',     component: OperadoraComponent},
@@ -11,4 +12,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tratamiento',             component: TratamientoComponent},
     { path: 'inventario',              component: InventarioComponent},
     { path: 'registrar-tratamiento',   component: TratamientoRegistrarComponent},
+    { path: 'registrar-usuario',   component: UsuarioRegistroComponent}
 ];

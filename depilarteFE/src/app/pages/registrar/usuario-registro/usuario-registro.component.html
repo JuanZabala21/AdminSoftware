@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-md-8" >
+       <div class="card card-user" style="width: 150%;">
+         <div class="card-header">
+           <h1 class="card-title">Registrar Empleado</h1>
+         </div>
+         <div class="card-body">
+           <form [formGroup]="form">
+
+             <div class="row">
+               <div class="col-md-4 pr-1">
+                 <div class="formControl">
+                   <mat-label>Nombre</mat-label>
+                   <mat-form-field  appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Nombre</mat-label>
+                     <input matInput formControlName="name" type="text">
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-4 px-1">
+                 <div class="form-group">
+                   <mat-label>Apellido</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Apellido</mat-label>
+                     <input matInput formControlName="lastName" type="text">
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-2 px-1">
+                 <div class="form-group">
+                   <mat-label>Cedula</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Cedula</mat-label>
+                     <input matInput  formControlName="identification" type="number">
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-2 pl-1">
+                 <div class="form-group">
+                   <mat-label>Edad</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Edad</mat-label>
+                     <input matInput formControlName="age" type="number">
+                   </mat-form-field>
+                 </div>
+               </div>
+             </div>
+   
+             <div class="row">
+               <div class="col-md-4 pr-1">
+                 <div class="form-group">
+                   <mat-label for="exampleInputEmail1">Email</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Email</mat-label>
+                     <input matInput formControlName="email" type="email" placeholder="email@gmail.com">
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-4 px-1">
+                 <div class="form-group">
+                   <mat-label>Teléfono</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Teléfono</mat-label>
+                     <input matInput  formControlName="phone" type="tel">
+                   </mat-form-field>
+                 </div>
+               </div>
+               <div class="col-md-4 pl-1">
+                 <div class="form-group">
+                   <mat-label>Fecha de Nacimiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <input matInput  formControlName="birthday" type="date">
+                   </mat-form-field>
+                 </div>
+               </div>
+             </div>
+   
+             <div class="row">
+                <div class="col-md-5 pr-1">
+                  <div class="form-group">
+                    <mat-label>Cargo</mat-label>
+                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                      <mat-label>Cargo</mat-label>
+                      <input matInput  formControlName="cargo" type="text">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-7 pl-1">
+                 <div class="form-group">
+                   <mat-label>Dirección</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Dirección</mat-label>
+                     <input matInput  formControlName="address" type="text">
+                   </mat-form-field>
+                 </div>
+               </div>
+              </div>
+ 
+
+             <div class="row">
+               <div class="update ml-auto mr-auto">
+                 <button mat-raised-button  color="warn" type="submit">Registrar</button>
+               </div>
+             </div>
+   
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+   

@@ -47,6 +47,7 @@ export class HistorialDocComponent implements OnInit {
       'lastName',
       'identification',
       'age',
+      'phone',
       'treatment',
       'treatmentType',
       'treatmentZone',

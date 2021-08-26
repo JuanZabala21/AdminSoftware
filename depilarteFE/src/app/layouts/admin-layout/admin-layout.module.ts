@@ -19,6 +19,8 @@ import { TratamientoRegistrarComponent } from 'app/pages/registrar/tratamientoRe
 import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
 import {TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
 import {InventarioComponent} from '../../pages/productos/inventario/inventario.component';
+import { UsuarioRegistroComponent } from '../../pages/registrar/usuario-registro/usuario-registro.component';
+
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSortModule} from '@angular/material/sort';
@@ -62,7 +64,8 @@ import {MatButtonModule} from '@angular/material/button';
     MapsComponent,
     NotificationsComponent,
     OperadoraComponent,
-    TratamientoRegistrarComponent
+    TratamientoRegistrarComponent,
+    UsuarioRegistroComponent
   ]
 })
 
