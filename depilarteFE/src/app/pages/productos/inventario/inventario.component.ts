@@ -29,13 +29,12 @@ export class InventarioComponent implements OnInit {
   ];
   displayedColumns: string[] =
     [
-      'treatmentName',
-      'treatmentType',
-      'treatmentZone',
+      'name',
+      'prov',
+      'quantity',
       'user',
-      'sessions',
-      'priceTreatment',
-      'operativeComission',
+      'treatment',
+      'price',
       'actions'
     ];
 

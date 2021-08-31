@@ -10,17 +10,19 @@ export interface RouteInfo {
 
 export const REGISTER: RouteInfo[] = [
     { path: '/registrar-paciente',     title: 'Pacientes',                    icon:'nc-single-02',  class: '' },
-    { path: '/registrar-usuario',     title: 'Empleados',                    icon:'nc-single-02',  class: '' },
-    { path: '/registrar-tratamiento',     title: 'Tratamientos',                    icon:'nc-single-02',  class: '' }  
+    { path: '/registrar-usuario',     title: 'Empleados',                    icon:'nc-badge',  class: '' },
+    { path: '/registrar-tratamiento',     title: 'Tratamiento',                    icon:'nc-ambulance',  class: '' },
+    { path: '/registrar-producto',     title: 'Productos',                    icon:'nc-single-copy-04',  class: '' }
 ];
 
 export const HISTORIAL: RouteInfo[] = [
-  { path: '/historial',         title: 'Pacientes',           icon:'nc-tile-56',    class: '' },
+  { path: '/historialDoc',         title: 'Pacientes',           icon:'nc-single-02',    class: '' },
+  { path: '/historial-empleado',         title: 'Empleados',           icon:'nc-badge',    class: '' }
 ];
 
 export const PRODUCTS: RouteInfo[] = [
-  { path: '/tratamiento',         title: 'Tratamiento',      icon:'nc-tile-56',    class: '' },
-  { path: '/inventario',         title: 'Inventario',        icon:'nc-tile-56',    class: '' }
+  { path: '/tratamiento',         title: 'Tratamientos',      icon:'nc-ambulance',    class: '' },
+  { path: '/inventario',         title: 'Productos',        icon:'nc-single-copy-04',    class: '' }
 ];
 
 

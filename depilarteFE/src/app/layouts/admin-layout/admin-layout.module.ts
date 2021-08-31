@@ -16,10 +16,12 @@ import { UpgradeComponent }         from '../../pages/various/upgrade/upgrade.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OperadoraComponent } from 'app/pages/registrar/operadorRegistro/operadora.component';
 import { TratamientoRegistrarComponent } from 'app/pages/registrar/tratamientoRegistrar/tratamientoRegistrar.component';
-import {HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
-import {TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
-import {InventarioComponent} from '../../pages/productos/inventario/inventario.component';
+import { HistorialDocComponent} from '../../pages/historial/doctoraHistorial/historialDoc.component';
+import { TratamientoComponent} from '../../pages/productos/tratamiento/tratamiento.component';
+import { InventarioComponent} from '../../pages/productos/inventario/inventario.component';
 import { UsuarioRegistroComponent } from '../../pages/registrar/usuario-registro/usuario-registro.component';
+import { EmpleadoHistorialComponent } from '../../pages/historial/empleado-historial/empleado-historial.component';
+import { RegistrarProductoComponent } from '../../pages/registrar/registrar-producto/registrar-producto.component';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -32,6 +34,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 
 import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   imports: [
@@ -65,7 +68,9 @@ import {MatButtonModule} from '@angular/material/button';
     NotificationsComponent,
     OperadoraComponent,
     TratamientoRegistrarComponent,
-    UsuarioRegistroComponent
+    UsuarioRegistroComponent,
+    EmpleadoHistorialComponent,
+    RegistrarProductoComponent
   ]
 })
 

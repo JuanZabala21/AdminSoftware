@@ -3,27 +3,45 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <mat-label class="card-title">Inventario de Tratamientos</mat-label>
+          <mat-label class="card-title">Inventario de Productos</mat-label>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-6 pr-1">
-              <mat-form-field>
-                <mat-label>Nombre del tratamiento</mat-label>
+              <mat-form-field style="width: 100%;"> 
+                <mat-label>Nombre del Producto</mat-label>
                 <input matInput formControlName="name" >
                 <mat-error>
                 </mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-6 px-1">
-              <mat-form-field>
-                <mat-label>Precio</mat-label>
-                <input matInput formControlName="identification" >
+              <mat-form-field style="width: 100%;">
+                <mat-label>Especialista</mat-label>
+                <input matInput formControlName="user" >
                 <mat-error>
                 </mat-error>
               </mat-form-field>
             </div>
           </div>
+          <div  class="row">
+              <div class="col-md-6 pr-1">
+                  <mat-form-field style="width: 100%;">
+                    <mat-label>Fecha Inicial</mat-label>
+                    <input matInput formControlName="initialDate" [matDatepicker]="initialDate">
+                    <mat-datepicker-toggle matSuffix [for]="initialDate"></mat-datepicker-toggle>
+                    <mat-datepicker #initialDate disabled="false"></mat-datepicker>
+                  </mat-form-field>
+              </div>
+              <div class="col-md-6 px-1">
+                  <mat-form-field style="width: 100%;">
+                    <mat-label>Fecha Final</mat-label>
+                    <input matInput formControlName="finalDate" [matDatepicker]="finalDate">
+                    <mat-datepicker-toggle matSuffix [for]="finalDate"></mat-datepicker-toggle>
+                    <mat-datepicker #finalDate disabled="false"></mat-datepicker>
+                  </mat-form-field>
+              </div>
+            </div>
           <div style="position:relative; top:50%; display: flex; justify-content: space-around;" class="row">
             <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
                     type="button" class="">Buscar</button>
@@ -38,20 +56,20 @@
       <div class="flex-p container-tab">
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 100%;">
 
-          <ng-container  matColumnDef="treatmentName" >
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nombre del tratamiento</th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentName}} </td>
+          <ng-container  matColumnDef="name" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nombre del Producto</th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
 
           </ng-container>
 
-          <ng-container  matColumnDef="treatmentType">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Tipo de Tratamiento </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentType}} </td>
+          <ng-container  matColumnDef="prov">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Proovedor </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.prov}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="treatmentZone">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Zona de Tratamiento </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentZone}} </td>
+          <ng-container  matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.quantity}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="user">
@@ -59,21 +77,15 @@
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.user}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="sessions">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad de Sesiones </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.age}} </td>
+          <ng-container  matColumnDef="treatment">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Tratamiento </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatment}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="priceTreatment">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Precio del Tratamiento </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.priceTreatment}} </td>
+          <ng-container  matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Precio </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.price}} </td>
           </ng-container>
-
-          <ng-container  matColumnDef="operativeComission">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Comisión de la operadora </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.operativeComission}} </td>
-          </ng-container>
-
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>

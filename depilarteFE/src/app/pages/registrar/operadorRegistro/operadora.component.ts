@@ -40,10 +40,13 @@ export class OperadoraComponent implements OnInit{
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
+
    disabled = true;
    showOperative: boolean = true;
    showDoctor: boolean = true;
     ngOnInit() {
+      this.showDoctor = false;
+      this.showOperative = false;
     }
 
     constructor(
