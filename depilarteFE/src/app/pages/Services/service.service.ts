@@ -8,13 +8,7 @@ export class ServiceService {
 
   constructor(private http:HttpClient) { }
 
-  Url='http://localhost:8080/depilarteBE';
-
-  getDepilarte(){
-
-    
-  }
-
+  Url='http://localhost:8080/depilarteBackend';
 
 
 }
