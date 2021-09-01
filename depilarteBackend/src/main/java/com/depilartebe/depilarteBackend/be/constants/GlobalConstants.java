@@ -1,8 +1,9 @@
-package constants;
+package com.depilartebe.depilarteBackend.be.constants;
 
 public interface GlobalConstants {
 
     String CONTENT_TYPE = "application/json";
+    String APPLICATION_JSON 		= "application/json";
     String ACCEPT = "application/json";
     String TEXT_JSON = "text/json";
     String MESSAGE = "message";

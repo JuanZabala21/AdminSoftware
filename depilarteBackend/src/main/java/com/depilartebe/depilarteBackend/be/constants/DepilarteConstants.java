@@ -1,4 +1,4 @@
-package constants;
+package com.depilartebe.depilarteBackend.be.constants;
 
 public interface DepilarteConstants {
 

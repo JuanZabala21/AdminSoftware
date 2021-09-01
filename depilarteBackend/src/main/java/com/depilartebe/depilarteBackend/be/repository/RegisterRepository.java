@@ -1,6 +1,6 @@
-package repository;
+package com.depilartebe.depilarteBackend.be.repository;
 
-import entities.Register;
+import com.depilartebe.depilarteBackend.be.entities.Register;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

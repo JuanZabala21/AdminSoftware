@@ -1,4 +1,4 @@
-package entities;
+package com.depilartebe.depilarteBackend.be.entities;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,21 +1,19 @@
-package services;
+package com.depilartebe.depilarteBackend.be.services;
 
-import constants.DepilarteConstants;
-import constants.GlobalConstants;
-import entities.Register;
+import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
+import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
+import com.depilartebe.depilarteBackend.be.entities.Register;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import repository.RegisterRepository;
+import com.depilartebe.depilarteBackend.be.repository.RegisterRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.logging.SimpleFormatter;
 
 @Service
 public class DepilarteServices implements DepilarteConstants, GlobalConstants {

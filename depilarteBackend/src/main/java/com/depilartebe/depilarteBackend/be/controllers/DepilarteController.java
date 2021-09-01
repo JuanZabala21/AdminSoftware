@@ -1,15 +1,15 @@
-package controllers;
+package com.depilartebe.depilarteBackend.be.controllers;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import constants.DepilarteConstants;
-import constants.GlobalConstants;
+import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
+import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
 import org.jsondoc.core.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import services.DepilarteServices;
+import com.depilartebe.depilarteBackend.be.services.DepilarteServices;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,9 +26,9 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
      @Autowired
      DepilarteServices depilarteServices;
 
-    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = REGISTER_CLIENT_DESCRIPTION)
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = REGISTER_CLIENT_DESCRIPTION)
     @ApiResponseObject
-    @RequestMapping(method = RequestMethod.POST, value = REGISTER_CLIENT_URI, consumes = CONTENT_TYPE, produces = ACCEPT)
+    @RequestMapping(method = RequestMethod.POST, value = REGISTER_CLIENT_URI)
     public Map<String, Object> getRegisterClients(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
         Map<String, Object> mapResponse = new HashMap<String, Object>();
 

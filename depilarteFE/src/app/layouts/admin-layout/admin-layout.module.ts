@@ -53,7 +53,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   declarations: [
     DashboardComponent,
