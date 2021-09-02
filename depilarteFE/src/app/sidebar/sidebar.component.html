@@ -14,7 +14,7 @@
         <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
           <a [routerLink]="[menuItem.path]">
             <i class="nc-icon {{menuItem.icon}}"></i>
-            <p>{{menuItem.title}}</p>
+            <p style="font-weight: bold;">{{menuItem.title}}</p>
           </a>
         </li>
       </mat-expansion-panel>
@@ -27,7 +27,7 @@
         <li *ngFor="let menuItem2 of menuItems2" routerLinkActive="active" class="{{menuItem2.class}}">
           <a [routerLink]="[menuItem2.path]">
             <i class="nc-icon {{menuItem2.icon}}"></i>
-            <p>{{menuItem2.title}}</p>
+            <p style="font-weight: bold;">{{menuItem2.title}}</p>
           </a>
         </li>
         </ng-template>
@@ -41,7 +41,7 @@
           <li *ngFor="let menuItem3 of menuItems3" routerLinkActive="active" class="{{menuItem3.class}}">
             <a [routerLink]="[menuItem3.path]">
               <i class="nc-icon {{menuItem3.icon}}"></i>
-              <p>{{menuItem3.title}}</p>
+              <p style="font-weight: bold;">{{menuItem3.title}}</p>
             </a>
           </li>
         </ng-template>

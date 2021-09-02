@@ -9,20 +9,20 @@ export interface RouteInfo {
 }
 
 export const REGISTER: RouteInfo[] = [
-    { path: '/registrar-paciente',     title: 'Pacientes',                    icon:'nc-single-02',  class: '' },
-    { path: '/registrar-usuario',     title: 'Empleados',                    icon:'nc-badge',  class: '' },
-    { path: '/registrar-tratamiento',     title: 'Tratamiento',                    icon:'nc-ambulance',  class: '' },
-    { path: '/registrar-producto',     title: 'Productos',                    icon:'nc-single-copy-04',  class: '' }
+    { path: '/registrar-paciente',        title: 'Pacientes',                   icon:'nc-single-02',  class: '' },
+    { path: '/registrar-usuario',         title: 'Empleados',                    icon:'nc-badge',  class: '' },
+    { path: '/registrar-tratamiento',     title: 'Tratamiento',              icon:'nc-ambulance',  class: '' },
+    { path: '/registrar-producto',        title: 'Productos',                   icon:'nc-single-copy-04',  class: '' }
 ];
 
 export const HISTORIAL: RouteInfo[] = [
   { path: '/historialDoc',         title: 'Pacientes',           icon:'nc-single-02',    class: '' },
-  { path: '/historial-empleado',         title: 'Empleados',           icon:'nc-badge',    class: '' }
+  { path: '/historial-empleado',   title: 'Empleados',           icon:'nc-badge',    class: '' }
 ];
 
 export const PRODUCTS: RouteInfo[] = [
   { path: '/tratamiento',         title: 'Tratamientos',      icon:'nc-ambulance',    class: '' },
-  { path: '/inventario',         title: 'Productos',        icon:'nc-single-copy-04',    class: '' }
+  { path: '/inventario',          title: 'Productos',         icon:'nc-single-copy-04',    class: '' }
 ];
 
 
