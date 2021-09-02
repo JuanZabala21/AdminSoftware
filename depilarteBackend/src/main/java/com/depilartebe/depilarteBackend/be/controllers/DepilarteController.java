@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping("/depilarte")
 
 public class DepilarteController implements GlobalConstants, DepilarteConstants {
-    static Logger log = LogManager.getLogger(DepilarteController.class);
+        static Logger log = LogManager.getLogger(DepilarteController.class);
 
      @Autowired
      DepilarteServices depilarteServices;
@@ -132,5 +132,63 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         }
         return mapResponse;
     }
+
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = REGISTER_EMPLEADO_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = REGISTER_EMPLEADO_URI)
+    public Map<String, Object> getRegisterEmpleados(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+                Long id = (params.containsKey(EMPLEADO_ID) &&
+                        params.get(EMPLEADO_ID) != null &&
+                        !params.get(EMPLEADO_ID).toString().isEmpty() )
+                        ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+                String empleadoName = (params.containsKey(EMPLEADO_NAME) && params.get(EMPLEADO_NAME) != null
+                        && !params.get(EMPLEADO_NAME).toString().isEmpty()) ?
+                        params.get(EMPLEADO_NAME).toString() : null;
+                String empleadoLastName = (params.containsKey(EMPLEADO_LASTNAME) && params.get(EMPLEADO_LASTNAME) != null
+                        && !params.get(EMPLEADO_LASTNAME).toString().isEmpty()) ?
+                        params.get(EMPLEADO_LASTNAME).toString() : null;
+                String identification = (params.containsKey(IDENTIFICATION) && params.get(IDENTIFICATION) != null
+                        && !params.get(IDENTIFICATION).toString().isEmpty()) ?
+                        params.get(IDENTIFICATION).toString() : null;
+                String telefono =(params.containsKey(EMPLEADO_TELEFONO) && params.get(EMPLEADO_TELEFONO) != null
+                        && !params.get(EMPLEADO_TELEFONO).toString().isEmpty()) ?
+                        params.get(EMPLEADO_TELEFONO).toString() : null;
+                String age = (params.containsKey(EMPLEADO_AGE) && params.get(EMPLEADO_AGE) != null
+                        && !params.get(EMPLEADO_AGE).toString().isEmpty()) ?
+                        params.get(EMPLEADO_AGE).toString() : null;
+                String email = (params.containsKey(EMPLEADO_EMAIL) && params.get(EMPLEADO_EMAIL) != null
+                        && !params.get(EMPLEADO_EMAIL).toString().isEmpty()) ?
+                        params.get(EMPLEADO_EMAIL).toString() : null;
+                String birthday = (params.containsKey(EMPLEADO_BIRTHDAY) && params.get(EMPLEADO_BIRTHDAY) != null
+                        && !params.get(EMPLEADO_BIRTHDAY).toString().isEmpty()) ?
+                        params.get(EMPLEADO_BIRTHDAY).toString() : null;
+                String address = (params.containsKey(EMPLEADO_ADDRESS) && params.get(EMPLEADO_ADDRESS) != null
+                        && !params.get(EMPLEADO_ADDRESS).toString().isEmpty()) ?
+                        params.get(EMPLEADO_ADDRESS).toString() : null;
+               String cargo = (params.containsKey(CARGO) && params.get(CARGO) != null
+                       && !params.get(CARGO).toString().isEmpty()) ?
+                       params.get(CARGO).toString() : null;
+
+
+                mapResponse = depilarteServices.registerEmpleados(id,empleadoName,empleadoLastName,identification,telefono, age,
+                        email,birthday,address,cargo);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        }
+        return mapResponse;
+    }
+
 
 }

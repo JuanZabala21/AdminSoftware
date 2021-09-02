@@ -8,6 +8,11 @@ public interface DepilarteConstants {
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los clientes </span></u></h3>"
                     + "Método que genera registros de clientes. </div>";
 
+    String REGISTER_EMPLEADO_URI = "registerEmpleado";
+    String REGISTER_EMPLEADO_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los empleados </span></u></h3>"
+                    + "Método que genera registros de empleados. </div>";
+
     //Constantes de Variables
     String CLIENT_ID = "id";
     String CLIENT_NAME = "clientName";
@@ -35,9 +40,15 @@ public interface DepilarteConstants {
     String CLIENT_COMISSION = "comission";
     String CLIENT_NOTE = "note";
 
-
-
-
+    String EMPLEADO_ID = "id";
+    String EMPLEADO_NAME = "empleadoName";
+    String EMPLEADO_LASTNAME = "empleadoLastName";
+    String EMPLEADO_AGE = "age";
+    String EMPLEADO_EMAIL = "email";
+    String EMPLEADO_BIRTHDAY = "birthday";
+    String EMPLEADO_ADDRESS = "address";
+    String CARGO = "cargo";
+    String EMPLEADO_TELEFONO= "telefono";
 
 
 

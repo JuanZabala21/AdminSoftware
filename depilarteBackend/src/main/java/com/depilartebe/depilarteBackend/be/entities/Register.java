@@ -3,90 +3,90 @@ package com.depilartebe.depilarteBackend.be.entities;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "depilarte_registros")
-public class Register {
+    @Entity
+    @Table(name = "depilarte_registros")
+    public class Register {
 
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @Column
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Column
-    private Date fechaAtendido;
+        @Column
+        private Date fechaAtendido;
 
-    @Column
-    private String Nombre;
+        @Column
+        private String Nombre;
 
-    @Column
-    private String Apellido;
+        @Column
+        private String Apellido;
 
-    @Column
-    private String Cedula;
+        @Column
+        private String Cedula;
 
-    @Column
-    private String Edad;
+        @Column
+        private String Edad;
 
-    @Column
-    private String Correo;
+        @Column
+        private String Correo;
 
-    @Column
-    private Date FechaCumple;
+        @Column
+        private Date FechaCumple;
 
-    @Column
-    private String Direccion;
+        @Column
+        private String Direccion;
 
-    @Column
-    private Long Tratamiento;
+        @Column
+        private Long Tratamiento;
 
-    @Column
-    private Long TipoTratamiento;
+        @Column
+        private Long TipoTratamiento;
 
-    @Column
-    private Long ZonaTratamiento;
+        @Column
+        private Long ZonaTratamiento;
 
-    @Column
-    private String CantidadSesiones;
+        @Column
+        private String CantidadSesiones;
 
-    @Column
-    private String Asistencia;
+        @Column
+        private String Asistencia;
 
-    @Column
-    private Long ProductoUtilizado;
+        @Column
+        private Long ProductoUtilizado;
 
-    @Column
-    private String DisparosAntes;
+        @Column
+        private String DisparosAntes;
 
-    @Column
-    private String DisparosDespues;
+        @Column
+        private String DisparosDespues;
 
-    @Column
-    private String DiferenciaDisparos;
+        @Column
+        private String DiferenciaDisparos;
 
-    @Column
-    private Long Operadora;
+        @Column
+        private Long Operadora;
 
-    @Column
-    private Long Doctora;
+        @Column
+        private Long Doctora;
 
-    @Column
-    private Long FormaPago;
+        @Column
+        private Long FormaPago;
 
-    @Column
-    private String Abonado;
+        @Column
+        private String Abonado;
 
-    @Column
-    private String precioTotal;
+        @Column
+        private String precioTotal;
 
-    @Column
-    private String Comision;
+        @Column
+        private String Comision;
 
-    @Column
-    private String Nota;
+        @Column
+        private String Nota;
 
-    public Long getId() {
-        return id;
-    }
+        public Long getId() {
+            return id;
+        }
 
     public Date getFechaAtendido() {
         return fechaAtendido;
