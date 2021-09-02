@@ -179,8 +179,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                        params.get(CARGO).toString() : null;
 
 
-                mapResponse = depilarteServices.registerEmpleados(id,empleadoName,empleadoLastName,identification,telefono, age,
-                        email,birthday,address,cargo);
+                mapResponse = depilarteServices.registerEmpleados(id,empleadoName,empleadoLastName,identification,telefono, age, email,birthday,address,cargo);
 
             } catch (Exception e) {
                 e.printStackTrace();

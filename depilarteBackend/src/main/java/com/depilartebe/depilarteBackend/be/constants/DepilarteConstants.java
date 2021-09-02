@@ -42,14 +42,14 @@ public interface DepilarteConstants {
     String CLIENT_PHONE = "telefono";
 
     String EMPLEADO_ID = "id";
-    String EMPLEADO_NAME = "empleadoName";
-    String EMPLEADO_LASTNAME = "empleadoLastName";
+    String EMPLEADO_NAME = "name";
+    String EMPLEADO_LASTNAME = "lastName";
     String EMPLEADO_AGE = "age";
     String EMPLEADO_EMAIL = "email";
     String EMPLEADO_BIRTHDAY = "birthday";
     String EMPLEADO_ADDRESS = "address";
     String CARGO = "cargo";
-    String EMPLEADO_TELEFONO= "telefono";
+    String EMPLEADO_TELEFONO= "phone";
 
 
 

@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
+import {AppModule} from '../../../app.module';
 
 @Component({
   selector: 'app-usuario-registro',
@@ -10,8 +11,8 @@ import {GlobalServices} from '../../../shared/services/global.services';
   styleUrls: ['./usuario-registro.component.scss']
 })
 export class UsuarioRegistroComponent implements OnInit {
+  private appModule: AppModule;
   form: FormGroup;
-
   ngOnInit(): void {
   }
   constructor(
@@ -21,7 +22,7 @@ export class UsuarioRegistroComponent implements OnInit {
     private globalService: GlobalServices,
   ) {
     this.form = fb.group({
-      userRegister: new FormControl('',[Validators.required]),
+      userRegister: new FormControl(),
       name: new FormControl(),
       lastName: new FormControl(),
       identification: new FormControl(),

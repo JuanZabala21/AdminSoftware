@@ -31,7 +31,7 @@
                    <mat-label>Cedula</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Cedula</mat-label>
-                     <input matInput  formControlName="identification" type="number">
+                     <input matInput  formControlName="identification">
                    </mat-form-field>
                  </div>
                </div>
@@ -45,7 +45,7 @@
                  </div>
                </div>
              </div>
-   
+
              <div class="row">
                <div class="col-md-4 pr-1">
                  <div class="form-group">
@@ -74,7 +74,7 @@
                  </div>
                </div>
              </div>
-   
+
              <div class="row">
                 <div class="col-md-5 pr-1">
                   <div class="form-group">
@@ -95,17 +95,16 @@
                  </div>
                </div>
               </div>
- 
+
 
              <div class="row">
                <div class="update ml-auto mr-auto">
-                 <button mat-raised-button  color="warn" type="submit">Registrar</button>
+                 <button mat-raised-button  color="warn" type="submit" (click)="register()">Registrar</button>
                </div>
              </div>
-   
+
            </form>
          </div>
        </div>
      </div>
    </div>
-   
