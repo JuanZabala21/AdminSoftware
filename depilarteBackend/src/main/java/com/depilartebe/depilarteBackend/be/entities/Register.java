@@ -6,85 +6,6 @@ import java.util.Date;
     @Entity
     @Table(name = "depilarte_registros")
     public class Register {
-
-<<<<<<< Updated upstream
-        @Id
-        @Column
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-
-        @Column
-        private Date fechaAtendido;
-
-        @Column
-        private String Nombre;
-
-        @Column
-        private String Apellido;
-
-        @Column
-        private String Cedula;
-
-        @Column
-        private String Edad;
-
-        @Column
-        private String Correo;
-
-        @Column
-        private Date FechaCumple;
-
-        @Column
-        private String Direccion;
-
-        @Column
-        private Long Tratamiento;
-
-        @Column
-        private Long TipoTratamiento;
-
-        @Column
-        private Long ZonaTratamiento;
-
-        @Column
-        private String CantidadSesiones;
-
-        @Column
-        private String Asistencia;
-
-        @Column
-        private Long ProductoUtilizado;
-
-        @Column
-        private String DisparosAntes;
-
-        @Column
-        private String DisparosDespues;
-
-        @Column
-        private String DiferenciaDisparos;
-
-        @Column
-        private Long Operadora;
-
-        @Column
-        private Long Doctora;
-
-        @Column
-        private Long FormaPago;
-
-        @Column
-        private String Abonado;
-
-        @Column
-        private String precioTotal;
-
-        @Column
-        private String Comision;
-
-        @Column
-        private String Nota;
-=======
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -161,7 +82,9 @@ import java.util.Date;
 
     @Column(name = "Nota")
     private String Nota;
->>>>>>> Stashed changes
+
+    @Column(name = "Telefono")
+    private String telefono;
 
         public Long getId() {
             return id;
@@ -362,4 +285,12 @@ import java.util.Date;
     public void setNota(String nota) {
         Nota = nota;
     }
-}
+
+        public String getTelefono() {
+            return telefono;
+        }
+
+        public void setTelefono(String telefono) {
+            this.telefono = telefono;
+        }
+    }

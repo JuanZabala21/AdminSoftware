@@ -4,43 +4,43 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "depilarte_registros_empleados")
+@Table(name = "depilarte_usuarios")
 public class Empleado {
 
         @Id
-        @Column
+        @Column(name="id_usuarios")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column
-        private Date fechaAtendido;
+        @Column(name="FechaIngreso")
+        private Date fechaIngreso;
 
-        @Column
+        @Column(name="Nombre")
         private String Nombre;
 
-        @Column
+        @Column(name="Apellido")
         private String Apellido;
 
-        @Column
+        @Column(name="Cedula")
         private String Cedula;
 
-        @Column
+        @Column(name="Edad")
         private String Edad;
 
-        @Column
+        @Column(name="Email")
         private String Correo;
 
-        @Column
-        private Date FechaCumple;
-
-        @Column
+        @Column(name="Direccion")
         private String Direccion;
 
-        @Column
+        @Column(name="Telefono")
         private String Telefono;
 
-        @Column
+        @Column(name="Cargo")
         private String Cargo;
+
+        @Column(name="FechaNacimiento")
+        private String nacimiento;
 
     public Long getId() {
         return id;
@@ -50,12 +50,12 @@ public class Empleado {
         this.id = id;
     }
 
-    public Date getFechaAtendido() {
-        return fechaAtendido;
+    public Date getFechaIngresoo() {
+        return fechaIngreso;
     }
 
-    public void setFechaAtendido(Date fechaAtendido) {
-        this.fechaAtendido = fechaAtendido;
+    public void setFechaIngreso(Date fechaAtendido) {
+        this.fechaIngreso = fechaAtendido;
     }
 
     public String getNombre() {
@@ -98,14 +98,6 @@ public class Empleado {
         Correo = correo;
     }
 
-    public Date getFechaCumple() {
-        return FechaCumple;
-    }
-
-    public void setFechaCumple(Date fechaCumple) {
-        FechaCumple = fechaCumple;
-    }
-
     public String getDireccion() {
         return Direccion;
     }
@@ -128,5 +120,13 @@ public class Empleado {
 
     public void setCargo(String cargo) {
         Cargo = cargo;
+    }
+
+    public String getNacimiento() {
+        return nacimiento;
+    }
+
+    public void setNacimiento(String nacimiento) {
+        this.nacimiento = nacimiento;
     }
 }

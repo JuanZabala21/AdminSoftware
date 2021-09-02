@@ -115,12 +115,15 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                String note = (params.containsKey(CLIENT_NOTE) && params.get(CLIENT_NOTE) != null
                        && !params.get(CLIENT_NOTE).toString().isEmpty()) ?
                        params.get(CLIENT_NOTE).toString() : null;
+               String phone = (params.containsKey(CLIENT_PHONE) && params.get(CLIENT_PHONE) != null
+                       && !params.get(CLIENT_PHONE).toString().isEmpty()) ?
+                       params.get(CLIENT_PHONE).toString() : null;
 
 
                 mapResponse = depilarteServices.registerClients(id,clientName,clientLastName,identification,age,
                                                                email,birthday,address,treatment,treatmentType,treatmentZone,countSessions,
                                                                assistent,product,shotBefore,shotAfter,shotDiferencial,operator,doctor,formPay,
-                                                                abonado,priceTotal,comission,note);
+                                                                abonado,priceTotal,comission,note,phone);
 
             } catch (Exception e) {
                 e.printStackTrace();

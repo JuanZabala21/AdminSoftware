@@ -12,8 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.depilartebe.depilarteBackend.be.repository.RegisterRepository;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +50,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         String abonado,
         String priceTotal,
         String comission,
-        String note
+        String note,
+        String phone
 
     ){
         Map<String, Object> mapResult = new HashMap<>();
@@ -65,7 +64,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             }else{
                 registerRepository.findById(id);
             }
-
 
             /** Registrando **/
             register.setNombre(clientName);
@@ -91,6 +89,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setPrecioTotal(priceTotal);
             register.setComision(comission);
             register.setNota(note);
+            register.setTelefono(phone);
             register.setFechaAtendido(today);
             registerRepository.save(register);
 
@@ -128,19 +127,17 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 registerRepository.findById(id);
             }
 
-            Date dateBirth = new SimpleDateFormat(DATE_FORMAT).parse(birthday);
-
             /** Registrando **/
             empleado.setNombre(empleadoName);
             empleado.setApellido(empleadoLastName);
             empleado.setCedula(identification);
             empleado.setEdad(age);
             empleado.setCorreo(email);
-            empleado.setFechaCumple(dateBirth);
+            empleado.setNacimiento(birthday);
             empleado.setDireccion(address);
             empleado.setTelefono(telefono);
             empleado.setCargo(cargo);
-            empleado.setFechaAtendido(today);
+            empleado.setFechaIngreso(today);
             empleadoRepository.save(empleado);
 
         }catch (Exception e) {
