@@ -47,7 +47,7 @@
                 <mat-label>Cedula</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Cedula</mat-label>
-                  <input matInput  formControlName="identification" type="number">
+                  <input matInput  formControlName="identification">
                 </mat-form-field>
               </div>
             </div>
@@ -233,9 +233,9 @@
               <mat-label>Forma de pago</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Forma de pago</mat-label>
-                <mat-select  formControlName="payment" [(ngModel)]="selectedValue" name="Pago">
-                  <mat-option *ngFor="let pago of pago" [value]="pago.value">
-                    {{pago.viewValue}}
+                <mat-select  formControlName="payment" name="Pago">
+                  <mat-option *ngFor="let mp of methodsList" [value]="mp.id">
+                    {{mp.metodoPago}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

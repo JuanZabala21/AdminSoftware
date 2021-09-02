@@ -19,13 +19,14 @@ export class OperadoraComponent implements OnInit {
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
-
+   methodsList = [];
    disabled = true;
    showOperative: boolean = true;
    showDoctor: boolean = true;
     ngOnInit() {
       this.showDoctor = false;
       this.showOperative = false;
+      this.getMethodsPay();
     }
 
     constructor(
@@ -81,7 +82,7 @@ export class OperadoraComponent implements OnInit {
       let data = {
         ...this.form.value
       };
-      this.globalService.httpServicesResponse(data, environment.Url + '/registerClient').subscribe(
+      this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerClient').subscribe(
         res => {
           console.log(this.form.value);
           this.router.navigate(['../principal'], {relativeTo: this.route})
@@ -91,4 +92,16 @@ export class OperadoraComponent implements OnInit {
     hasError(control: string, type: string){
       return this.form.controls[control].hasError(type)
     }
+
+    getMethodsPay() {
+      this.globalService.httpServicesResponse(null,
+        environment.Url + '/global/methodsPay').subscribe( response => {
+          if (response.type === 'success') {
+            this.methodsList = response.methodsPay.filter(mp => mp.id !== -1);
+            }
+          },
+      console.error);
+  }
+
+
 }

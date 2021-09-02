@@ -15,9 +15,9 @@ public interface DepilarteConstants {
 
     //Constantes de Variables
     String CLIENT_ID = "id";
-    String CLIENT_NAME = "clientName";
+    String CLIENT_NAME = "name";
     String DATE_ATTENTION = "dateAttention";
-    String CLIENT_LASTNAME = "clientLastName";
+    String CLIENT_LASTNAME = "lastName";
     String IDENTIFICATION = "identification";
     String CLIENT_AGE = "age";
     String CLIENT_EMAIL = "email";
@@ -26,7 +26,7 @@ public interface DepilarteConstants {
     String CLIENT_TREATMENT = "treatment";
     String CLIENT_TREATMENTTYPE = "treatmentType";
     String CLIENT_TREATMENTZONE = "treatmentZone";
-    String CLIENT_SESSIONS = "clientSessions";
+    String CLIENT_SESSIONS = "sessions";
     String CLIENT_ASSISTENT = "assistent";
     String CLIENT_PRODUCT = "product";
     String CLIENT_SHOTBEFORE = "shotBefore";
@@ -35,8 +35,8 @@ public interface DepilarteConstants {
     String CLIENT_OPERATOR = "operator";
     String CLIENT_DOCTOR = "doctor";
     String CLIENT_FORMPAY = "formPay";
-    String CLIENT_SUBSCRIBER = "subscriber";
-    String CLIENT_PRICETOTAL = "priceTotal";
+    String CLIENT_SUBSCRIBER = "bono";
+    String CLIENT_PRICETOTAL = "totalPrice";
     String CLIENT_COMISSION = "comission";
     String CLIENT_NOTE = "note";
 

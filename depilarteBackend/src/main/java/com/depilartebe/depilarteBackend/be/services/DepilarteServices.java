@@ -4,6 +4,7 @@ import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
 import com.depilartebe.depilarteBackend.be.entities.Empleado;
 import com.depilartebe.depilarteBackend.be.entities.Register;
+import com.depilartebe.depilarteBackend.be.repository.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.depilartebe.depilarteBackend.be.repository.RegisterRepository;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,6 +24,9 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     @Autowired
     RegisterRepository registerRepository;
+
+    @Autowired
+    EmpleadoRepository empleadoRepository;
 
     public Map<String, Object> registerClients(
         Long id,
@@ -61,7 +66,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 registerRepository.findById(id);
             }
 
-            Date dateBirth = new SimpleDateFormat(DATE_FORMAT).parse(birthday);
 
             /** Registrando **/
             register.setNombre(clientName);
@@ -69,7 +73,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setCedula(identification);
             register.setEdad(age);
             register.setCorreo(email);
-            register.setFechaCumple(dateBirth);
+            register.setFechaCumple(birthday);
             register.setDireccion(address);
             register.setTratamiento(treatment);
             register.setTipoTratamiento(treatmentType);
@@ -92,7 +96,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
         }catch (Exception e) {
             e.printStackTrace();
-            log.error("Se prudujo un error: " + e.getMessage());
+            log.error("Se produjo un error: " + e.getMessage());
             mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
             mapResult.put(MESSAGE, MESSAGE_ERROR);
         }
@@ -137,11 +141,11 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             empleado.setTelefono(telefono);
             empleado.setCargo(cargo);
             empleado.setFechaAtendido(today);
-            registerRepository.save(empleado);
+            empleadoRepository.save(empleado);
 
         }catch (Exception e) {
             e.printStackTrace();
-            log.error("Se prudujo un error: " + e.getMessage());
+            log.error("Se produjo un error: " + e.getMessage());
             mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
             mapResult.put(MESSAGE, MESSAGE_ERROR);
         }

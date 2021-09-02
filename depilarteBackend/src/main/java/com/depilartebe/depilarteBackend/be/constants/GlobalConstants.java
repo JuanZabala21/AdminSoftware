@@ -14,8 +14,11 @@ public interface GlobalConstants {
     String ERROR_404_MESSAGE = "Parámetros incompletos.";
     String MESSAGE_SUCCESS = "Operación exitosa";
 
-    String DATE_FORMAT = "yyyy-MM-dd ";
+    String DATE_FORMAT = "yyyy/MM/dd ";
+    String METHODSPAY = "methodsPay";
 
+    String METHODS_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener metodos de Pago </span></u></h3>"
+            + "Método que retorna los metodos de Pago. </div>";
 
-
+    String METHODSPAY_URI = "methodsPay";
 }

@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  Url: 'http://localhost:8080/depilarte',
+  Url: 'http://localhost:8080/',
 };

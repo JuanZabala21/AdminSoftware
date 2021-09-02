@@ -7,6 +7,7 @@ import java.util.Date;
     @Table(name = "depilarte_registros")
     public class Register {
 
+<<<<<<< Updated upstream
         @Id
         @Column
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,6 +84,84 @@ import java.util.Date;
 
         @Column
         private String Nota;
+=======
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "fechaAtendido")
+    private Date fechaAtendido;
+
+    @Column(name = "Nombre")
+    private String Nombre;
+
+    @Column(name = "Apellido")
+    private String Apellido;
+
+    @Column(name = "Cedula")
+    private String Cedula;
+
+    @Column(name = "Edad")
+    private String Edad;
+
+    @Column(name = "Correo")
+    private String Correo;
+
+    @Column(name = "FechaCumple")
+    private String FechaCumple;
+
+    @Column(name = "Direccion")
+    private String Direccion;
+
+    @Column(name = "Tratamiento")
+    private Long Tratamiento;
+
+    @Column(name = "TipoTratamiento")
+    private Long TipoTratamiento;
+
+    @Column(name = "ZonaTratamiento")
+    private Long ZonaTratamiento;
+
+    @Column(name = "CantidadSesiones")
+    private String CantidadSesiones;
+
+    @Column(name = "Asistencia")
+    private String Asistencia;
+
+    @Column(name = "ProductoUtilizado")
+    private Long ProductoUtilizado;
+
+    @Column(name = "DisparosAntes")
+    private String DisparosAntes;
+
+    @Column(name = "DisparosDespues")
+    private String DisparosDespues;
+
+    @Column(name = "DiferenciaDisparos")
+    private String DiferenciaDisparos;
+
+    @Column(name = "Operadora")
+    private Long Operadora;
+
+    @Column(name = "Doctora")
+    private Long Doctora;
+
+    @Column(name = "FormaPago")
+    private Long FormaPago;
+
+    @Column(name = "Abonado")
+    private String Abonado;
+
+    @Column(name = "precioTotal")
+    private String precioTotal;
+
+    @Column(name = "Comision")
+    private String Comision;
+
+    @Column(name = "Nota")
+    private String Nota;
+>>>>>>> Stashed changes
 
         public Long getId() {
             return id;
@@ -112,7 +191,7 @@ import java.util.Date;
         return Correo;
     }
 
-    public Date getFechaCumple() {
+    public String getFechaCumple() {
         return FechaCumple;
     }
 
@@ -212,7 +291,7 @@ import java.util.Date;
         Correo = correo;
     }
 
-    public void setFechaCumple(Date fechaCumple) {
+    public void setFechaCumple(String fechaCumple) {
         FechaCumple = fechaCumple;
     }
 
