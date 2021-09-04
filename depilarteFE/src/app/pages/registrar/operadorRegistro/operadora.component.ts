@@ -21,6 +21,9 @@ export class OperadoraComponent implements OnInit {
    ];
    chargerList = [];
    methodsList = [];
+   treatmentTypeList = [];
+   treatmentZoneList = [];
+   treatmentsList = [];
    disabled = true;
    show : boolean = true;
    showOperative: boolean = true;
@@ -29,6 +32,7 @@ export class OperadoraComponent implements OnInit {
       this.showDoctor = false;
       this.showOperative = false;
       this.getMethodsPay();
+      this.getTreatments();
     }
 
     constructor(
@@ -58,7 +62,7 @@ export class OperadoraComponent implements OnInit {
         diferents: new FormControl(),
         userOp: new FormControl(),
         userDoc: new FormControl(),
-        payment: new FormControl(),
+        formPay: new FormControl(),
         bono: new FormControl(),
         totalPrice: new FormControl(),
         comission: new FormControl(),
@@ -108,7 +112,7 @@ export class OperadoraComponent implements OnInit {
   changeCharger() {
     if(this.form.get('userRegister').value != null){
       this.globalService.httpServicesResponse({ charger : this.form.get('userRegister').value},
-        environment.Url + 'global/chargers').subscribe(response => {
+        environment.Url + '/global/chargers').subscribe(response => {
           if (response.type === 'success') {
             this.chargerList = response.chargers.filter(ch => ch.id !== -1);
             console.log(this.chargerList);
@@ -118,6 +122,44 @@ export class OperadoraComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  changeTypeTreament() {
+      if(this.form.get('treatment').value != null){
+        this.globalService.httpServicesResponse({ treatmentType : this.form.get('treatment').value},
+          environment.Url + '/global/treatmentTypes').subscribe(response => {
+            if(response.type === 'success') {
+              this.treatmentTypeList = response.treatmentTypes.filter(tp => tp.id !== -1);
+            }
+        },
+          console.log)
+      } else {
+        return false;
+      }
+    if(this.form.get('treatment').value != null) {
+      this.globalService.httpServicesResponse({ treatmentZone : this.form.get('treatment').value},
+        environment.Url + '/global/treatmentZone').subscribe(response => {
+          if(response.type === 'success') {
+            this.treatmentZoneList = response.treatmentZone.filter(tz => tz.id !== -1);
+            console.log(this.treatmentZoneList);
+          }
+        },
+        console.log)
+    } else {
+      return false;
+    }
+
+  }
+
+  getTreatments() {
+    this.globalService.httpServicesResponse(null,
+      environment.Url + '/global/treatments').subscribe( response => {
+        if (response.type === 'success') {
+          this.treatmentsList = response.treatments.filter(te => te.id !== -1);
+          console.log(this.treatmentsList);
+        }
+      },
+      console.error);
   }
 
 

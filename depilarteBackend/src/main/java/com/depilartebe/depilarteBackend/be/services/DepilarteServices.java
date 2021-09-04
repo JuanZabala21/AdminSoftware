@@ -308,7 +308,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         List<Map<String, Object>> mapList = new ArrayList<>();
         List<Register> registerList = new ArrayList<>();
 
-
         try{
             registerList = registerRepository.findRegister(name,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
             if(registerList != null){
@@ -337,7 +336,9 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     mapList.add(result);
                 }
                 mapResult.put(RESULT_LIST_MAP, mapList);
+                System.out.println(mapList);
             }
+
         }catch (Exception e) {
             e.printStackTrace();
             log.error("Se produjo un error: " + e.getMessage());

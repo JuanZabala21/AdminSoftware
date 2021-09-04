@@ -17,5 +17,9 @@ public interface TreatmentTypeRepository extends JpaRepository<TreatmentType, Lo
     @Query(nativeQuery = true, value = FIND_BY_TREATMENTTYPE)
     TreatmentType findByTreatmentType(@Param("treatmentType") String treatmentType);
 
+    String FIND_TYPETREATMENT_TREAT = "SELECT * FROM `depilarte_tipotratamientos` WHERE id_tratamientos = :treatmentId ";
+    @Query(nativeQuery = true, value = FIND_TYPETREATMENT_TREAT)
+    List<TreatmentType> finbTypeTreat(@Param("treatmentId") Long treatmentId);
+
 
 }

@@ -110,9 +110,9 @@
                 <mat-label>Tratamiento</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Tratamiento</mat-label>
-                <mat-select  formControlName="treatment" [(ngModel)]="selectedValue" name="Tratamiento">
-                  <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
-                    {{tratamiento.viewValue}}
+                <mat-select  formControlName="treatment"  (selectionChange)="changeTypeTreament()">
+                  <mat-option *ngFor="let te of treatmentsList" [value]="te.id_tratamientos">
+                    {{te.nameTreatment}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -123,9 +123,9 @@
                 <mat-label>Tipo de Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Tipo</mat-label>
-                  <mat-select  formControlName="treatmentType" [(ngModel)]="selectedValue" name="Tratamiento">
-                    <mat-option *ngFor="let tratamiento of tratamiento" [value]="tratamiento.value">
-                      {{tratamiento.viewValue}}
+                  <mat-select  formControlName="treatmentType">
+                    <mat-option *ngFor="let tp of treatmentTypeList" [value]="tp.id_tipo">
+                      {{tp.nombreTipo}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -135,10 +135,10 @@
               <div class="form-group">
                 <mat-label>Zona de Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Zona</mat-label>
-                  <mat-select  formControlName="treatmentZone" [(ngModel)]="selectedValue" name="Zona">
-                    <mat-option *ngFor="let zona of zona" [value]="zona.value">
-                      {{zona.viewValue}}
+                  <mat-label>Zona de Tratamiento</mat-label>
+                  <mat-select  formControlName="treatmentZone">
+                    <mat-option *ngFor = "let tz of treatmentZoneList" [value]="tz.id_zona">
+                      {{tz.zonaNombre}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -233,7 +233,7 @@
               <mat-label>Forma de pago</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Forma de pago</mat-label>
-                <mat-select  formControlName="payment" name="Pago">
+                <mat-select  formControlName="formPay" name="Pago">
                   <mat-option *ngFor="let mp of methodsList" [value]="mp.id">
                     {{mp.metodoPago}}
                   </mat-option>

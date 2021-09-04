@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {environment} from '../../../../environments/environment';
+import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 
  interface HistorialData {
    dateA: String;
@@ -95,9 +96,10 @@ export class HistorialDocComponent implements OnInit {
    const data = {
      ...this.filters.value
    };
-   this.globalServices.httpServicesResponse(data, environment.Url + 'depilarte/searchRegister').subscribe( res => {
-     this.dataSource = new MatTableDataSource(res.body.resultList);
-     this.dataSource.paginator = this.paginator;
+     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRegister').subscribe( res => {
+       console.log(res.resultList);
+       this.dataSource = new MatTableDataSource(res.resultList);
+       this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
      }
    )

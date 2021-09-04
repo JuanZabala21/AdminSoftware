@@ -2,12 +2,8 @@ package com.depilartebe.depilarteBackend.be.services;
 
 import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
-import com.depilartebe.depilarteBackend.be.entities.Empleado;
-import com.depilartebe.depilarteBackend.be.entities.Treatment;
-import com.depilartebe.depilarteBackend.be.entities.formaPay;
-import com.depilartebe.depilarteBackend.be.repository.EmpleadoRepository;
-import com.depilartebe.depilarteBackend.be.repository.FormaPayRepository;
-import com.depilartebe.depilarteBackend.be.repository.TreatmentRepository;
+import com.depilartebe.depilarteBackend.be.entities.*;
+import com.depilartebe.depilarteBackend.be.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +27,12 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
     @Autowired
     EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    TreatmentTypeRepository treatmentTypeRepository;
+
+    @Autowired
+    TreatmentZoneRepository treatmentZoneRepository;
 
 
    public Map<String, Object> getPayMethods() {
@@ -84,6 +86,43 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
        }
        return mapResult;
    }
+
+    public Map<String, Object> getTreamentType(String treament) {
+        Map<String, Object> mapResult = new HashMap<>();
+        try {
+            List<TreatmentType> treatmentTypeList = treatmentTypeRepository.finbTypeTreat(Long.parseLong(treament));
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+            mapResult.put(TREATMENTTYPERESULT, treatmentTypeList);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
+    public Map<String, Object> getTreatmentZone(String treament) {
+        Map<String, Object> mapResult = new HashMap<>();
+        try {
+            List<TreatmentZone> treatmentZoneList = treatmentZoneRepository.finbTypeTreat(Long.parseLong(treament));
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+            mapResult.put(TREATMENTZONERESULT, treatmentZoneList);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
+
+
+
 
 
 

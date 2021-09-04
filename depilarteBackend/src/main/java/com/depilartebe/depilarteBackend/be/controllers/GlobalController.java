@@ -91,4 +91,60 @@ public class GlobalController implements GlobalConstants {
     }
 
 
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = TREATMENTTYPE_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = TREATMENTTYPE_URI, produces = ACCEPT)
+    public Map<String, Object> getTreatmentType(@ApiBodyObject(clazz = String.class) @RequestBody String json){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+            String treatment =  (params.containsKey(TREATMENTTYPE) && params.get(TREATMENTTYPE) != null && !params.get(TREATMENTTYPE).toString().isEmpty()) ? params.get(TREATMENTTYPE).toString() : null;
+            if(treatment != null){
+                mapResponse = globalServices.getTreamentType(treatment);
+            }else{
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = TREATMENTZONE_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = TREATMENTZONE_URI, produces = ACCEPT)
+    public Map<String, Object> getTreatmentZone(@ApiBodyObject(clazz = String.class) @RequestBody String json){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+            String treatment =  (params.containsKey(TREATMENTZONE) && params.get(TREATMENTZONE) != null && !params.get(TREATMENTZONE).toString().isEmpty()) ? params.get(TREATMENTZONE).toString() : null;
+            if(treatment != null){
+                mapResponse = globalServices.getTreatmentZone(treatment);
+            }else{
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
+
+
 }

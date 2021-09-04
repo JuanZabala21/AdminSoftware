@@ -53,7 +53,7 @@ public interface DepilarteConstants {
     String CLIENT_PRICETOTAL = "totalPrice";
     String CLIENT_COMISSION = "comission";
     String CLIENT_NOTE = "note";
-    String CLIENT_PHONE = "telefono";
+    String CLIENT_PHONE = "phone";
 
     String EMPLEADO_ID = "id";
     String EMPLEADO_REGISTER = "userRegister";

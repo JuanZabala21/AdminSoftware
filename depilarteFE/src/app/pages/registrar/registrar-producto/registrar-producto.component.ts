@@ -39,7 +39,6 @@ export class RegistrarProductoComponent implements OnInit {
       proveedor: new FormControl(),
       cantidad: new FormControl(),
       specialist: new FormControl(),
-      treatment: new FormControl(),
       price: new FormControl(),
       description: new FormControl()
       }

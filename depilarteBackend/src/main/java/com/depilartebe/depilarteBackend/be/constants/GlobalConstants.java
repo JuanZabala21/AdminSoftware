@@ -2,7 +2,7 @@ package com.depilartebe.depilarteBackend.be.constants;
 
 public interface GlobalConstants {
 
-    String RESULT_LIST_MAP                                          = "resultList";
+    String RESULT_LIST_MAP  = "resultList";
 
     String CONTENT_TYPE = "application/json";
     String APPLICATION_JSON 		= "application/json";
@@ -19,6 +19,8 @@ public interface GlobalConstants {
     String DATE_FORMAT = "yyyy/MM/dd ";
     String METHODSPAY = "methodsPay";
     String TREATMENTS = "treatments";
+    String TREATMENTTYPE = "treatmentType";
+    String TREATMENTTYPERESULT = "treatmentTypes";
 
     String METHODS_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener metodos de Pago </span></u></h3>"
             + "Método que retorna los metodos de Pago. </div>";
@@ -35,4 +37,14 @@ public interface GlobalConstants {
 
     String CHARGERS = "charger";
     String CHARGERRESULT = "chargers";
+
+    String TREATMENTTYPE_URI = "treatmentTypes";
+    String TREATMENTTYPE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Cargos por Usuario </span></u></h3>"
+            + "Método que retorna los usuarios por su cargo. </div>";
+
+    String TREATMENTZONE_URI = "treatmentZone";
+    String TREATMENTZONE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Cargos por Usuario </span></u></h3>"
+            + "Método que retorna los usuarios por su cargo. </div>";
+    String TREATMENTZONE = "treatmentZone";
+    String TREATMENTZONERESULT = "treatmentZone";
 }
