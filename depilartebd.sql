@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2021 a las 17:26:48
+-- Tiempo de generación: 04-09-2021 a las 21:54:01
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.8
 
@@ -90,15 +90,22 @@ CREATE TABLE `depilarte_registros` (
   `DisparosAntes` varchar(100) DEFAULT NULL,
   `DisparosDespues` varchar(100) DEFAULT NULL,
   `DiferenciaDisparos` varchar(100) DEFAULT NULL,
-  `Operadora` int(11) DEFAULT NULL,
-  `Doctora` int(11) DEFAULT NULL,
+  `UserAtendio` int(11) DEFAULT NULL,
   `FormaPago` int(11) NOT NULL,
   `Abonado` varchar(100) NOT NULL,
   `PrecioTotal` varchar(100) NOT NULL,
   `Comision` varchar(100) NOT NULL,
   `Nota` varchar(600) NOT NULL,
-  `Telefono` varchar(20) NOT NULL
+  `Telefono` varchar(20) NOT NULL,
+  `RegisterUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `depilarte_registros`
+--
+
+INSERT INTO `depilarte_registros` (`id`, `fechaAtendido`, `Nombre`, `Apellido`, `Cedula`, `Edad`, `Correo`, `FechaCumple`, `Direccion`, `Tratamiento`, `TipoTratamiento`, `ZonaTratamiento`, `CantidadSesiones`, `Asistencia`, `ProductoUtilizado`, `DisparosAntes`, `DisparosDespues`, `DiferenciaDisparos`, `UserAtendio`, `FormaPago`, `Abonado`, `PrecioTotal`, `Comision`, `Nota`, `Telefono`, `RegisterUser`) VALUES
+(4, '2021-09-04', 'Juan Pablo', 'Zabala', 'V26900042', '22', 'juanpablozabala21@gmail.com', '1998-12-21', 'Urb.Bosque', 5, 9, 1, '5', '3', 2, NULL, NULL, NULL, NULL, 1, '4455', '3434', '434', 'Pago', '0424-4563683', 1);
 
 -- --------------------------------------------------------
 
@@ -162,6 +169,13 @@ CREATE TABLE `depilarte_usuarios` (
   `FechaNacimiento` date NOT NULL,
   `Edad` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `depilarte_usuarios`
+--
+
+INSERT INTO `depilarte_usuarios` (`id_usuarios`, `Nombre`, `Apellido`, `Cedula`, `Direccion`, `Telefono`, `Email`, `Cargo`, `FechaIngreso`, `FechaNacimiento`, `Edad`) VALUES
+(2, 'Juan', 'Zabala', 'V26900042', 'Urb. Bosque', '0424-4563683', 'juanpablozabala21@gmail.com', 1, '2021-09-04', '1998-12-21', '22');
 
 -- --------------------------------------------------------
 
@@ -251,7 +265,7 @@ ALTER TABLE `depilarte_productos`
 -- AUTO_INCREMENT de la tabla `depilarte_registros`
 --
 ALTER TABLE `depilarte_registros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `depilarte_tipotratamientos`
@@ -269,7 +283,7 @@ ALTER TABLE `depilarte_tratamientos`
 -- AUTO_INCREMENT de la tabla `depilarte_usuarios`
 --
 ALTER TABLE `depilarte_usuarios`
-  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `depilarte_zonatratamientos`
