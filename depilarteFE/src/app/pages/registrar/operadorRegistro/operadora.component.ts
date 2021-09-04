@@ -85,7 +85,7 @@ export class OperadoraComponent implements OnInit {
       this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerClient').subscribe(
         res => {
           console.log(this.form.value);
-          this.router.navigate(['../principal'], {relativeTo: this.route})
+          this.router.navigate(['../'], {relativeTo: this.route})
         },
           console.log)
     }

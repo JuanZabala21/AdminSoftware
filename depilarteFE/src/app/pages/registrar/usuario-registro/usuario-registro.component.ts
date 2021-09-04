@@ -13,6 +13,10 @@ import {AppModule} from '../../../app.module';
 export class UsuarioRegistroComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
+  userList = [
+    {value: 1, desc: 'Doctora'},
+    {value: 2, desc: 'Operadora'}
+  ];
   ngOnInit(): void {
   }
   constructor(
@@ -44,7 +48,7 @@ export class UsuarioRegistroComponent implements OnInit {
     this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerEmpleado').subscribe(
       res => {
         console.log(this.form.value);
-        this.router.navigate(['../principal'], {relativeTo: this.route})
+        this.router.navigate(['../'], {relativeTo: this.route})
       },
       console.log)
   }

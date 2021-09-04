@@ -16,9 +16,14 @@ public interface GlobalConstants {
 
     String DATE_FORMAT = "yyyy/MM/dd ";
     String METHODSPAY = "methodsPay";
+    String TREATMENTS = "treatments";
 
     String METHODS_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener metodos de Pago </span></u></h3>"
             + "Método que retorna los metodos de Pago. </div>";
 
     String METHODSPAY_URI = "methodsPay";
+    String TREATMENTSS_URI = "treatments";
+
+    String TREATMENTSLIST_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Tratamientos </span></u></h3>"
+            + "Método que retorna los Tratamientos. </div>";
 }

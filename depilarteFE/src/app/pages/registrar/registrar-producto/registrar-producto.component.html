@@ -5,24 +5,24 @@
            <h1 class="card-title">Registrar Producto</h1>
          </div>
          <div class="card-body">
-           <form>
-             
+           <form [formGroup]="form">
+
              <div class="row">
                <div class="col-md-4 pr-1">
                  <div class="form-group">
                    <mat-label>Nombre del Producto</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Producto</mat-label>
-                     <input matInput type="text">
+                     <input formControlName="product" matInput type="text">
                    </mat-form-field>
-                 </div>     
+                 </div>
                </div>
                <div class="col-md-4 px-1">
                  <div class="form-group">
                    <mat-label>Proveedor</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Proveedor</mat-label>
-                     <input matInput type="text">
+                     <input formControlName="proveedor" matInput type="text">
                    </mat-form-field>
                  </div>
                </div>
@@ -31,19 +31,19 @@
                    <mat-label>Cantidad</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Cantidad</mat-label>
-                     <input matInput type="text">
+                     <input formControlName="cantidad" matInput type="text">
                    </mat-form-field>
                  </div>
                </div>
              </div>
-   
+
              <div class="row">
                <div class="col-md-6 pr-1">
                  <div class="form-group">
                    <mat-label>Especialista Encargada</mat-label>
                  <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                    <mat-label>Especialista</mat-label>
-                   <mat-select [(ngModel)]="selectedValue" name="usuarioList">
+                   <mat-select formControlName="specialist">
                     <mat-option *ngFor="let el of user" [value]="el.value">
                       {{el.desc}}
                     </mat-option>
@@ -51,52 +51,56 @@
                  </mat-form-field>
                </div>
                </div>
+
                <div class="col-md-6 pl-1">
                  <div class="form-group">
-                   <mat-label>Tratamiento donde se utiliza</mat-label>
+                   <mat-label>Tratamiento</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                    <mat-label>Tratamiento</mat-label>
-                     <input matInput type="number">
+                     <mat-label>Tratamiento</mat-label>
+                     <mat-select  formControlName="treatment">
+                       <mat-option *ngFor="let te of treatmentsList" [value]="te.id_tratamientos">
+                         {{te.nameTreatment}}
+                       </mat-option>
+                     </mat-select>
                    </mat-form-field>
                  </div>
                </div>
              </div>
-   
+
              <div class="row">
                <div class="col-md-6 pr-1">
                  <div class="form-group">
                    <mat-label>Precio del Producto</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>precio</mat-label>
-                     <input matInput type="number">
+                     <input formControlName="price" matInput type="number">
                      <span matPrefix>$&nbsp;</span>
                    </mat-form-field>
                  </div>
                </div>
-              
+
            </div>
-   
+
              <div class="row">
                <div class="col-md-12">
                  <div class="form-group">
                    <mat-label>Descripción del Producto</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Descripción</mat-label>
-                     <textarea matInput type="text"></textarea>
+                     <textarea formControlName="description" matInput type="text"></textarea>
                    </mat-form-field>
                  </div>
                </div>
              </div>
-   
+
              <div class="row">
                <div class="update ml-auto mr-auto">
-                 <button mat-raised-button  color="warn" type="submit">Registrar</button>
+                 <button mat-raised-button  color="warn" type="submit" (click)="register()">Registrar</button>
                </div>
              </div>
-   
+
            </form>
          </div>
        </div>
      </div>
    </div>
-   

@@ -2,19 +2,15 @@ package com.depilartebe.depilarteBackend.be.services;
 
 import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
-import com.depilartebe.depilarteBackend.be.entities.Empleado;
-import com.depilartebe.depilarteBackend.be.entities.Register;
-import com.depilartebe.depilarteBackend.be.repository.EmpleadoRepository;
+import com.depilartebe.depilarteBackend.be.entities.*;
+import com.depilartebe.depilarteBackend.be.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.depilartebe.depilarteBackend.be.repository.RegisterRepository;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class DepilarteServices implements DepilarteConstants, GlobalConstants {
@@ -25,6 +21,18 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     @Autowired
     EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    TreatmentRepository treatmentRepository;
+
+    @Autowired
+    TreatmentTypeRepository treatmentTypeRepository;
+
+    @Autowired
+    TreatmentZoneRepository treatmentZoneRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     public Map<String, Object> registerClients(
         Long id,
@@ -102,7 +110,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         return mapResult;
     }
 
-
     public Map<String, Object> registerEmpleados(
             Long id,
             String empleadoName,
@@ -148,4 +155,175 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         }
         return mapResult;
     }
-}
+
+    public Map<String, Object> registerTreatments(
+        Long id,
+        String name,
+        String type,
+        String zone,
+        Long specialist,
+        String sessions,
+        String precio,
+        String comission,
+        String description
+    ){
+        Map<String, Object> mapResult = new HashMap<>();
+
+        try{
+            Treatment treatment = null;
+
+            if(id == null){
+                treatment = new Treatment();
+            }else{
+                treatmentRepository.findById(id);
+            }
+
+            /** Registrando **/
+            treatment.setNameTreatment(name);
+            treatment.setEspecialista(specialist);
+            treatment.setCantidadSesiones(sessions);
+            treatment.setPrecioTratamiento(precio);
+            treatment.setComisionOperadora(comission);
+            treatment.setDescripcionTratamiento(description);
+            treatmentRepository.save(treatment);
+
+            if(id != null){
+                String [] typeTreatments = type.split(",");
+                List<String> typeTreatmentsList = treatmentTypeRepository.findTypeTreatmentById(id);
+
+                for(int i = 0; i < typeTreatments.length; i++) {
+                    if(!typeTreatmentsList.contains(typeTreatments[i].trim())){
+                        if(typeTreatmentsList.size() <= i){
+                            TreatmentType item = new TreatmentType();
+                            item.setId_tratamientos(id);
+                            item.setNombreTipo(typeTreatments[i].trim());
+                            treatmentTypeRepository.save(item);
+                        } else {
+                            TreatmentType item = treatmentTypeRepository.findByTreatmentType(typeTreatmentsList.get(i).trim());
+                            item.setNombreTipo(typeTreatments[i].trim());
+                            treatmentTypeRepository.save(item);
+                        }
+                    }
+                }
+            }else{
+                String [] typeTreatments = type.split(",");
+                for (int i = 0; i < typeTreatments.length; i++) {
+                    TreatmentType item = new TreatmentType();
+                    item.setId_tratamientos(treatment.getId_tratamientos());
+                    item.setNombreTipo(typeTreatments[i].trim());
+                    treatmentTypeRepository.save(item);
+                }
+            }
+
+            if(id != null){
+                String [] zoneTreatments = zone.split(",");
+                List<String> zoneTreatmentList = treatmentZoneRepository.findZoneTreatmentById(id);
+
+                for(int i = 0; i < zoneTreatments.length; i++) {
+                    if(!zoneTreatmentList.contains(zoneTreatments[i].trim())){
+                        if(zoneTreatmentList.size() <= i){
+                            TreatmentZone item = new TreatmentZone();
+                            item.setId_tratamientos(id);
+                            item.setZonaNombre(zoneTreatments[i].trim());
+                            treatmentZoneRepository.save(item);
+                        } else {
+                            TreatmentZone item = treatmentZoneRepository.findByTreatmentZone(zoneTreatmentList.get(i).trim());
+                            item.setZonaNombre(zoneTreatments[i].trim());
+                            treatmentZoneRepository.save(item);
+                        }
+                    }
+                }
+            }else{
+                String [] zoneTreatments = zone.split(",");
+                for (int i = 0; i < zoneTreatments.length; i++) {
+                    TreatmentZone item = new TreatmentZone();
+                    item.setId_tratamientos(treatment.getId_tratamientos());
+                    item.setZonaNombre(zoneTreatments[i].trim());
+                    treatmentZoneRepository.save(item);
+                }
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
+    public Map<String, Object> registerProduct(
+          Long id,
+          Long treatment,
+          String proveedor,
+          String cantidad,
+          String precio,
+          Long specialist,
+          String description
+
+    ){
+        Map<String, Object> mapResult = new HashMap<>();
+        try{
+            Products products = null;
+
+            if(id == null){
+                products = new Products();
+            }else{
+                productRepository.findById(id);
+            }
+
+            products.setId_tratamientos(treatment);
+            products.setProveedor(proveedor);
+            products.setCantidad(cantidad);
+            products.setPrecio(precio);
+            products.setSpecialist(specialist);
+            products.setDescripcion(description);
+            productRepository.save(products);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
+    public Map<String, Object> searchRegister(
+         String name,
+         String lastNameClient,
+         String cedula,
+         Long user,
+         Long nameUser,
+         String initialDate,
+         String finalDate
+
+    ){
+        Map<String, Object> mapResult = new HashMap<>();
+        List<Map<String, Object>> mapList = new ArrayList<>();
+        List<Register> registerList = new ArrayList<>();
+
+        try{
+
+
+
+
+
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+       }
+    }
+
+
+
+
+
+
+

@@ -12,6 +12,20 @@ public interface DepilarteConstants {
     String REGISTER_EMPLEADO_DESCRIPTION =
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los empleados </span></u></h3>"
                     + "Método que genera registros de empleados. </div>";
+    String TREATMENT_URI = "registerTreatment";
+    String TREATMENT_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los tratamientos </span></u></h3>"
+                    + "Método que genera registros de tratamientos. </div>";
+
+    String PRODUCTS_URI = "registerProduct";
+    String PRODUCT_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Productos </span></u></h3>"
+                    + "Método que genera registros de Productos. </div>";
+
+    String SEARCH_REGISTER_URI = "searchRegister";
+    String SEARCH_REGISTER_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Registros </span></u></h3>"
+                    + "Método que genera Registros. </div>";
 
     //Constantes de Variables
     String CLIENT_ID = "id";
@@ -51,6 +65,31 @@ public interface DepilarteConstants {
     String CARGO = "cargo";
     String EMPLEADO_TELEFONO= "phone";
 
+    String TREATMENT_ID = "id";
+    String TREATMENT_NAME = "treatmentName";
+    String TREATMENT_TYPE = "typeTreatment";
+    String TREATMENT_ZONE = "zoneTreatment";
+    String TREATMENT_SPECIALIST = "specialist";
+    String TREATMENT_SESSIONS = "sessions";
+    String TREATMENT_PRICE = "price";
+    String TREATMENT_COMISSION = "comission";
+    String TREATMENT_DESC = "description";
+
+    String PRODUCT_ID = "id";
+    String PRODUCT_TREATMENT = "treatment";
+    String PRODUCT_PROVIDER = "proveedor";
+    String PRODUCT_COUNT = "cantidad";
+    String PRODUCT_SPECIALIST = "specialist";
+    String PRODUCT_PRECIO = "price";
+    String PRODUCT_DESCRIPCION = "description";
+
+    String SEARCH_NAME = "clientName";
+    String SEARCH_LASTNAME = "clientLastName";
+    String SEARCH_IDENTIFICATION = "identification";
+    String SEARCH_USERATT = "userAtteption";
+    String SEARCH_NAMEUSER = "userName";
+    String INITIAL_DATE = "initialDate";
+    String FINAL_DATE = "finalDate";
 
 
 }

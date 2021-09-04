@@ -81,7 +81,11 @@
                     <mat-label>Cargo</mat-label>
                     <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                       <mat-label>Cargo</mat-label>
-                      <input matInput  formControlName="cargo" type="text">
+                      <mat-select formControlName="userRegister">
+                        <mat-option *ngFor="let us of userList" [value]="us.value">
+                          {{us.desc}}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
                   </div>
                 </div>

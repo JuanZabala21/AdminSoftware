@@ -2,8 +2,10 @@ package com.depilartebe.depilarteBackend.be.services;
 
 import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
+import com.depilartebe.depilarteBackend.be.entities.Treatment;
 import com.depilartebe.depilarteBackend.be.entities.formaPay;
 import com.depilartebe.depilarteBackend.be.repository.FormaPayRepository;
+import com.depilartebe.depilarteBackend.be.repository.TreatmentRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
     @Autowired
     FormaPayRepository formaPayRepository;
+
+    @Autowired
+    TreatmentRepository treatmentRepository;
 
 
    public Map<String, Object> getPayMethods() {
@@ -38,6 +43,24 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
            mapResult.put(MESSAGE, MESSAGE_ERROR);
        }
        return mapResult;
+   }
+
+   public Map<String, Object> getTreatments() {
+       Map<String , Object> mapResult = new HashMap<>();
+
+       try{
+           List<Treatment> treatments = treatmentRepository.findAll();
+           mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+           mapResult.put(TREATMENTS, treatments);
+
+       }catch (Exception e) {
+           e.printStackTrace();
+           log.error("Se produjo un error: " + e.getMessage());
+           mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+           mapResult.put(MESSAGE, MESSAGE_ERROR);
+       }
+       return mapResult;
+
    }
 
 

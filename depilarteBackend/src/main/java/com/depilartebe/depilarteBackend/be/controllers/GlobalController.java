@@ -40,7 +40,25 @@ public class GlobalController implements GlobalConstants {
             mapResponse = globalServices.getPayMethods();
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("Se prudujo un error: " + e.getMessage());
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = TREATMENTSLIST_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = TREATMENTSS_URI, produces = ACCEPT)
+    public Map<String, Object> getTreatments(){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            mapResponse = globalServices.getTreatments();
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
             mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
             mapResponse.put(MESSAGE, MESSAGE_ERROR);
             return mapResponse;

@@ -174,7 +174,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 String address = (params.containsKey(EMPLEADO_ADDRESS) && params.get(EMPLEADO_ADDRESS) != null
                         && !params.get(EMPLEADO_ADDRESS).toString().isEmpty()) ?
                         params.get(EMPLEADO_ADDRESS).toString() : null;
-               String cargo = (params.containsKey(CARGO) && params.get(CARGO) != null
+                String cargo = (params.containsKey(CARGO) && params.get(CARGO) != null
                        && !params.get(CARGO).toString().isEmpty()) ?
                        params.get(CARGO).toString() : null;
 
@@ -191,6 +191,156 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         }
         return mapResponse;
     }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = TREATMENT_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = TREATMENT_URI)
+    public Map<String, Object> getTratamientos(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+                Long id = (params.containsKey(EMPLEADO_ID) &&
+                        params.get(EMPLEADO_ID) != null &&
+                        !params.get(EMPLEADO_ID).toString().isEmpty() )
+                        ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+                String nameTreatment = (params.containsKey(TREATMENT_NAME) && params.get(TREATMENT_NAME) != null
+                        && !params.get(TREATMENT_NAME).toString().isEmpty()) ?
+                        params.get(TREATMENT_NAME).toString() : null;
+                String typeTreatment = (params.containsKey(TREATMENT_TYPE) && params.get(TREATMENT_TYPE) != null
+                        && !params.get(TREATMENT_TYPE).toString().isEmpty()) ?
+                        params.get(TREATMENT_TYPE).toString() : null;
+                String zoneTreatment = (params.containsKey(TREATMENT_ZONE) && params.get(TREATMENT_ZONE) != null
+                        && !params.get(TREATMENT_ZONE).toString().isEmpty()) ?
+                        params.get(TREATMENT_ZONE).toString() : null;
+                Long specialist = (params.containsKey(TREATMENT_SPECIALIST) &&
+                        params.get(TREATMENT_SPECIALIST) != null &&
+                        !params.get(TREATMENT_SPECIALIST).toString().isEmpty() )
+                        ? Long.valueOf(params.get(TREATMENT_SPECIALIST).toString()) : null;
+                String sessions = (params.containsKey(TREATMENT_SESSIONS) && params.get(TREATMENT_SESSIONS) != null
+                        && !params.get(TREATMENT_SESSIONS).toString().isEmpty()) ?
+                        params.get(TREATMENT_SESSIONS).toString() : null;
+                String precio = (params.containsKey(TREATMENT_PRICE) && params.get(TREATMENT_PRICE) != null
+                        && !params.get(TREATMENT_PRICE).toString().isEmpty()) ?
+                        params.get(TREATMENT_PRICE).toString() : null;
+                String comission = (params.containsKey(TREATMENT_COMISSION) && params.get(TREATMENT_COMISSION) != null
+                        && !params.get(TREATMENT_COMISSION).toString().isEmpty()) ?
+                        params.get(TREATMENT_COMISSION).toString() : null;
+                String description = (params.containsKey(TREATMENT_DESC) && params.get(TREATMENT_DESC) != null
+                        && !params.get(TREATMENT_DESC).toString().isEmpty()) ?
+                        params.get(TREATMENT_DESC).toString() : null;
+
+                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typeTreatment,zoneTreatment,specialist, sessions, precio,comission,description);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = PRODUCT_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = PRODUCTS_URI)
+    public Map<String, Object> getProducts(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+                Long id = (params.containsKey(PRODUCT_ID) &&
+                        params.get(PRODUCT_ID) != null &&
+                        !params.get(PRODUCT_ID).toString().isEmpty())
+                        ? Long.valueOf(params.get(PRODUCT_ID).toString()) : null;
+                Long treatment = (params.containsKey(PRODUCT_TREATMENT) &&
+                        params.get(PRODUCT_TREATMENT) != null &&
+                        !params.get(PRODUCT_TREATMENT).toString().isEmpty())
+                        ? Long.valueOf(params.get(PRODUCT_TREATMENT).toString()) : null;
+                String proveedor = (params.containsKey(PRODUCT_PROVIDER) && params.get(PRODUCT_PROVIDER) != null
+                        && !params.get(PRODUCT_PROVIDER).toString().isEmpty()) ?
+                        params.get(PRODUCT_PROVIDER).toString() : null;
+                String cantidad = (params.containsKey(PRODUCT_COUNT) && params.get(PRODUCT_COUNT) != null
+                        && !params.get(PRODUCT_COUNT).toString().isEmpty()) ?
+                        params.get(PRODUCT_COUNT).toString() : null;
+                String precio = (params.containsKey(PRODUCT_PRECIO) && params.get(PRODUCT_PRECIO) != null
+                        && !params.get(PRODUCT_PRECIO).toString().isEmpty()) ?
+                        params.get(PRODUCT_PRECIO).toString() : null;
+                Long specialist = (params.containsKey(PRODUCT_SPECIALIST) &&
+                        params.get(PRODUCT_SPECIALIST) != null &&
+                        !params.get(PRODUCT_SPECIALIST).toString().isEmpty())
+                        ? Long.valueOf(params.get(PRODUCT_SPECIALIST).toString()) : null;
+                String descripcion = (params.containsKey(PRODUCT_DESCRIPCION) && params.get(PRODUCT_DESCRIPCION) != null
+                        && !params.get(PRODUCT_DESCRIPCION).toString().isEmpty()) ?
+                        params.get(PRODUCT_DESCRIPCION).toString() : null;
+
+                mapResponse = depilarteServices.registerProduct(id,treatment,proveedor,cantidad,precio,specialist,descripcion);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SEARCH_REGISTER_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SEARCH_REGISTER_URI)
+    public Map<String, Object> searchRegister(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String nameClient = (params.containsKey(SEARCH_NAME) && params.get(SEARCH_NAME) != null
+                        && !params.get(SEARCH_NAME).toString().isEmpty()) ?
+                        params.get(SEARCH_NAME).toString() : null;
+                String lastNameClient = (params.containsKey(SEARCH_LASTNAME) && params.get(SEARCH_LASTNAME) != null
+                        && !params.get(SEARCH_LASTNAME).toString().isEmpty()) ?
+                        params.get(SEARCH_LASTNAME).toString() : null;
+                String cedula = (params.containsKey(SEARCH_IDENTIFICATION) && params.get(SEARCH_IDENTIFICATION) != null
+                        && !params.get(SEARCH_IDENTIFICATION).toString().isEmpty()) ?
+                        params.get(SEARCH_IDENTIFICATION).toString() : null;
+                Long user = (params.containsKey(SEARCH_USERATT) &&
+                        params.get(SEARCH_USERATT) != null &&
+                        !params.get(SEARCH_USERATT).toString().isEmpty())
+                        ? Long.valueOf(params.get(SEARCH_USERATT).toString()) : null;
+                Long nameUser = (params.containsKey(SEARCH_NAMEUSER) &&
+                        params.get(SEARCH_NAMEUSER) != null &&
+                        !params.get(SEARCH_NAMEUSER).toString().isEmpty())
+                        ? Long.valueOf(params.get(SEARCH_NAMEUSER).toString()) : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.searchRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+
 
 
 }
