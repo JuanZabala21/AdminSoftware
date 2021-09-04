@@ -39,6 +39,10 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(CLIENT_ID) != null &&
                         !params.get(CLIENT_ID).toString().isEmpty() )
                         ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+                Long registerWorker =(params.containsKey(EMPLEADO_REGISTER) &&
+                        params.get(EMPLEADO_REGISTER) != null &&
+                        !params.get(EMPLEADO_REGISTER).toString().isEmpty() )
+                        ? Long.valueOf(params.get(EMPLEADO_REGISTER).toString()) : null;
                 String clientName = (params.containsKey(CLIENT_NAME) && params.get(CLIENT_NAME) != null
                         && !params.get(CLIENT_NAME).toString().isEmpty()) ?
                         params.get(CLIENT_NAME).toString() : null;
@@ -120,7 +124,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                        params.get(CLIENT_PHONE).toString() : null;
 
 
-                mapResponse = depilarteServices.registerClients(id,clientName,clientLastName,identification,age,
+                mapResponse = depilarteServices.registerClients(id,registerWorker,clientName,clientLastName,identification,age,
                                                                email,birthday,address,treatment,treatmentType,treatmentZone,countSessions,
                                                                assistent,product,shotBefore,shotAfter,shotDiferencial,operator,doctor,formPay,
                                                                 abonado,priceTotal,comission,note,phone);

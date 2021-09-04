@@ -56,6 +56,7 @@ public interface DepilarteConstants {
     String CLIENT_PHONE = "telefono";
 
     String EMPLEADO_ID = "id";
+    String EMPLEADO_REGISTER = "userRegister";
     String EMPLEADO_NAME = "name";
     String EMPLEADO_LASTNAME = "lastName";
     String EMPLEADO_AGE = "age";

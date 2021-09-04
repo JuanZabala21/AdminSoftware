@@ -2,6 +2,8 @@ package com.depilartebe.depilarteBackend.be.constants;
 
 public interface GlobalConstants {
 
+    String RESULT_LIST_MAP                                          = "resultList";
+
     String CONTENT_TYPE = "application/json";
     String APPLICATION_JSON 		= "application/json";
     String ACCEPT = "application/json";
@@ -26,4 +28,11 @@ public interface GlobalConstants {
 
     String TREATMENTSLIST_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Tratamientos </span></u></h3>"
             + "Método que retorna los Tratamientos. </div>";
+
+    String CHARGER_URI = "chargers";
+    String CHAARGER_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Cargos por Usuario </span></u></h3>"
+            + "Método que retorna los usuarios por su cargo. </div>";
+
+    String CHARGERS = "charger";
+    String CHARGERRESULT = "chargers";
 }

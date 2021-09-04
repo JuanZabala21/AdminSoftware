@@ -36,6 +36,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     public Map<String, Object> registerClients(
         Long id,
+        Long registerWorker,
         String clientName,
         String clientLastName,
         String identification,
@@ -75,6 +76,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
             /** Registrando **/
             register.setNombre(clientName);
+            register.setRegisterUser(registerWorker);
             register.setApellido(clientLastName);
             register.setCedula(identification);
             register.setEdad(age);
@@ -90,8 +92,11 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setDisparosAntes(shotBefore);
             register.setDisparosDespues(shotAfter);
             register.setDiferenciaDisparos(shotDiferential);
-            register.setOperadora(operator);
-            register.setDoctora(doctor);
+            if(registerWorker == 1){
+                register.setUserAtendio(doctor);
+            } else{
+                register.setUserAtendio(operator);
+            }
             register.setFormaPago(formPay);
             register.setAbonado(abonado);
             register.setPrecioTotal(priceTotal);
@@ -303,14 +308,36 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         List<Map<String, Object>> mapList = new ArrayList<>();
         List<Register> registerList = new ArrayList<>();
 
+
         try{
-
-
-
-
-
-
-
+            registerList = registerRepository.findRegister(name,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
+            if(registerList != null){
+                for(Register register : registerList){
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("fechaAttemption", register.getFechaAtendido());
+                    result.put("name", register.getNombre());
+                    result.put("lastName", register.getApellido());
+                    result.put("identification", register.getCedula());
+                    result.put("age", register.getEdad());
+                    result.put("phone", register.getTelefono());
+                    result.put("treatment", register.getTratamiento());
+                    result.put("treatmentType", register.getTipoTratamiento());
+                    result.put("treatmentZone", register.getZonaTratamiento());
+                    result.put("shotsBefore", register.getDisparosAntes());
+                    result.put("shotsAfter", register.getDisparosDespues());
+                    result.put("shotDifferential", register.getDiferenciaDisparos());
+                    result.put("sessions", register.getCantidadSesiones());
+                    result.put("assistents", register.getAsistencia());
+                    result.put("product", register.getProductoUtilizado());
+                    result.put("userAttemption", register.getUserAtendio());
+                    result.put("formpay", register.getFormaPago());
+                    result.put("abonado", register.getAbonado());
+                    result.put("comission", register.getComision());
+                    result.put("price", register.getPrecioTotal());
+                    mapList.add(result);
+                }
+                mapResult.put(RESULT_LIST_MAP, mapList);
+            }
         }catch (Exception e) {
             e.printStackTrace();
             log.error("Se produjo un error: " + e.getMessage());

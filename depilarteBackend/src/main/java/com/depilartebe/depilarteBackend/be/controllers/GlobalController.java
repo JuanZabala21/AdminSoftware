@@ -2,17 +2,13 @@ package com.depilartebe.depilarteBackend.be.controllers;
 
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
 import com.depilartebe.depilarteBackend.be.services.GlobalServices;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javassist.scopedpool.SoftValueHashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jsondoc.core.annotation.Api;
-import org.jsondoc.core.annotation.ApiMethod;
-import org.jsondoc.core.annotation.ApiResponseObject;
-import org.jsondoc.core.annotation.ApiVersion;
+import org.jsondoc.core.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,4 +62,33 @@ public class GlobalController implements GlobalConstants {
 
         return mapResponse;
     }
+
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = CHAARGER_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = CHARGER_URI, produces = ACCEPT)
+    public Map<String, Object> getUsersByCargo(@ApiBodyObject(clazz = String.class) @RequestBody String json){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+            String chargers =  (params.containsKey(CHARGERS) && params.get(CHARGERS) != null && !params.get(CHARGERS).toString().isEmpty()) ? params.get(CHARGERS).toString() : null;
+            if(chargers != null){
+                mapResponse = globalServices.getChargers(chargers);
+            }else{
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
+
 }

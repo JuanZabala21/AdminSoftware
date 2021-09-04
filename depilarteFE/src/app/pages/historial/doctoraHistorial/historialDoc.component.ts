@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
+import {GlobalServices} from '../../../shared/services/global.services';
+import {environment} from '../../../../environments/environment';
 
  interface HistorialData {
    dateA: String;
@@ -72,7 +74,8 @@ export class HistorialDocComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private globalServices: GlobalServices) {
     this.filters = fb.group({
       name: new FormControl(),
       lastName: new FormControl(),
@@ -85,6 +88,20 @@ export class HistorialDocComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  search() {
+   const data = {
+     ...this.filters.value
+   };
+   this.globalServices.httpServicesResponse(data, environment.Url + 'depilarte/searchRegister').subscribe( res => {
+     this.dataSource = new MatTableDataSource(res.body.resultList);
+     this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+     }
+   )
+
 
   }
 }

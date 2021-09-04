@@ -62,11 +62,8 @@ import java.util.Date;
     @Column(name = "DiferenciaDisparos")
     private String DiferenciaDisparos;
 
-    @Column(name = "Operadora")
-    private Long Operadora;
-
-    @Column(name = "Doctora")
-    private Long Doctora;
+   @Column(name = "UserAtendio")
+   private Long userAtendio;
 
     @Column(name = "FormaPago")
     private Long FormaPago;
@@ -85,6 +82,9 @@ import java.util.Date;
 
     @Column(name = "Telefono")
     private String telefono;
+
+    @Column(name = "RegisterUser")
+    private Long registerUser;
 
         public Long getId() {
             return id;
@@ -156,14 +156,6 @@ import java.util.Date;
 
     public String getDiferenciaDisparos() {
         return DiferenciaDisparos;
-    }
-
-    public Long getOperadora() {
-        return Operadora;
-    }
-
-    public Long getDoctora() {
-        return Doctora;
     }
 
     public Long getFormaPago() {
@@ -258,14 +250,6 @@ import java.util.Date;
         DiferenciaDisparos = diferenciaDisparos;
     }
 
-    public void setOperadora(Long operadora) {
-        Operadora = operadora;
-    }
-
-    public void setDoctora(Long doctora) {
-        Doctora = doctora;
-    }
-
     public void setFormaPago(Long formaPago) {
         FormaPago = formaPago;
     }
@@ -292,5 +276,21 @@ import java.util.Date;
 
         public void setTelefono(String telefono) {
             this.telefono = telefono;
+        }
+
+        public Long getUserAtendio() {
+            return userAtendio;
+        }
+
+        public Long getRegisterUser() {
+            return registerUser;
+        }
+
+        public void setUserAtendio(Long userAtendio) {
+            this.userAtendio = userAtendio;
+        }
+
+        public void setRegisterUser(Long registerUser) {
+            this.registerUser = registerUser;
         }
     }

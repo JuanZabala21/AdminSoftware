@@ -2,8 +2,10 @@ package com.depilartebe.depilarteBackend.be.services;
 
 import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
+import com.depilartebe.depilarteBackend.be.entities.Empleado;
 import com.depilartebe.depilarteBackend.be.entities.Treatment;
 import com.depilartebe.depilarteBackend.be.entities.formaPay;
+import com.depilartebe.depilarteBackend.be.repository.EmpleadoRepository;
 import com.depilartebe.depilarteBackend.be.repository.FormaPayRepository;
 import com.depilartebe.depilarteBackend.be.repository.TreatmentRepository;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,9 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
     @Autowired
     TreatmentRepository treatmentRepository;
+
+    @Autowired
+    EmpleadoRepository empleadoRepository;
 
 
    public Map<String, Object> getPayMethods() {
@@ -61,6 +67,22 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
        }
        return mapResult;
 
+   }
+
+   public Map<String, Object> getChargers(String charger) {
+       Map<String, Object> mapResult = new HashMap<>();
+       try {
+           List<Empleado> empleados = empleadoRepository.findEmpleados(Long.parseLong(charger));
+           mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+           mapResult.put(CHARGERRESULT, empleados);
+
+       }catch (Exception e) {
+           e.printStackTrace();
+           log.error("Se produjo un error: " + e.getMessage());
+           mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+           mapResult.put(MESSAGE, MESSAGE_ERROR);
+       }
+       return mapResult;
    }
 
 

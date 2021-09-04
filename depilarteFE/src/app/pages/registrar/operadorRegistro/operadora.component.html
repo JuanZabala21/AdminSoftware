@@ -13,7 +13,7 @@
               <mat-label>Usuario registrante</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Usuario registrante</mat-label>
-                <mat-select formControlName="userRegister">
+                <mat-select formControlName="userRegister" (selectionChange)="changeCharger()">
                   <mat-option *ngFor="let us of userList" [value]="us.value">
                     {{us.desc}}
                   </mat-option>
@@ -211,9 +211,9 @@
               <mat-label>Operadora Encargada</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Operadora Encargada</mat-label>
-                <mat-select  formControlName="userOp"  [(ngModel)]="selectedValue" name="Operadora">
-                  <mat-option *ngFor="let operadora of operadora" [value]="operadora.value">
-                    {{operadora.viewValue}}
+                <mat-select  formControlName="userOp" name="Operadora">
+                  <mat-option *ngFor="let ch of chargerList" [value]="ch.id">
+                    {{ch.Nombre}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -222,9 +222,9 @@
               <mat-label>Doctora Encargada</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Doctora Encargada</mat-label>
-                <mat-select  formControlName="userDoc" [(ngModel)]="selectedValue" name="Operadora">
-                  <mat-option *ngFor="let operadora of operadora" [value]="operadora.value">
-                    {{operadora.viewValue}}
+                <mat-select  formControlName="userDoc" name="Operadora">
+                  <mat-option *ngFor="let ch of chargerList" [value]="ch.id">
+                    {{ch.nombre}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

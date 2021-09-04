@@ -69,7 +69,7 @@
           </div>
           <div style="position:relative; top:50%; display: flex; justify-content: space-around;" class="row">
             <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
-                    type="button" class="">Buscar</button>
+                    type="button" class="" (click)="search()">Buscar</button>
             <button mat-raised-button mat-stroked-button style="height:40px; width:200px;" type="" class="">Descargar Excel</button>
           </div>
         </div>
@@ -84,7 +84,7 @@
           <ng-container  matColumnDef="dateA" >
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Fecha de atención </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.dateA}} </td>
-            
+
           </ng-container>
 
           <ng-container  matColumnDef="name">

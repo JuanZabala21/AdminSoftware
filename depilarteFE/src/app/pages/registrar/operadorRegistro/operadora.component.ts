@@ -19,8 +19,10 @@ export class OperadoraComponent implements OnInit {
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
+   chargerList = [];
    methodsList = [];
    disabled = true;
+   show : boolean = true;
    showOperative: boolean = true;
    showDoctor: boolean = true;
     ngOnInit() {
@@ -101,6 +103,21 @@ export class OperadoraComponent implements OnInit {
             }
           },
       console.error);
+  }
+
+  changeCharger() {
+    if(this.form.get('userRegister').value != null){
+      this.globalService.httpServicesResponse({ charger : this.form.get('userRegister').value},
+        environment.Url + 'global/chargers').subscribe(response => {
+          if (response.type === 'success') {
+            this.chargerList = response.chargers.filter(ch => ch.id !== -1);
+            console.log(this.chargerList);
+          }
+        },
+        console.log)
+    } else {
+      return false;
+    }
   }
 
 
