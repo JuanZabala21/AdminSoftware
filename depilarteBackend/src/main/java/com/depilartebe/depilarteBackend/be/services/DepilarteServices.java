@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -33,6 +35,9 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    FormaPayRepository formaPayRepository;
 
     public Map<String, Object> registerClients(
         Long id,
@@ -307,37 +312,68 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         Map<String, Object> mapResult = new HashMap<>();
         List<Map<String, Object>> mapList = new ArrayList<>();
         List<Register> registerList = new ArrayList<>();
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+
 
         try{
-            registerList = registerRepository.findRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
-            if(registerList != null){
-                for(Register register : registerList){
-                    Map<String, Object> result = new HashMap<>();
-                    result.put("fechaAttemption", register.getFechaAtendido());
-                    result.put("name", register.getNombre());
-                    result.put("lastName", register.getApellido());
-                    result.put("identification", register.getCedula());
-                    result.put("age", register.getEdad());
-                    result.put("phone", register.getTelefono());
-                    result.put("treatment", register.getTratamiento());
-                    result.put("treatmentType", register.getTipoTratamiento());
-                    result.put("treatmentZone", register.getZonaTratamiento());
-                    result.put("shotsBefore", register.getDisparosAntes());
-                    result.put("shotsAfter", register.getDisparosDespues());
-                    result.put("shotDifferential", register.getDiferenciaDisparos());
-                    result.put("sessions", register.getCantidadSesiones());
-                    result.put("assistents", register.getAsistencia());
-                    result.put("product", register.getProductoUtilizado());
-                    result.put("userAttemption", register.getUserAtendio());
-                    result.put("formpay", register.getFormaPago());
-                    result.put("abonado", register.getAbonado());
-                    result.put("comission", register.getComision());
-                    result.put("price", register.getPrecioTotal());
-                    mapList.add(result);
-                }
-                mapResult.put(RESULT_LIST_MAP, mapList);
-                System.out.println(mapList);
+            Treatment treatment = new Treatment();
+            TreatmentType treatmentType = new TreatmentType();
+            TreatmentZone treatmentZone = new TreatmentZone();
+            formaPay formPay = new formaPay();
+            if(initialDate != null && finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                String initial = dt.format(dateInitial);
+                registerList = registerRepository.findRegister(nameClient,lastNameClient,cedula,user,nameUser,initial,finale);
+            }else if(initialDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                String initial = dt.format(dateInitial);
+                registerList = registerRepository.findRegister(nameClient,lastNameClient,cedula,user,nameUser,initial,finalDate);
+            }else if(finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                registerList = registerRepository.findRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finale);
+            } else {
+                registerList = registerRepository.findRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
             }
+                if(registerList != null){
+                    for(Register register : registerList){
+                        Map<String, Object> result = new HashMap<>();
+                        result.put("fechaAttemption", dt.format(register.getFechaAtendido()));
+                        result.put("name", register.getNombre());
+                        result.put("lastName", register.getApellido());
+                        result.put("identification", register.getCedula());
+                        result.put("birthday", register.getFechaCumple());
+                        result.put("age", register.getEdad());
+                        result.put("phone", register.getTelefono());
+                        treatment = treatmentRepository.findTreatmentById(register.getTratamiento());
+                        result.put("treatment", treatment.getNameTreatment());
+                        treatmentType = treatmentTypeRepository.findTreatmentTypeById(register.getTipoTratamiento());
+                        result.put("treatmentType", treatmentType.getNombreTipo());
+                        treatmentZone = treatmentZoneRepository.findTreatmentZoneById(register.getZonaTratamiento());
+                        result.put("treatmentZone", treatmentZone.getZonaNombre());
+                        result.put("shotsBefore", register.getDisparosAntes());
+                        result.put("shotsAfter", register.getDisparosDespues());
+                        result.put("shotDifferential", register.getDiferenciaDisparos());
+                        result.put("sessions", register.getCantidadSesiones());
+                        result.put("assistents", register.getAsistencia());
+                        result.put("product", register.getProductoUtilizado());
+                        result.put("userAttemption", register.getUserAtendio());
+                        formPay = formaPayRepository.findformaPayById(register.getFormaPago());
+                        result.put("formpay", formPay.getMetodoPago());
+                        result.put("abonado", register.getAbonado());
+                        result.put("comission", register.getComision());
+                        result.put("price", register.getPrecioTotal());
+                        mapList.add(result);
+                    }
+                    mapResult.put(RESULT_LIST_MAP, mapList);
+                }
+
+
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -347,6 +383,182 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         }
         return mapResult;
        }
+
+       public Map<String, Object> searchWorkers(
+               String nameWorker,
+               String identification,
+               Long charge,
+               String initialDate,
+               String finalDate
+       ){
+           Map<String, Object> mapResult = new HashMap<>();
+           List<Map<String, Object>> mapList = new ArrayList<>();
+           List<Empleado> empleadoList = new ArrayList<>();
+           SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            if(initialDate != null && finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                String initial = dt.format(dateInitial);
+                empleadoList = empleadoRepository.findWorkers(nameWorker,identification,charge,initial,finale);
+            }else if(initialDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                String initial = dt.format(dateInitial);
+                empleadoList = empleadoRepository.findWorkers(nameWorker,identification,charge,initial,finalDate);
+            }else if(finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                empleadoList = empleadoRepository.findWorkers(nameWorker,identification,charge,initialDate,finale);
+            }else{
+                empleadoList = empleadoRepository.findWorkers(nameWorker,identification,charge,initialDate,finalDate);
+            }
+            if(empleadoList != null){
+                for(Empleado empleado : empleadoList){
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("fechaAttemption", dt.format(empleado.getFechaIngresoo()));
+                    result.put("name", empleado.getNombre());
+                    result.put("lastName", empleado.getApellido());
+                    result.put("identification", empleado.getCedula());
+                    result.put("age", empleado.getEdad());
+                    result.put("email", empleado.getCorreo());
+                    result.put("phone", empleado.getTelefono());
+                    result.put("birthday", empleado.getNacimiento());
+                    result.put("address", empleado.getDireccion());
+                    result.put("charge", empleado.getCargo());
+                    mapList.add(result);
+                }
+                mapResult.put(RESULT_LIST_MAP, mapList);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+           return mapResult;
+
+       }
+
+        public Map<String, Object> searchTreatment(
+            String nameTreatment,
+            String specialistTreatment,
+            String initialDate,
+            String finalDate
+        ){
+            Map<String, Object> mapResult = new HashMap<>();
+            List<Map<String, Object>> mapList = new ArrayList<>();
+            List<Treatment> treatmentList = new ArrayList<>();
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+
+        try{
+            if(initialDate != null && finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                String initial = dt.format(dateInitial);
+                treatmentList = treatmentRepository.findTreatment(nameTreatment,specialistTreatment,initial,finale);
+            }else if(initialDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                String initial = dt.format(dateInitial);
+                treatmentList = treatmentRepository.findTreatment(nameTreatment,specialistTreatment,initial,finalDate);
+            }else if(finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                treatmentList = treatmentRepository.findTreatment(nameTreatment,specialistTreatment,initialDate,finale);
+            }else{
+                treatmentList = treatmentRepository.findTreatment(nameTreatment,specialistTreatment,initialDate,finalDate);
+            }
+            if(treatmentList != null){
+                for(Treatment treatment : treatmentList){
+                    Map<String, Object> result = new HashMap<>();
+                    List<String> treatmentTypeList = treatmentTypeRepository.findTreatmentTypeNames(treatment.getId_tratamientos());
+                    List<String> treatmentZonesList = treatmentZoneRepository.findTreatmentZoneNames(treatment.getId_tratamientos());
+                    result.put("name",treatment.getNameTreatment());
+                    result.put("treatmentType", treatmentTypeList);
+                    result.put("treatmentZone", treatmentZonesList);
+                    result.put("specialist", treatment.getEspecialista());
+                    result.put("sessions", treatment.getCantidadSesiones());
+                    result.put("price", treatment.getPrecioTratamiento());
+                    result.put("comission", treatment.getComisionOperadora());
+                    mapList.add(result);
+                }
+                mapResult.put(RESULT_LIST_MAP, mapList);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+            return mapResult;
+
+        }
+
+        public Map<String, Object> searchProducts(
+            String product,
+            String specialist,
+            String initialDate,
+            String finalDate
+
+        ){
+            Map<String, Object> mapResult = new HashMap<>();
+            List<Map<String, Object>> mapList = new ArrayList<>();
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            List<Products> productsList = new ArrayList<>();
+            if(initialDate != null && finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                String initial = dt.format(dateInitial);
+                productsList = productRepository.findProducts(product,specialist,initial,finale);
+            }else if(initialDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                String initial = dt.format(dateInitial);
+                productsList = productRepository.findProducts(product,specialist,initial,finalDate);
+            }else if(finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                productsList = productRepository.findProducts(product,specialist,initialDate,finale);
+            }else{
+                productsList = productRepository.findProducts(product,specialist,initialDate,finalDate);
+            }
+            if(productsList != null){
+                for(Products products : productsList){
+                   Map<String, Object> result = new HashMap<>();
+                   result.put("nameProduct", products.getNombre());
+                   result.put("proveedor", products.getProveedor());
+                   result.put("cantidad",products.getCantidad());
+                   result.put("specialist", products.getSpecialist());
+                   result.put("treatment", products.getId_tratamientos());
+                   result.put("price", products.getPrecio());
+                   mapList.add(result);
+                }
+                mapResult.put(RESULT_LIST_MAP, mapList);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+            return mapResult;
+
+        }
+
+
     }
 
 

@@ -14,4 +14,20 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
     @Query(nativeQuery = true, value = FIND_EMPLEADOS)
     List<Empleado> findEmpleados(@Param("charger") Long charger);
 
+
+    String FIND_WORKERS = "SELECT * FROM `depilarte_usuarios` WHERE " +
+            "(:name IS NULL OR Nombre LIKE %:name%) AND " +
+            "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
+            "(:charge IS NULL OR Cargo = :charge) AND" +
+            "(:initialDate IS NULL OR fechaIngreso >= :initialDate) AND "+
+            "(:finalDate IS NULL OR fechaIngreso <= :finalDate)";
+    @Query(nativeQuery = true, value = FIND_WORKERS)
+    List<Empleado> findWorkers( @Param("name") String name,
+                                @Param("cedula") String cedula,
+                                @Param("charge") Long charge,
+                                @Param("initialDate")String initialDate,
+                                @Param("finalDate") String finalDate);
+
+
+
 }

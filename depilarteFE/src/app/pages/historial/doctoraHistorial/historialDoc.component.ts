@@ -49,19 +49,19 @@ export class HistorialDocComponent implements OnInit {
       'name',
       'lastName',
       'identification',
+      'birthday',
       'age',
       'phone',
       'treatment',
       'treatmentType',
       'treatmentZone',
-      'pistolBefore',
-      'pistolAfter',
-      'diferentShot',
-      'operator',
+      'shotBefore',
+      'shotAfter',
+      'shotDifferential',
+      'userAttemption',
       'countSession',
       'assistent',
       'product',
-      'doctor',
       'payForm',
       'subscriber',
       'comission',
@@ -93,16 +93,16 @@ export class HistorialDocComponent implements OnInit {
   }
 
   search() {
-   const data = {
-     ...this.filters.value
-   };
-     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRegister').subscribe( res => {
-       console.log(res.resultList);
-       this.dataSource = new MatTableDataSource(res.resultList);
-       this.dataSource.paginator = this.paginator;
-     this.dataSource.sort = this.sort;
-     }
-   )
+    const data = {
+      ...this.filters.value
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRegister').subscribe( res => {
+        console.log(res.resultList);
+        this.dataSource = new MatTableDataSource(res.resultList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    )
 
 
   }
