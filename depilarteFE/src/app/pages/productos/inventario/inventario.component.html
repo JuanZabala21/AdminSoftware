@@ -8,7 +8,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6 pr-1">
-              <mat-form-field style="width: 100%;"> 
+              <mat-form-field style="width: 100%;">
                 <mat-label>Nombre del Producto</mat-label>
                 <input matInput formControlName="name" >
                 <mat-error>
@@ -44,7 +44,7 @@
             </div>
           <div style="position:relative; top:50%; display: flex; justify-content: space-around;" class="row">
             <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
-                    type="button" class="">Buscar</button>
+                    type="button" class="" (click)="search()">Buscar</button>
             <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
                     type="reset" class="">Limpiar</button>
             <button mat-raised-button mat-stroked-button style="height:40px; width:200px;" type="" class="">Descargar Excel</button>
@@ -60,23 +60,23 @@
 
           <ng-container  matColumnDef="name" >
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nombre del Producto</th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.nameProduct}} </td>
 
           </ng-container>
 
           <ng-container  matColumnDef="prov">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Proovedor </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.prov}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.proveedor}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.quantity}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.cantidad}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="user">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Especialista Encargada </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.user}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.specialist}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="treatment">

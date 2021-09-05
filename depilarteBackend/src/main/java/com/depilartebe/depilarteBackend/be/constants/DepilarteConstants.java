@@ -27,6 +27,21 @@ public interface DepilarteConstants {
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Registros </span></u></h3>"
                     + "Método que genera Registros. </div>";
 
+    String SEARCH_EMPLEADOS_URI = "searchWorker";
+    String SEARCH_EMPLEADOS_REGISTER =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Empleados </span></u></h3>"
+                    + "Método que genera Empleados. </div>";
+
+    String SEARCH_TREATMENTS_URI = "searchTreatments";
+    String SEARCH_TREATMENTS_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+    String SEARCH_PRODUCTS_URI = "searchProducts";
+    String SEARCH_PRODUCTS_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
     //Constantes de Variables
     String CLIENT_ID = "id";
     String CLIENT_NAME = "name";
@@ -64,7 +79,7 @@ public interface DepilarteConstants {
     String EMPLEADO_BIRTHDAY = "birthday";
     String EMPLEADO_ADDRESS = "address";
     String CARGO = "cargo";
-    String EMPLEADO_TELEFONO= "phone";
+    String EMPLEADO_TELEFONO = "phone";
 
     String TREATMENT_ID = "id";
     String TREATMENT_NAME = "treatmentName";
@@ -91,6 +106,17 @@ public interface DepilarteConstants {
     String SEARCH_NAMEUSER = "userName";
     String INITIAL_DATE = "initialDate";
     String FINAL_DATE = "finalDate";
+
+    String WORKER_NAME = "name";
+    String WORKER_IDENTIFICATION = "identification";
+    String WORKER_CHARGE = "charge";
+
+    String NAME_TREATMENT = "name";
+    String SPECIALIST_TREATMENT = "specialist";
+
+    String PRODUCT_NAME = "name";
+    String PRODUCTSPECIALIST = "specialist";
+
 
 
 }

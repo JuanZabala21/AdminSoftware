@@ -81,7 +81,7 @@
   <mat-card class="mat-elevation-z4">
     <div fxlayout="column">
       <div class="flex-p container-tab">
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 170%;">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 180%;">
 
           <ng-container  matColumnDef="dateA" >
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Fecha de atención </th>
@@ -101,6 +101,11 @@
           <ng-container  matColumnDef="identification">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cédula </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.identification}} </td>
+          </ng-container>
+
+          <ng-container  matColumnDef="birthday">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Fecha de Cumpleaños </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.birthday}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="age">
@@ -128,34 +133,24 @@
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentZone}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="pistolBefore">
+          <ng-container  matColumnDef="shotBefore">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Disparos de la pistola antes</th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.pistolBefore}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotBefore}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="pistolAfter">
+          <ng-container  matColumnDef="shotAfter">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Disparos de la pistola despues</th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.pistolAfter}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotAfter}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="diferentShot">
+          <ng-container  matColumnDef="shotDifferential">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Diferencia </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.diferentShot}} </td>
-          </ng-container>
-
-          <ng-container  matColumnDef="operator">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Operadora </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.operator}} </td>
-          </ng-container>
-
-          <ng-container  matColumnDef="countSession">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad de Sesiones </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.countSession}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotDifferential}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="assistent">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Asistencia </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.Assistent}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.assistents}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="product">
@@ -163,24 +158,29 @@
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.product}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="doctor">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Doctora </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.doctor}} </td>
+          <ng-container  matColumnDef="userAttemption">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Personal de Atención </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.userAttemption}} </td>
+          </ng-container>
+
+          <ng-container  matColumnDef="countSession">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad de Sesiones </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.sessions}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="payForm">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Forma de Pago </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.payForm}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.formpay}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="subscriber">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Abonado </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.subscriber}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.abonado}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="comission">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Comisión </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.commission}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.comission}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="price">

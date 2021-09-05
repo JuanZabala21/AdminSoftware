@@ -8,7 +8,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-6 pr-1">
-                <mat-form-field style="width: 100%;"> 
+                <mat-form-field style="width: 100%;">
                   <mat-label>Nombre del tratamiento</mat-label>
                   <input matInput formControlName="name" >
                   <mat-error>
@@ -44,7 +44,7 @@
               </div>
             <div style="position:relative; top:50%; display: flex; justify-content: space-around;" class="row">
               <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
-                      type="button" class="">Buscar</button>
+                      type="button" class="" (click)="search()">Buscar</button>
               <button mat-raised-button mat-stroked-button style="height:40px; width:200px; margin-right: 3px;"
                       type="reset" class="">Limpiar</button>
               <button mat-raised-button mat-stroked-button style="height:40px; width:200px;" type="" class="">Descargar Excel</button>
@@ -57,49 +57,65 @@
       <div fxlayout="column">
         <div class="flex-p container-tab">
           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 100%;">
-  
+
             <ng-container  matColumnDef="treatmentName" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nombre del tratamiento</th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentName}} </td>
-  
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
+
             </ng-container>
-  
-            <ng-container  matColumnDef="treatmentType">
+
+            <!--<ng-container  matColumnDef="treatmentType">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Tipo de Tratamiento </th>
               <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentType}} </td>
+            </ng-container>-->
+
+            <ng-container  matColumnDef="treatmentType">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Tipo de Tratamiento </th>
+              <td mat-cell class="mat-cell-id" *matCellDef="let row">
+                <mat-select placeholder="Tipos">
+              <mat-option *ngFor="let type of row.treatmentType">
+                {{type}}
+              </mat-option>
+            </mat-select>
+              </td>
             </ng-container>
-  
+
             <ng-container  matColumnDef="treatmentZone">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Zona de Tratamiento </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentZone}} </td>
+              <td mat-cell class="mat-cell-id" *matCellDef="let row">
+                <mat-select placeholder="Zonas" >
+                <mat-option *ngFor="let zone of row.treatmentZone">
+                      {{zone}}
+                </mat-option>
+              </mat-select>
+              </td>
             </ng-container>
-  
+
             <ng-container  matColumnDef="user">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Especialista Encargada </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.user}} </td>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.specialist}} </td>
             </ng-container>
-  
+
             <ng-container  matColumnDef="sessions">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad de Sesiones </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.age}} </td>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.sessions}} </td>
             </ng-container>
-  
+
             <ng-container  matColumnDef="priceTreatment">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Precio del Tratamiento </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.priceTreatment}} </td>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.price}} </td>
             </ng-container>
-  
+
             <ng-container  matColumnDef="operativeComission">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Comisión de la operadora </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.operativeComission}} </td>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.comission}} </td>
             </ng-container>
-  
-  
+
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
               <td mat-cell *matCellDef="let row" class="mat-cell-id">  </td>
             </ng-container>
-  
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
@@ -108,4 +124,3 @@
       </div>
     </mat-card>
   </div>
-  

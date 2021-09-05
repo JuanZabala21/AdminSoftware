@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
+import {environment} from '../../../../environments/environment';
+import {GlobalServices} from '../../../shared/services/global.services';
 
 interface HistorialData {
   treatmentName: String;
@@ -23,6 +25,7 @@ interface HistorialData {
 
 export class TratamientoComponent implements OnInit {
   filters: FormGroup;
+  treatmentTypeList = [];
   usuarioList = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
@@ -45,7 +48,8 @@ export class TratamientoComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private globalServices: GlobalServices) {
     this.filters = fb.group({
       name: new FormControl(),
       lastName: new FormControl(),
@@ -59,6 +63,19 @@ export class TratamientoComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  search() {
+    const data = {
+      ...this.filters.value
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchTreatments').subscribe( res => {
+        this.dataSource = new MatTableDataSource(res.resultList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    )
+  }
+
 }
 
 

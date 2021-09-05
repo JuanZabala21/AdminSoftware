@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
+import {environment} from '../../../../environments/environment';
+import {GlobalServices} from '../../../shared/services/global.services';
 
 interface HistorialData {
   treatmentName: String;
@@ -44,7 +46,8 @@ export class InventarioComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private globalServices: GlobalServices) {
     this.filters = fb.group({
       name: new FormControl(),
       lastName: new FormControl(),
@@ -57,5 +60,18 @@ export class InventarioComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  search() {
+    const data = {
+      ...this.filters.value
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchProducts').subscribe( res => {
+        console.log(res.resultList);
+        this.dataSource = new MatTableDataSource(res.resultList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    )
   }
 }

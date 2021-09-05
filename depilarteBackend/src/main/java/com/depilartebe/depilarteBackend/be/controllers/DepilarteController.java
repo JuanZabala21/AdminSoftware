@@ -344,7 +344,120 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         return mapResponse;
     }
 
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SEARCH_EMPLEADOS_REGISTER)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SEARCH_EMPLEADOS_URI)
+    public Map<String, Object> searchEmpleados(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
 
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String nameWorker = (params.containsKey(WORKER_NAME) && params.get(WORKER_NAME) != null
+                        && !params.get(WORKER_NAME).toString().isEmpty()) ?
+                        params.get(WORKER_NAME).toString() : null;
+                String identification = (params.containsKey(WORKER_IDENTIFICATION) && params.get(WORKER_IDENTIFICATION) != null
+                        && !params.get(WORKER_IDENTIFICATION).toString().isEmpty()) ?
+                        params.get(WORKER_IDENTIFICATION).toString() : null;
+                Long charge = (params.containsKey(WORKER_CHARGE) &&
+                        params.get(WORKER_CHARGE) != null &&
+                        !params.get(WORKER_CHARGE).toString().isEmpty())
+                        ? Long.valueOf(params.get(WORKER_CHARGE).toString()) : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.searchWorkers(nameWorker,identification,charge,initialDate,finalDate);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SEARCH_TREATMENTS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SEARCH_TREATMENTS_URI)
+    public Map<String, Object> searchTreatments(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String nameTreatment = (params.containsKey(NAME_TREATMENT) && params.get(NAME_TREATMENT) != null
+                        && !params.get(NAME_TREATMENT).toString().isEmpty()) ?
+                        params.get(NAME_TREATMENT).toString() : null;
+                String specialist = (params.containsKey(SPECIALIST_TREATMENT) && params.get(SPECIALIST_TREATMENT) != null
+                        && !params.get(SPECIALIST_TREATMENT).toString().isEmpty()) ?
+                        params.get(SPECIALIST_TREATMENT).toString() : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.searchTreatment(nameTreatment,specialist,initialDate,finalDate);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SEARCH_PRODUCTS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SEARCH_PRODUCTS_URI)
+    public Map<String, Object> searchProducts(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String productName = (params.containsKey(PRODUCT_NAME) && params.get(PRODUCT_NAME) != null
+                        && !params.get(PRODUCT_NAME).toString().isEmpty()) ?
+                        params.get(PRODUCT_NAME).toString() : null;
+                String specialist = (params.containsKey(PRODUCTSPECIALIST) && params.get(PRODUCTSPECIALIST) != null
+                        && !params.get(PRODUCTSPECIALIST).toString().isEmpty()) ?
+                        params.get(PRODUCTSPECIALIST).toString() : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.searchProducts(productName,specialist,initialDate,finalDate);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
 
 
 }
