@@ -170,7 +170,11 @@
                 <mat-label>Producto Utilizado</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Producto</mat-label>
-                  <input matInput  formControlName="product" type="text">
+                  <mat-select  formControlName="product">
+                    <mat-option *ngFor="let po of productList" [value]="po.id_producto">
+                      {{po.nombre}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
             </div>

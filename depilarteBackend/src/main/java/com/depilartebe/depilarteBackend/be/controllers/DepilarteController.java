@@ -249,7 +249,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         return mapResponse;
     }
 
-    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = PRODUCT_DESCRIPTION)
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = PRODUCT_DESCRIPCION)
     @ApiResponseObject
     @RequestMapping(method = RequestMethod.POST, value = PRODUCTS_URI)
     public Map<String, Object> getProducts(@ApiBodyObject(clazz = String.class) @RequestBody String json) {

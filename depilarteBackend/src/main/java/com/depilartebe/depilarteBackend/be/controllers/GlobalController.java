@@ -145,6 +145,23 @@ public class GlobalController implements GlobalConstants {
         return mapResponse;
     }
 
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = PRODUCT_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = PRODUCT, produces = ACCEPT)
+    public Map<String, Object> getProducst(){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            mapResponse = globalServices.getProducts();
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
 
 
 }

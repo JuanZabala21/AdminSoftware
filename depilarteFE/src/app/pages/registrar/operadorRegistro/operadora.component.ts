@@ -24,6 +24,7 @@ export class OperadoraComponent implements OnInit {
    treatmentTypeList = [];
    treatmentZoneList = [];
    treatmentsList = [];
+   productList = [];
    disabled = true;
    show : boolean = true;
    showOperative: boolean = true;
@@ -33,6 +34,7 @@ export class OperadoraComponent implements OnInit {
       this.showOperative = false;
       this.getMethodsPay();
       this.getTreatments();
+      this.getProduct();
     }
 
     constructor(
@@ -157,6 +159,18 @@ export class OperadoraComponent implements OnInit {
         if (response.type === 'success') {
           this.treatmentsList = response.treatments.filter(te => te.id !== -1);
           console.log(this.treatmentsList);
+        }
+      },
+      console.error);
+  }
+
+  
+  getProduct() {
+    this.globalService.httpServicesResponse(null,
+      environment.Url + '/global/products').subscribe( response => {
+        if (response.type === 'success') {
+          this.productList = response.products.filter(po => po.id !== -1);
+          console.log(this.productList);
         }
       },
       console.error);

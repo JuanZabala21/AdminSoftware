@@ -47,4 +47,8 @@ public interface GlobalConstants {
             + "Método que retorna los usuarios por su cargo. </div>";
     String TREATMENTZONE = "treatmentZone";
     String TREATMENTZONERESULT = "treatmentZone";
+
+    String PRODUCT = "products";
+    String PRODUCT_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Productos </span></u></h3>"
+    + "Método que retorna los productors. </div>";
 }

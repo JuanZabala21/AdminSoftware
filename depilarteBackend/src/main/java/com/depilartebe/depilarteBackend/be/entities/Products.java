@@ -15,6 +15,9 @@ public class Products {
     @Column(name="id_tratamientos")
     private Long id_tratamientos;
 
+    @Column(name="Nombre")
+    private String nombre;
+
     @Column(name="Proveedor")
     private String proveedor;
 
@@ -34,6 +37,9 @@ public class Products {
         return id_productos;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
     public Long getId_tratamientos() {
         return id_tratamientos;
     }
@@ -60,6 +66,10 @@ public class Products {
 
     public void setId_tratamientos(Long id_tratamientos) {
         this.id_tratamientos = id_tratamientos;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public void setProveedor(String proveedor) {
