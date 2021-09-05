@@ -84,10 +84,10 @@ public interface DepilarteConstants {
     String PRODUCT_PRECIO = "price";
     String PRODUCT_DESCRIPCION = "description";
 
-    String SEARCH_NAME = "clientName";
-    String SEARCH_LASTNAME = "clientLastName";
+    String SEARCH_NAME = "name";
+    String SEARCH_LASTNAME = "lastName";
     String SEARCH_IDENTIFICATION = "identification";
-    String SEARCH_USERATT = "userAtteption";
+    String SEARCH_USERATT = "user";
     String SEARCH_NAMEUSER = "userName";
     String INITIAL_DATE = "initialDate";
     String FINAL_DATE = "finalDate";

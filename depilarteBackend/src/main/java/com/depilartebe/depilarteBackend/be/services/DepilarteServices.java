@@ -295,7 +295,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     }
 
     public Map<String, Object> searchRegister(
-         String name,
+         String nameClient,
          String lastNameClient,
          String cedula,
          Long user,
@@ -309,7 +309,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         List<Register> registerList = new ArrayList<>();
 
         try{
-            registerList = registerRepository.findRegister(name,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
+            registerList = registerRepository.findRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
             if(registerList != null){
                 for(Register register : registerList){
                     Map<String, Object> result = new HashMap<>();

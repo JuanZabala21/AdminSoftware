@@ -15,9 +15,9 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
     Register findById(long id);
 
     String FIND_REGISTERS = "SELECT * FROM `depilarte_registros` WHERE " +
-            "(:name IS NULL OR Nombre = :name) AND " +
-            "(:lastName IS NULL OR Apellido = :lastName) AND " +
-            "(:cedula IS NULL OR Cedula = :cedula) AND " +
+            "(:name IS NULL OR Nombre LIKE %:name%) AND " +
+            "(:lastName IS NULL OR Apellido LIKE %:lastName%) AND " +
+            "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
             "(:userAt IS NULL OR RegisterUser = :userAt) AND " +
             "(:nameUser IS NULL OR UserAtendio = :nameUser) AND "+
             "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
