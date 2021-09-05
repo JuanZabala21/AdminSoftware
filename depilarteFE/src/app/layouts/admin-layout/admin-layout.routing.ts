@@ -7,6 +7,7 @@ import {TratamientoRegistrarComponent} from '../../pages/registrar/tratamientoRe
 import { UsuarioRegistroComponent } from '../../pages/registrar/usuario-registro/usuario-registro.component';
 import { EmpleadoHistorialComponent } from '../../pages/historial/empleado-historial/empleado-historial.component';
 import { RegistrarProductoComponent } from '../../pages/registrar/registrar-producto/registrar-producto.component';
+import {DashboardComponent} from './../../pages/Inicio/dashboard.component'
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'registrar-paciente',     component: OperadoraComponent},
@@ -16,6 +17,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'registrar-tratamiento',   component: TratamientoRegistrarComponent},
     { path: 'registrar-usuario',   component: UsuarioRegistroComponent},
     { path: 'historial-empleado',   component: EmpleadoHistorialComponent},
-    { path: 'registrar-producto',   component: RegistrarProductoComponent}
+    { path: 'registrar-producto',   component: RegistrarProductoComponent},
+    { path: 'Inicio',               component: DashboardComponent}
 
 ];

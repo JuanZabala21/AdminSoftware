@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit{
         },
         options: {
           legend: {
-            display: false
+            display: true
           },
 
           tooltips: {
@@ -72,8 +72,8 @@ export class DashboardComponent implements OnInit{
                 //padding: 20
               },
               gridLines: {
-                drawBorder: false,
-                zeroLineColor: "#ccc",
+                drawBorder: true,
+                zeroLineColor: "black",
                 color: 'rgba(255,255,255,0.05)'
               }
 
@@ -82,10 +82,10 @@ export class DashboardComponent implements OnInit{
             xAxes: [{
               barPercentage: 1.6,
               gridLines: {
-                drawBorder: false,
+                drawBorder: true,
                 color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "transparent",
-                display: false,
+                zeroLineColor: "black",
+                display: true,
               },
               ticks: {
                 padding: 20,
@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit{
               '#ef8157'
             ],
             borderWidth: 0,
-            data: [342, 480, 530, 120]
+            data: [4, 8, 42, 120]
           }]
         },
 
@@ -138,11 +138,11 @@ export class DashboardComponent implements OnInit{
             yAxes: [{
 
               ticks: {
-                display: false
+                display: true
               },
               gridLines: {
-                drawBorder: false,
-                zeroLineColor: "transparent",
+                drawBorder: true,
+                zeroLineColor: "black",
                 color: 'rgba(255,255,255,0.05)'
               }
 
@@ -151,9 +151,9 @@ export class DashboardComponent implements OnInit{
             xAxes: [{
               barPercentage: 1.6,
               gridLines: {
-                drawBorder: false,
+                drawBorder: true,
                 color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "transparent"
+                zeroLineColor: "#000"
               },
               ticks: {
                 display: false,
