@@ -19,82 +19,82 @@ export class DashboardComponent implements OnInit{
     ngOnInit(){
       this.chartColor = "#FFFFFF";
 
-      this.canvas = document.getElementById("chartHours");
-      this.ctx = this.canvas.getContext("2d");
+      // this.canvas = document.getElementById("chartHours");
+      // this.ctx = this.canvas.getContext("2d");
 
-      this.chartHours = new Chart(this.ctx, {
-        type: 'line',
+      // this.chartHours = new Chart(this.ctx, {
+      //   type: 'line',
 
-        data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
-          datasets: [{
-              borderColor: "#6bd098",
-              backgroundColor: "#6bd098",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
-            },
-            {
-              borderColor: "#f17e5d",
-              backgroundColor: "#f17e5d",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
-            },
-            {
-              borderColor: "#fcc468",
-              backgroundColor: "#fcc468",
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              borderWidth: 3,
-              data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
-            }
-          ]
-        },
-        options: {
-          legend: {
-            display: true
-          },
+      //   data: {
+      //     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+      //     datasets: [{
+      //         borderColor: "#6bd098",
+      //         backgroundColor: "#6bd098",
+      //         pointRadius: 0,
+      //         pointHoverRadius: 0,
+      //         borderWidth: 3,
+      //         data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
+      //       },
+      //       {
+      //         borderColor: "#f17e5d",
+      //         backgroundColor: "#f17e5d",
+      //         pointRadius: 0,
+      //         pointHoverRadius: 0,
+      //         borderWidth: 3,
+      //         data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
+      //       },
+      //       {
+      //         borderColor: "#fcc468",
+      //         backgroundColor: "#fcc468",
+      //         pointRadius: 0,
+      //         pointHoverRadius: 0,
+      //         borderWidth: 3,
+      //         data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
+      //       }
+      //     ]
+      //   },
+      //   options: {
+      //     legend: {
+      //       display: true
+      //     },
 
-          tooltips: {
-            enabled: false
-          },
+      //     tooltips: {
+      //       enabled: false
+      //     },
 
-          scales: {
-            yAxes: [{
+      //     scales: {
+      //       yAxes: [{
 
-              ticks: {
-                fontColor: "#9f9f9f",
-                beginAtZero: false,
-                maxTicksLimit: 5,
-                //padding: 20
-              },
-              gridLines: {
-                drawBorder: true,
-                zeroLineColor: "black",
-                color: 'rgba(255,255,255,0.05)'
-              }
+      //         ticks: {
+      //           fontColor: "#9f9f9f",
+      //           beginAtZero: false,
+      //           maxTicksLimit: 5,
+      //           //padding: 20
+      //         },
+      //         gridLines: {
+      //           drawBorder: true,
+      //           zeroLineColor: "black",
+      //           color: 'rgba(255,255,255,0.05)'
+      //         }
 
-            }],
+      //       }],
 
-            xAxes: [{
-              barPercentage: 1.6,
-              gridLines: {
-                drawBorder: true,
-                color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "black",
-                display: true,
-              },
-              ticks: {
-                padding: 20,
-                fontColor: "#9f9f9f"
-              }
-            }]
-          },
-        }
-      });
+      //       xAxes: [{
+      //         barPercentage: 1.6,
+      //         gridLines: {
+      //           drawBorder: true,
+      //           color: 'rgba(255,255,255,0.1)',
+      //           zeroLineColor: "black",
+      //           display: true,
+      //         },
+      //         ticks: {
+      //           padding: 20,
+      //           fontColor: "#9f9f9f"
+      //         }
+      //       }]
+      //     },
+      //   }
+      // });
 
 
       this.canvas = document.getElementById("chartEmail");
@@ -141,8 +141,8 @@ export class DashboardComponent implements OnInit{
                 display: true
               },
               gridLines: {
-                drawBorder: true,
-                zeroLineColor: "black",
+                drawBorder: false,
+                zeroLineColor: "transparent",
                 color: 'rgba(255,255,255,0.05)'
               }
 
@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit{
               gridLines: {
                 drawBorder: true,
                 color: 'rgba(255,255,255,0.1)',
-                zeroLineColor: "#000"
+                zeroLineColor: "trasnparent"
               },
               ticks: {
                 display: false,
@@ -165,22 +165,22 @@ export class DashboardComponent implements OnInit{
 
       var speedCanvas = document.getElementById("speedChart");
 
-      var dataFirst = {
-        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
-        fill: false,
-        borderColor: '#fbc658',
-        backgroundColor: 'transparent',
-        pointBorderColor: '#fbc658',
-        pointRadius: 4,
-        pointHoverRadius: 4,
-        pointBorderWidth: 8,
-      };
+      // var dataFirst = {
+      //   data: [10, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 20],
+      //   fill: false,
+      //   borderColor: '#fbc658',
+      //   backgroundColor: 'transparent',
+      //   pointBorderColor: '#fbc658',
+      //   pointRadius: 4,
+      //   pointHoverRadius: 4,
+      //   pointBorderWidth: 8,
+      // };
 
       var dataSecond = {
         data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
         borderColor: '#51CACF',
-        backgroundColor: 'transparent',
+        backgroundColor: 'transpartent',
         pointBorderColor: '#51CACF',
         pointRadius: 4,
         pointHoverRadius: 4,
@@ -188,8 +188,8 @@ export class DashboardComponent implements OnInit{
       };
 
       var speedData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [dataFirst, dataSecond]
+        labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [ dataSecond]
       };
 
       var chartOptions = {
@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit{
 
       var lineChart = new Chart(speedCanvas, {
         type: 'line',
-        hover: false,
+        hover: true,
         data: speedData,
         options: chartOptions
       });

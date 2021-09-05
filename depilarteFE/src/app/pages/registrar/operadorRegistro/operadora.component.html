@@ -120,9 +120,9 @@
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <mat-label>Tipo de Tratamiento</mat-label>
+                <mat-label>Tipos del Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Tipo</mat-label>
+                  <mat-label>Tipos</mat-label>
                   <mat-select  formControlName="treatmentType">
                     <mat-option *ngFor="let tp of treatmentTypeList" [value]="tp.id_tipo">
                       {{tp.nombreTipo}}
