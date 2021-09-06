@@ -8,7 +8,7 @@
            <form [formGroup]="form">
 
              <div class="row">
-               <div class="col-md-4 pr-1">
+               <div class="col-md-6 pr-1">
                  <div class="form-group">
                    <mat-label>Nombre del Tratamiento</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
@@ -17,41 +17,26 @@
                    </mat-form-field>
                  </div>
                </div>
-               <div class="col-md-4 px-1">
+
+               <div class="col-md-6 pl-1">
                  <div class="form-group">
-                   <mat-label>Tipos del tratamiento</mat-label>
+                   <mat-label>Especialista Encargada</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                     <mat-label>Tipos</mat-label>
-                     <input formControlName="typeTreatment" matInput type="text">
+                     <mat-label>Especialista</mat-label>
+                     <mat-select formControlName="specialist" name="usuarioList">
+                       <mat-option *ngFor="let el of user" [value]="el.value">
+                         {{el.desc}}
+                       </mat-option>
+                     </mat-select>
                    </mat-form-field>
                  </div>
                </div>
-               <div class="col-md-4 pl-1">
-                 <div class="form-group">
-                   <mat-label>Zonas del tratamiento</mat-label>
-                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                     <mat-label>Zonas</mat-label>
-                     <input formControlName="zoneTreatment" matInput type="text">
-                   </mat-form-field>
-                 </div>
-               </div>
+
              </div>
 
              <div class="row">
+
                <div class="col-md-6 pr-1">
-                 <div class="form-group">
-                   <mat-label>Especialista Encargada</mat-label>
-                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                   <mat-label>Especialista</mat-label>
-                   <mat-select formControlName="specialist" name="usuarioList">
-                    <mat-option *ngFor="let el of user" [value]="el.value">
-                      {{el.desc}}
-                    </mat-option>
-                   </mat-select>
-                 </mat-form-field>
-               </div>
-               </div>
-               <div class="col-md-6 pl-1">
                  <div class="form-group">
                    <mat-label>Cantidad de sesiones</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
@@ -60,19 +45,7 @@
                    </mat-form-field>
                  </div>
                </div>
-             </div>
 
-             <div class="row">
-               <div class="col-md-6 pr-1">
-                 <div class="form-group">
-                   <mat-label>Precio del tratamiento</mat-label>
-                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                     <mat-label>precio</mat-label>
-                     <input formControlName="price" matInput type="number">
-                     <span matPrefix>$&nbsp;</span>
-                   </mat-form-field>
-                 </div>
-               </div>
                <div class="col-md-6 pl-1">
                  <div class="form-group">
                    <mat-label>Comisión de la Operadora</mat-label>
@@ -83,8 +56,34 @@
                    </mat-form-field>
                  </div>
                </div>
-           </div>
 
+             </div>
+
+             <div formArrayName="typeTreatment" formArrayName="price" *ngFor="let typePrice of typePrices.controls; let i = index" class="row">
+
+               <div [formGroupName]="i" class="col-md-6 pr-1">
+                 <div  class="form-group">
+                   <mat-label>Tipos del tratamiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>Tipos</mat-label>
+                     <input [attr.id]=" 'typeTreatment' + i" formControlName="typeTreatment" matInput type="text">
+                   </mat-form-field>
+                 </div>
+               </div>
+
+               <div [formGroupName]="i" class="col-md-6 pl-1">
+                 <div  class="form-group">
+                   <mat-label>Precio del tratamiento</mat-label>
+                   <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                     <mat-label>precio</mat-label>
+                     <input [attr.id]="'price' + i" formControlName="price" matInput type="number">
+                     <span matPrefix>$&nbsp;</span>
+                   </mat-form-field>
+                 </div>
+               </div>
+
+           </div>
+             
              <div class="row">
                <div class="col-md-12">
                  <div class="form-group">
@@ -99,10 +98,15 @@
 
              <div class="row">
                <div class="update ml-auto mr-auto">
+                 <button mat-raised-button  color="warn" type="submit" (click)="addTypePrice()">Añadir Tipo</button>
+               </div>
+               <div class="update ml-auto mr-auto">
+                 <button mat-raised-button  color="warn" type="submit" (click)="removeTypePice(i)">Remover Tipo</button>
+               </div>
+               <div class="update ml-auto mr-auto">
                  <button mat-raised-button  color="warn" type="submit" (click)="register()">Registrar</button>
                </div>
              </div>
-
            </form>
          </div>
        </div>

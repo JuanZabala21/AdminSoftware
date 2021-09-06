@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {AppModule} from '../../../app.module';
@@ -21,11 +21,12 @@ declare let alertify: any;
 export class TratamientoRegistrarComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
-
   user: usuarioList[] = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
     ];
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -36,11 +37,11 @@ export class TratamientoRegistrarComponent implements OnInit {
     this.form = fb.group({
       id: new FormControl(),
       treatmentName: new FormControl(),
-      typeTreatment: new FormControl(),
+      typeTreatment: this.fb.array([]),
       zoneTreatment: new FormControl(),
       specialist: new FormControl(),
       sessions: new FormControl(),
-      price: new FormControl(),
+      price: this.fb.array([]),
       comission: new FormControl(),
       description: new FormControl()
     });
@@ -65,12 +66,31 @@ export class TratamientoRegistrarComponent implements OnInit {
           this.form.reset();
        alertify.success('Registrado con exito');
        }
-      
+
       },
       console.log)
   }
   hasError(control: string, type: string){
     return this.form.controls[control].hasError(type)
   }
+
+  get typePrices() {
+    return this.form.get('typeTreatment') && this.form.get('price') as FormArray;
+  }
+
+  addTypePrice() {
+    const typePriceFormGroup = this.fb.group({
+      typeTreatment: '',
+      price: ''
+    });
+    this.typePrices.push(typePriceFormGroup);
+  }
+
+  removeTypePice(indice: number) {
+    this.typePrices.removeAt(indice);
+  }
+
+
+
 
 }
