@@ -15,12 +15,25 @@ declare let alertify: any;
 export class UsuarioRegistroComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
+  idPoint;
+  isLoading = false;
+  create = true;
+  edit = false;
   userList = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
   ];
   ngOnInit(): void {
+
+    this.route.queryParams.subscribe( params => {
+      const {id} = params;
+      this.idPoint = id;
+      if (this.idPoint) {
+        this.getDtaByUpdate(id);
+      }
+    });
   }
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -28,7 +41,7 @@ export class UsuarioRegistroComponent implements OnInit {
     private globalService: GlobalServices,
   ) {
     this.form = fb.group({
-      userRegister: new FormControl(),
+      id: new FormControl(),
       name: new FormControl(),
       lastName: new FormControl(),
       identification: new FormControl(),
@@ -37,8 +50,35 @@ export class UsuarioRegistroComponent implements OnInit {
       email: new FormControl(),
       birthday: new FormControl(),
       address: new FormControl(),
-      cargo: new FormControl()
+      charge: new FormControl()
       });
+}
+get f() {return this.form.controls; }
+getDtaByUpdate(id) {
+    this.isLoading = true;
+    const data = {
+      id
+    };
+    this.globalService.httpServicesResponse(data,
+      environment.Url + 'depilarte/getEmpleados').subscribe(
+        res => {
+          console.log(res);
+          this.setValues(res);
+          this.isLoading = false;
+          this.create = false;
+          this.edit = true;
+        },
+      e => {
+          console.log(e);
+          this.isLoading = false;
+      });
+}
+
+setValues(values) {
+    this.form.setValue(values);
+}
+if(data){
+  this.form.controls.charge.patchValue(data.charge);
 }
 
   register() {

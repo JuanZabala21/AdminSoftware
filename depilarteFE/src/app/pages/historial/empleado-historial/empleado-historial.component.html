@@ -68,58 +68,65 @@
 
             <ng-container  matColumnDef="dateA" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Fecha de atención </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.fechaAttemption}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.fechaAttemption}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="name" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nombre</th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="lastName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Apellido </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.lastName}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.lastName}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="identification">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cedula </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.identification}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.identification}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="age">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Edad </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.age}} </td>
+              <td mat-cell  style="width:5%;" *matCellDef="let row" class="mat-cell-id"> {{row.age}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="phone">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Teléfono </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.phone}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.phone}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="email">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Email </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.email}} </td>
+              <td mat-cell style="width:15%;" *matCellDef="let row" class="mat-cell-id"> {{row.email}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="birthday">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Fecha de nacimiento </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.birthday}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.birthday}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="address">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Dirección </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.address}} </td>
+              <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.address}} </td>
             </ng-container>
 
             <ng-container matColumnDef="cargo">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cargo </th>
-                <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.charge}} </td>
+                <td mat-cell  style="width:10%;" *matCellDef="let row" class="mat-cell-id"> {{row.charge}} </td>
             </ng-container>
 
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
-                <td mat-cell *matCellDef="let row" class="mat-cell-id">  </td>
+                <td mat-cell *matCellDef="let row">
+                <div fxFlex="row">
+                  <div fxLayout="column" mat-stroked-button class="pointer"
+                       (click)="goEdit(row.id);">
+                    <i style="font-size: 25px" class="nc-icon nc-tap-01" title="Editar"></i>
+                  </div>
+                </div>
+                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

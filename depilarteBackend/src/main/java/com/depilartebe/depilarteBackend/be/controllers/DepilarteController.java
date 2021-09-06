@@ -423,6 +423,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
     }
 
 
+
     @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SEARCH_PRODUCTS_DESCRIPTION)
     @ApiResponseObject
     @RequestMapping(method = RequestMethod.POST, value = SEARCH_PRODUCTS_URI)
@@ -459,5 +460,60 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         return mapResponse;
     }
 
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GET_EMPLEADOS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GET_EMPLEADOS_URI)
+    public Map<String, Object> getEmpleados(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long idEmpleado = (params.containsKey(ID_EMPLEADO) &&
+                        params.get(ID_EMPLEADO) != null &&
+                        !params.get(ID_EMPLEADO).toString().isEmpty())
+                        ? Long.valueOf(params.get(ID_EMPLEADO).toString()) : null;
+
+                mapResponse = depilarteServices.getEmpleados(idEmpleado);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GET_PRODUCTS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GET_PRODUCTS_URI)
+    public Map<String, Object> getProduct(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long idProduct = (params.containsKey(ID_EMPLEADO) &&
+                        params.get(ID_EMPLEADO) != null &&
+                        !params.get(ID_EMPLEADO).toString().isEmpty())
+                        ? Long.valueOf(params.get(ID_EMPLEADO).toString()) : null;
+
+                mapResponse = depilarteServices.getProduct(idProduct);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
 
 }

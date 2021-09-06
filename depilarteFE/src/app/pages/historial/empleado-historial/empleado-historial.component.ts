@@ -43,15 +43,18 @@ export class EmpleadoHistorialComponent implements OnInit {
     'actions'
   ];
 
-
   dataSource: MatTableDataSource<HistorialData>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private fb: FormBuilder,
+  ngOnInit(): void {
+  }
+
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-              private globalServices: GlobalServices) {
+    private globalServices: GlobalServices) {
       this.filters = fb.group({
         name: new FormControl(),
         lastName: new FormControl(),
@@ -67,10 +70,6 @@ export class EmpleadoHistorialComponent implements OnInit {
       });
 }
 
-  ngOnInit(): void {
-  }
-
-
   search() {
     const data = {
       ...this.filters.value
@@ -83,8 +82,13 @@ export class EmpleadoHistorialComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }
     )
-
-
   }
+
+
+  goEdit(id) {
+    this.router.navigate(['/registrar-usuario'],
+      { relativeTo: this.route,queryParams:{id}});
+}
+
 
 }
