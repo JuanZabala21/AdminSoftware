@@ -88,7 +88,7 @@ public interface DepilarteConstants {
     String EMPLEADO_EMAIL = "email";
     String EMPLEADO_BIRTHDAY = "birthday";
     String EMPLEADO_ADDRESS = "address";
-    String CARGO = "cargo";
+    String CARGO = "charge";
     String EMPLEADO_TELEFONO = "phone";
 
     String TREATMENT_ID = "id";

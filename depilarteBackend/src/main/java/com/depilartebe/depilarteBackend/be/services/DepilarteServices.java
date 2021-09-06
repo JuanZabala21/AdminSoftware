@@ -134,14 +134,14 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     ){
         Map<String, Object> mapResult = new HashMap<>();
+        Empleado empleado;
         try{
-            Empleado empleado = null;
             Date today = new Date();
 
             if(id == null){
                 empleado = new Empleado();
             }else{
-                registerRepository.findById(id);
+                empleado = empleadoRepository.findEmpleadosById(id);
             }
 
             /** Registrando **/
@@ -273,13 +273,14 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     ){
         Map<String, Object> mapResult = new HashMap<>();
+        Products products;
         try{
-            Products products = null;
+
 
             if(id == null){
                 products = new Products();
             }else{
-                productRepository.findById(id);
+               products = productRepository.findProductsById(id);
             }
 
             products.setNombre(product);

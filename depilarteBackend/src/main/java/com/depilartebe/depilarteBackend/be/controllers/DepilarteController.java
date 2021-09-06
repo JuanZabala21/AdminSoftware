@@ -150,10 +150,11 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         if (json != null && !json.isEmpty()) {
             try {
                 Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
-                Long id = (params.containsKey(EMPLEADO_ID) &&
+
+                Long id =  (params.containsKey(EMPLEADO_ID) &&
                         params.get(EMPLEADO_ID) != null &&
                         !params.get(EMPLEADO_ID).toString().isEmpty() )
-                        ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+                        ? Long.valueOf(params.get(EMPLEADO_ID).toString()) : null;
                 String empleadoName = (params.containsKey(EMPLEADO_NAME) && params.get(EMPLEADO_NAME) != null
                         && !params.get(EMPLEADO_NAME).toString().isEmpty()) ?
                         params.get(EMPLEADO_NAME).toString() : null;

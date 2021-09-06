@@ -14,6 +14,10 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
     @Query(nativeQuery = true, value = FIND_EMPLEADOS)
     List<Empleado> findEmpleados(@Param("charger") Long charger);
 
+    String FIND_EMPLEADOS_BY_ID = "SELECT * FROM `depilarte_usuarios` WHERE id_usuarios = :id";
+    @Query(nativeQuery = true, value = FIND_EMPLEADOS_BY_ID)
+    Empleado findEmpleadosById(@Param("id") Long id);
+
 
     String FIND_WORKERS = "SELECT * FROM `depilarte_usuarios` WHERE " +
             "(:name IS NULL OR Nombre LIKE %:name%) AND " +
