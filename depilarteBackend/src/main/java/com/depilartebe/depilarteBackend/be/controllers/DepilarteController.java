@@ -262,10 +262,10 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(PRODUCT_ID) != null &&
                         !params.get(PRODUCT_ID).toString().isEmpty())
                         ? Long.valueOf(params.get(PRODUCT_ID).toString()) : null;
-                Long treatment = (params.containsKey(PRODUCT_TREATMENT) &&
-                        params.get(PRODUCT_TREATMENT) != null &&
-                        !params.get(PRODUCT_TREATMENT).toString().isEmpty())
-                        ? Long.valueOf(params.get(PRODUCT_TREATMENT).toString()) : null;
+                String product = (params.containsKey(NAME_PRODUCT) &&
+                        params.get(NAME_PRODUCT) != null &&
+                        !params.get(NAME_PRODUCT).toString().isEmpty())
+                        ? params.get(NAME_PRODUCT).toString() : null;
                 String proveedor = (params.containsKey(PRODUCT_PROVIDER) && params.get(PRODUCT_PROVIDER) != null
                         && !params.get(PRODUCT_PROVIDER).toString().isEmpty()) ?
                         params.get(PRODUCT_PROVIDER).toString() : null;
@@ -283,7 +283,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         && !params.get(PRODUCT_DESCRIPCION).toString().isEmpty()) ?
                         params.get(PRODUCT_DESCRIPCION).toString() : null;
 
-                mapResponse = depilarteServices.registerProduct(id,treatment,proveedor,cantidad,precio,specialist,descripcion);
+                mapResponse = depilarteServices.registerProduct(id,product,proveedor,cantidad,precio,specialist,descripcion);
 
 
             } catch (Exception e) {

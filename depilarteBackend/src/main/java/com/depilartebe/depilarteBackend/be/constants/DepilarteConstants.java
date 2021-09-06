@@ -92,7 +92,7 @@ public interface DepilarteConstants {
     String TREATMENT_DESC = "description";
 
     String PRODUCT_ID = "id";
-    String PRODUCT_TREATMENT = "treatment";
+    String NAME_PRODUCT = "product";
     String PRODUCT_PROVIDER = "proveedor";
     String PRODUCT_COUNT = "cantidad";
     String PRODUCT_SPECIALIST = "specialist";

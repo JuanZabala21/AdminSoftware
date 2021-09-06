@@ -264,7 +264,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     public Map<String, Object> registerProduct(
           Long id,
-          Long treatment,
+          String product,
           String proveedor,
           String cantidad,
           String precio,
@@ -282,7 +282,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 productRepository.findById(id);
             }
 
-            products.setId_tratamientos(treatment);
+            products.setNombre(product);
             products.setProveedor(proveedor);
             products.setCantidad(cantidad);
             products.setPrecio(precio);
@@ -542,7 +542,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                    result.put("proveedor", products.getProveedor());
                    result.put("cantidad",products.getCantidad());
                    result.put("specialist", products.getSpecialist());
-                   result.put("treatment", products.getId_tratamientos());
                    result.put("price", products.getPrecio());
                    mapList.add(result);
                 }

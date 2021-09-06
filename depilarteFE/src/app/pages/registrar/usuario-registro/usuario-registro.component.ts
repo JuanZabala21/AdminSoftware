@@ -5,6 +5,8 @@ import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {AppModule} from '../../../app.module';
 
+
+declare let alertify: any;
 @Component({
   selector: 'app-usuario-registro',
   templateUrl: './usuario-registro.component.html',
@@ -46,17 +48,18 @@ export class UsuarioRegistroComponent implements OnInit {
       ...this.form.value
     };
     this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerEmpleado').subscribe(
-      res => {
-        console.log(this.form.value);
-        this.router.navigate(['../'], {relativeTo: this.route})
+      res => {  if(res.type==='error'){
+        alertify.error('Error al registrar');
+     }else{
+       console.log(this.form.value);
+        this.form.reset();
+     alertify.success('Registrado con exito');
+     }
+    
       },
       console.log)
   }
   hasError(control: string, type: string){
     return this.form.controls[control].hasError(type)
   }
-
-
-
-
 }

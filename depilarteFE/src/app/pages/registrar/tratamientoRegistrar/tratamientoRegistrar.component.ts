@@ -10,6 +10,8 @@ interface usuarioList {
   desc: string;
 }
 
+declare let alertify: any;
+
 @Component({
   selector: 'app-tratamientoRegistrar',
   templateUrl: './tratamientoRegistrar.component.html',
@@ -56,8 +58,14 @@ export class TratamientoRegistrarComponent implements OnInit {
     };
     this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerTreatment').subscribe(
       res => {
-        console.log(this.form.value);
-        this.router.navigate(['../'], {relativeTo: this.route})
+        if(res.type==='error'){
+          alertify.error('Error al registrar');
+       }else{
+         console.log(this.form.value);
+          this.form.reset();
+       alertify.success('Registrado con exito');
+       }
+      
       },
       console.log)
   }

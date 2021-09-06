@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
 
+declare let alertify: any;
+
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
@@ -92,8 +94,14 @@ export class OperadoraComponent implements OnInit {
       };
       this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerClient').subscribe(
         res => {
-          console.log(this.form.value);
-          this.router.navigate(['../'], {relativeTo: this.route})
+            if(res.type==='error'){
+          alertify.error('Error al registrar');
+       }else{
+         console.log(this.form.value);
+          this.form.reset();
+       alertify.success('Registrado con exito');
+       }
+      
         },
           console.log)
     }
@@ -175,6 +183,4 @@ export class OperadoraComponent implements OnInit {
       },
       console.error);
   }
-
-
 }

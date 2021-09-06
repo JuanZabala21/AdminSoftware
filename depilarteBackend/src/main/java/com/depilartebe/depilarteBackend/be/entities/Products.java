@@ -12,9 +12,6 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_productos;
 
-    @Column(name="id_tratamientos")
-    private Long id_tratamientos;
-
     @Column(name="Nombre")
     private String nombre;
 
@@ -40,9 +37,6 @@ public class Products {
     public String getNombre() {
         return nombre;
     }
-    public Long getId_tratamientos() {
-        return id_tratamientos;
-    }
 
     public String getProveedor() {
         return proveedor;
@@ -62,10 +56,6 @@ public class Products {
 
     public void setId_productos(Long id_productos) {
         this.id_productos = id_productos;
-    }
-
-    public void setId_tratamientos(Long id_tratamientos) {
-        this.id_tratamientos = id_tratamientos;
     }
 
     public void setNombre(String nombre) {
