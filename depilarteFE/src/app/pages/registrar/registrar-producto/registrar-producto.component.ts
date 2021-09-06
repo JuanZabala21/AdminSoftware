@@ -22,7 +22,10 @@ export class RegistrarProductoComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
   treatmentsList = [];
-
+  idPoint;
+  isLoading = false;
+  create = true;
+  edit = false;
 
   user: usuarioList[] = [
     {value: 1, desc: 'Doctora'},
@@ -49,7 +52,41 @@ export class RegistrarProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTreatments();
+
+    this.route.queryParams.subscribe( params => {
+      const {id} = params;
+      this.idPoint = id;
+      if (this.idPoint) {
+        this.getDtaByUpdate(id);
+      }
+    });
   }
+
+  get f() {return this.form.controls; }
+  getDtaByUpdate(id) {
+    this.isLoading = true;
+    const data = {
+      id
+    };
+    this.globalService.httpServicesResponse(data,
+      environment.Url + 'depilarte/getProducts').subscribe(
+      res => {
+        console.log(res);
+        this.setValues(res);
+        this.isLoading = false;
+        this.create = false;
+        this.edit = true;
+      },
+      e => {
+        console.log(e);
+        this.isLoading = false;
+      });
+  }
+
+  setValues(values) {
+    this.form.setValue(values);
+  }
+
 
   register() {
     if(this.form.invalid) return;

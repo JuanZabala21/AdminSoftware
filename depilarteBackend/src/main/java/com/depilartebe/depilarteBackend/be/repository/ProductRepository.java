@@ -22,5 +22,8 @@ public interface ProductRepository extends JpaRepository<Products,Long> {
                                   @Param("initialDate")String initialDate,
                                   @Param("finalDate") String finalDate);
 
+    String FIND_PRODUCTS_BY_ID = "SELECT * FROM `depilarte_productos` WHERE id_productos = :product";
+    @Query(nativeQuery = true, value = FIND_PRODUCTS_BY_ID)
+    Products findProductsById (@Param("product") Long product);
 
 }

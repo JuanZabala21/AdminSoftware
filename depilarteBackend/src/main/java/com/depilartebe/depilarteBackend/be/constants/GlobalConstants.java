@@ -3,7 +3,7 @@ package com.depilartebe.depilarteBackend.be.constants;
 public interface GlobalConstants {
 
     String RESULT_LIST_MAP  = "resultList";
-
+    String DATA = "data";
     String CONTENT_TYPE = "application/json";
     String APPLICATION_JSON 		= "application/json";
     String ACCEPT = "application/json";

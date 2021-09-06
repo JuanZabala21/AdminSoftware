@@ -343,6 +343,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 if(registerList != null){
                     for(Register register : registerList){
                         Map<String, Object> result = new HashMap<>();
+                        result.put("id", register.getId());
                         result.put("fechaAttemption", dt.format(register.getFechaAtendido()));
                         result.put("name", register.getNombre());
                         result.put("lastName", register.getApellido());
@@ -419,6 +420,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             if(empleadoList != null){
                 for(Empleado empleado : empleadoList){
                     Map<String, Object> result = new HashMap<>();
+                    result.put("id", empleado.getId());
                     result.put("fechaAttemption", dt.format(empleado.getFechaIngresoo()));
                     result.put("name", empleado.getNombre());
                     result.put("lastName", empleado.getApellido());
@@ -481,6 +483,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     Map<String, Object> result = new HashMap<>();
                     List<String> treatmentTypeList = treatmentTypeRepository.findTreatmentTypeNames(treatment.getId_tratamientos());
                     List<String> treatmentZonesList = treatmentZoneRepository.findTreatmentZoneNames(treatment.getId_tratamientos());
+                    result.put("id", treatment.getId_tratamientos());
                     result.put("name",treatment.getNameTreatment());
                     result.put("treatmentType", treatmentTypeList);
                     result.put("treatmentZone", treatmentZonesList);
@@ -538,6 +541,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             if(productsList != null){
                 for(Products products : productsList){
                    Map<String, Object> result = new HashMap<>();
+                   result.put("id", products.getId_productos());
                    result.put("nameProduct", products.getNombre());
                    result.put("proveedor", products.getProveedor());
                    result.put("cantidad",products.getCantidad());
@@ -556,6 +560,67 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             return mapResult;
 
         }
+
+        public Map<String, Object> getEmpleados(
+            Long id
+        ){
+            Map<String, Object> mapResult = new HashMap<>();
+            Map<String, Object> result = new HashMap<>();
+        try{
+            Empleado empleado = new Empleado();
+            empleado = empleadoRepository.findWorkersById(id);
+
+            result.put("id", empleado.getId());
+            result.put("name", empleado.getNombre());
+            result.put("lastName", empleado.getApellido());
+            result.put("identification", empleado.getCedula());
+            result.put("age", empleado.getEdad());
+            result.put("email", empleado.getCorreo());
+            result.put("phone",empleado.getNacimiento());
+            result.put("birthday", empleado.getNacimiento());
+            result.put("charge", Integer.valueOf(empleado.getCargo()));
+            result.put("address", empleado.getDireccion());
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+            mapResult.put(DATA, result);
+            return result;
+
+        }
+
+        public Map<String, Object> getProduct(
+                Long id
+        ){
+            Map<String, Object> mapResult = new HashMap<>();
+            Map<String, Object> result = new HashMap<>();
+
+            try{
+                Products products = new Products();
+                products = productRepository.findProductsById(id);
+
+                result.put("id", products.getId_productos());
+                result.put("product", products.getNombre());
+                result.put("proveedor", products.getProveedor());
+                result.put("cantidad", products.getCantidad());
+                result.put("specialist", products.getSpecialist());
+                result.put("price", products.getPrecio());
+                result.put("description", products.getDescripcion());
+
+            }catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResult.put(MESSAGE, MESSAGE_ERROR);
+            }
+            mapResult.put(DATA, result);
+            return result;
+
+        }
+
 
 
     }

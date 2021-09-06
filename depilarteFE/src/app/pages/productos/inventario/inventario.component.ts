@@ -74,4 +74,11 @@ export class InventarioComponent implements OnInit {
       }
     )
   }
+
+  goEdit(id) {
+    this.router.navigate(['/registrar-producto'],
+      { relativeTo: this.route,queryParams:{id}});
+  }
+
+
 }

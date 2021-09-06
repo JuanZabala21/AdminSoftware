@@ -28,6 +28,10 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
                                 @Param("initialDate")String initialDate,
                                 @Param("finalDate") String finalDate);
 
+    String FIND_WORKERS_BY_ID = "SELECT * FROM  `depilarte_usuarios` WHERE id_usuarios = :idWorker";
+    @Query(nativeQuery = true, value = FIND_WORKERS_BY_ID)
+    Empleado findWorkersById(@Param("idWorker") Long worker);
+
 
 
 }
