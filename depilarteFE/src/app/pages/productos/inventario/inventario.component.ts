@@ -35,7 +35,6 @@ export class InventarioComponent implements OnInit {
       'prov',
       'quantity',
       'user',
-      'treatment',
       'price',
       'actions'
     ];
