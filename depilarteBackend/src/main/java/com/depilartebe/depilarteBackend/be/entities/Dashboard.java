@@ -8,6 +8,8 @@ public class Dashboard {
     
     private  Integer  tratamientosCount;
 
+    private Integer productosCount;
+
     public Integer getRegisterCount() {
         return registerCount;
     }
@@ -16,7 +18,7 @@ public class Dashboard {
         this.registerCount = registerCount;
     }
     
-    public Integer getEmpleadoCount() {
+    public Integer getEmpleadosCount() {
         return empleadosCount;
     }
 
@@ -24,12 +26,20 @@ public class Dashboard {
         this.empleadosCount = empleadosCount;
     }
     
-    public Integer getTratamientorCount() {
+    public Integer getTratamientosCount() {
         return tratamientosCount;
     }
 
     public void setTratamientosCount(Integer tratamientosCount) {
         this.tratamientosCount = tratamientosCount;
+    }
+
+    public Integer getProductosCount() {
+        return productosCount;
+    }
+
+    public void setProductosCount(Integer productosCount) {
+        this.productosCount = productosCount;
     }
     
 }

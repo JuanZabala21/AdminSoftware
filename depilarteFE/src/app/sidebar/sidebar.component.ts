@@ -13,7 +13,7 @@ export const REGISTER: RouteInfo[] = [
     { path: '/registrar-usuario',         title: 'Empleados',                    icon:'nc-badge',  class: '' },
     { path: '/registrar-tratamiento',     title: 'Tratamiento',              icon:'nc-ambulance',  class: '' },
     { path: '/registrar-producto',        title: 'Productos',                   icon:'nc-single-copy-04',  class: '' },
-    // { path: '/icons',        title: 'Iconos',                   icon:'nc-single-copy-04',  class: '' }
+   // { path: '/icons',        title: 'Iconos',                   icon:'nc-single-copy-04',  class: '' }
 
 ];
 

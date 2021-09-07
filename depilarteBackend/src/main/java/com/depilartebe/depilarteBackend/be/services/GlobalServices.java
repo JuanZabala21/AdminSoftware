@@ -40,8 +40,6 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
     @Autowired
     RegisterRepository registerRepository;
 
-    @Autowired
-
    public Map<String, Object> getPayMethods() {
        Map<String , Object> mapResult = new HashMap<>();
 
@@ -148,19 +146,25 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
     public Map<String, Object> getDashboard() {
         Map<String , Object> mapResult = new HashMap<>();
- 
+
         try{
+            Dashboard dashboard= new Dashboard();
+
             Integer registerCount = registerRepository.findRegisterCount();
             Integer empleadosCount = empleadoRepository.findEmpleadosCount();
             Integer tratamientosCount = treatmentRepository.findTratamientosCount();
-            Dashboard dashboard= new Dashboard();
+            Integer productosCount = productRepository.findProductosCount();
+           
+            
 
             dashboard.setRegisterCount(registerCount);
             dashboard.setEmpleadosCount(empleadosCount);
             dashboard.setTratamientosCount(tratamientosCount);
-            
+            dashboard.setProductosCount(productosCount);
+
             mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
             mapResult.put(DASHBOARD, dashboard);
+            
  
         }catch (Exception e) {
             e.printStackTrace();

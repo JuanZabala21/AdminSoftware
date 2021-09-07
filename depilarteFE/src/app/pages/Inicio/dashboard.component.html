@@ -11,8 +11,8 @@
           <div class="col-9 col-md-10">
             <div class="numbers">
               <p class="card-category">Pacientes Registrados</p><br>
-              <p class="card-title">5
-                <p>
+              <p class="card-title">  {{registerCount}}  </p>
+                
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
           <div class="col-9 col-md-10">
             <div class="numbers">
               <p class="card-category">Tratamientos Registrados</p><br>
-              <p class="card-title">8</p>
+              <p class="card-title">{{tratamientosCount}}</p>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
           <div class="col-9 col-md-10">
             <div class="numbers">
               <p class="card-category" style="width: 100%;">Empleados Registrados</p><br>
-              <p class="card-title">3
+              <p class="card-title">{{empleadosCount}}
                 <p>
             </div>
           </div>
@@ -82,13 +82,13 @@
         <div class="row">
           <div class="col-2 col-md-2">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-globe text-primary"></i>
+              <i class="nc-icon nc-bag-16 text-primary"></i>
             </div>
           </div>
           <div class="col-9 col-md-10">
             <div class="numbers">
-              <p class="card-category">Sesiones en un mes</p><br>
-              <p class="card-title">45
+              <p class="card-category">Productos Registrados</p><br>
+              <p class="card-title">{{productosCount}}
                 <p>
             </div>
           </div>
@@ -128,17 +128,17 @@
     <div class="card ">
       <div class="card-header ">
         <h5 class="card-title">Estadisticas de Registros</h5>
-        <p class="card-category">Mes actual</p>
+        
       </div>
       <div class="card-body ">
         <canvas id="chartEmail"></canvas>
       </div>
       <div class="card-footer ">
         <div class="legend">
-          <i class="fa fa-circle text-primary"></i> Pacientes
-          <i class="fa fa-circle text-warning"></i> Empleados
-          <i class="fa fa-circle text-danger"></i> Tratamientos
-          <i class="fa fa-circle text-gray"></i> Productos
+          <i class="fa fa-circle text-danger"></i> Empleados <br>
+          <i class="fa fa-circle text-warning"></i> Tratamientos <br>
+          <i class="fa fa-circle text-primary"></i> Productos <br>
+          <i class="fa fa-circle text-success"></i> Pacientes <br>
         </div>
         <hr>
         <div class="stats">
@@ -158,7 +158,7 @@
       </div>
       <div class="card-footer">
         <div class="chart-legend">
-          <i class="fa fa-circle text-info"></i> Pacientes Registrados
+          <i class="fa fa-circle text-success"></i> Pacientes Registrados
           <!-- <i class="fa fa-circle text-warning"></i> BMW 5 Series -->
         </div>
         <hr/>

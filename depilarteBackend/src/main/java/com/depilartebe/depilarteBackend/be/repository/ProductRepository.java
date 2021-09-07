@@ -26,5 +26,9 @@ public interface ProductRepository extends JpaRepository<Products,Long> {
     @Query(nativeQuery = true, value = FIND_PRODUCTS_BY_ID)
     Products findProductsById (@Param("product") Long product);
 
+    String FIND_PRODUCTOS_COUNT = "SELECT count(*) FROM `depilarte_productos`";
+    @Query(nativeQuery = true, value = FIND_PRODUCTOS_COUNT)
+    Integer findProductosCount();
+
 
 }
