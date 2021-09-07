@@ -31,5 +31,8 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
                                 @Param("initialDate")String initialDate,
                                 @Param("finalDate") String finalDate);
 
+String FIND_REGISTER_COUNT = "SELECT count(*) FROM `depilarte_registros`";
+@Query(nativeQuery = true, value = FIND_REGISTER_COUNT)
+Integer findRegisterCount();
 
 }

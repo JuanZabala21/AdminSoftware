@@ -177,7 +177,7 @@ export class DashboardComponent implements OnInit{
       // };
 
       var dataSecond = {
-        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+        data: [100, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
         fill: false,
         borderColor: '#51CACF',
         backgroundColor: 'transpartent',

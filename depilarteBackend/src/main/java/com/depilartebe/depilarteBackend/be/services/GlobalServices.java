@@ -37,6 +37,10 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    RegisterRepository registerRepository;
+
+    @Autowired
 
    public Map<String, Object> getPayMethods() {
        Map<String , Object> mapResult = new HashMap<>();
@@ -131,6 +135,32 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
             List<Products> products = productRepository.findAll();
             mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
             mapResult.put(PRODUCT, products);
+ 
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+ 
+    }
+
+    public Map<String, Object> getDashboard() {
+        Map<String , Object> mapResult = new HashMap<>();
+ 
+        try{
+            Integer registerCount = registerRepository.findRegisterCount();
+            Integer empleadosCount = empleadoRepository.findEmpleadosCount();
+            Integer tratamientosCount = treatmentRepository.findTratamientosCount();
+            Dashboard dashboard= new Dashboard();
+
+            dashboard.setRegisterCount(registerCount);
+            dashboard.setEmpleadosCount(empleadosCount);
+            dashboard.setTratamientosCount(tratamientosCount);
+            
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+            mapResult.put(DASHBOARD, dashboard);
  
         }catch (Exception e) {
             e.printStackTrace();

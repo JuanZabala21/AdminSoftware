@@ -26,5 +26,9 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Long> {
                                 @Param("initialDate")String initialDate,
                                 @Param("finalDate") String finalDate);
 
+    String FIND_TRATAMIENTOS_COUNT = "SELECT count(*) FROM `depilarte_tratamientos`";
+    @Query(nativeQuery = true, value = FIND_TRATAMIENTOS_COUNT)
+    Integer findTratamientosCount();
+
 
 }

@@ -51,4 +51,8 @@ public interface GlobalConstants {
     String PRODUCT = "products";
     String PRODUCT_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Productos </span></u></h3>"
     + "Método que retorna los productors. </div>";
+
+    String DASHBOARD = "dashboard";
+    String DASHBOARD_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Datos del Inicio </span></u></h3>"
+    + "Método que retorna los datos del inicio. </div>";
 }

@@ -164,4 +164,21 @@ public class GlobalController implements GlobalConstants {
     }
 
 
+    @ApiMethod(consumes = TEXT_JSON, produces = ACCEPT, description = DASHBOARD_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = DASHBOARD, produces = ACCEPT)
+    public Map<String, Object> getDashboard(){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            mapResponse = globalServices.getDashboard();
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
 }

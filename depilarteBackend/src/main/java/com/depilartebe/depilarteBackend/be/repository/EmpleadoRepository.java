@@ -36,6 +36,9 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
     @Query(nativeQuery = true, value = FIND_WORKERS_BY_ID)
     Empleado findWorkersById(@Param("idWorker") Long worker);
 
-
+    String FIND_EMPLEADOS_COUNT = "SELECT count(*) FROM `depilarte_usuarios`";
+    @Query(nativeQuery = true, value = FIND_EMPLEADOS_COUNT)
+    Integer findEmpleadosCount();
+    
 
 }
