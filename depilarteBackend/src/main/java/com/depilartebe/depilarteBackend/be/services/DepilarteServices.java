@@ -90,7 +90,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             if (id == null) {
                 register = new Register();
             } else {
-                registerRepository.findById(id);
+                register = registerRepository.findRegisterById(id);
             }
 
             /** Registrando **/
