@@ -16,7 +16,7 @@ public class Treatment {
     private String nameTreatment;
 
     @Column(name="Especialista")
-    private Long especialista;
+    private String especialista;
 
     @Column(name="CantidadSesiones")
     private String cantidadSesiones;
@@ -35,7 +35,7 @@ public class Treatment {
         return nameTreatment;
     }
 
-    public Long getEspecialista() {
+    public String getEspecialista() {
         return especialista;
     }
 
@@ -59,7 +59,7 @@ public class Treatment {
         this.nameTreatment = nameTreatment;
     }
 
-    public void setEspecialista(Long especialista) {
+    public void setEspecialista(String especialista) {
         this.especialista = especialista;
     }
 

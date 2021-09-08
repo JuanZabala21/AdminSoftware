@@ -13,7 +13,7 @@ public class Empleado {
         private Long id;
 
         @Column(name="FechaIngreso")
-        private Date fechaIngreso;
+        private String fechaIngreso;
 
         @Column(name="Nombre")
         private String Nombre;
@@ -50,11 +50,11 @@ public class Empleado {
         this.id = id;
     }
 
-    public Date getFechaIngresoo() {
+    public String getFechaIngresoo() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaAtendido) {
+    public void setFechaIngreso(String fechaAtendido) {
         this.fechaIngreso = fechaAtendido;
     }
 

@@ -39,5 +39,10 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
         @Query(nativeQuery = true, value= FIND_REGISTROS_POR_MES)
         List<List<Integer>> findRegisterByMonth();
 
+        String FIND_REGISTER_FOR_ID = "SELECT * FROM `depilarte_registros` WHERE id = :id";
+         @Query(nativeQuery = true, value= FIND_REGISTER_FOR_ID)
+         Register findRegisterById(@Param("id") Long id);
+
+
 
 }

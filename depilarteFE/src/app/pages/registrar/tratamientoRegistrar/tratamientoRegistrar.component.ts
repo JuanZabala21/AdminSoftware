@@ -22,6 +22,8 @@ export class TratamientoRegistrarComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
   idPoint;
+  typeTreatment;
+  priceTreatment;
   isLoading = false;
   create = true;
   edit = false;
@@ -48,7 +50,6 @@ export class TratamientoRegistrarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe( params => {
       const {id} = params;
       this.idPoint = id;
@@ -80,7 +81,6 @@ export class TratamientoRegistrarComponent implements OnInit {
   }
 
   setValues(values) {
-    console.log(values)
     this.form.setValue(values);
   }
 

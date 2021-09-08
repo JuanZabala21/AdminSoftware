@@ -6,13 +6,16 @@ import com.depilartebe.depilarteBackend.be.entities.*;
 import com.depilartebe.depilarteBackend.be.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.*;
 
 
 @Service
@@ -167,11 +170,7 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
                     }
                 }
             }
-
-            System.out.println(resultados);
             dashboard.setRegisterPerMonth(resultados);
-            
-
             dashboard.setRegisterCount(registerCount);
             dashboard.setEmpleadosCount(empleadosCount);
             dashboard.setTratamientosCount(tratamientosCount);
@@ -179,8 +178,7 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
             mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
             mapResult.put(DASHBOARD, dashboard);
-            
- 
+
         }catch (Exception e) {
             e.printStackTrace();
             log.error("Se produjo un error: " + e.getMessage());
@@ -191,6 +189,57 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
  
     }
 
+    public String generateExcel (String[] header,
+                                      List<String[]> values,
+                                      String outputPath,
+                                      String filename) {
+        try{
+            int cont = ONE;
+            Workbook workbook = new XSSFWorkbook();
+            Sheet page = workbook.createSheet(TITLE_REPORT_DEPILARTE);
+            CellStyle cellStyleHeader = workbook.createCellStyle();
+            cellStyleHeader.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+            cellStyleHeader.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+            cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
+            Font font = workbook.createFont();
+            font.setColor(IndexedColors.WHITE.getIndex());
+            font.setBold(true);
+            cellStyleHeader.setFont(font);
+            Row headerRow = page.createRow(ZERO);
+            for (int i = ZERO; i < header.length; i++) {
+                Cell headerCell = headerRow.createCell(i);
+                headerCell.setCellValue(header[i]);
+                headerCell.setCellStyle(cellStyleHeader);
+                page.autoSizeColumn(i);
+            }
+            CellStyle cellStyleRow = workbook.createCellStyle();
+            cellStyleRow.setAlignment(CellStyle.ALIGN_CENTER);
+            for (String[] value : values) {
+                Row valuesRow = page.createRow(cont);
+                for (int j = ZERO; j < value.length; j++) {
+                    Cell valuesCell = valuesRow.createCell(j);
+                    valuesCell.setCellValue(value[j]);
+                    valuesCell.setCellStyle(cellStyleRow);
+                    page.autoSizeColumn(j);
+                }
+                cont++;
+            }
 
+            File file = new File(outputPath);
+            FileOutputStream output = new FileOutputStream(file);
+            workbook.write(output);
+            File createdFile = new File(outputPath);
+            byte[] fileContent = FileUtils.readFileToByteArray(createdFile);
+            String encodedString = Base64.getEncoder().encodeToString(fileContent);
+            createdFile.delete();
+
+            return encodedString;
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("Se produjo un error generateExcel. (" + e.getMessage() + ")");
+            return EMPTY_STRING;
+        }
+
+    }
 
 }

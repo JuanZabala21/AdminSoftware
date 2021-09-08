@@ -57,6 +57,92 @@ public interface DepilarteConstants {
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
                     + "Método que genera Tratamientos. </div>";
 
+    String GENERATE_PRODUCTS = "generateProducts";
+    String GENERATE_PRODUCTS_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+    String GENERATE_EMPLEADOS = "generateEmpleados";
+    String GENERATE_EMPLEADOS_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+    String GENERATE_TREATMENTS = "generateTreatments";
+    String GENERATE_TREATMENTS_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+    String GET_PACIENTES_URI = "getPacientes";
+    String GENERATE_PACIENTES_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+    String GENERATE_REGISTER_EXCEL = "generateRegister";
+    String GENERATE_REGISTER_EXCEL_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+
+    //Excel
+    static final String DATE_FORMAT_EXCEL                           = "dd/MM/yyyy HH:mm:ss";
+    static final String EXCEL_EXTENSION                             = ".xlsx";
+    static final String EMPTY		 			    	        	= "";
+    static final String SPACE                                       = " ";
+    static final String SLASH		 			    		        = "/";
+    static final String TWO_POINTS                                  = ":";
+    static final String PATH_EXCEL = "/Users/Juan Pablo Zabala/AdminSoftware/Excel/";
+    String RESULT_ENCODED_STRING                                    = "resultEncodedString";
+
+    //Products
+    String PRODUCT_EXCEL_NAME = "Nombre del producto";
+    String PRODUCT_EXCEL_PROOVIDER = "Proveedor";
+    String PRODUCT_EXCEL_COUNT = "Cantidad Comprada";
+    String PRODUCT_EXCEL_ESPECIALISTA = "Especialista encargada";
+    String PRODUCT_EXCEL_PRECIO = "Precio unitario";
+
+    //Empleados
+    String WORKER_EXCEL_DATE = "Fecha de Ingreso";
+    String WORKER_EXCEL_NAME = "Nombre";
+    String WORKER_EXCEL_LASTNAME = "Apellido";
+    String WORKER_EXCEL_AGE = "Edad";
+    String WORKER_EXCEL_IDENTIFICATION = "Cedula de identidad";
+    String WORKER_EXCEL_EMAIL = "Correo electronico";
+    String WORKER_EXCEL_PHONE = "Telefono";
+    String WORKER_EXCEL_BIRTHDAY = "Fecha de Nacimiento";
+    String WORKER_EXCEL_ADDRESS = "Dirección";
+    String WORKER_EXCEL_CHARGE = "Cargo";
+
+    //Tratamientos
+    String TREATMENT_EXCEL_NAME = "Nombre del Tratamiento";
+    String TREATMENT_EXCEL_TYPE = "Tipo de Tratamiento";
+    String TREATMENT_EXCEL_SPECIALIST = "Especialista encargada";
+    String TREATMENT_EXCEL_CANTIDAD = "Cantidad de Sesiones";
+    String TREATMENT_EXCEL_PRICE = "Precio del Tratamiento";
+    String TREATMENT_EXCEL_COMISSION = "Comisión para la Operadora";
+
+    //Pacientes Registrados
+    String REGISTER_EXCEL_DATE_ATT = "Fecha de Atención";
+    String REGISTER_EXCEL_NAME = "Nombre";
+    String REGISTER_EXCEL_LASTNAME = "Apellido";
+    String REGISTER_EXCEL_CEDULA = "Cedula de Identidad";
+    String REGISTER_EXCEL_BIRTHDAY = "Fecha de Cumpleaños";
+    String REGISTER_EXCEL_EDAD = "Edad";
+    String REGISTER_EXCEL_PHONE = "Telefono";
+    String REGISTER_EXCEL_TREATMENT = "Tratamiento realizado";
+    String REGISTER_EXCEL_TYPE_TREATMENT = "Tipo de Tratamiento";
+    String REGISTER_EXCEL_DISPAROS_BEFORE = "Disparos Iniciales";
+    String REGISTER_EXCEL_DISPAROS_AFTER = "Disparos Despues";
+    String REGISTER_EXCEL_DISPAROS_DIFFERENTIAL = "Disparos restantes";
+    String REGISTER_EXCEL_PERSONAL = "Personal de Atención";
+    String REGISTER_EXCEL_PRODUCT = "Producto Utilizado";
+    String REGISTER_EXCEL_FORMPAY = "Forma de Pago";
+    String REGISTER_EXCEL_ABONADO = "Pago Abonado";
+    String REGISTER_EXCEL_COMISSION = "Comisión de Personal";
+    String REGISTER_EXCEL_PRICETOTAL = "Precio Total";
+
+
+
+
     //Constantes de Variables
     String CLIENT_ID = "id";
     String CLIENT_NAME = "name";
@@ -76,8 +162,8 @@ public interface DepilarteConstants {
     String CLIENT_SHOTBEFORE = "shotBefore";
     String CLIENT_SHOTAFTER = "shotAfter";
     String CLIENT_SHOTDIFERENTIAL = "shotDiferential";
-    String CLIENT_OPERATOR = "operator";
-    String CLIENT_DOCTOR = "doctor";
+    String CLIENT_OPERATOR = "userOp";
+    String CLIENT_DOCTOR = "userDoc";
     String CLIENT_FORMPAY = "formPay";
     String CLIENT_SUBSCRIBER = "bono";
     String CLIENT_PRICETOTAL = "totalPrice";
@@ -136,6 +222,8 @@ public interface DepilarteConstants {
     String ID_EMPLEADO = "id";
 
     String ID_TREATMENTS = "id";
+
+    String ID_PACIENTES = "id";
 
 
 

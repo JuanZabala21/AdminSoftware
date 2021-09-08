@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {environment} from '../../../../environments/environment';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
+import { saveAs } from 'file-saver';
 
  interface HistorialData {
    dateA: String;
@@ -39,6 +40,8 @@ import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll
 
 export class HistorialDocComponent implements OnInit {
   filters: FormGroup;
+  fileName : string = '';
+  chargerList = [];
   usuarioList = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
@@ -104,8 +107,56 @@ export class HistorialDocComponent implements OnInit {
     )
   }
 
-  goEdit(){
+  goEdit(id) {
+    this.router.navigate(['/registrar-paciente'],
+      { relativeTo: this.route,queryParams:{id}});
+  }
 
+  changeCharger() {
+    if(this.filters.get('user').value != null){
+      this.globalServices.httpServicesResponse({ charger : this.filters.get('user').value},
+        environment.Url + '/global/chargers').subscribe(response => {
+          this.chargerList = response.chargers.filter(ch => ch.id !== -1);
+        },
+        console.log)
+    } else {
+      return false;
+    }
+  }
+
+  download() {
+    const data = {
+      ...this.filters.value
+    };
+    this.globalServices.httpServicesResponse(data,
+      environment.Url + 'depilarte/generateRegister').subscribe(
+      data => {
+
+        const result: any = data;
+        if (result.type == 'error') {
+          console.log('error')
+        } else {
+          var file = result.resultEncodedString;
+          let sliceSize = 512;
+          let byteCharacters = atob(file);
+          let byteArrays = [];
+          for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            let slice = byteCharacters.slice(offset, offset + sliceSize);
+            let byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+              byteNumbers[i] = slice.charCodeAt(i);
+            }
+            let byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+          }
+          const blob = new Blob(byteArrays, {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          saveAs(blob, this.fileName);
+        }
+      },
+      error => {
+        //error
+      }
+    );
   }
 
 }

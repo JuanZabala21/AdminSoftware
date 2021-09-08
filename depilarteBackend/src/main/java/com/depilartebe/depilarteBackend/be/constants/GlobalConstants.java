@@ -55,4 +55,13 @@ public interface GlobalConstants {
     String DASHBOARD = "dashboard";
     String DASHBOARD_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Datos del Inicio </span></u></h3>"
     + "Método que retorna los datos del inicio. </div>";
+
+    int ZERO = 0;
+    int ONE = 1;
+    String EMPTY_STRING = "";
+    String TITLE_REPORT_DEPILARTE = "Reporte Depilarte";
+    String PERCENTAGE = "%";
+    String DOLLAR = "$";
+
+
 }

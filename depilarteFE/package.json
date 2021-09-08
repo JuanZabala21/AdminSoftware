@@ -34,6 +34,8 @@
     "chart.js": "2.9.3",
     "chartist": "0.11.4",
     "core-js": "3.6.5",
+    "exceljs": "^1.12.1",
+    "file-saver": "^2.0.1",
     "express": "4.17.1",
     "jquery": "3.5.1",
     "moment": "2.29.1",

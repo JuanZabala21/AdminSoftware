@@ -17,6 +17,10 @@ declare let alertify: any;
 export class OperadoraComponent implements OnInit {
     private appModule: AppModule;
     form: FormGroup;
+  idPoint;
+  isLoading = false;
+  create = true;
+  edit = false;
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
@@ -24,7 +28,9 @@ export class OperadoraComponent implements OnInit {
    chargerList = [];
    methodsList = [];
    treatmentTypeList = [];
-   treatmentZoneList = [];
+   treatmentType;
+   treatment;
+   userAtt;
    treatmentsList = [];
    productList = [];
    disabled = true;
@@ -37,6 +43,17 @@ export class OperadoraComponent implements OnInit {
       this.getMethodsPay();
       this.getTreatments();
       this.getProduct();
+      this.changeTypeTreament();
+      this.changeCharger();
+
+      this.route.queryParams.subscribe( params => {
+        const {id} = params;
+        this.idPoint = id;
+        if (this.idPoint) {
+          this.getDtaByUpdate(id);
+        }
+      });
+
     }
 
     constructor(
@@ -57,7 +74,6 @@ export class OperadoraComponent implements OnInit {
         address: new FormControl(),
         treatment: new FormControl(),
         treatmentType: new FormControl(),
-        treatmentZone: new FormControl(),
         sessions: new FormControl(),
         assistent: new FormControl(),
         product: new FormControl(),
@@ -86,6 +102,31 @@ export class OperadoraComponent implements OnInit {
           }
         });
     }
+
+  get f() {return this.form.controls; }
+  getDtaByUpdate(id) {
+    this.isLoading = true;
+    const data = {
+      id
+    };
+    this.globalService.httpServicesResponse(data,
+      environment.Url + 'depilarte/getPacientes').subscribe(
+      res => {
+        this.setValues(res);
+        this.isLoading = false;
+        this.create = false;
+        this.edit = true;
+      },
+      e => {
+        console.log(e);
+        this.isLoading = false;
+      });
+  }
+
+  setValues(values) {
+    this.form.setValue(values);
+  }
+
     register() {
       if(this.form.invalid) return;
       console.log(this.form.value);
@@ -101,7 +142,7 @@ export class OperadoraComponent implements OnInit {
           this.form.reset();
        alertify.success('Registrado con exito');
        }
-      
+
         },
           console.log)
     }
@@ -123,10 +164,7 @@ export class OperadoraComponent implements OnInit {
     if(this.form.get('userRegister').value != null){
       this.globalService.httpServicesResponse({ charger : this.form.get('userRegister').value},
         environment.Url + '/global/chargers').subscribe(response => {
-          if (response.type === 'success') {
             this.chargerList = response.chargers.filter(ch => ch.id !== -1);
-            console.log(this.chargerList);
-          }
         },
         console.log)
     } else {
@@ -138,27 +176,14 @@ export class OperadoraComponent implements OnInit {
       if(this.form.get('treatment').value != null){
         this.globalService.httpServicesResponse({ treatmentType : this.form.get('treatment').value},
           environment.Url + '/global/treatmentTypes').subscribe(response => {
-            if(response.type === 'success') {
+            console.log(response);
               this.treatmentTypeList = response.treatmentTypes.filter(tp => tp.id !== -1);
-            }
+
         },
           console.log)
       } else {
         return false;
       }
-    if(this.form.get('treatment').value != null) {
-      this.globalService.httpServicesResponse({ treatmentZone : this.form.get('treatment').value},
-        environment.Url + '/global/treatmentZone').subscribe(response => {
-          if(response.type === 'success') {
-            this.treatmentZoneList = response.treatmentZone.filter(tz => tz.id !== -1);
-            console.log(this.treatmentZoneList);
-          }
-        },
-        console.log)
-    } else {
-      return false;
-    }
-
   }
 
   getTreatments() {
@@ -166,21 +191,22 @@ export class OperadoraComponent implements OnInit {
       environment.Url + '/global/treatments').subscribe( response => {
         if (response.type === 'success') {
           this.treatmentsList = response.treatments.filter(te => te.id !== -1);
-          console.log(this.treatmentsList);
         }
       },
       console.error);
   }
 
-  
+
   getProduct() {
     this.globalService.httpServicesResponse(null,
       environment.Url + '/global/products').subscribe( response => {
         if (response.type === 'success') {
           this.productList = response.products.filter(po => po.id !== -1);
-          console.log(this.productList);
         }
       },
       console.error);
   }
+
+
+
 }

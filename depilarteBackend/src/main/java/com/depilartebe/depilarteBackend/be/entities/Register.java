@@ -12,7 +12,7 @@ import java.util.Date;
     private Long id;
 
     @Column(name = "fechaAtendido")
-    private Date fechaAtendido;
+    private String fechaAtendido;
 
     @Column(name = "Nombre")
     private String Nombre;
@@ -36,10 +36,10 @@ import java.util.Date;
     private String Direccion;
 
     @Column(name = "Tratamiento")
-    private Long Tratamiento;
+    private String Tratamiento;
 
     @Column(name = "TipoTratamiento")
-    private Long TipoTratamiento;
+    private String TipoTratamiento;
 
     @Column(name = "ZonaTratamiento")
     private Long ZonaTratamiento;
@@ -51,7 +51,7 @@ import java.util.Date;
     private String Asistencia;
 
     @Column(name = "ProductoUtilizado")
-    private Long ProductoUtilizado;
+    private String ProductoUtilizado;
 
     @Column(name = "DisparosAntes")
     private String DisparosAntes;
@@ -63,10 +63,10 @@ import java.util.Date;
     private String DiferenciaDisparos;
 
    @Column(name = "UserAtendio")
-   private Long userAtendio;
+   private String userAtendio;
 
     @Column(name = "FormaPago")
-    private Long FormaPago;
+    private String FormaPago;
 
     @Column(name = "Abonado")
     private String Abonado;
@@ -90,7 +90,7 @@ import java.util.Date;
             return id;
         }
 
-    public Date getFechaAtendido() {
+    public String getFechaAtendido() {
         return fechaAtendido;
     }
 
@@ -122,11 +122,11 @@ import java.util.Date;
         return Direccion;
     }
 
-    public Long getTratamiento() {
+    public String getTratamiento() {
         return Tratamiento;
     }
 
-    public Long getTipoTratamiento() {
+    public String getTipoTratamiento() {
         return TipoTratamiento;
     }
 
@@ -142,7 +142,7 @@ import java.util.Date;
         return Asistencia;
     }
 
-    public Long getProductoUtilizado() {
+    public String getProductoUtilizado() {
         return ProductoUtilizado;
     }
 
@@ -158,7 +158,7 @@ import java.util.Date;
         return DiferenciaDisparos;
     }
 
-    public Long getFormaPago() {
+    public String getFormaPago() {
         return FormaPago;
     }
 
@@ -182,7 +182,7 @@ import java.util.Date;
         this.id = id;
     }
 
-    public void setFechaAtendido(Date fechaAtendido) {
+    public void setFechaAtendido(String fechaAtendido) {
         this.fechaAtendido = fechaAtendido;
     }
 
@@ -214,11 +214,11 @@ import java.util.Date;
         Direccion = direccion;
     }
 
-    public void setTratamiento(Long tratamiento) {
+    public void setTratamiento(String tratamiento) {
         Tratamiento = tratamiento;
     }
 
-    public void setTipoTratamiento(Long tipoTratamiento) {
+    public void setTipoTratamiento(String tipoTratamiento) {
         TipoTratamiento = tipoTratamiento;
     }
 
@@ -234,7 +234,7 @@ import java.util.Date;
         Asistencia = asistencia;
     }
 
-    public void setProductoUtilizado(Long productoUtilizado) {
+    public void setProductoUtilizado(String productoUtilizado) {
         ProductoUtilizado = productoUtilizado;
     }
 
@@ -250,7 +250,7 @@ import java.util.Date;
         DiferenciaDisparos = diferenciaDisparos;
     }
 
-    public void setFormaPago(Long formaPago) {
+    public void setFormaPago(String formaPago) {
         FormaPago = formaPago;
     }
 
@@ -278,7 +278,7 @@ import java.util.Date;
             this.telefono = telefono;
         }
 
-        public Long getUserAtendio() {
+        public String getUserAtendio() {
             return userAtendio;
         }
 
@@ -286,7 +286,7 @@ import java.util.Date;
             return registerUser;
         }
 
-        public void setUserAtendio(Long userAtendio) {
+        public void setUserAtendio(String userAtendio) {
             this.userAtendio = userAtendio;
         }
 

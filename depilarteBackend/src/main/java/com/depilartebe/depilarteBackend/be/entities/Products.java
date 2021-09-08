@@ -22,7 +22,7 @@ public class Products {
     private String cantidad;
 
     @Column(name="Especialista")
-    private Long specialist;
+    private String specialist;
 
     @Column(name="Precio")
     private String precio;
@@ -78,11 +78,11 @@ public class Products {
         this.descripcion = descripcion;
     }
 
-    public Long getSpecialist() {
+    public String getSpecialist() {
         return specialist;
     }
 
-    public void setSpecialist(Long specialist) {
+    public void setSpecialist(String specialist) {
         this.specialist = specialist;
     }
 }

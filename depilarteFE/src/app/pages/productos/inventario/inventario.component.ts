@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
+import { saveAs } from 'file-saver';
 
 interface HistorialData {
   treatmentName: String;
@@ -25,6 +26,7 @@ interface HistorialData {
 
 export class InventarioComponent implements OnInit {
   filters: FormGroup;
+  fileName : string = '';
   usuarioList = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
@@ -77,6 +79,41 @@ export class InventarioComponent implements OnInit {
   goEdit(id) {
     this.router.navigate(['/registrar-producto'],
       { relativeTo: this.route,queryParams:{id}});
+  }
+
+  download() {
+    const data = {
+      ...this.filters.value
+    };
+    this.globalServices.httpServicesResponse(data,
+      environment.Url + 'depilarte/generateProducts').subscribe(
+      data => {
+
+        const result: any = data;
+        if (result.type == 'error') {
+          console.log('error')
+        } else {
+          var file = result.resultEncodedString;
+          let sliceSize = 512;
+          let byteCharacters = atob(file);
+          let byteArrays = [];
+          for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            let slice = byteCharacters.slice(offset, offset + sliceSize);
+            let byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+              byteNumbers[i] = slice.charCodeAt(i);
+            }
+            let byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+          }
+          const blob = new Blob(byteArrays, {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          saveAs(blob, this.fileName);
+        }
+      },
+      error => {
+        //error
+      }
+    );
   }
 
 

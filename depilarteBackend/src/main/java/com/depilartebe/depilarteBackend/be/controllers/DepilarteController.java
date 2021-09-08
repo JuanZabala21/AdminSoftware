@@ -542,7 +542,195 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 mapResponse.put(MESSAGE, MESSAGE_ERROR);
             }
         }
-        System.out.println(mapResponse);
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GENERATE_PACIENTES_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GET_PACIENTES_URI)
+    public Map<String, Object> getPacientesData(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long idPacientes = (params.containsKey(ID_PACIENTES) &&
+                        params.get(ID_PACIENTES) != null &&
+                        !params.get(ID_PACIENTES).toString().isEmpty())
+                        ? Long.valueOf(params.get(ID_PACIENTES).toString()) : null;
+
+                mapResponse = depilarteServices.getPacientes(idPacientes);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GENERATE_PRODUCTS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GENERATE_PRODUCTS)
+    public Map<String, Object> generateEmpleados(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String productName = (params.containsKey(PRODUCT_NAME) && params.get(PRODUCT_NAME) != null
+                        && !params.get(PRODUCT_NAME).toString().isEmpty()) ?
+                        params.get(PRODUCT_NAME).toString() : null;
+                String specialist = (params.containsKey(PRODUCTSPECIALIST) && params.get(PRODUCTSPECIALIST) != null
+                        && !params.get(PRODUCTSPECIALIST).toString().isEmpty()) ?
+                        params.get(PRODUCTSPECIALIST).toString() : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.generateProductsExcel(productName,specialist,initialDate,finalDate);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GENERATE_EMPLEADOS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GENERATE_EMPLEADOS)
+    public Map<String, Object> generateProducts(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String nameWorker = (params.containsKey(WORKER_NAME) && params.get(WORKER_NAME) != null
+                        && !params.get(WORKER_NAME).toString().isEmpty()) ?
+                        params.get(WORKER_NAME).toString() : null;
+                String identification = (params.containsKey(WORKER_IDENTIFICATION) && params.get(WORKER_IDENTIFICATION) != null
+                        && !params.get(WORKER_IDENTIFICATION).toString().isEmpty()) ?
+                        params.get(WORKER_IDENTIFICATION).toString() : null;
+                Long charge = (params.containsKey(WORKER_CHARGE) &&
+                        params.get(WORKER_CHARGE) != null &&
+                        !params.get(WORKER_CHARGE).toString().isEmpty())
+                        ? Long.valueOf(params.get(WORKER_CHARGE).toString()) : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.generateEmpleadosExcel(nameWorker,identification,charge,initialDate,finalDate);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GENERATE_TREATMENTS_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GENERATE_TREATMENTS)
+    public Map<String, Object> generateTreatments(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String nameTreatment = (params.containsKey(NAME_TREATMENT) && params.get(NAME_TREATMENT) != null
+                        && !params.get(NAME_TREATMENT).toString().isEmpty()) ?
+                        params.get(NAME_TREATMENT).toString() : null;
+                String specialist = (params.containsKey(SPECIALIST_TREATMENT) && params.get(SPECIALIST_TREATMENT) != null
+                        && !params.get(SPECIALIST_TREATMENT).toString().isEmpty()) ?
+                        params.get(SPECIALIST_TREATMENT).toString() : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.generateTreatmentsExcel(nameTreatment,specialist,initialDate,finalDate);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GENERATE_REGISTER_EXCEL_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GENERATE_REGISTER_EXCEL)
+    public Map<String, Object> generateRegisterExcel(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                String nameClient = (params.containsKey(SEARCH_NAME) && params.get(SEARCH_NAME) != null
+                        && !params.get(SEARCH_NAME).toString().isEmpty()) ?
+                        params.get(SEARCH_NAME).toString() : null;
+                String lastNameClient = (params.containsKey(SEARCH_LASTNAME) && params.get(SEARCH_LASTNAME) != null
+                        && !params.get(SEARCH_LASTNAME).toString().isEmpty()) ?
+                        params.get(SEARCH_LASTNAME).toString() : null;
+                String cedula = (params.containsKey(SEARCH_IDENTIFICATION) && params.get(SEARCH_IDENTIFICATION) != null
+                        && !params.get(SEARCH_IDENTIFICATION).toString().isEmpty()) ?
+                        params.get(SEARCH_IDENTIFICATION).toString() : null;
+                Long user = (params.containsKey(SEARCH_USERATT) &&
+                        params.get(SEARCH_USERATT) != null &&
+                        !params.get(SEARCH_USERATT).toString().isEmpty())
+                        ? Long.valueOf(params.get(SEARCH_USERATT).toString()) : null;
+                Long nameUser = (params.containsKey(SEARCH_NAMEUSER) &&
+                        params.get(SEARCH_NAMEUSER) != null &&
+                        !params.get(SEARCH_NAMEUSER).toString().isEmpty())
+                        ? Long.valueOf(params.get(SEARCH_NAMEUSER).toString()) : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
+
+                mapResponse = depilarteServices.generatePacientesExcel(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
+
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
         return mapResponse;
     }
 

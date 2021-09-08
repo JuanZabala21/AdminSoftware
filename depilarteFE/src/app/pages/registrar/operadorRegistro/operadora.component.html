@@ -13,7 +13,7 @@
               <mat-label>Usuario registrante</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Usuario registrante</mat-label>
-                <mat-select formControlName="userRegister" (selectionChange)="changeCharger()">
+                <mat-select formControlName="userRegister" (ngModelChange)="changeCharger()">
                   <mat-option *ngFor="let us of userList" [value]="us.value">
                     {{us.desc}}
                   </mat-option>
@@ -22,7 +22,6 @@
             </div>
           </div>
           </div>
-
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="formControl">
@@ -110,7 +109,7 @@
                 <mat-label>Tratamiento</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Tratamiento</mat-label>
-                <mat-select  formControlName="treatment"  (selectionChange)="changeTypeTreament()">
+                <mat-select formControlName="treatment"  (ngModelChange)="changeTypeTreament()">
                   <mat-option *ngFor="let te of treatmentsList" [value]="te.id_tratamientos">
                     {{te.nameTreatment}}
                   </mat-option>
@@ -123,26 +122,25 @@
                 <mat-label>Tipos del Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Tipos</mat-label>
-                  <mat-select  formControlName="treatmentType">
-                    <mat-option *ngFor="let tp of treatmentTypeList" [value]="tp.id_tipo">
-                      {{tp.typeTreatment}}
+                  <mat-select [value]="treatmentType" formControlName="treatmentType">
+                    <mat-option  *ngFor="let tp of treatmentTypeList" [value]="tp.id_tipo">
+                      {{tp.nombreTipo}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
             </div>
+
             <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <mat-label>Zona de Tratamiento</mat-label>
-                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Zona de Tratamiento</mat-label>
-                  <mat-select  formControlName="treatmentZone">
-                    <mat-option *ngFor = "let tz of treatmentZoneList" [value]="tz.id_zona">
-                      {{tz.zonaNombre}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+              <mat-label>Forma de pago</mat-label>
+              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                <mat-label>Forma de pago</mat-label>
+                <mat-select  formControlName="formPay" name="Pago">
+                  <mat-option *ngFor="let mp of methodsList" [value]="mp.id">
+                    {{mp.metodoPago}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
 
@@ -171,7 +169,7 @@
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Producto</mat-label>
                   <mat-select  formControlName="product">
-                    <mat-option *ngFor="let po of productList" [value]="po.id_producto">
+                    <mat-option *ngFor="let po of productList" [value]="po.id_productos">
                       {{po.nombre}}
                     </mat-option>
                   </mat-select>
@@ -215,35 +213,27 @@
               <mat-label>Operadora Encargada</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Operadora Encargada</mat-label>
-                <mat-select  formControlName="userOp" name="Operadora">
-                  <mat-option *ngFor="let ch of chargerList" [value]="ch.id">
+                <mat-select   formControlName="userOp" name="Operadora">
+                  <mat-option [ngModel]="userAtt"  *ngFor="let ch of chargerList" [value]="ch.id">
                     {{ch.nombre}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
+
             <div  *ngIf="showDoctor" class="col-md-4 pr-1">
               <mat-label>Doctora Encargada</mat-label>
               <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                 <mat-label>Doctora Encargada</mat-label>
-                <mat-select  formControlName="userDoc" name="Operadora">
-                  <mat-option *ngFor="let ch of chargerList" [value]="ch.id">
+                <mat-select   formControlName="userDoc" name="Operadora">
+                  <mat-option [ngModel]="userAtt" *ngFor="let ch of chargerList" [value]="ch.id">
                     {{ch.nombre}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col-md-4 pr-1">
-              <mat-label>Forma de pago</mat-label>
-              <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                <mat-label>Forma de pago</mat-label>
-                <mat-select  formControlName="formPay" name="Pago">
-                  <mat-option *ngFor="let mp of methodsList" [value]="mp.id">
-                    {{mp.metodoPago}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+
+
           </div>
 
           <div class="row">
