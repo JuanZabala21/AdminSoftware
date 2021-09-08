@@ -103,7 +103,7 @@ export class RegistrarProductoComponent implements OnInit {
            this.form.reset();
         alertify.success('Registrado con exito');
         }
-       
+
       },
       console.log)
   }
@@ -121,6 +121,6 @@ export class RegistrarProductoComponent implements OnInit {
       console.error);
   }
 
- 
+
 
 }

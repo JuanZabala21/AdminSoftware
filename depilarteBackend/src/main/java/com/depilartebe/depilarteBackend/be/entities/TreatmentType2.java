@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="depilarte_tipotratamientos")
-public class TreatmentType {
+public class TreatmentType2 {
 
     @Id
     @Column(name="id_tipo")
@@ -27,7 +27,7 @@ public class TreatmentType {
         return id_tratamientos;
     }
 
-    public String getNombreTipo() {
+    public String getTypeTreatment() {
         return typeTreatment;
     }
 
@@ -39,15 +39,14 @@ public class TreatmentType {
         this.id_tratamientos = id_tratamientos;
     }
 
-    public void setNombreTipo(String typeTreatment) {
+    public void setTypeTreatment(String typeTreatment) {
         this.typeTreatment = typeTreatment;
     }
 
-    public String getPrecioTratamiento() {
+    public String getTypePrice() {
         return typePrice;
     }
-
-    public void setPrecioTratamiento(String typePrice) {
+    public void setTypePrice(String typePrice) {
         this.typePrice = typePrice;
     }
 }

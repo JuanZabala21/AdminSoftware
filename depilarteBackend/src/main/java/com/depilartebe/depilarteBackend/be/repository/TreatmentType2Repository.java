@@ -1,7 +1,7 @@
 package com.depilartebe.depilarteBackend.be.repository;
 
 import com.depilartebe.depilarteBackend.be.entities.TreatmentType;
-import com.depilartebe.depilarteBackend.be.entities.TreatmentZone;
+import com.depilartebe.depilarteBackend.be.entities.TreatmentType2;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public interface TreatmentTypeRepository extends JpaRepository<TreatmentType, Long> {
+public interface TreatmentType2Repository extends JpaRepository<TreatmentType2, Long> {
 
     String FIND_TYPETREATMENT_BYID = "SELECT * FROM `depilarte_tipotratamientos` WHERE id_tratamientos = :treatmentId ";
     @Query(nativeQuery = true, value = FIND_TYPETREATMENT_BYID)
@@ -19,23 +19,23 @@ public interface TreatmentTypeRepository extends JpaRepository<TreatmentType, Lo
 
     String FIND_TYPETREATMENT_BYID_FOR_EDIT = "SELECT * FROM `depilarte_tipotratamientos` WHERE id_tratamientos = :treatmentId ";
     @Query(nativeQuery = true, value = FIND_TYPETREATMENT_BYID_FOR_EDIT)
-    List<TreatmentType> findTypeTreatmentByIdForEdit(@Param("treatmentId") Long treatmentId);
+    List<TreatmentType2> findTypeTreatmentByIdForEdit(@Param("treatmentId") Long treatmentId);
 
     String FIND_BY_TREATMENTTYPE = "SELECT * FROM `depilarte_tipotratamientos` WHERE nombreTipo = :treatmentType ";
     @Query(nativeQuery = true, value = FIND_BY_TREATMENTTYPE)
-    TreatmentType findByTreatmentType(@Param("treatmentType") String treatmentType);
+    TreatmentType2 findByTreatmentType(@Param("treatmentType") String treatmentType);
 
     String FIND_TYPETREATMENT_TREAT = "SELECT * FROM `depilarte_tipotratamientos` WHERE id_tratamientos = :treatmentId ";
     @Query(nativeQuery = true, value = FIND_TYPETREATMENT_TREAT)
-    List<TreatmentType> finbTypeTreat(@Param("treatmentId") Long treatmentId);
+    List<TreatmentType2> finbTypeTreat2(@Param("treatmentId") Long treatmentId);
 
     String FIND_TYPETREATMENT_TREATNAME = "SELECT * FROM `depilarte_tipotratamientos` WHERE id_tratamientos = :treatmentId ";
     @Query(nativeQuery = true, value = FIND_TYPETREATMENT_TREATNAME)
-    List<TreatmentType> finbTypeTreatNamePrice(@Param("treatmentId") Long treatmentId);
+    List<TreatmentType2> finbTypeTreatNamePrice(@Param("treatmentId") Long treatmentId);
 
     String FIND_TYPETREATMENT_ID = "SELECT * FROM `depilarte_tipotratamientos` WHERE id_tipo = :treatmentType";
     @Query(nativeQuery = true, value = FIND_TYPETREATMENT_ID)
-    TreatmentType findTreatmentTypeById(@Param("treatmentType") Long treatmentId);
+    TreatmentType2 findTreatmentTypeById(@Param("treatmentType") Long treatmentId);
 
 
 

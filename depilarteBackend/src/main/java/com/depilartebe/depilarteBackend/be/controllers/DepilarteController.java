@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import com.depilartebe.depilarteBackend.be.services.DepilarteServices;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -213,12 +216,9 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 String nameTreatment = (params.containsKey(TREATMENT_NAME) && params.get(TREATMENT_NAME) != null
                         && !params.get(TREATMENT_NAME).toString().isEmpty()) ?
                         params.get(TREATMENT_NAME).toString() : null;
-                String typeTreatment = (params.containsKey(TREATMENT_TYPE) && params.get(TREATMENT_TYPE) != null
-                        && !params.get(TREATMENT_TYPE).toString().isEmpty()) ?
-                        params.get(TREATMENT_TYPE).toString() : null;
-                String zoneTreatment = (params.containsKey(TREATMENT_ZONE) && params.get(TREATMENT_ZONE) != null
-                        && !params.get(TREATMENT_ZONE).toString().isEmpty()) ?
-                        params.get(TREATMENT_ZONE).toString() : null;
+                ArrayList typePrice = (params.containsKey(TYPE_PRICE) && params.get(TYPE_PRICE) != null
+                        && !params.get(TYPE_PRICE).toString().isEmpty()) ?
+                        (ArrayList) params.get(TYPE_PRICE) : null;
                 Long specialist = (params.containsKey(TREATMENT_SPECIALIST) &&
                         params.get(TREATMENT_SPECIALIST) != null &&
                         !params.get(TREATMENT_SPECIALIST).toString().isEmpty() )
@@ -236,7 +236,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         && !params.get(TREATMENT_DESC).toString().isEmpty()) ?
                         params.get(TREATMENT_DESC).toString() : null;
 
-                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typeTreatment,zoneTreatment,specialist, sessions, precio,comission,description);
+                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typePrice,specialist, sessions, precio,comission,description);
 
 
             } catch (Exception e) {
@@ -514,6 +514,35 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 mapResponse.put(MESSAGE, MESSAGE_ERROR);
             }
         }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = GET_TREATMENT_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = GET_TREATMENT_ID)
+    public Map<String, Object> getTreatmentData(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long idTreatment = (params.containsKey(ID_TREATMENTS) &&
+                        params.get(ID_TREATMENTS) != null &&
+                        !params.get(ID_TREATMENTS).toString().isEmpty())
+                        ? Long.valueOf(params.get(ID_TREATMENTS).toString()) : null;
+
+                mapResponse = depilarteServices.getTreatmentProducts(idTreatment);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        System.out.println(mapResponse);
         return mapResponse;
     }
 

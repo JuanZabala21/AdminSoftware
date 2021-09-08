@@ -34,7 +34,6 @@ export class TratamientoComponent implements OnInit {
     [
       'treatmentName',
       'treatmentType',
-      'treatmentZone',
       'user',
       'sessions',
       'priceTreatment',
@@ -69,11 +68,17 @@ export class TratamientoComponent implements OnInit {
       ...this.filters.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchTreatments').subscribe( res => {
+      console.log(res.resultList);
         this.dataSource = new MatTableDataSource(res.resultList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
     )
+  }
+
+  goEdit(id){
+    this.router.navigate(['/registrar-tratamiento'],
+      { relativeTo: this.route,queryParams:{id}});
   }
 
 }

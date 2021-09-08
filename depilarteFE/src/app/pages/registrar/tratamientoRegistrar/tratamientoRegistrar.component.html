@@ -59,14 +59,14 @@
 
              </div>
 
-             <div formArrayName="typeTreatment" formArrayName="price" *ngFor="let typePrice of typePrices.controls; let i = index" class="row">
+             <div formArrayName="typePrice" *ngFor="let typePrice of typePrices.controls; let i = index" class="row">
 
                <div [formGroupName]="i" class="col-md-6 pr-1">
                  <div  class="form-group">
                    <mat-label>Tipos del tratamiento</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Tipos</mat-label>
-                     <input [attr.id]=" 'typeTreatment' + i" formControlName="typeTreatment" matInput type="text">
+                     <input formControlName="typeTreatment" matInput type="text">
                    </mat-form-field>
                  </div>
                </div>
@@ -76,14 +76,14 @@
                    <mat-label>Precio del tratamiento</mat-label>
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>precio</mat-label>
-                     <input [attr.id]="'price' + i" formControlName="price" matInput type="number">
-                     <span matPrefix>$&nbsp;</span>
+                     <input  [attr.id]="'typePrice' + i" formControlName="typePrice" matInput type="number">
+                     <span matPrefix>$</span>
                    </mat-form-field>
                  </div>
                </div>
 
            </div>
-             
+
              <div class="row">
                <div class="col-md-12">
                  <div class="form-group">
@@ -107,6 +107,7 @@
                  <button mat-raised-button  color="warn" type="submit" (click)="register()">Registrar</button>
                </div>
              </div>
+
            </form>
          </div>
        </div>

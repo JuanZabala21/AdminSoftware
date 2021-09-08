@@ -21,12 +21,14 @@ declare let alertify: any;
 export class TratamientoRegistrarComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
+  idPoint;
+  isLoading = false;
+  create = true;
+  edit = false;
   user: usuarioList[] = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
     ];
-
-
 
   constructor(
     private fb: FormBuilder,
@@ -37,11 +39,9 @@ export class TratamientoRegistrarComponent implements OnInit {
     this.form = fb.group({
       id: new FormControl(),
       treatmentName: new FormControl(),
-      typeTreatment: this.fb.array([]),
-      zoneTreatment: new FormControl(),
       specialist: new FormControl(),
       sessions: new FormControl(),
-      price: this.fb.array([]),
+      typePrice: this.fb.array([]),
       comission: new FormControl(),
       description: new FormControl()
     });
@@ -49,6 +49,39 @@ export class TratamientoRegistrarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.route.queryParams.subscribe( params => {
+      const {id} = params;
+      this.idPoint = id;
+      if (this.idPoint) {
+        this.getDtaByUpdate(id);
+      }
+    });
+  }
+
+  get f() {return this.form.controls; }
+  getDtaByUpdate(id) {
+    this.isLoading = true;
+    const data = {
+      id
+    };
+    this.globalService.httpServicesResponse(data,
+      environment.Url + 'depilarte/getTreatment').subscribe(
+      res => {
+        console.log(res);
+        this.setValues(res);
+        this.isLoading = false;
+        this.create = false;
+        this.edit = true;
+      },
+      e => {
+        console.log(e);
+        this.isLoading = false;
+      });
+  }
+
+  setValues(values) {
+    console.log(values)
+    this.form.setValue(values);
   }
 
   register() {
@@ -75,13 +108,13 @@ export class TratamientoRegistrarComponent implements OnInit {
   }
 
   get typePrices() {
-    return this.form.get('typeTreatment') && this.form.get('price') as FormArray;
+    return this.form.get('typePrice') as FormArray;
   }
 
   addTypePrice() {
     const typePriceFormGroup = this.fb.group({
       typeTreatment: '',
-      price: ''
+      typePrice: ''
     });
     this.typePrices.push(typePriceFormGroup);
   }
@@ -89,6 +122,7 @@ export class TratamientoRegistrarComponent implements OnInit {
   removeTypePice(indice: number) {
     this.typePrices.removeAt(indice);
   }
+
 
 
 

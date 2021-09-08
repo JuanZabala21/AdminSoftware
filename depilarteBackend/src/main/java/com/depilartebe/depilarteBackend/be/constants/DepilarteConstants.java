@@ -52,6 +52,11 @@ public interface DepilarteConstants {
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
                     + "Método que genera Tratamientos. </div>";
 
+    String GET_TREATMENT_ID = "getTreatment";
+    String GET_TREATMENT_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
     //Constantes de Variables
     String CLIENT_ID = "id";
     String CLIENT_NAME = "name";
@@ -94,6 +99,7 @@ public interface DepilarteConstants {
     String TREATMENT_ID = "id";
     String TREATMENT_NAME = "treatmentName";
     String TREATMENT_TYPE = "typeTreatment";
+    String TYPE_PRICE = "typePrice";
     String TREATMENT_ZONE = "zoneTreatment";
     String TREATMENT_SPECIALIST = "specialist";
     String TREATMENT_SESSIONS = "sessions";
@@ -128,6 +134,8 @@ public interface DepilarteConstants {
     String PRODUCTSPECIALIST = "specialist";
 
     String ID_EMPLEADO = "id";
+
+    String ID_TREATMENTS = "id";
 
 
 

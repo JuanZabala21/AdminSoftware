@@ -4,9 +4,10 @@ import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
 import com.depilartebe.depilarteBackend.be.entities.*;
 import com.depilartebe.depilarteBackend.be.repository.*;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.json.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,6 +39,12 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
     @Autowired
     FormaPayRepository formaPayRepository;
+
+    @Autowired
+    UsersRepository usersRepository;
+
+    @Autowired
+    TreatmentType2Repository treatmentType2Repository;
 
     public Map<String, Object> registerClients(
         Long id,
@@ -169,8 +176,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     public Map<String, Object> registerTreatments(
         Long id,
         String name,
-        String type,
-        String zone,
+        ArrayList type,
         Long specialist,
         String sessions,
         String precio,
@@ -188,68 +194,42 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 treatmentRepository.findById(id);
             }
 
+            Date today = new Date();
+
             /** Registrando **/
             treatment.setNameTreatment(name);
             treatment.setEspecialista(specialist);
             treatment.setCantidadSesiones(sessions);
-            treatment.setPrecioTratamiento(precio);
             treatment.setComisionOperadora(comission);
             treatment.setDescripcionTratamiento(description);
             treatmentRepository.save(treatment);
 
             if(id != null){
-                String [] typeTreatments = type.split(",");
-                List<String> typeTreatmentsList = treatmentTypeRepository.findTypeTreatmentById(id);
 
-                for(int i = 0; i < typeTreatments.length; i++) {
-                    if(!typeTreatmentsList.contains(typeTreatments[i].trim())){
-                        if(typeTreatmentsList.size() <= i){
-                            TreatmentType item = new TreatmentType();
-                            item.setId_tratamientos(id);
-                            item.setNombreTipo(typeTreatments[i].trim());
-                            treatmentTypeRepository.save(item);
-                        } else {
-                            TreatmentType item = treatmentTypeRepository.findByTreatmentType(typeTreatmentsList.get(i).trim());
-                            item.setNombreTipo(typeTreatments[i].trim());
-                            treatmentTypeRepository.save(item);
-                        }
+                List<TreatmentType> typeTreatmentsList = treatmentTypeRepository.findTypeTreatmentByIdForEdit(id);
+
+                for(TreatmentType typ : typeTreatmentsList){
+                    for (int i = 0; i < type.size(); i++) {
+                        String jsonString = type.get(i).toString();
+                        JSONObject obj = new JSONObject(jsonString);
+                        typ.setNombreTipo(obj.get("typeTreatment").toString());
+                        typ.setPrecioTratamiento(obj.get("typePrice").toString());
+                        treatmentTypeRepository.save(typ);
                     }
+                    typeTreatmentsList.add(typ);
                 }
+
             }else{
-                String [] typeTreatments = type.split(",");
-                for (int i = 0; i < typeTreatments.length; i++) {
+
+                for (int i = 0; i < type.size(); i++) {
+                    String jsonString = type.get(i).toString().replace(" ","-");
+                    String typex = jsonString;
+                    JSONObject obj = new JSONObject(typex);
                     TreatmentType item = new TreatmentType();
                     item.setId_tratamientos(treatment.getId_tratamientos());
-                    item.setNombreTipo(typeTreatments[i].trim());
+                    item.setNombreTipo(obj.get("typeTreatment").toString().replace("-"," "));
+                    item.setPrecioTratamiento(obj.get("-typePrice").toString());
                     treatmentTypeRepository.save(item);
-                }
-            }
-
-            if(id != null){
-                String [] zoneTreatments = zone.split(",");
-                List<String> zoneTreatmentList = treatmentZoneRepository.findZoneTreatmentById(id);
-
-                for(int i = 0; i < zoneTreatments.length; i++) {
-                    if(!zoneTreatmentList.contains(zoneTreatments[i].trim())){
-                        if(zoneTreatmentList.size() <= i){
-                            TreatmentZone item = new TreatmentZone();
-                            item.setId_tratamientos(id);
-                            item.setZonaNombre(zoneTreatments[i].trim());
-                            treatmentZoneRepository.save(item);
-                        } else {
-                            TreatmentZone item = treatmentZoneRepository.findByTreatmentZone(zoneTreatmentList.get(i).trim());
-                            item.setZonaNombre(zoneTreatments[i].trim());
-                            treatmentZoneRepository.save(item);
-                        }
-                    }
-                }
-            }else{
-                String [] zoneTreatments = zone.split(",");
-                for (int i = 0; i < zoneTreatments.length; i++) {
-                    TreatmentZone item = new TreatmentZone();
-                    item.setId_tratamientos(treatment.getId_tratamientos());
-                    item.setZonaNombre(zoneTreatments[i].trim());
-                    treatmentZoneRepository.save(item);
                 }
             }
 
@@ -319,7 +299,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         try{
             Treatment treatment = new Treatment();
             TreatmentType treatmentType = new TreatmentType();
-            TreatmentZone treatmentZone = new TreatmentZone();
+            Users users = new Users();
+            Products products = new Products();
             formaPay formPay = new formaPay();
             if(initialDate != null && finalDate != null){
                 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -356,15 +337,15 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                         result.put("treatment", treatment.getNameTreatment());
                         treatmentType = treatmentTypeRepository.findTreatmentTypeById(register.getTipoTratamiento());
                         result.put("treatmentType", treatmentType.getNombreTipo());
-                        treatmentZone = treatmentZoneRepository.findTreatmentZoneById(register.getZonaTratamiento());
-                        result.put("treatmentZone", treatmentZone.getZonaNombre());
                         result.put("shotsBefore", register.getDisparosAntes());
                         result.put("shotsAfter", register.getDisparosDespues());
-                        result.put("shotDifferential", register.getDiferenciaDisparos());
+                        result.put("shotsDifferential", register.getDiferenciaDisparos());
                         result.put("sessions", register.getCantidadSesiones());
                         result.put("assistents", register.getAsistencia());
-                        result.put("product", register.getProductoUtilizado());
-                        result.put("userAttemption", register.getUserAtendio());
+                        products = productRepository.findProductsById(register.getProductoUtilizado());
+                        result.put("product", products.getNombre());
+                        users = usersRepository.findUsernameById(register.getUserAtendio());
+                        result.put("userAttemption", users.getName());
                         formPay = formaPayRepository.findformaPayById(register.getFormaPago());
                         result.put("formpay", formPay.getMetodoPago());
                         result.put("abonado", register.getAbonado());
@@ -481,18 +462,19 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             }
             if(treatmentList != null){
                 for(Treatment treatment : treatmentList){
-                    Map<String, Object> result = new HashMap<>();
-                    List<String> treatmentTypeList = treatmentTypeRepository.findTreatmentTypeNames(treatment.getId_tratamientos());
-                    List<String> treatmentZonesList = treatmentZoneRepository.findTreatmentZoneNames(treatment.getId_tratamientos());
-                    result.put("id", treatment.getId_tratamientos());
-                    result.put("name",treatment.getNameTreatment());
-                    result.put("treatmentType", treatmentTypeList);
-                    result.put("treatmentZone", treatmentZonesList);
-                    result.put("specialist", treatment.getEspecialista());
-                    result.put("sessions", treatment.getCantidadSesiones());
-                    result.put("price", treatment.getPrecioTratamiento());
-                    result.put("comission", treatment.getComisionOperadora());
-                    mapList.add(result);
+
+                    List<TreatmentType> treatmentTypeList = treatmentTypeRepository.finbTypeTreat(treatment.getId_tratamientos());
+                    for(TreatmentType treatmentType : treatmentTypeList){
+                        Map<String, Object> result = new HashMap<>();
+                        result.put("id", treatment.getId_tratamientos());
+                        result.put("name",treatment.getNameTreatment());
+                        result.put("treatmentType", treatmentType.getNombreTipo());
+                        result.put("specialist", treatment.getEspecialista());
+                        result.put("sessions", treatment.getCantidadSesiones());
+                        result.put("price", treatmentType.getPrecioTratamiento());
+                        result.put("comission", treatment.getComisionOperadora());
+                        mapList.add(result);
+                    }
                 }
                 mapResult.put(RESULT_LIST_MAP, mapList);
             }
@@ -622,7 +604,35 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
         }
 
+        public Map<String, Object> getTreatmentProducts(
+                Long id
+        ){
+            Map<String, Object> mapResult = new HashMap<>();
 
+            Map<String, Object> result = new HashMap<>();
+            try{
+                Treatment treatment = new Treatment();
+                treatment = treatmentRepository.findTreatmentById(id);
+                List<TreatmentType2> typeTreatmentList = new ArrayList<>();
+                typeTreatmentList = treatmentType2Repository.finbTypeTreat2(id);
+
+                result.put("id", treatment.getId_tratamientos());
+                result.put("treatmentName", treatment.getNameTreatment());
+                result.put("specialist", treatment.getEspecialista());
+                result.put("sessions", treatment.getCantidadSesiones());
+                result.put("typePrice", typeTreatmentList);
+                result.put("comission", treatment.getComisionOperadora());
+                result.put("description", treatment.getDescripcionTratamiento());
+
+            }catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResult.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+            return result;
+        }
 
     }
 

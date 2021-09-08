@@ -125,7 +125,7 @@
                   <mat-label>Tipos</mat-label>
                   <mat-select  formControlName="treatmentType">
                     <mat-option *ngFor="let tp of treatmentTypeList" [value]="tp.id_tipo">
-                      {{tp.nombreTipo}}
+                      {{tp.typeTreatment}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

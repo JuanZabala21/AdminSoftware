@@ -54,10 +54,9 @@ export class HistorialDocComponent implements OnInit {
       'phone',
       'treatment',
       'treatmentType',
-      'treatmentZone',
-      'shotBefore',
-      'shotAfter',
-      'shotDifferential',
+      'shotsBefore',
+      'shotsAfter',
+      'shotsDifferential',
       'userAttemption',
       'countSession',
       'assistent',
@@ -103,7 +102,10 @@ export class HistorialDocComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }
     )
+  }
 
+  goEdit(){
 
   }
+
 }

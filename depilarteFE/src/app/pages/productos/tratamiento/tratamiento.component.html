@@ -61,34 +61,11 @@
             <ng-container  matColumnDef="treatmentName" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;">Nombre del tratamiento</th>
               <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.name}} </td>
-
             </ng-container>
-
-            <!--<ng-container  matColumnDef="treatmentType">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Tipo de Tratamiento </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentType}} </td>
-            </ng-container>-->
 
             <ng-container  matColumnDef="treatmentType">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;" > Tipo de Tratamiento </th>
-              <td mat-cell class="mat-cell-id" *matCellDef="let row">
-                <mat-select placeholder="Tipos">
-              <mat-option *ngFor="let type of row.treatmentType">
-                {{type}}
-              </mat-option>
-            </mat-select>
-              </td>
-            </ng-container>
-
-            <ng-container  matColumnDef="treatmentZone">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Zona de Tratamiento </th>
-              <td mat-cell class="mat-cell-id" *matCellDef="let row">
-                <mat-select placeholder="Zonas" >
-                <mat-option *ngFor="let zone of row.treatmentZone">
-                      {{zone}}
-                </mat-option>
-              </mat-select>
-              </td>
+              <td mat-cell class="mat-cell-id" *matCellDef="let row" class="mat-cell-id"> {{row.treatmentType}} </td>
             </ng-container>
 
             <ng-container  matColumnDef="user">
@@ -113,7 +90,14 @@
 
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
-              <td mat-cell *matCellDef="let row" class="mat-cell-id">  </td>
+              <td mat-cell *matCellDef="let row" class="mat-cell-id">  <div fxFlex="row">
+                <div fxLayout="column" mat-stroked-button class="pointer"
+                     (click)="goEdit(row.id);">
+                  <i style="font-size: 25px" class="nc-icon nc-tap-01" title="Editar"></i>
+                </div>
+              </div>
+              </td>
+
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

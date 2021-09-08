@@ -128,24 +128,19 @@
             <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentType}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="treatmentZone">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Zona de Tratamiento </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.treatmentZone}} </td>
-          </ng-container>
-
-          <ng-container  matColumnDef="shotBefore">
+          <ng-container  matColumnDef="shotsBefore">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Disparos de la pistola antes</th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotBefore}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotsBefore}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="shotAfter">
+          <ng-container  matColumnDef="shotsAfter">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Disparos de la pistola despues</th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotAfter}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotsAfter}} </td>
           </ng-container>
 
-          <ng-container  matColumnDef="shotDifferential">
+          <ng-container  matColumnDef="shotsDifferential">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Diferencia </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotDifferential}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.shotsDifferential}} </td>
           </ng-container>
 
           <ng-container  matColumnDef="assistent">
@@ -190,7 +185,14 @@
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id">  </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">  <div fxFlex="row">
+              <div fxLayout="column" mat-stroked-button class="pointer"
+                   (click)="goEdit(row.id);">
+                <i style="font-size: 25px" class="nc-icon nc-tap-01" title="Editar"></i>
+              </div>
+            </div>
+            </td>
+
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
