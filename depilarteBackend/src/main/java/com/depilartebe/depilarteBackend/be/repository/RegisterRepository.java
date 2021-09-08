@@ -35,10 +35,9 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
         @Query(nativeQuery = true, value = FIND_REGISTER_COUNT)
         Integer findRegisterCount();
 
-        String FIND_REGISTROS_POR_MES = "select month(fechaAtendido) as month," +
-        "sum(1) as total from depilarte_registros where year(fechaAtendido) = 2021 group by  month(fechaAtendido)";
+        String FIND_REGISTROS_POR_MES = "select month(fechaAtendido) as month, sum(1) as total from depilarte_registros where year(fechaAtendido) = year(now()) group by  month(fechaAtendido)";
         @Query(nativeQuery = true, value= FIND_REGISTROS_POR_MES)
-        List<Register> findRegisterByMonth(@Param("registrosMes") Integer registrosMes);
+        List<List<Integer>> findRegisterByMonth();
 
 
 }

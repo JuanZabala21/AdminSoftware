@@ -155,6 +155,21 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
             Integer tratamientosCount = treatmentRepository.findTratamientosCount();
             Integer productosCount = productRepository.findProductosCount();
            
+            List<List<Integer>> registerPerMonth = registerRepository.findRegisterByMonth();
+            List<Integer> resultados= new ArrayList<>();
+
+         
+            for(int i=1; i<13; i++){
+                 resultados.add(0);
+                for(int j=0; j<registerPerMonth.size(); j++){
+                    if(i==registerPerMonth.get(j).get(0)){
+                        resultados.set(i-1, registerPerMonth.get(j).get(1));
+                    }
+                }
+            }
+
+            System.out.println(resultados);
+            dashboard.setRegisterPerMonth(resultados);
             
 
             dashboard.setRegisterCount(registerCount);
@@ -175,8 +190,6 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
         return mapResult;
  
     }
-
-
 
 
 

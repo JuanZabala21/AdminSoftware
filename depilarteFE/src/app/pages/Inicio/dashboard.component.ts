@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit{
   tratamientosCount;
   productosCount;
 
+  year = (new Date()).getFullYear();
 
  
 
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit{
   public chartColor;
   public chartEmail;
   public chartHours;
-
+  public lineChart;
 
   constructor(
     private router: Router,
@@ -54,6 +55,10 @@ export class DashboardComponent implements OnInit{
           this.empleadosCount= res.dashboard.empleadosCount;
           this.tratamientosCount= res.dashboard.tratamientosCount;
           this.productosCount= res.dashboard.productosCount;
+
+          this.lineChart.config.data.datasets[0].data= res.dashboard.registerPerMonth;
+          this.lineChart.update();
+          
           
          this.chartEmail.data.datasets[0].data=[res.dashboard.registerCount,res.dashboard.empleadosCount,res.dashboard.tratamientosCount,res.dashboard.productosCount];
          this.chartEmail.update();
@@ -88,50 +93,6 @@ export class DashboardComponent implements OnInit{
             display:false
           }
         }
-
-        // options: {
-
-        //   legend: {
-        //     display: false
-        //   },
-
-        //   pieceLabel: {
-        //     render: 'percentage',
-        //     fontColor: ['white'],
-        //     precision: 2
-        //   },
-
-        //   tooltips: {
-        //     enabled: false
-        //   },
-
-        //   scales: {
-        //     yAxes: [{
-
-        //       ticks: {
-        //         display: true
-        //       },
-        //       gridLines: {
-        //         drawBorder: false,
-        //         zeroLineColor: "transparent",
-        //         color: 'rgba(255,255,255,0.05)'
-        //       }
-
-        //     }],
-
-        //     xAxes: [{
-        //       barPercentage: 0,
-        //       gridLines: {
-        //         drawBorder: true,
-        //         color: 'rgba(255,255,255,0.1)',
-        //         zeroLineColor: "trasnparent"
-        //       },
-        //       ticks: {
-        //         display: false,
-        //       }
-        //     }]
-        //   },
-        // }
       });
 
       var speedCanvas = document.getElementById("speedChart");
@@ -148,7 +109,7 @@ export class DashboardComponent implements OnInit{
       // };
 
       var dataSecond = {
-        data: [1,2,3,4,5,6,7,8,9,10,11,12],
+        data: [],
         fill: false,
         borderColor: '#6bd098',
         backgroundColor: 'transpartent',
@@ -170,7 +131,7 @@ export class DashboardComponent implements OnInit{
         }
       };
 
-      var lineChart = new Chart(speedCanvas, {
+      this.lineChart = new Chart(speedCanvas, {
         type: 'line',
         hover: true,
         data: speedData,
