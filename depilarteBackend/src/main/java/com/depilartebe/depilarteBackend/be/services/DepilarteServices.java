@@ -666,23 +666,23 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             result.put("email", register.getCorreo());
             result.put("birthday", register.getFechaCumple());
             result.put("address", register.getDireccion());
-            result.put("treatment", register.getTratamiento());
-            result.put("treatmentType", register.getTipoTratamiento());
+            result.put("treatment", Long.valueOf(register.getTratamiento()));
+            result.put("treatmentType",Long.valueOf(register.getTipoTratamiento()));
             result.put("sessions", register.getCantidadSesiones());
             result.put("assistent", register.getAsistencia());
-            result.put("product", register.getProductoUtilizado());
+            result.put("product", Long.valueOf(register.getProductoUtilizado()));
             result.put("beforeShots", register.getDisparosAntes());
             result.put("afterShots", register.getDisparosDespues());
             result.put("diferents", register.getDiferenciaDisparos());
             if(register.getRegisterUser() == 1){
-                result.put("userDoc", register.getUserAtendio());
+                result.put("userDoc", Long.valueOf(register.getUserAtendio()));
                 result.put("userOp", EMPTY);
             }else{
-                result.put("userOp",  register.getUserAtendio());
+                result.put("userOp",  Long.valueOf(register.getUserAtendio()));
                 result.put("userDoc",EMPTY);
             }
             result.put("bono", register.getAbonado());
-            result.put("formPay", register.getFormaPago());
+            result.put("formPay", Long.valueOf(register.getFormaPago()));
             result.put("totalPrice", register.getPrecioTotal());
             result.put("comission", register.getComision());
             result.put("phone", register.getTelefono());
