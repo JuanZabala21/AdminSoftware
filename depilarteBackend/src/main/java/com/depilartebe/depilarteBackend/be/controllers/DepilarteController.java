@@ -41,7 +41,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 Long id = (params.containsKey(CLIENT_ID) &&
                         params.get(CLIENT_ID) != null &&
                         !params.get(CLIENT_ID).toString().isEmpty() )
-                        ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+                        ? Long.valueOf(params.get(CLIENT_ID).toString()) : null;
                 Long registerWorker =(params.containsKey(EMPLEADO_REGISTER) &&
                         params.get(EMPLEADO_REGISTER) != null &&
                         !params.get(EMPLEADO_REGISTER).toString().isEmpty() )

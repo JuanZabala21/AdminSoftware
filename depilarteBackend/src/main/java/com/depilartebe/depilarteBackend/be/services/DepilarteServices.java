@@ -53,6 +53,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     TreatmentType2Repository treatmentType2Repository;
 
     public Map<String, Object> registerClients(
+
             Long id,
             Long registerWorker,
             String clientName,
