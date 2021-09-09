@@ -658,6 +658,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             TreatmentType treatmentType = new TreatmentType();
             register = registerRepository.findRegisterById(id);
 
+            result.put("id", id);
             result.put("userRegister", register.getRegisterUser());
             result.put("name", register.getNombre());
             result.put("lastName", register.getApellido());

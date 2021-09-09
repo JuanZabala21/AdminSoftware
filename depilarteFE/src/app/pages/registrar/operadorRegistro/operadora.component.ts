@@ -63,6 +63,7 @@ export class OperadoraComponent implements OnInit {
       private globalService: GlobalServices
     ) {
       this.form = fb.group({
+        id: new FormControl(),
         userRegister: new FormControl('',[Validators.required]),
         name: new FormControl(),
         lastName: new FormControl(),
