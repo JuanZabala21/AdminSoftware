@@ -632,7 +632,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
             result.put("id", treatment.getId_tratamientos());
             result.put("treatmentName", treatment.getNameTreatment());
-            result.put("specialist", treatment.getEspecialista());
+            result.put("specialist", Long.valueOf(treatment.getEspecialista()));
             result.put("sessions", treatment.getCantidadSesiones());
             result.put("typePrice", typeTreatmentList);
             result.put("comission", treatment.getComisionOperadora());
