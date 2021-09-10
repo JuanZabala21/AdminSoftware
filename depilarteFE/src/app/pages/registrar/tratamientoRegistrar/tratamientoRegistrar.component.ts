@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {AppModule} from '../../../app.module';
@@ -40,11 +40,11 @@ export class TratamientoRegistrarComponent implements OnInit {
   {
     this.form = fb.group({
       id: new FormControl(),
-      treatmentName: new FormControl(),
-      specialist: new FormControl(),
-      sessions: new FormControl(),
-      typePrice: this.fb.array([]),
-      comission: new FormControl(),
+      treatmentName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
+      specialist: new FormControl('',[Validators.required]),
+      sessions: new FormControl('',[Validators.required]),
+      typePrice: this.fb.array([],[Validators.required]),
+      comission: new FormControl('',[Validators.required]),
       description: new FormControl()
     });
   }

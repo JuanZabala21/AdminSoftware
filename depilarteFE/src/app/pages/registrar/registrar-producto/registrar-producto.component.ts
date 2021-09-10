@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {AppModule} from '../../../app.module';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlobalServices} from '../../../shared/services/global.services';
 
@@ -40,11 +40,11 @@ export class RegistrarProductoComponent implements OnInit {
   ) {
     this.form = fb.group({
       id: new FormControl(),
-      product: new FormControl(),
-      proveedor: new FormControl(),
-      cantidad: new FormControl(),
-      specialist: new FormControl(),
-      price: new FormControl(),
+      product: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
+      proveedor: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
+      cantidad: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
+      specialist: new FormControl('',[Validators.required]),
+      price: new FormControl('',[Validators.required]),
       description: new FormControl()
       }
     )

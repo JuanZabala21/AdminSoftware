@@ -42,15 +42,15 @@ export class UsuarioRegistroComponent implements OnInit {
   ) {
     this.form = fb.group({
       id: new FormControl(),
-      name: new FormControl(),
-      lastName: new FormControl(),
-      identification: new FormControl(),
-      age: new FormControl(),
-      phone: new FormControl(),
-      email: new FormControl(),
-      birthday: new FormControl(),
-      address: new FormControl(),
-      charge: new FormControl()
+      name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
+      identification: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+      age: new FormControl('',[Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+      email: new FormControl('',[Validators.required]),
+      birthday: new FormControl('',[Validators.required]),
+      address: new FormControl('',[Validators.required]),
+      charge: new FormControl('',[Validators.required])
       });
 }
 get f() {return this.form.controls; }
@@ -95,7 +95,7 @@ if(data){
         this.form.reset();
      alertify.success('Registrado con exito');
      }
-    
+
       },
       console.log)
   }
