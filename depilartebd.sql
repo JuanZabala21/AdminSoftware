@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-09-2021 a las 21:54:01
+-- Tiempo de generación: 11-09-2021 a las 17:05:27
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.8
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `depilartebd`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `depilarte_cargos`
+--
+
+CREATE TABLE `depilarte_cargos` (
+  `id_cargo` int(11) NOT NULL,
+  `nombreCargo` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `depilarte_cargos`
+--
+
+INSERT INTO `depilarte_cargos` (`id_cargo`, `nombreCargo`) VALUES
+(1, 'Doctora'),
+(2, 'Operadora');
 
 -- --------------------------------------------------------
 
@@ -49,21 +68,22 @@ INSERT INTO `depilarte_metodopagos` (`id_pagos`, `metodoPago`) VALUES
 
 CREATE TABLE `depilarte_productos` (
   `id_productos` int(11) NOT NULL,
-  `id_tratamientos` int(11) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
   `Proveedor` varchar(100) NOT NULL,
   `Cantidad` varchar(100) NOT NULL,
   `Especialista` int(11) NOT NULL,
   `Precio` varchar(159) NOT NULL,
-  `Descripcion` varchar(150) DEFAULT NULL
+  `Descripcion` varchar(150) DEFAULT NULL,
+  `fechaRegistro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `depilarte_productos`
 --
 
-INSERT INTO `depilarte_productos` (`id_productos`, `id_tratamientos`, `Proveedor`, `Cantidad`, `Especialista`, `Precio`, `Descripcion`) VALUES
-(1, 5, 'Productive', '3', 1, '45', NULL),
-(2, 5, 'probandola', '3', 1, '45', 'Pagala');
+INSERT INTO `depilarte_productos` (`id_productos`, `Nombre`, `Proveedor`, `Cantidad`, `Especialista`, `Precio`, `Descripcion`, `fechaRegistro`) VALUES
+(1, 'Producto 10', 'Productive', '3', 1, '45', NULL, '2021-09-04'),
+(2, 'Producto 2', 'probandola', '3', 1, '45', 'Pagala', '2021-09-02');
 
 -- --------------------------------------------------------
 
@@ -105,7 +125,14 @@ CREATE TABLE `depilarte_registros` (
 --
 
 INSERT INTO `depilarte_registros` (`id`, `fechaAtendido`, `Nombre`, `Apellido`, `Cedula`, `Edad`, `Correo`, `FechaCumple`, `Direccion`, `Tratamiento`, `TipoTratamiento`, `ZonaTratamiento`, `CantidadSesiones`, `Asistencia`, `ProductoUtilizado`, `DisparosAntes`, `DisparosDespues`, `DiferenciaDisparos`, `UserAtendio`, `FormaPago`, `Abonado`, `PrecioTotal`, `Comision`, `Nota`, `Telefono`, `RegisterUser`) VALUES
-(4, '2021-09-04', 'Juan Pablo', 'Zabala', 'V26900042', '22', 'juanpablozabala21@gmail.com', '1998-12-21', 'Urb.Bosque', 5, 9, 1, '5', '3', 2, NULL, NULL, NULL, NULL, 1, '4455', '3434', '434', 'Pago', '0424-4563683', 1);
+(4, '2021-09-08', 'Juan Pablo', 'Zabala', 'V26900042', '22', 'juanpablozabala21@gmail.com', '1998-12-21', 'Urb.Bosque', 5, 9, NULL, '5', '3', 2, NULL, NULL, NULL, 2, 1, '4455', '3434', '434', 'Pago', '0424-4563683', 1),
+(5, '2021-09-06', 'Jose', 'Perez', '35424654', '43', 'joseperez34@gmail.com', '2011-09-06', 'Trigal', 5, 9, 1, '4', '3', 1, '4', '2', '2', 2, 1, '34', '555', '4', 'Pagado', '0412-4323345', 1),
+(6, '2021-09-08', 'Juan', 'Zabala', '2324325', '32', 'juanpablozabala21@gmail.com', '2021-08-29', 'Urb. Bosque4', 5, 10, NULL, '5', '3', 2, NULL, NULL, NULL, 2, 2, '5', '33', '45', 'Pago', '423214345', 1),
+(7, '2021-09-08', 'Jefferson', 'Intento 2', '445435354', '33', 'jeffer@gmail.com', '2021-09-05', 'Jefferson', 5, 10, NULL, '5', '5', 1, NULL, NULL, NULL, 2, 2, '54', '32', '5', 'Pago', '4334676', 1),
+(8, '2021-09-08', 'Joselyn', 'Perez', '35424654', '43', 'joseperez34@gmail.com', '2011-09-06', 'Trigal', 5, 9, NULL, '4', '3', 1, NULL, NULL, NULL, 2, 1, '34', '555', '4', 'Pagado', '0412-4323345', 1),
+(9, '2021-09-08', 'Juan', 'Zabala', 'V26900042', '22', 'juanpablozabala21@gmail.com', '1998-12-21', 'Urb.Bosque', 5, 9, NULL, '5', '3', 2, NULL, NULL, NULL, 2, 1, '4455', '3434', '434', 'Pago', '0424-4563683', 1),
+(10, '2021-09-08', 'Alejandro 2', 'Perez', '345435', '32', 'alejandro@gmail.com', '2021-08-29', 'Alejandro ', 5, 10, NULL, '4', '3', 2, NULL, NULL, NULL, 2, 2, '45', '434', '3', '23', '34325454', 1),
+(11, '2021-09-08', 'Alejandro', 'Perez', '345435', '32', 'alejandro@gmail.com', '2021-08-29', 'Alejandro ', 5, 10, NULL, '4', '3', 2, NULL, NULL, NULL, 2, 2, '45', '434', '3', '23', '34325454', 1);
 
 -- --------------------------------------------------------
 
@@ -116,16 +143,24 @@ INSERT INTO `depilarte_registros` (`id`, `fechaAtendido`, `Nombre`, `Apellido`, 
 CREATE TABLE `depilarte_tipotratamientos` (
   `id_tipo` int(11) NOT NULL,
   `id_tratamientos` int(11) NOT NULL,
-  `nombreTipo` varchar(50) NOT NULL
+  `typeTreatment` varchar(50) NOT NULL,
+  `typePrice` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `depilarte_tipotratamientos`
 --
 
-INSERT INTO `depilarte_tipotratamientos` (`id_tipo`, `id_tratamientos`, `nombreTipo`) VALUES
-(9, 5, 'Laser'),
-(10, 5, '4D');
+INSERT INTO `depilarte_tipotratamientos` (`id_tipo`, `id_tratamientos`, `typeTreatment`, `typePrice`) VALUES
+(9, 5, 'Laser', 35),
+(10, 5, '4D', 42),
+(11, 27, 'Tratamiento', 24),
+(12, 27, 'Tratamiento 2', 23),
+(13, 29, 'Laser', 200),
+(14, 29, 'Cera', 20),
+(15, 30, 'Rostro-Superior', 3),
+(16, 42, 'Rostroterciosuperior', 200),
+(17, 44, 'Rostro Superior Alto', 55);
 
 -- --------------------------------------------------------
 
@@ -138,17 +173,23 @@ CREATE TABLE `depilarte_tratamientos` (
   `Nombre` varchar(50) NOT NULL,
   `Especialista` int(11) NOT NULL,
   `CantidadSesiones` varchar(10) NOT NULL,
-  `PrecioTratamiento` varchar(10) NOT NULL,
   `ComisionOperadora` varchar(10) NOT NULL,
-  `DescripcionTratamiento` varchar(200) NOT NULL
+  `DescripcionTratamiento` varchar(200) NOT NULL,
+  `fechaRegistro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `depilarte_tratamientos`
 --
 
-INSERT INTO `depilarte_tratamientos` (`id_tratamientos`, `Nombre`, `Especialista`, `CantidadSesiones`, `PrecioTratamiento`, `ComisionOperadora`, `DescripcionTratamiento`) VALUES
-(5, 'Depilación Laser', 1, '5', '300', '2', 'Alta calidad');
+INSERT INTO `depilarte_tratamientos` (`id_tratamientos`, `Nombre`, `Especialista`, `CantidadSesiones`, `ComisionOperadora`, `DescripcionTratamiento`, `fechaRegistro`) VALUES
+(5, 'Depilación Laser', 1, '5', '2', 'Alta calidad', '2021-09-04'),
+(27, 'Depilacion 34', 1, '34', '3', '32', NULL),
+(30, 'Tratamiento 6', 1, '3', '4', 'adsd', NULL),
+(40, 'Depilación', 1, '5', '2', 'Paga', NULL),
+(41, 'Depilación', 1, '5', '2', 'Paga', NULL),
+(42, 'Depilación', 1, '5', '2', 'Paga', NULL),
+(44, 'Tratamiento 8', 1, '3', '4', 'Ahora si', NULL);
 
 -- --------------------------------------------------------
 
@@ -175,7 +216,7 @@ CREATE TABLE `depilarte_usuarios` (
 --
 
 INSERT INTO `depilarte_usuarios` (`id_usuarios`, `Nombre`, `Apellido`, `Cedula`, `Direccion`, `Telefono`, `Email`, `Cargo`, `FechaIngreso`, `FechaNacimiento`, `Edad`) VALUES
-(2, 'Juan', 'Zabala', 'V26900042', 'Urb. Bosque', '0424-4563683', 'juanpablozabala21@gmail.com', 1, '2021-09-04', '1998-12-21', '22');
+(2, 'Josh', 'Zabala', 'V26900042', 'Urb. Bosque', '1998-12-21', 'juanpablozabala21@gmail.com', 1, '2021-09-09', '1998-12-21', '22');
 
 -- --------------------------------------------------------
 
@@ -200,6 +241,12 @@ INSERT INTO `depilarte_zonatratamientos` (`id_zona`, `id_tratamiento`, `ZonaNomb
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `depilarte_cargos`
+--
+ALTER TABLE `depilarte_cargos`
+  ADD PRIMARY KEY (`id_cargo`);
 
 --
 -- Indices de la tabla `depilarte_metodopagos`
@@ -250,6 +297,12 @@ ALTER TABLE `depilarte_zonatratamientos`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `depilarte_cargos`
+--
+ALTER TABLE `depilarte_cargos`
+  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `depilarte_metodopagos`
 --
 ALTER TABLE `depilarte_metodopagos`
@@ -265,19 +318,19 @@ ALTER TABLE `depilarte_productos`
 -- AUTO_INCREMENT de la tabla `depilarte_registros`
 --
 ALTER TABLE `depilarte_registros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `depilarte_tipotratamientos`
 --
 ALTER TABLE `depilarte_tipotratamientos`
-  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `depilarte_tratamientos`
 --
 ALTER TABLE `depilarte_tratamientos`
-  MODIFY `id_tratamientos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tratamientos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `depilarte_usuarios`
