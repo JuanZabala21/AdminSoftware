@@ -10,18 +10,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 @EnableJSONDoc
-public class DepilarteBackendApplication extends SpringBootServletInitializer {
+public class DepilarteBackendApplication {
 	private static Logger log = LogManager.getLogger(DepilarteBackendApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(DepilarteBackendApplication.class, args);
 
 		log.info("Servicio Iniciado");
-	}
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(DepilarteBackendApplication.class);
 	}
 
 }

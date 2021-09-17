@@ -177,7 +177,6 @@ export class OperadoraComponent implements OnInit {
       if(this.form.get('treatment').value != null){
         this.globalService.httpServicesResponse({ treatmentType : this.form.get('treatment').value},
           environment.Url + '/global/treatmentTypes').subscribe(response => {
-            console.log(response);
               this.treatmentTypeList = response.treatmentTypes.filter(tp => tp.id !== -1);
 
         },
