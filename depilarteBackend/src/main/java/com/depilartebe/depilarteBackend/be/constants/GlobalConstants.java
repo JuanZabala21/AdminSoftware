@@ -21,12 +21,21 @@ public interface GlobalConstants {
     String TREATMENTS = "treatments";
     String TREATMENTTYPE = "treatmentType";
     String TREATMENTTYPERESULT = "treatmentTypes";
+    String REFERENCE = "reference";
+    String PRINCE_AND_COMISION = "priceAndComision";
+    String PRICE_RESULT = "priceResult";
+
 
     String METHODS_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener metodos de Pago </span></u></h3>"
             + "Método que retorna los metodos de Pago. </div>";
 
     String METHODSPAY_URI = "methodsPay";
     String TREATMENTSS_URI = "treatments";
+
+    String REFERENCE_URI = "reference";
+    String REFERENCE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Referencias </span></u></h3>"
+    + "Método que retorna las referencias. </div>";
+
 
     String TREATMENTSLIST_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Tratamientos </span></u></h3>"
             + "Método que retorna los Tratamientos. </div>";
@@ -41,6 +50,10 @@ public interface GlobalConstants {
     String TREATMENTTYPE_URI = "treatmentTypes";
     String TREATMENTTYPE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Cargos por Usuario </span></u></h3>"
             + "Método que retorna los usuarios por su cargo. </div>";
+
+    String PRICE_COMISION_URI = "priceAndComision";
+    String PRICE_COMISION_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener precio y comision </span></u></h3>"
+                + "Método que retorna el precio y la comision. </div>";
 
     String TREATMENTZONE_URI = "treatmentZone";
     String TREATMENTZONE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Cargos por Usuario </span></u></h3>"

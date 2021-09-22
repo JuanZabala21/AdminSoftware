@@ -44,6 +44,24 @@ public class GlobalController implements GlobalConstants {
 
         return mapResponse;
     }
+ 
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = REFERENCE_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = REFERENCE_URI, produces = ACCEPT)
+    public Map<String, Object> getReferences(){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            mapResponse = globalServices.getReferences();
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
 
     @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = TREATMENTSLIST_DESCRIPTION)
     @ApiResponseObject
@@ -102,6 +120,33 @@ public class GlobalController implements GlobalConstants {
             String treatment =  (params.containsKey(TREATMENTTYPE) && params.get(TREATMENTTYPE) != null && !params.get(TREATMENTTYPE).toString().isEmpty()) ? params.get(TREATMENTTYPE).toString() : null;
             if(treatment != null){
                 mapResponse = globalServices.getTreamentType(treatment);
+            }else{
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = PRICE_COMISION_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = PRICE_COMISION_URI, produces = ACCEPT)
+    public Map<String, Object> getPriceAndComision(@ApiBodyObject(clazz = String.class) @RequestBody String json){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+            String treatment =  (params.containsKey(PRINCE_AND_COMISION) && params.get(PRINCE_AND_COMISION) != null && !params.get(PRINCE_AND_COMISION).toString().isEmpty()) ? params.get(PRINCE_AND_COMISION).toString() : null;
+            if(treatment != null){
+                mapResponse = globalServices.getPriceAndComision(treatment);
             }else{
                 mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
                 mapResponse.put(MESSAGE, MESSAGE_ERROR);

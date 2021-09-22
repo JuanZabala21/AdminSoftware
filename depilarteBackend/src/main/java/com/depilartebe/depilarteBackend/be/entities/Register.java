@@ -83,6 +83,9 @@ import java.util.Date;
     @Column(name = "Telefono")
     private String telefono;
 
+    @Column(name= "Referencia")
+    private Long reference;
+
     @Column(name = "RegisterUser")
     private Long registerUser;
 
@@ -178,6 +181,12 @@ import java.util.Date;
         return Nota;
     }
 
+    public Long getReference(){
+        return reference;
+    }
+
+
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -270,6 +279,9 @@ import java.util.Date;
         Nota = nota;
     }
 
+    public void setReference(Long reference) {
+        this.reference = reference;
+    }
         public String getTelefono() {
             return telefono;
         }

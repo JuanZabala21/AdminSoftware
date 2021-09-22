@@ -79,7 +79,9 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             String priceTotal,
             String comission,
             String note,
-            String phone
+            String phone,
+            Long reference
+            
 
     ) {
         Map<String, Object> mapResult = new HashMap<>();
@@ -123,6 +125,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setComision(comission);
             register.setNota(note);
             register.setTelefono(phone);
+            register.setReference(reference);
             register.setFechaAtendido(dt.format(today));
             registerRepository.save(register);
 

@@ -25,6 +25,9 @@ export class OperadoraComponent implements OnInit {
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
+   price;
+   prices;
+   referenceList = [];
    chargerList = [];
    methodsList = [];
    treatmentTypeList = [];
@@ -37,6 +40,7 @@ export class OperadoraComponent implements OnInit {
    show : boolean = true;
    showOperative: boolean = true;
    showDoctor: boolean = true;
+   disablePrice: boolean = true;
     ngOnInit() {
       this.showDoctor = false;
       this.showOperative = false;
@@ -45,6 +49,8 @@ export class OperadoraComponent implements OnInit {
       this.getProduct();
       this.changeTypeTreament();
       this.changeCharger();
+      this.getReference();
+      this.disablePrice=true;
 
       this.route.queryParams.subscribe( params => {
         const {id} = params;
@@ -85,8 +91,9 @@ export class OperadoraComponent implements OnInit {
         userDoc: new FormControl(),
         formPay: new FormControl('',[Validators.required]),
         bono: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        totalPrice: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        comission: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+        totalPrice: new FormControl({value: null, disabled: true}, [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+        comission: new FormControl({value: null, disabled: true}, [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+        reference: new FormControl(),
         note: new FormControl()
         });
       this.form.controls.userRegister.valueChanges.subscribe(
@@ -186,6 +193,17 @@ export class OperadoraComponent implements OnInit {
       }
   }
 
+  changePriceAndComision() {
+    if(this.form.get('treatmentType').value != null){
+      this.globalService.httpServicesResponse({ priceAndComision : this.form.get('treatmentType').value},
+        environment.Url + '/global/priceAndComision').subscribe(response => { 
+            this.prices = response.treatmentTypes.precioTratamiento;
+        },
+        console.log)
+    } else {
+      return false;
+    }
+  }
   getTreatments() {
     this.globalService.httpServicesResponse(null,
       environment.Url + '/global/treatments').subscribe( response => {
@@ -207,6 +225,15 @@ export class OperadoraComponent implements OnInit {
       console.error);
   }
 
-
+  getReference(){
+    this.globalService.httpServicesResponse(null,
+      environment.Url + '/global/reference').subscribe( response => {
+        if (response.type === 'success') {
+          console.log(response);
+          this.referenceList = response.reference.filter(rf => rf.id !== -1);
+        }
+      },
+      console.error);
+  }
 
 }

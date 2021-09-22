@@ -43,6 +43,9 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
     @Autowired
     RegisterRepository registerRepository;
 
+    @Autowired
+    ReferenceRepository referenceRepository;
+
    public Map<String, Object> getPayMethods() {
        Map<String , Object> mapResult = new HashMap<>();
 
@@ -60,6 +63,23 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
        }
        return mapResult;
    }
+
+   public Map<String, Object> getReferences() {
+    Map<String , Object> mapResult = new HashMap<>();
+    try{
+     List<References> reference = referenceRepository.findAll();
+     mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+     mapResult.put(REFERENCE, reference);
+
+
+    }catch (Exception e) {
+        e.printStackTrace();
+        log.error("Se produjo un error: " + e.getMessage());
+        mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+        mapResult.put(MESSAGE, MESSAGE_ERROR);
+    }
+    return mapResult;
+}
 
    public Map<String, Object> getTreatments() {
        Map<String , Object> mapResult = new HashMap<>();
@@ -111,6 +131,24 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
         }
         return mapResult;
     }
+
+    public Map<String, Object> getPriceAndComision(String treament) {
+        Map<String, Object> mapResult = new HashMap<>();
+        try {
+            TreatmentType treatmentTypeList = treatmentTypeRepository.findPriceAndComision(Long.parseLong(treament));
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+            mapResult.put(PRICE_RESULT, treatmentTypeList);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
 
     public Map<String, Object> getTreatmentZone(String treament) {
         Map<String, Object> mapResult = new HashMap<>();
