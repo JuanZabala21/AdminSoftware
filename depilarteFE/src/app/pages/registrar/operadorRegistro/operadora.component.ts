@@ -17,6 +17,8 @@ declare let alertify: any;
 export class OperadoraComponent implements OnInit {
     private appModule: AppModule;
     form: FormGroup;
+    priceTotals: any;
+    comissionTotal: any;
   idPoint;
   isLoading = false;
   create = true;
@@ -26,7 +28,7 @@ export class OperadoraComponent implements OnInit {
      {value: 2, desc: 'Operadora'}
    ];
    price;
-   prices;
+   prices: null;
    referenceList = [];
    chargerList = [];
    methodsList = [];
@@ -40,7 +42,6 @@ export class OperadoraComponent implements OnInit {
    show : boolean = true;
    showOperative: boolean = true;
    showDoctor: boolean = true;
-   disablePrice: boolean = true;
     ngOnInit() {
       this.showDoctor = false;
       this.showOperative = false;
@@ -50,7 +51,7 @@ export class OperadoraComponent implements OnInit {
       this.changeTypeTreament();
       this.changeCharger();
       this.getReference();
-      this.disablePrice=true;
+      this.form.controls['totalPrice'].disable();
 
       this.route.queryParams.subscribe( params => {
         const {id} = params;
@@ -91,8 +92,8 @@ export class OperadoraComponent implements OnInit {
         userDoc: new FormControl(),
         formPay: new FormControl('',[Validators.required]),
         bono: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        totalPrice: new FormControl({value: null, disabled: true}, [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        comission: new FormControl({value: null, disabled: true}, [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+        totalPrice: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
+        comission: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
         reference: new FormControl(),
         note: new FormControl()
         });
@@ -136,17 +137,19 @@ export class OperadoraComponent implements OnInit {
   }
 
     register() {
+      this.form.controls['totalPrice'].enable();
       if(this.form.invalid) return;
-      console.log(this.form.value);
       let data = {
         ...this.form.value
       };
       this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerClient').subscribe(
         res => {
             if(res.type==='error'){
+              this.form.controls['totalPrice'].disable();
           alertify.error('Error al registrar');
        }else{
          console.log(this.form.value);
+              this.form.controls['totalPrice'].disable();
           this.form.reset();
        alertify.success('Registrado con exito');
        }
@@ -196,7 +199,7 @@ export class OperadoraComponent implements OnInit {
   changePriceAndComision() {
     if(this.form.get('treatmentType').value != null){
       this.globalService.httpServicesResponse({ priceAndComision : this.form.get('treatmentType').value},
-        environment.Url + '/global/priceAndComision').subscribe(response => { 
+        environment.Url + '/global/priceAndComision').subscribe(response => {
           console.log(response);
             this.prices = response.priceResult.precioTratamiento;
         },

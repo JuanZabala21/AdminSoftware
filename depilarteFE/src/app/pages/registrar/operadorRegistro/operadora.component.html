@@ -263,7 +263,7 @@
                 <mat-label>Total de la Venta</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Total</mat-label>
-                  <input matInput formControlName="totalPrice" [value]="prices" >
+                  <input matInput [disabled]="disabled" formControlName="totalPrice" [(ngModel)]="prices" type="number" >
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -280,7 +280,7 @@
             </div>
         </div>
         <div class="row">
-        
+
       </div>
           <div class="row">
             <div class="col-md-12">
