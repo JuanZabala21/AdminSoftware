@@ -197,7 +197,8 @@ export class OperadoraComponent implements OnInit {
     if(this.form.get('treatmentType').value != null){
       this.globalService.httpServicesResponse({ priceAndComision : this.form.get('treatmentType').value},
         environment.Url + '/global/priceAndComision').subscribe(response => { 
-            this.prices = response.treatmentTypes.precioTratamiento;
+          console.log(response);
+            this.prices = response.priceResult.precioTratamiento;
         },
         console.log)
     } else {
