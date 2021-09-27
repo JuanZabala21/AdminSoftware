@@ -2,6 +2,8 @@ package com.depilartebe.depilarteBackend.be.repository;
 
 import com.depilartebe.depilarteBackend.be.entities.TreatmentType;
 import com.depilartebe.depilarteBackend.be.entities.TreatmentZone;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONObject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -41,6 +43,9 @@ public interface TreatmentTypeRepository extends JpaRepository<TreatmentType, Lo
     @Query(nativeQuery = true, value = FIND_PRICE_AND_COMISION)
     TreatmentType findPriceAndComision(@Param("typePrice") Long typePrice);
 
+    String FIND_NAME_TYPETREATMENT = "SELECT * FROM `depilarte_tipotratamientos` WHERE typeTreatment = :typeName";
+    @Query(nativeQuery = true, value = FIND_NAME_TYPETREATMENT)
+    TreatmentType findTreatmentName(@Param("typeName") String typeName);
 
 
 

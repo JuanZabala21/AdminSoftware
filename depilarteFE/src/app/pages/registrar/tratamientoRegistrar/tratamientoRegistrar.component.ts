@@ -22,7 +22,7 @@ export class TratamientoRegistrarComponent implements OnInit {
   private appModule: AppModule;
   form: FormGroup;
   idPoint;
-  typeTreatment;
+  typeList = [];
   priceTreatment;
   isLoading = false;
   create = true;
@@ -81,6 +81,15 @@ export class TratamientoRegistrarComponent implements OnInit {
   }
 
   setValues(values) {
+    this.typeList = values.typePrice;
+    values.typePrice.forEach(element => {
+      const typePriceFormGroup = this.fb.group({
+        typeTreatment: '',
+        typePrice: ''
+      });
+      this.typePrices.push(typePriceFormGroup);
+    });
+
     this.form.setValue(values);
   }
 
@@ -117,6 +126,7 @@ export class TratamientoRegistrarComponent implements OnInit {
       typePrice: ''
     });
     this.typePrices.push(typePriceFormGroup);
+    this.typeList.push(typePriceFormGroup);
   }
 
   removeTypePice(indice: number) {

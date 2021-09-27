@@ -192,7 +192,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             ArrayList type,
             Long specialist,
             String sessions,
-            String precio,
             String comission,
             String description
     ) {
@@ -204,10 +203,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             if (id == null) {
                 treatment = new Treatment();
             } else {
-                treatmentRepository.findById(id);
+               treatment = treatmentRepository.findTreatmentById(id);
             }
-
-            Date today = new Date();
 
             /** Registrando **/
             treatment.setNameTreatment(name);
@@ -217,34 +214,44 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             treatment.setDescripcionTratamiento(description);
             treatmentRepository.save(treatment);
 
-            if (id != null) {
+            if(id != null){
+                 List<TreatmentType> item = treatmentTypeRepository.findTypeTreatmentByIdForEdit(id);
+                            for (int i = 0; i < type.size(); i++) {
+                                    if(i < item.size()){
+                                        String jsonString = type.get(i).toString().replace(" ", "-");
+                                        String typex = jsonString;
+                                        JSONObject obj = new JSONObject(typex);
+                                        TreatmentType newType = treatmentTypeRepository.findTreatmentName(item.get(i).getNombreTipo());
+                                        newType.setId_tratamientos(treatment.getId_tratamientos());
+                                        newType.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
+                                        newType.setPrecioTratamiento(obj.get("-typePrice").toString());
+                                        treatmentTypeRepository.save(newType);
+                                    }else{
+                                        String jsonString = type.get(i).toString().replace(" ", "-");
+                                        String typex = jsonString;
+                                        JSONObject obj = new JSONObject(typex);
+                                        TreatmentType typeT = new TreatmentType();
+                                        typeT.setId_tratamientos(treatment.getId_tratamientos());
+                                        typeT.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
+                                        typeT.setPrecioTratamiento(obj.get("-typePrice").toString());
+                                        treatmentTypeRepository.save(typeT);
+                                    }
+                            }
 
-                List<TreatmentType> typeTreatmentsList = treatmentTypeRepository.findTypeTreatmentByIdForEdit(id);
-
-                for (TreatmentType typ : typeTreatmentsList) {
-                    for (int i = 0; i < type.size(); i++) {
-                        String jsonString = type.get(i).toString();
-                        JSONObject obj = new JSONObject(jsonString);
-                        typ.setNombreTipo(obj.get("typeTreatment").toString());
-                        typ.setPrecioTratamiento(obj.get("typePrice").toString());
-                        treatmentTypeRepository.save(typ);
-                    }
-                    typeTreatmentsList.add(typ);
-                }
-
-            } else {
-
+            }else{
                 for (int i = 0; i < type.size(); i++) {
                     String jsonString = type.get(i).toString().replace(" ", "-");
                     String typex = jsonString;
                     JSONObject obj = new JSONObject(typex);
-                    TreatmentType item = new TreatmentType();
-                    item.setId_tratamientos(treatment.getId_tratamientos());
-                    item.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
-                    item.setPrecioTratamiento(obj.get("-typePrice").toString());
-                    treatmentTypeRepository.save(item);
+                    TreatmentType typeTre = new TreatmentType();
+                    typeTre.setId_tratamientos(treatment.getId_tratamientos());
+                    typeTre.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
+                    typeTre.setPrecioTratamiento(obj.get("-typePrice").toString());
+                    treatmentTypeRepository.save(typeTre);
                 }
             }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

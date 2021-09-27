@@ -215,7 +215,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 Long id = (params.containsKey(EMPLEADO_ID) &&
                         params.get(EMPLEADO_ID) != null &&
                         !params.get(EMPLEADO_ID).toString().isEmpty() )
-                        ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+                        ? Long.valueOf(params.get(EMPLEADO_ID).toString()) : null;
                 String nameTreatment = (params.containsKey(TREATMENT_NAME) && params.get(TREATMENT_NAME) != null
                         && !params.get(TREATMENT_NAME).toString().isEmpty()) ?
                         params.get(TREATMENT_NAME).toString() : null;
@@ -229,9 +229,6 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 String sessions = (params.containsKey(TREATMENT_SESSIONS) && params.get(TREATMENT_SESSIONS) != null
                         && !params.get(TREATMENT_SESSIONS).toString().isEmpty()) ?
                         params.get(TREATMENT_SESSIONS).toString() : null;
-                String precio = (params.containsKey(TREATMENT_PRICE) && params.get(TREATMENT_PRICE) != null
-                        && !params.get(TREATMENT_PRICE).toString().isEmpty()) ?
-                        params.get(TREATMENT_PRICE).toString() : null;
                 String comission = (params.containsKey(TREATMENT_COMISSION) && params.get(TREATMENT_COMISSION) != null
                         && !params.get(TREATMENT_COMISSION).toString().isEmpty()) ?
                         params.get(TREATMENT_COMISSION).toString() : null;
@@ -239,7 +236,7 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         && !params.get(TREATMENT_DESC).toString().isEmpty()) ?
                         params.get(TREATMENT_DESC).toString() : null;
 
-                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typePrice,specialist, sessions, precio,comission,description);
+                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typePrice,specialist, sessions,comission,description);
 
 
             } catch (Exception e) {
