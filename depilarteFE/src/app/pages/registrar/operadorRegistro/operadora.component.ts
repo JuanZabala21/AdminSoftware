@@ -23,6 +23,12 @@ export class OperadoraComponent implements OnInit {
   isLoading = false;
   create = true;
   edit = false;
+
+  total = {
+    disparoAntes: 0,
+    disparoDespues: 0,
+  };
+
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
@@ -86,7 +92,7 @@ export class OperadoraComponent implements OnInit {
         product: new FormControl(),
         beforeShots: new FormControl(),
         afterShots: new FormControl(),
-        diferents: new FormControl(),
+        diferents: new FormControl({value:'', disabled: true}),
         userOp: new FormControl(),
         userDoc: new FormControl(),
         formPay: new FormControl('',[Validators.required]),

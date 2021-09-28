@@ -197,8 +197,42 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
             Integer productosCount = productRepository.findProductosCount();
            
             List<List<Integer>> registerPerMonth = registerRepository.findRegisterByMonth();
+            List<List<Integer>> registerPerMonthInstagram = registerRepository.findReferenceByMonthInstagram();
+            List<List<Integer>> registerPerMonthAmigos = registerRepository.findReferenceByMonthAmigos();
+            List<List<Integer>> registerPerMonthOtros = registerRepository.findReferenceByMonthOtros();
+         
             List<Integer> resultados= new ArrayList<>();
+            List<Integer> resultadosInstagram= new ArrayList<>();
+            List<Integer> resultadosAmigos= new ArrayList<>();
+            List<Integer> resultadosOtros= new ArrayList<>();
 
+
+            for(int i=1; i<13; i++){
+                resultadosInstagram.add(0);
+               for(int j=0; j<registerPerMonthInstagram.size(); j++){
+                   if(i==registerPerMonthInstagram.get(j).get(0)){
+                       resultadosInstagram.set(i-1, registerPerMonthInstagram.get(j).get(1));
+                   }
+               }
+           }
+           for(int i=1; i<13; i++){
+            resultadosAmigos.add(0);
+           for(int j=0; j<registerPerMonthAmigos.size(); j++){
+               if(i==registerPerMonthAmigos.get(j).get(0)){
+                resultadosAmigos.set(i-1, registerPerMonthAmigos.get(j).get(1));
+               }
+           }
+       }
+        
+        for(int i=1; i<13; i++){
+            resultadosOtros.add(0);
+        for(int j=0; j<registerPerMonthOtros.size(); j++){
+            if(i==registerPerMonthOtros.get(j).get(0)){
+                resultadosOtros.set(i-1, registerPerMonthOtros.get(j).get(1));
+            }
+        }
+    }
+    
          
             for(int i=1; i<13; i++){
                  resultados.add(0);
@@ -208,6 +242,10 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
                     }
                 }
             }
+            
+            dashboard.setRegisterPerInstagram(resultadosInstagram);
+            dashboard.serRegisterPerMonthAmigos(resultadosAmigos);
+            dashboard.setRegisterPerMonthOtros(resultadosOtros);
             dashboard.setRegisterPerMonth(resultados);
             dashboard.setRegisterCount(registerCount);
             dashboard.setEmpleadosCount(empleadosCount);

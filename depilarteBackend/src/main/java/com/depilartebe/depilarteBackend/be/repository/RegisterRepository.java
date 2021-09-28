@@ -43,6 +43,16 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
          @Query(nativeQuery = true, value= FIND_REGISTER_FOR_ID)
          Register findRegisterById(@Param("id") Long id);
 
+        String FIND_REFERENCE_PER_MONTH_INSTAGRAM = "select month(fechaAtendido) as month, sum(1) as total from depilarte_registros where year(fechaAtendido) = year(now()) AND Referencia  = 1  group by  month(fechaAtendido)";
+        @Query(nativeQuery = true, value = FIND_REFERENCE_PER_MONTH_INSTAGRAM)
+        List<List<Integer>> findReferenceByMonthInstagram();
 
+        String FIND_REFERENCE_PER_MONTH_AMIGOS = "select month(fechaAtendido) as month, sum(1) as total from depilarte_registros where year(fechaAtendido) = year(now()) AND Referencia  = 2  group by  month(fechaAtendido)";
+        @Query(nativeQuery = true, value = FIND_REFERENCE_PER_MONTH_AMIGOS)
+        List<List<Integer>> findReferenceByMonthAmigos();
+
+        String FIND_REFERENCE_PER_MONTH_OTROS = "select month(fechaAtendido) as month, sum(1) as total from depilarte_registros where year(fechaAtendido) = year(now()) AND Referencia  = 3  group by  month(fechaAtendido)";
+        @Query(nativeQuery = true, value = FIND_REFERENCE_PER_MONTH_OTROS)
+        List<List<Integer>> findReferenceByMonthOtros();
 
 }

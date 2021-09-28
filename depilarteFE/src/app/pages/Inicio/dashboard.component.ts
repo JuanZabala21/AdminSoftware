@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit{
         const data = {
         };
         this.globalServices.httpServicesResponse(data, environment.Url + 'global/dashboard').subscribe( res => {
+          console.log(res.dashboard);
           this.registerCount= res.dashboard.registerCount;
           this.empleadosCount= res.dashboard.empleadosCount;
           this.tratamientosCount= res.dashboard.tratamientosCount;
@@ -62,9 +63,9 @@ export class DashboardComponent implements OnInit{
           this.lineChart.config.data.datasets[0].data= res.dashboard.registerPerMonth;
           this.lineChart.update();
 
-          this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonth;
-          this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonth;
-          this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonth;
+          this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonthInstagram;
+          this.lineChart2.config.data.datasets[1].data= res.dashboard.registerPerMonthAmigos;
+          this.lineChart2.config.data.datasets[2].data= res.dashboard.registerPerMonthOtros;
           this.lineChart2.update();
 
           }
@@ -142,7 +143,7 @@ export class DashboardComponent implements OnInit{
       var speedCanvas = document.getElementById("speedChart2");
 
       var dataFirst = {
-        data: [10, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 20],
+        data: [],
         fill: false,
         borderColor: '#fcc468',
         backgroundColor: 'transparent',
@@ -164,7 +165,7 @@ export class DashboardComponent implements OnInit{
       };
 
       var dataThird = {
-        data: [21, 23, 34, 56, 11, 12, 23, 34, 44, 12, 55, 43],
+        data: [],
         fill: false,
         borderColor: '#ef8157',
         backgroundColor: 'transpartent',

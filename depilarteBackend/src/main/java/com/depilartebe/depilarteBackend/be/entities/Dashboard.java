@@ -13,7 +13,34 @@ public class Dashboard {
     private Integer productosCount;
 
     private List<Integer> registerPerMonth; 
+    private List<Integer> registerPerMonthInstagram; 
+    private List<Integer> registerPerMonthAmigos; 
+    private List<Integer> registerPerMonthOtros; 
 
+
+
+
+    public List<Integer> getRegisterPerMonthInstagram() {
+        return registerPerMonthInstagram;
+    }
+
+    public List<Integer> getRegisterPerMonthAmigos() {
+        return registerPerMonthAmigos;
+    }
+
+    public List<Integer> getRegisterPerMonthOtros() {
+        return registerPerMonthOtros;
+    }
+
+    public void setRegisterPerInstagram(List<Integer> registerPerMonthInstagram) {
+        this.registerPerMonthInstagram = registerPerMonthInstagram;
+    }
+    public void serRegisterPerMonthAmigos(List<Integer> registerPerMonthAmigos) {
+        this.registerPerMonthAmigos = registerPerMonthAmigos;
+    }
+    public void setRegisterPerMonthOtros(List<Integer> registerPerMonthOtros) {
+        this.registerPerMonthOtros = registerPerMonthOtros;
+    }
 
     public Integer getRegisterCount() {
         return registerCount;
