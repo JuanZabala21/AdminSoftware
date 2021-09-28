@@ -6,7 +6,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {environment} from '../../../../environments/environment';
-import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 import { saveAs } from 'file-saver';
 
  interface HistorialData {
@@ -40,7 +39,7 @@ import { saveAs } from 'file-saver';
 
 export class HistorialDocComponent implements OnInit {
   filters: FormGroup;
-  fileName : string = '';
+  fileName : string = 'Registros.xlsx';
   chargerList = [];
   usuarioList = [
     {value: 1, desc: 'Doctora'},
@@ -99,7 +98,6 @@ export class HistorialDocComponent implements OnInit {
       ...this.filters.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRegister').subscribe( res => {
-        console.log(res.resultList);
         this.dataSource = new MatTableDataSource(res.resultList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -148,7 +146,7 @@ export class HistorialDocComponent implements OnInit {
             let byteArray = new Uint8Array(byteNumbers);
             byteArrays.push(byteArray);
           }
-          const blob = new Blob(byteArrays, {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          const blob = new Blob(byteArrays, {type: 'application/vnd.ms-excel'});
           saveAs(blob, this.fileName);
         }
       },

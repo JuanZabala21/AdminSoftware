@@ -27,7 +27,7 @@ interface HistorialData {
 })
 export class EmpleadoHistorialComponent implements OnInit {
   filters: FormGroup;
-  fileName : string = '';
+  fileName : string = 'Empleados.xlsx';
   treatmentTypeList = [];
   treatmentZoneList = [];
   displayedColumns: string[] =
@@ -115,7 +115,7 @@ export class EmpleadoHistorialComponent implements OnInit {
             let byteArray = new Uint8Array(byteNumbers);
             byteArrays.push(byteArray);
           }
-          const blob = new Blob(byteArrays, {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          const blob = new Blob(byteArrays, {type: 'application/vnd.ms-excel'});
           saveAs(blob, this.fileName);
         }
       },

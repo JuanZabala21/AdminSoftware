@@ -26,7 +26,7 @@ interface HistorialData {
 
 export class InventarioComponent implements OnInit {
   filters: FormGroup;
-  fileName : string = '';
+  fileName : string = 'Productos.xlsx';
   usuarioList = [
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
@@ -104,7 +104,7 @@ export class InventarioComponent implements OnInit {
             let byteArray = new Uint8Array(byteNumbers);
             byteArrays.push(byteArray);
           }
-          const blob = new Blob(byteArrays, {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          const blob = new Blob(byteArrays, {type: 'application/vnd.ms-excel'});
           saveAs(blob, this.fileName);
         }
       },

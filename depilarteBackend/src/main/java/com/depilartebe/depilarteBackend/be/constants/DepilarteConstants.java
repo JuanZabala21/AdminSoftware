@@ -90,7 +90,7 @@ public interface DepilarteConstants {
     static final String SPACE                                       = " ";
     static final String SLASH		 			    		        = "/";
     static final String TWO_POINTS                                  = ":";
-    static final String PATH_EXCEL = "/Users/Juan Pablo Zabala/AdminSoftware/Excel/";
+    static final String PATH_EXCEL                                  = "/ExcelDepilarte/";
     String RESULT_ENCODED_STRING                                    = "resultEncodedString";
 
     //Products

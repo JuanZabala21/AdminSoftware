@@ -1196,13 +1196,11 @@ let RegistrarProductoComponent = class RegistrarProductoComponent {
             id
         };
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].Url + 'depilarte/getProducts').subscribe(res => {
-            console.log(res);
             this.setValues(res);
             this.isLoading = false;
             this.create = false;
             this.edit = true;
         }, e => {
-            console.log(e);
             this.isLoading = false;
         });
     }
@@ -1212,14 +1210,12 @@ let RegistrarProductoComponent = class RegistrarProductoComponent {
     register() {
         if (this.form.invalid)
             return;
-        console.log(this.form.value);
         let data = Object.assign({}, this.form.value);
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].Url + '/depilarte/registerProduct').subscribe(res => {
             if (res.type === 'error') {
                 alertify.error('Error al registrar');
             }
             else {
-                console.log(this.form.value);
                 this.form.reset();
                 alertify.success('Registrado con exito');
             }
@@ -1267,7 +1263,7 @@ RegistrarProductoComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decora
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-success\">\r\n              <i class=\"nc-icon nc-circle-10 text-success\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\">Pacientes Registrados</p><br>\r\n              <p class=\"card-title\">  {{registerCount}}  </p>\r\n                \r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n        \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-warning\">\r\n              <i class=\"nc-icon nc-paper text-warning\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\">Tratamientos Registrados</p><br>\r\n              <p class=\"card-title\">{{tratamientosCount}}</p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n          \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-warning\">\r\n              <i class=\"nc-icon nc-single-02 text-danger\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\" style=\"width: 100%;\">Empleados Registrados</p><br>\r\n              <p class=\"card-title\">{{empleadosCount}}\r\n                <p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n          \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-warning\">\r\n              <i class=\"nc-icon nc-bag-16 text-primary\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\">Productos Registrados</p><br>\r\n              <p class=\"card-title\">{{productosCount}}\r\n                <p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n         \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- <div class=\"row\">\r\n  <div class=\"col-md-12\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header \">\r\n        <h5 class=\"card-title\">Users Behavior</h5>\r\n        <p class=\"card-category\">24 Hours performance</p>\r\n      </div> -->\r\n        <!-- <div class=\"card-body \">\r\n           <canvas id=chartHours width=\"400\" height=\"100\"></canvas>\r\n        </div> -->\r\n      <!-- <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n          <i class=\"fa fa-history\"></i> Updated 3 minutes ago\r\n        </div>\r\n      </div> \r\n    </div>\r\n  </div>\r\n</div> -->\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header \">\r\n        <h5 class=\"card-title\">Estadisticas de Registros</h5>\r\n        \r\n      </div>\r\n      <div class=\"card-body \">\r\n        <canvas id=\"chartEmail\"></canvas>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <div class=\"legend\">\r\n          <i class=\"fa fa-circle text-danger\"></i> Empleados <br>\r\n          <i class=\"fa fa-circle text-warning\"></i> Tratamientos <br>\r\n          <i class=\"fa fa-circle text-primary\"></i> Productos <br>\r\n          <i class=\"fa fa-circle text-success\"></i> Pacientes <br>\r\n        </div>\r\n        <hr>\r\n        <div class=\"stats\">\r\n          <i class=\"fa fa-calendar\"></i> {{year}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-8\">\r\n    <div class=\"card card-chart\">\r\n      <div class=\"card-header\">\r\n        <h5 class=\"card-title\">Registro de Pacientes por mes </h5>\r\n        <p class=\"card-category\">{{year}}</p>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <canvas id=\"speedChart\" width=\"400\" height=\"100\"></canvas>\r\n      </div>\r\n      <div class=\"card-footer\">\r\n        <div class=\"chart-legend\">\r\n          <i class=\"fa fa-circle text-success\"></i> Pacientes Registrados\r\n          <!-- <i class=\"fa fa-circle text-warning\"></i> BMW 5 Series -->\r\n        </div>\r\n        <hr/>\r\n        \r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-success\">\r\n              <i class=\"nc-icon nc-circle-10 text-success\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\">Pacientes Registrados</p><br>\r\n              <p class=\"card-title\">  {{registerCount}}  </p>\r\n                \r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n        \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-warning\">\r\n              <i class=\"nc-icon nc-paper text-warning\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\">Tratamientos Registrados</p><br>\r\n              <p class=\"card-title\">{{tratamientosCount}}</p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n          \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-warning\">\r\n              <i class=\"nc-icon nc-single-02 text-danger\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\" style=\"width: 100%;\">Empleados Registrados</p><br>\r\n              <p class=\"card-title\">{{empleadosCount}}\r\n                <p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n          \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-lg-3 col-md-6 col-sm-6\">\r\n    <div class=\"card card-stats\">\r\n      <div class=\"card-body \">\r\n        <div class=\"row\">\r\n          <div class=\"col-2 col-md-2\">\r\n            <div class=\"icon-big text-center icon-warning\">\r\n              <i class=\"nc-icon nc-bag-16 text-primary\"></i>\r\n            </div>\r\n          </div>\r\n          <div class=\"col-9 col-md-10\">\r\n            <div class=\"numbers\">\r\n              <p class=\"card-category\">Productos Registrados</p><br>\r\n              <p class=\"card-title\">{{productosCount}}\r\n                <p>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n         \r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header \">\r\n        <h5 class=\"card-title\">Estadisticas de Registros</h5>\r\n        \r\n      </div>\r\n      <div class=\"card-body \">\r\n        <canvas id=\"chartEmail\"></canvas>\r\n      </div>\r\n      <div class=\"card-footer \">\r\n        <div class=\"legend\">\r\n          <i class=\"fa fa-circle text-danger\"></i> Empleados <br>\r\n          <i class=\"fa fa-circle text-warning\"></i> Tratamientos <br>\r\n          <i class=\"fa fa-circle text-primary\"></i> Productos <br>\r\n          <i class=\"fa fa-circle text-success\"></i> Pacientes <br>\r\n        </div>\r\n        <hr>\r\n        <div class=\"stats\">\r\n          <i class=\"fa fa-calendar\"></i> {{year}}\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-8\">\r\n    <div class=\"card card-chart\">\r\n      <div class=\"card-header\">\r\n        <h5 class=\"card-title\">Registro de Pacientes por mes </h5>\r\n        <p class=\"card-category\">{{year}}</p>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <canvas id=\"speedChart\" width=\"400\" height=\"100\"></canvas>\r\n      </div>\r\n      <div class=\"card-footer\">\r\n        <div class=\"chart-legend\">\r\n          <i class=\"fa fa-circle text-success\"></i> Pacientes Registrados\r\n          <!-- <i class=\"fa fa-circle text-warning\"></i> BMW 5 Series -->\r\n        </div>\r\n        <hr/>\r\n        \r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"col-md-12\">\r\n  <div class=\"card card-chart\">\r\n    <div class=\"card-header\">\r\n      <h5 class=\"card-title\">Registro de Pacientes por mes </h5>\r\n      <p class=\"card-category\">{{year}}</p>\r\n    </div>\r\n    <div class=\"card-body\">\r\n      <canvas id=\"speedChart2\" width=\"400\" height=\"100\"></canvas>\r\n    </div>\r\n    <div class=\"card-footer\">\r\n      <div class=\"chart-legend\">\r\n        <i class=\"fa fa-circle text-success\"></i> Pacientes referidos de Instagram <br>\r\n        <i class=\"fa fa-circle text-warning\"></i> Pacientes referidos de Amigos <br>\r\n        <i class=\"fa fa-circle text-danger\"></i> Pacientes referidos de Otros\r\n        <!-- <i class=\"fa fa-circle text-warning\"></i> BMW 5 Series -->\r\n      </div>\r\n      <hr/>\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- <div class=\"row\">\r\n  <div class=\"col-md-12\">\r\n    <div class=\"card \">\r\n      <div class=\"card-header \">\r\n        <h5 class=\"card-title\">Users Behavior</h5>\r\n        <p class=\"card-category\">24 Hours performance</p>\r\n      </div> \r\n      <div class=\"card-body \">\r\n           <canvas id=chartHours width=\"400\" height=\"100\"></canvas>\r\n        </div> \r\n      <div class=\"card-footer \">\r\n        <hr>\r\n        <div class=\"stats\">\r\n          <i class=\"fa fa-history\"></i> Updated 3 minutes ago\r\n        </div>\r\n      </div> \r\n    </div>\r\n  </div>\r\n</div> -->\r\n\r\n");
 
 /***/ }),
 
@@ -2762,7 +2758,7 @@ let InventarioComponent = class InventarioComponent {
         this.router = router;
         this.route = route;
         this.globalServices = globalServices;
-        this.fileName = '';
+        this.fileName = 'Productos.xlsx';
         this.usuarioList = [
             { value: 1, desc: 'Doctora' },
             { value: 2, desc: 'Operadora' }
@@ -2790,7 +2786,6 @@ let InventarioComponent = class InventarioComponent {
     search() {
         const data = Object.assign({}, this.filters.value);
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].Url + '/depilarte/searchProducts').subscribe(res => {
-            console.log(res.resultList);
             this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](res.resultList);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
@@ -2804,7 +2799,6 @@ let InventarioComponent = class InventarioComponent {
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].Url + 'depilarte/generateProducts').subscribe(data => {
             const result = data;
             if (result.type == 'error') {
-                console.log('error');
             }
             else {
                 var file = result.resultEncodedString;
@@ -2820,7 +2814,7 @@ let InventarioComponent = class InventarioComponent {
                     let byteArray = new Uint8Array(byteNumbers);
                     byteArrays.push(byteArray);
                 }
-                const blob = new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const blob = new Blob(byteArrays, { type: 'application/vnd.ms-excel' });
                 Object(file_saver__WEBPACK_IMPORTED_MODULE_11__["saveAs"])(blob, this.fileName);
             }
         }, error => {
@@ -3622,7 +3616,7 @@ let EmpleadoHistorialComponent = class EmpleadoHistorialComponent {
         this.router = router;
         this.route = route;
         this.globalServices = globalServices;
-        this.fileName = '';
+        this.fileName = 'Empleados.xlsx';
         this.treatmentTypeList = [];
         this.treatmentZoneList = [];
         this.displayedColumns = [
@@ -3657,7 +3651,6 @@ let EmpleadoHistorialComponent = class EmpleadoHistorialComponent {
     search() {
         const data = Object.assign({}, this.filters.value);
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].Url + '/depilarte/searchWorker').subscribe(res => {
-            console.log(res.resultList);
             this.treatmentTypeList = res.resultList.treatmentType;
             this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](res.resultList);
             this.dataSource.paginator = this.paginator;
@@ -3672,7 +3665,6 @@ let EmpleadoHistorialComponent = class EmpleadoHistorialComponent {
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].Url + 'depilarte/generateEmpleados').subscribe(data => {
             const result = data;
             if (result.type == 'error') {
-                console.log('error');
             }
             else {
                 var file = result.resultEncodedString;
@@ -3688,7 +3680,7 @@ let EmpleadoHistorialComponent = class EmpleadoHistorialComponent {
                     let byteArray = new Uint8Array(byteNumbers);
                     byteArrays.push(byteArray);
                 }
-                const blob = new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const blob = new Blob(byteArrays, { type: 'application/vnd.ms-excel' });
                 Object(file_saver__WEBPACK_IMPORTED_MODULE_11__["saveAs"])(blob, this.fileName);
             }
         }, error => {
@@ -4530,7 +4522,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n <div class=\"col-md-8\" >\r\n    <div class=\"card card-user\" style=\"width: 150%;\">\r\n      <div class=\"card-header\">\r\n        <h1 class=\"card-title\">Registrar Paciente</h1>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <form [formGroup]=\"form\">\r\n\r\n          <div class=\"row\">\r\n          <div class=\"col-md-3 pr-1\">\r\n            <div class=\"form-group\">\r\n              <mat-label>Usuario registrante</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Usuario registrante</mat-label>\r\n                <mat-select formControlName=\"userRegister\" (ngModelChange)=\"changeCharger()\">\r\n                  <mat-option *ngFor=\"let us of userList\" [value]=\"us.value\">\r\n                    {{us.desc}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n          </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"formControl\">\r\n                <mat-label>Nombre</mat-label>\r\n                <mat-form-field  appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Nombre</mat-label>\r\n                  <input matInput formControlName=\"name\" type=\"text\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Apellido</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Apellido</mat-label>\r\n                  <input matInput formControlName=\"lastName\" type=\"text\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-2 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Cedula</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Cedula</mat-label>\r\n                  <input matInput  formControlName=\"identification\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-2 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Edad</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Edad</mat-label>\r\n                  <input matInput formControlName=\"age\" type=\"number\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label for=\"exampleInputEmail1\">Email</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Email</mat-label>\r\n                  <input matInput formControlName=\"email\" type=\"email\" placeholder=\"email@gmail.com\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Teléfono</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Teléfono</mat-label>\r\n                  <input matInput  formControlName=\"phone\" type=\"tel\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Fecha de Nacimiento</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <input matInput  formControlName=\"birthday\" type=\"date\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Dirección</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Dirección</mat-label>\r\n                  <input matInput  formControlName=\"address\" type=\"text\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div  class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Tratamiento</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Tratamiento</mat-label>\r\n                <mat-select formControlName=\"treatment\"  (ngModelChange)=\"changeTypeTreament()\">\r\n                  <mat-option *ngFor=\"let te of treatmentsList\" [value]=\"te.id_tratamientos\">\r\n                    {{te.nameTreatment}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Tipos del Tratamiento</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Tipos</mat-label>\r\n                  <mat-select [value]=\"treatmentType\" formControlName=\"treatmentType\">\r\n                    <mat-option  *ngFor=\"let tp of treatmentTypeList\" [value]=\"tp.id_tipo\">\r\n                      {{tp.nombreTipo}}\r\n                    </mat-option>\r\n                  </mat-select>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-md-4 pl-1\">\r\n              <mat-label>Forma de pago</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Forma de pago</mat-label>\r\n                <mat-select  formControlName=\"formPay\" name=\"Pago\">\r\n                  <mat-option *ngFor=\"let mp of methodsList\" [value]=\"mp.id\">\r\n                    {{mp.metodoPago}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n          </div>\r\n\r\n          <div *ngIf=\"showDoctor\"  class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Cantidad de sesiones</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Sesiones</mat-label>\r\n                  <input matInput  formControlName=\"sessions\" type=\"number\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Asistencia</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Asistencia</mat-label>\r\n                  <input matInput  formControlName=\"assistent\" type=\"number\" placeholder=\"Sesiones\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Producto Utilizado</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Producto</mat-label>\r\n                  <mat-select  formControlName=\"product\">\r\n                    <mat-option *ngFor=\"let po of productList\" [value]=\"po.id_productos\">\r\n                      {{po.nombre}}\r\n                    </mat-option>\r\n                  </mat-select>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div *ngIf=\"showOperative\" class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Disparos de la Pistola</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Antes</mat-label>\r\n                  <input matInput  formControlName=\"beforeShots\" type=\"number\" placeholder=\"Antes\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Disparos de la Pistola</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Despues</mat-label>\r\n                  <input matInput type=\"number\" formControlName=\"afterShots\" placeholder=\"Despues\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Diferencia</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Diferencia</mat-label>\r\n                  <input matInput formControlName=\"diferents\" type=\"number\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div *ngIf=\"showOperative\" class=\"col-md-4 pr-1\">\r\n              <mat-label>Operadora Encargada</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Operadora Encargada</mat-label>\r\n                <mat-select   formControlName=\"userOp\" name=\"Operadora\">\r\n                  <mat-option [ngModel]=\"userAtt\"  *ngFor=\"let ch of chargerList\" [value]=\"ch.id\">\r\n                    {{ch.nombre}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n\r\n            <div  *ngIf=\"showDoctor\" class=\"col-md-4 pr-1\">\r\n              <mat-label>Doctora Encargada</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Doctora Encargada</mat-label>\r\n                <mat-select   formControlName=\"userDoc\" name=\"Operadora\">\r\n                  <mat-option [ngModel]=\"userAtt\" *ngFor=\"let ch of chargerList\" [value]=\"ch.id\">\r\n                    {{ch.nombre}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n\r\n\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Abonado</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Abonado</mat-label>\r\n                  <input matInput  formControlName=\"bono\" type=\"number\">\r\n                  <span matPrefix>$&nbsp;</span>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Total de la Venta</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Total</mat-label>\r\n                  <input matInput  formControlName=\"totalPrice\" type=\"number\" disabled>\r\n                  <span matPrefix>$&nbsp;</span>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Comisión de la Operadora</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Comision</mat-label>\r\n                  <input matInput  formControlName=\"comission\" type=\"number\" disabled>\r\n                  <span matPrefix>%&nbsp;</span>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n        </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Nota</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Comentario</mat-label>\r\n                  <textarea matInput formControlName=\"note\" type=\"text\"></textarea>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n              <div class=\"form-group\">\r\n                <div class=\"col-md-4 pr-1\">\r\n                  <button\r\n                    mat-raised-button color=\"primary\"\r\n                    type=\"file\" (change)=\"uploadFile($event)\">\r\n                    Foto antes de la sesión\r\n                    <input type=\"file\" (change)=\"uploadFile($event)\" >\r\n                  </button>\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <div class=\"col-md-4 pl-1\">\r\n                  <button mat-raised-button color=\"primary\">\r\n                    Foto despues de la sesión\r\n                   <input type=\"file\" (change)=\"uploadFile($event)\" >\r\n                  </button>\r\n                </div>\r\n             </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"update ml-auto mr-auto\">\r\n              <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"register()\">Registrar</button>\r\n            </div>\r\n          </div>\r\n\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n <div class=\"col-md-8\" >\r\n    <div class=\"card card-user\" style=\"width: 150%;\">\r\n      <div class=\"card-header\">\r\n        <h1 class=\"card-title\">Registrar Paciente</h1>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <form [formGroup]=\"form\">\r\n\r\n          <div class=\"row\">\r\n          <div class=\"col-md-3 pr-1\">\r\n            <div class=\"form-group\">\r\n              <mat-label>Usuario registrante</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Usuario registrante</mat-label>\r\n                <mat-select formControlName=\"userRegister\" (ngModelChange)=\"changeCharger()\">\r\n                  <mat-option *ngFor=\"let us of userList\" [value]=\"us.value\">\r\n                    {{us.desc}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n          </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"formControl\">\r\n                <mat-label>Nombre</mat-label>\r\n                <mat-form-field  appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Nombre</mat-label>\r\n                  <input matInput formControlName=\"name\" type=\"text\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Apellido</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Apellido</mat-label>\r\n                  <input matInput formControlName=\"lastName\" type=\"text\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-2 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Cedula</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Cedula</mat-label>\r\n                  <input matInput  formControlName=\"identification\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-2 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Edad</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Edad</mat-label>\r\n                  <input matInput formControlName=\"age\" type=\"number\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label for=\"exampleInputEmail1\">Email</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Email</mat-label>\r\n                  <input matInput formControlName=\"email\" type=\"email\" placeholder=\"email@gmail.com\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Teléfono</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Teléfono</mat-label>\r\n                  <input matInput  formControlName=\"phone\" type=\"tel\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Fecha de Nacimiento</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <input matInput  formControlName=\"birthday\" type=\"date\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-6 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Dirección</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Dirección</mat-label>\r\n                  <input matInput  formControlName=\"address\" type=\"text\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-6 pl-1\">\r\n              <mat-label>Referencia</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Referencia</mat-label>\r\n                <mat-select   formControlName=\"reference\">\r\n                  <mat-option *ngFor=\"let rf of referenceList\" [value]=\"rf.id\">\r\n                    {{rf.reference}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n          </div>\r\n\r\n          <div  class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Tratamiento</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Tratamiento</mat-label>\r\n                <mat-select formControlName=\"treatment\" (ngModelChange)=\"changeTypeTreament()\">\r\n                  <mat-option *ngFor=\"let te of treatmentsList\" [value]=\"te.id_tratamientos\">\r\n                    {{te.nameTreatment}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Tipos del Tratamiento</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Tipos</mat-label>\r\n                  <mat-select [value]=\"treatmentType\" formControlName=\"treatmentType\"  (ngModelChange)=\"changePriceAndComision()\">\r\n                    <mat-option  *ngFor=\"let tp of treatmentTypeList\" [value]=\"tp.id_tipo\">\r\n                      {{tp.nombreTipo}}\r\n                    </mat-option>\r\n                  </mat-select>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-md-4 pl-1\">\r\n              <mat-label>Forma de pago</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Forma de pago</mat-label>\r\n                <mat-select  formControlName=\"formPay\" name=\"Pago\">\r\n                  <mat-option *ngFor=\"let mp of methodsList\" [value]=\"mp.id\">\r\n                    {{mp.metodoPago}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n          </div>\r\n\r\n          <div *ngIf=\"showDoctor\"  class=\"row\">\r\n            <div class=\"col-md-6 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Cantidad de sesiones</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Sesiones</mat-label>\r\n                  <input matInput  formControlName=\"sessions\" type=\"number\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-md-6 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Producto Utilizado</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Producto</mat-label>\r\n                  <mat-select  formControlName=\"product\">\r\n                    <mat-option *ngFor=\"let po of productList\" [value]=\"po.id_productos\">\r\n                      {{po.nombre}}\r\n                    </mat-option>\r\n                  </mat-select>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div *ngIf=\"showOperative\" class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Disparos de la Pistola</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Antes</mat-label>\r\n                  <input matInput  formControlName=\"beforeShots\" type=\"number\" placeholder=\"Antes\" [(ngModel)]=\"total.disparoAntes\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Disparos de la Pistola</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Despues</mat-label>\r\n                  <input matInput type=\"number\" formControlName=\"afterShots\" placeholder=\"Despues\" [(ngModel)]=\"total.disparoDespues\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Diferencia</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Diferencia</mat-label>\r\n                  <input matInput [disabled]=\"disabled\" formControlName=\"diferents\" [value]=\"total.disparoAntes - total.disparoDespues\">\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div *ngIf=\"showOperative\" class=\"col-md-4 pr-1\">\r\n              <mat-label>Operadora Encargada</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Operadora Encargada</mat-label>\r\n                <mat-select   formControlName=\"userOp\" >\r\n                  <mat-option *ngFor=\"let ch of chargerList\" [value]=\"ch.id\">\r\n                    {{ch.nombre}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n\r\n            <div  *ngIf=\"showDoctor\" class=\"col-md-4 pr-1\">\r\n              <mat-label>Doctora Encargada</mat-label>\r\n              <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                <mat-label>Doctora Encargada</mat-label>\r\n                <mat-select formControlName=\"userDoc\">\r\n                  <mat-option *ngFor=\"let ch of chargerList\" [value]=\"ch.id\">\r\n                    {{ch.nombre}}\r\n                  </mat-option>\r\n                </mat-select>\r\n              </mat-form-field>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-md-4 pr-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Abonado</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Abonado</mat-label>\r\n                  <input matInput  formControlName=\"bono\" type=\"number\">\r\n                  <span matPrefix>$&nbsp;</span>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 px-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Total de la Venta</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Total</mat-label>\r\n                  <input matInput [disabled]=\"disabled\" formControlName=\"totalPrice\" [(ngModel)]=\"prices\" type=\"number\" >\r\n                  <span matPrefix>$&nbsp;</span>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-4 pl-1\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Comisión de la Operadora</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Comision</mat-label>\r\n                  <input matInput  formControlName=\"comission\">\r\n                  <span matPrefix>%&nbsp;</span>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"row\">\r\n\r\n      </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n              <div class=\"form-group\">\r\n                <mat-label>Nota</mat-label>\r\n                <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                  <mat-label>Comentario</mat-label>\r\n                  <textarea matInput formControlName=\"note\" type=\"text\"></textarea>\r\n                </mat-form-field>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n              <div class=\"form-group\">\r\n                <div class=\"col-md-4 pr-1\">\r\n                  <button\r\n                    mat-raised-button color=\"primary\"\r\n                    type=\"file\" (change)=\"uploadFile($event)\">\r\n                    Foto antes de la sesión\r\n                    <input type=\"file\" (change)=\"uploadFile($event)\" >\r\n                  </button>\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <div class=\"col-md-4 pl-1\">\r\n                  <button mat-raised-button color=\"primary\">\r\n                    Foto despues de la sesión\r\n                   <input type=\"file\" (change)=\"uploadFile($event)\" >\r\n                  </button>\r\n                </div>\r\n             </div>\r\n          </div>\r\n\r\n          <div class=\"row\">\r\n            <div class=\"update ml-auto mr-auto\">\r\n              <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"register()\">Registrar</button>\r\n            </div>\r\n          </div>\r\n\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -35638,7 +35630,7 @@ let HistorialDocComponent = class HistorialDocComponent {
         this.router = router;
         this.route = route;
         this.globalServices = globalServices;
-        this.fileName = '';
+        this.fileName = 'Registros.xlsx';
         this.chargerList = [];
         this.usuarioList = [
             { value: 1, desc: 'Doctora' },
@@ -35682,7 +35674,6 @@ let HistorialDocComponent = class HistorialDocComponent {
     search() {
         const data = Object.assign({}, this.filters.value);
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_10__["environment"].Url + '/depilarte/searchRegister').subscribe(res => {
-            console.log(res.resultList);
             this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](res.resultList);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
@@ -35706,7 +35697,6 @@ let HistorialDocComponent = class HistorialDocComponent {
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_10__["environment"].Url + 'depilarte/generateRegister').subscribe(data => {
             const result = data;
             if (result.type == 'error') {
-                console.log('error');
             }
             else {
                 var file = result.resultEncodedString;
@@ -35722,7 +35712,7 @@ let HistorialDocComponent = class HistorialDocComponent {
                     let byteArray = new Uint8Array(byteNumbers);
                     byteArrays.push(byteArray);
                 }
-                const blob = new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const blob = new Blob(byteArrays, { type: 'application/vnd.ms-excel' });
                 Object(file_saver__WEBPACK_IMPORTED_MODULE_11__["saveAs"])(blob, this.fileName);
             }
         }, error => {
@@ -36697,10 +36687,15 @@ let OperadoraComponent = class OperadoraComponent {
         this.isLoading = false;
         this.create = true;
         this.edit = false;
+        this.total = {
+            disparoAntes: 0,
+            disparoDespues: 0,
+        };
         this.userList = [
             { value: 1, desc: 'Doctora' },
             { value: 2, desc: 'Operadora' }
         ];
+        this.referenceList = [];
         this.chargerList = [];
         this.methodsList = [];
         this.treatmentTypeList = [];
@@ -36733,8 +36728,9 @@ let OperadoraComponent = class OperadoraComponent {
             userDoc: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](),
             formPay: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]),
             bono: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern("^[0-9-,]*$")])]),
-            totalPrice: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]({ value: null, disabled: true }, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern("^[0-9-,]*$")])]),
+            totalPrice: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern("^[0-9-,]*$")])]),
             comission: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].pattern("^[0-9-,]*$")])]),
+            reference: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](),
             note: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]()
         });
         this.form.controls.userRegister.valueChanges.subscribe(value => {
@@ -36758,6 +36754,10 @@ let OperadoraComponent = class OperadoraComponent {
         this.getProduct();
         this.changeTypeTreament();
         this.changeCharger();
+        this.getReference();
+        this.form.controls['totalPrice'].disable();
+        this.form.controls['diferents'].disable();
+        this.form.controls['comission'].disable();
         this.route.queryParams.subscribe(params => {
             const { id } = params;
             this.idPoint = id;
@@ -36778,7 +36778,6 @@ let OperadoraComponent = class OperadoraComponent {
             this.create = false;
             this.edit = true;
         }, e => {
-            console.log(e);
             this.isLoading = false;
         });
     }
@@ -36786,16 +36785,23 @@ let OperadoraComponent = class OperadoraComponent {
         this.form.setValue(values);
     }
     register() {
+        this.form.controls['totalPrice'].enable();
+        this.form.controls['diferents'].enable();
+        this.form.controls['comission'].enable();
         if (this.form.invalid)
             return;
-        console.log(this.form.value);
         let data = Object.assign({}, this.form.value);
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + '/depilarte/registerClient').subscribe(res => {
             if (res.type === 'error') {
+                this.form.controls['totalPrice'].disable();
+                this.form.controls['diferents'].disable();
+                this.form.controls['comission'].disable();
                 alertify.error('Error al registrar');
             }
             else {
-                console.log(this.form.value);
+                this.form.controls['totalPrice'].disable();
+                this.form.controls['diferents'].disable();
+                this.form.controls['comission'].disable();
                 this.form.reset();
                 alertify.success('Registrado con exito');
             }
@@ -36831,6 +36837,16 @@ let OperadoraComponent = class OperadoraComponent {
             return false;
         }
     }
+    changePriceAndComision() {
+        if (this.form.get('treatmentType').value != null) {
+            this.globalService.httpServicesResponse({ priceAndComision: this.form.get('treatmentType').value }, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + '/global/priceAndComision').subscribe(response => {
+                this.prices = response.priceResult.precioTratamiento;
+            }, console.log);
+        }
+        else {
+            return false;
+        }
+    }
     getTreatments() {
         this.globalService.httpServicesResponse(null, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + '/global/treatments').subscribe(response => {
             if (response.type === 'success') {
@@ -36842,6 +36858,13 @@ let OperadoraComponent = class OperadoraComponent {
         this.globalService.httpServicesResponse(null, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + '/global/products').subscribe(response => {
             if (response.type === 'success') {
                 this.productList = response.products.filter(po => po.id !== -1);
+            }
+        }, console.error);
+    }
+    getReference() {
+        this.globalService.httpServicesResponse(null, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + '/global/reference').subscribe(response => {
+            if (response.type === 'success') {
+                this.referenceList = response.reference.filter(rf => rf.id !== -1);
             }
         }, console.error);
     }
@@ -38994,7 +39017,7 @@ let TratamientoComponent = class TratamientoComponent {
         this.router = router;
         this.route = route;
         this.globalServices = globalServices;
-        this.fileName = '';
+        this.fileName = 'Tratamientos.xlsx';
         this.treatmentTypeList = [];
         this.usuarioList = [
             { value: 1, desc: 'Doctora' },
@@ -39024,7 +39047,6 @@ let TratamientoComponent = class TratamientoComponent {
     search() {
         const data = Object.assign({}, this.filters.value);
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].Url + '/depilarte/searchTreatments').subscribe(res => {
-            console.log(res.resultList);
             this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](res.resultList);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
@@ -39038,7 +39060,6 @@ let TratamientoComponent = class TratamientoComponent {
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].Url + 'depilarte/generateTreatments').subscribe(data => {
             const result = data;
             if (result.type == 'error') {
-                console.log('error');
             }
             else {
                 var file = result.resultEncodedString;
@@ -39054,7 +39075,7 @@ let TratamientoComponent = class TratamientoComponent {
                     let byteArray = new Uint8Array(byteNumbers);
                     byteArrays.push(byteArray);
                 }
-                const blob = new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const blob = new Blob(byteArrays, { type: 'application/vnd.ms-excel' });
                 Object(file_saver__WEBPACK_IMPORTED_MODULE_11__["saveAs"])(blob, this.fileName);
             }
         }, error => {
@@ -39120,6 +39141,7 @@ let TratamientoRegistrarComponent = class TratamientoRegistrarComponent {
         this.router = router;
         this.route = route;
         this.globalService = globalService;
+        this.typeList = [];
         this.isLoading = false;
         this.create = true;
         this.edit = false;
@@ -39153,30 +39175,34 @@ let TratamientoRegistrarComponent = class TratamientoRegistrarComponent {
             id
         };
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].Url + 'depilarte/getTreatment').subscribe(res => {
-            console.log(res);
             this.setValues(res);
             this.isLoading = false;
             this.create = false;
             this.edit = true;
         }, e => {
-            console.log(e);
             this.isLoading = false;
         });
     }
     setValues(values) {
+        this.typeList = values.typePrice;
+        values.typePrice.forEach(element => {
+            const typePriceFormGroup = this.fb.group({
+                typeTreatment: '',
+                typePrice: ''
+            });
+            this.typePrices.push(typePriceFormGroup);
+        });
         this.form.setValue(values);
     }
     register() {
         if (this.form.invalid)
             return;
-        console.log(this.form.value);
         let data = Object.assign({}, this.form.value);
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].Url + '/depilarte/registerTreatment').subscribe(res => {
             if (res.type === 'error') {
                 alertify.error('Error al registrar');
             }
             else {
-                console.log(this.form.value);
                 this.form.reset();
                 alertify.success('Registrado con exito');
             }
@@ -39194,6 +39220,7 @@ let TratamientoRegistrarComponent = class TratamientoRegistrarComponent {
             typePrice: ''
         });
         this.typePrices.push(typePriceFormGroup);
+        this.typeList.push(typePriceFormGroup);
     }
     removeTypePice(indice) {
         this.typePrices.removeAt(indice);
@@ -39651,16 +39678,20 @@ let DashboardComponent = class DashboardComponent {
     ngOnInit() {
         const data = {};
         this.globalServices.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + 'global/dashboard').subscribe(res => {
-            console.log(res.dashboard);
             this.registerCount = res.dashboard.registerCount;
             this.empleadosCount = res.dashboard.empleadosCount;
             this.tratamientosCount = res.dashboard.tratamientosCount;
             this.productosCount = res.dashboard.productosCount;
-            this.lineChart.config.data.datasets[0].data = res.dashboard.registerPerMonth;
-            this.lineChart.update();
             this.chartEmail.data.datasets[0].data = [res.dashboard.registerCount, res.dashboard.empleadosCount, res.dashboard.tratamientosCount, res.dashboard.productosCount];
             this.chartEmail.update();
+            this.lineChart.config.data.datasets[0].data = res.dashboard.registerPerMonth;
+            this.lineChart.update();
+            this.lineChart2.config.data.datasets[0].data = res.dashboard.registerPerMonthInstagram;
+            this.lineChart2.config.data.datasets[1].data = res.dashboard.registerPerMonthAmigos;
+            this.lineChart2.config.data.datasets[2].data = res.dashboard.registerPerMonthOtros;
+            this.lineChart2.update();
         });
+        //GRAFICO DE REGISTROS
         this.canvas = document.getElementById("chartEmail");
         this.ctx = this.canvas.getContext("2d");
         this.chartEmail = new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(this.ctx, {
@@ -39687,17 +39718,8 @@ let DashboardComponent = class DashboardComponent {
                 }
             }
         });
+        //GRAFICO DE REGISTROS POR MES
         var speedCanvas = document.getElementById("speedChart");
-        // var dataFirst = {
-        //   data: [10, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 20],
-        //   fill: false,
-        //   borderColor: '#fbc658',
-        //   backgroundColor: 'transparent',
-        //   pointBorderColor: '#fbc658',
-        //   pointRadius: 4,
-        //   pointHoverRadius: 4,
-        //   pointBorderWidth: 8,
-        // };
         var dataSecond = {
             data: [],
             fill: false,
@@ -39719,6 +39741,54 @@ let DashboardComponent = class DashboardComponent {
             }
         };
         this.lineChart = new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(speedCanvas, {
+            type: 'line',
+            hover: true,
+            data: speedData,
+            options: chartOptions
+        });
+        //GRAFICO DE REFERENCIAS
+        var speedCanvas = document.getElementById("speedChart2");
+        var dataFirst = {
+            data: [],
+            fill: false,
+            borderColor: '#fcc468',
+            backgroundColor: 'transparent',
+            pointBorderColor: '#fcc468',
+            pointRadius: 4,
+            pointHoverRadius: 4,
+            pointBorderWidth: 8,
+        };
+        var dataSecond = {
+            data: [],
+            fill: false,
+            borderColor: '#6bd098',
+            backgroundColor: 'transpartent',
+            pointBorderColor: '#6bd098',
+            pointRadius: 4,
+            pointHoverRadius: 4,
+            pointBorderWidth: 8
+        };
+        var dataThird = {
+            data: [],
+            fill: false,
+            borderColor: '#ef8157',
+            backgroundColor: 'transpartent',
+            pointBorderColor: '#ef8157',
+            pointRadius: 4,
+            pointHoverRadius: 4,
+            pointBorderWidth: 8
+        };
+        var speedData = {
+            labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [dataSecond, dataFirst, dataThird]
+        };
+        var chartOptions = {
+            legend: {
+                display: false,
+                position: 'top'
+            }
+        };
+        this.lineChart2 = new chart_js__WEBPACK_IMPORTED_MODULE_3___default.a(speedCanvas, {
             type: 'line',
             hover: true,
             data: speedData,
@@ -40769,13 +40839,11 @@ let UsuarioRegistroComponent = class UsuarioRegistroComponent {
             id
         };
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + 'depilarte/getEmpleados').subscribe(res => {
-            console.log(res);
             this.setValues(res);
             this.isLoading = false;
             this.create = false;
             this.edit = true;
         }, e => {
-            console.log(e);
             this.isLoading = false;
         });
     }
@@ -40788,14 +40856,12 @@ let UsuarioRegistroComponent = class UsuarioRegistroComponent {
     register() {
         if (this.form.invalid)
             return;
-        console.log(this.form.value);
         let data = Object.assign({}, this.form.value);
         this.globalService.httpServicesResponse(data, _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].Url + '/depilarte/registerEmpleado').subscribe(res => {
             if (res.type === 'error') {
                 alertify.error('Error al registrar');
             }
             else {
-                console.log(this.form.value);
                 this.form.reset();
                 alertify.success('Registrado con exito');
             }
@@ -46603,7 +46669,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-8\" >\r\n       <div class=\"card card-user\" style=\"width: 150%;\">\r\n         <div class=\"card-header\">\r\n           <h1 class=\"card-title\">Registrar Tratamiento</h1>\r\n         </div>\r\n         <div class=\"card-body\">\r\n           <form [formGroup]=\"form\">\r\n\r\n             <div class=\"row\">\r\n               <div class=\"col-md-6 pr-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Nombre del Tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Tratamiento</mat-label>\r\n                     <input formControlName=\"treatmentName\" matInput type=\"text\">\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n               <div class=\"col-md-6 pl-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Especialista Encargada</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Especialista</mat-label>\r\n                     <mat-select formControlName=\"specialist\" name=\"usuarioList\">\r\n                       <mat-option *ngFor=\"let el of user\" [value]=\"el.value\">\r\n                         {{el.desc}}\r\n                       </mat-option>\r\n                     </mat-select>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n             </div>\r\n\r\n             <div class=\"row\">\r\n\r\n               <div class=\"col-md-6 pr-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Cantidad de sesiones</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                    <mat-label>Sesiones</mat-label>\r\n                     <input formControlName=\"sessions\" matInput type=\"number\">\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n               <div class=\"col-md-6 pl-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Comisión de la Operadora</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Comision</mat-label>\r\n                     <input formControlName=\"comission\" matInput type=\"number\">\r\n                     <span matPrefix>%&nbsp;</span>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n             </div>\r\n\r\n             <div formArrayName=\"typePrice\" *ngFor=\"let typePrice of typePrices.controls; let i = index\" class=\"row\">\r\n\r\n               <div [formGroupName]=\"i\" class=\"col-md-6 pr-1\">\r\n                 <div  class=\"form-group\">\r\n                   <mat-label>Tipos del tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Tipos</mat-label>\r\n                     <input formControlName=\"typeTreatment\" matInput type=\"text\">\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n               <div [formGroupName]=\"i\" class=\"col-md-6 pl-1\">\r\n                 <div  class=\"form-group\">\r\n                   <mat-label>Precio del tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>precio</mat-label>\r\n                     <input  [attr.id]=\"'typePrice' + i\" formControlName=\"typePrice\" matInput type=\"number\">\r\n                     <span matPrefix>$</span>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n           </div>\r\n\r\n             <div class=\"row\">\r\n               <div class=\"col-md-12\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Descripción del tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Descripción</mat-label>\r\n                     <textarea formControlName=\"description\" matInput type=\"text\"></textarea>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n             </div>\r\n\r\n             <div class=\"row\">\r\n               <div class=\"update ml-auto mr-auto\">\r\n                 <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"addTypePrice()\">Añadir Tipo</button>\r\n               </div>\r\n               <div class=\"update ml-auto mr-auto\">\r\n                 <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"removeTypePice(i)\">Remover Tipo</button>\r\n               </div>\r\n               <div class=\"update ml-auto mr-auto\">\r\n                 <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"register()\">Registrar</button>\r\n               </div>\r\n             </div>\r\n\r\n           </form>\r\n         </div>\r\n       </div>\r\n     </div>\r\n   </div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\r\n    <div class=\"col-md-8\" >\r\n       <div class=\"card card-user\" style=\"width: 150%;\">\r\n         <div class=\"card-header\">\r\n           <h1 class=\"card-title\">Registrar Tratamiento</h1>\r\n         </div>\r\n         <div class=\"card-body\">\r\n           <form [formGroup]=\"form\">\r\n\r\n             <div class=\"row\">\r\n               <div class=\"col-md-6 pr-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Nombre del Tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Tratamiento</mat-label>\r\n                     <input formControlName=\"treatmentName\" matInput type=\"text\">\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n               <div class=\"col-md-6 pl-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Especialista Encargada</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Especialista</mat-label>\r\n                     <mat-select formControlName=\"specialist\" name=\"usuarioList\">\r\n                       <mat-option *ngFor=\"let el of user\" [value]=\"el.value\">\r\n                         {{el.desc}}\r\n                       </mat-option>\r\n                     </mat-select>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n             </div>\r\n\r\n             <div class=\"row\">\r\n\r\n               <div class=\"col-md-6 pr-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Cantidad de sesiones</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                    <mat-label>Sesiones</mat-label>\r\n                     <input formControlName=\"sessions\" matInput type=\"number\">\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n               <div class=\"col-md-6 pl-1\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Comisión de la Operadora</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Comision</mat-label>\r\n                     <input formControlName=\"comission\" matInput type=\"number\">\r\n                     <span matPrefix>%&nbsp;</span>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n             </div>\r\n\r\n             <div formArrayName=\"typePrice\" *ngFor=\"let typePrice of typePrices.controls; let i = index\" class=\"row\">\r\n\r\n               <div [formGroupName]=\"i\" class=\"col-md-6 pr-1\">\r\n                 <div  class=\"form-group\">\r\n                   <mat-label>Tipos del tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Tipos</mat-label>\r\n                     <input matInput formControlName=\"typeTreatment\" [ngModel]=\"typeList[i].typeTreatment\"  type=\"text\">\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n               <div [formGroupName]=\"i\" class=\"col-md-6 pl-1\">\r\n                 <div  class=\"form-group\">\r\n                   <mat-label>Precio del tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>precio</mat-label>\r\n                     <input matInput [attr.id]=\"'typePrice' + i\" formControlName=\"typePrice\" [ngModel]=\"typeList[i].typePrice\" type=\"number\">\r\n                     <span matPrefix>$</span>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n\r\n           </div>\r\n\r\n             <div class=\"row\">\r\n               <div class=\"col-md-12\">\r\n                 <div class=\"form-group\">\r\n                   <mat-label>Descripción del tratamiento</mat-label>\r\n                   <mat-form-field appearance=\"outline\" class=\"form-group\" style=\"width: 100%;\">\r\n                     <mat-label>Descripción</mat-label>\r\n                     <textarea formControlName=\"description\" matInput type=\"text\"></textarea>\r\n                   </mat-form-field>\r\n                 </div>\r\n               </div>\r\n             </div>\r\n\r\n             <div class=\"row\">\r\n               <div class=\"update ml-auto mr-auto\">\r\n                 <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"addTypePrice()\">Añadir Tipo</button>\r\n               </div>\r\n               <div class=\"update ml-auto mr-auto\">\r\n                 <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"removeTypePice(i)\">Remover Tipo</button>\r\n               </div>\r\n               <div class=\"update ml-auto mr-auto\">\r\n                 <button mat-raised-button  color=\"warn\" type=\"submit\" (click)=\"register()\">Registrar</button>\r\n               </div>\r\n             </div>\r\n\r\n           </form>\r\n         </div>\r\n       </div>\r\n     </div>\r\n   </div>\r\n");
 
 /***/ }),
 

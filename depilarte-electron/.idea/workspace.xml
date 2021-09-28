@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d711022-6043-4670-b8e9-7a445c2c53e1" name="Default Changelist" comment="" />
+    <list default="true" id="2d711022-6043-4670-b8e9-7a445c2c53e1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/doctoraHistorial/historialDoc.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/doctoraHistorial/historialDoc.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/empleado-historial/empleado-historial.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/empleado-historial/empleado-historial.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/inventario/inventario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/inventario/inventario.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/tratamiento/tratamiento.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/tratamiento/tratamiento.component.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1yYNyCXn0vpr0nc0JBNaRLGfCm0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -16,7 +30,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../depilarteFE" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SvnConfiguration">
@@ -31,6 +45,8 @@
       <updated>1632424813483</updated>
       <workItem from="1632424815015" duration="547000" />
       <workItem from="1632425438414" duration="3337000" />
+      <workItem from="1632837312408" duration="487000" />
+      <workItem from="1632838015183" duration="1059000" />
     </task>
     <servers />
   </component>

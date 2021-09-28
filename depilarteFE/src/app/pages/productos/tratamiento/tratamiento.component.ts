@@ -26,7 +26,7 @@ interface HistorialData {
 
 export class TratamientoComponent implements OnInit {
   filters: FormGroup;
-  fileName : string = '';
+  fileName : string = 'Tratamientos.xlsx';
   treatmentTypeList = [];
   usuarioList = [
     {value: 1, desc: 'Doctora'},
@@ -107,7 +107,7 @@ export class TratamientoComponent implements OnInit {
             let byteArray = new Uint8Array(byteNumbers);
             byteArrays.push(byteArray);
           }
-          const blob = new Blob(byteArrays, {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          const blob = new Blob(byteArrays, {type: 'application/vnd.ms-excel'});
           saveAs(blob, this.fileName);
         }
       },
