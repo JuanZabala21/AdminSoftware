@@ -3,7 +3,6 @@ package com.depilartebe.depilarteBackend.be.controllers;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
 import com.depilartebe.depilarteBackend.be.services.GlobalServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javassist.scopedpool.SoftValueHashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsondoc.core.annotation.*;

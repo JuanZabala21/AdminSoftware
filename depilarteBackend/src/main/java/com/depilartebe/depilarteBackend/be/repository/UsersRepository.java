@@ -10,6 +10,4 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     String FIND_USERNAME_ATTEMPTION = "SELECT * FROM `depilarte_usuarios` WHERE id_usuarios = :idUser";
     @Query(nativeQuery = true, value = FIND_USERNAME_ATTEMPTION)
     Users findUsernameById (@Param("idUser") Long user);
-
-
 }

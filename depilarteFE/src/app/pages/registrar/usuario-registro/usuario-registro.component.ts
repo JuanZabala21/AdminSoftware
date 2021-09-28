@@ -5,7 +5,6 @@ import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {AppModule} from '../../../app.module';
 
-
 declare let alertify: any;
 @Component({
   selector: 'app-usuario-registro',
@@ -91,7 +90,6 @@ if(data){
         this.form.reset();
      alertify.success('Registrado con exito');
      }
-
       },
       console.log)
   }

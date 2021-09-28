@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppModule } from '../../../app.module';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
@@ -15,38 +14,31 @@ declare let alertify: any;
 })
 
 export class OperadoraComponent implements OnInit {
-    private appModule: AppModule;
     form: FormGroup;
-    priceTotals: any;
-    comissionTotal: any;
   idPoint;
   isLoading = false;
   create = true;
   edit = false;
-
   total = {
     disparoAntes: 0,
     disparoDespues: 0,
   };
-
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
-   price;
    prices: null;
    referenceList = [];
    chargerList = [];
    methodsList = [];
    treatmentTypeList = [];
-   treatmentType;
-   treatment;
    treatmentsList = [];
    productList = [];
    disabled = true;
    show : boolean = true;
    showOperative: boolean = true;
    showDoctor: boolean = true;
+
     ngOnInit() {
       this.showDoctor = false;
       this.showOperative = false;
@@ -57,6 +49,8 @@ export class OperadoraComponent implements OnInit {
       this.changeCharger();
       this.getReference();
       this.form.controls['totalPrice'].disable();
+      this.form.controls['diferents'].disable();
+      this.form.controls['comission'].disable();
 
       this.route.queryParams.subscribe( params => {
         const {id} = params;
@@ -92,7 +86,7 @@ export class OperadoraComponent implements OnInit {
         product: new FormControl(),
         beforeShots: new FormControl(),
         afterShots: new FormControl(),
-        diferents: new FormControl({value:'', disabled: true}),
+        diferents: new FormControl(),
         userOp: new FormControl(),
         userDoc: new FormControl(),
         formPay: new FormControl('',[Validators.required]),
@@ -142,6 +136,8 @@ export class OperadoraComponent implements OnInit {
 
     register() {
       this.form.controls['totalPrice'].enable();
+      this.form.controls['diferents'].enable();
+      this.form.controls['comission'].enable();
       if(this.form.invalid) return;
       let data = {
         ...this.form.value
@@ -150,13 +146,16 @@ export class OperadoraComponent implements OnInit {
         res => {
             if(res.type==='error'){
               this.form.controls['totalPrice'].disable();
+              this.form.controls['diferents'].disable();
+              this.form.controls['comission'].disable();
           alertify.error('Error al registrar');
        }else{
               this.form.controls['totalPrice'].disable();
+              this.form.controls['diferents'].disable();
+              this.form.controls['comission'].disable();
           this.form.reset();
        alertify.success('Registrado con exito');
        }
-
         },
           console.log)
     }

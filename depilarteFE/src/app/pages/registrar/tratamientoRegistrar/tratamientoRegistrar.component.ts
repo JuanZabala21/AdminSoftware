@@ -23,7 +23,6 @@ export class TratamientoRegistrarComponent implements OnInit {
   form: FormGroup;
   idPoint;
   typeList = [];
-  priceTreatment;
   isLoading = false;
   create = true;
   edit = false;
@@ -128,9 +127,5 @@ export class TratamientoRegistrarComponent implements OnInit {
   removeTypePice(indice: number) {
     this.typePrices.removeAt(indice);
   }
-
-
-
-
 
 }

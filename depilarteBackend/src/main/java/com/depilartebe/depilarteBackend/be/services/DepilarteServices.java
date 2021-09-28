@@ -4,7 +4,6 @@ import com.depilartebe.depilarteBackend.be.constants.DepilarteConstants;
 import com.depilartebe.depilarteBackend.be.constants.GlobalConstants;
 import com.depilartebe.depilarteBackend.be.entities.*;
 import com.depilartebe.depilarteBackend.be.repository.*;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.json.*;
@@ -49,8 +48,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     @Autowired
     ChargersRepository chargersRepository;
 
-    @Autowired
-    TreatmentType2Repository treatmentType2Repository;
 
     public Map<String, Object> registerClients(
 
@@ -637,8 +634,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         try {
             Treatment treatment = new Treatment();
             treatment = treatmentRepository.findTreatmentById(id);
-            List<TreatmentType2> typeTreatmentList = new ArrayList<>();
-            typeTreatmentList = treatmentType2Repository.finbTypeTreat2(id);
+            List<TreatmentType> typeTreatmentList = new ArrayList<>();
+            typeTreatmentList = treatmentTypeRepository.finbTypeTreat(id);
 
             result.put("id", treatment.getId_tratamientos());
             result.put("treatmentName", treatment.getNameTreatment());
@@ -665,8 +662,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         Map<String, Object> result = new HashMap<>();
         try {
             Register register = new Register();
-            Treatment treatment = new Treatment();
-            TreatmentType treatmentType = new TreatmentType();
             register = registerRepository.findRegisterById(id);
 
             result.put("id", id);
