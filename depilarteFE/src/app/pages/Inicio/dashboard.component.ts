@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit{
 
   year = (new Date()).getFullYear();
 
- 
+
 
   public canvas : any;
   public ctx;
@@ -45,13 +45,12 @@ export class DashboardComponent implements OnInit{
       });
     }
 
-   
+
     ngOnInit(){
 
         const data = {
         };
         this.globalServices.httpServicesResponse(data, environment.Url + 'global/dashboard').subscribe( res => {
-          console.log(res.dashboard);
           this.registerCount= res.dashboard.registerCount;
           this.empleadosCount= res.dashboard.empleadosCount;
           this.tratamientosCount= res.dashboard.tratamientosCount;
@@ -59,10 +58,10 @@ export class DashboardComponent implements OnInit{
 
           this.chartEmail.data.datasets[0].data=[res.dashboard.registerCount,res.dashboard.empleadosCount,res.dashboard.tratamientosCount,res.dashboard.productosCount];
           this.chartEmail.update();
- 
+
           this.lineChart.config.data.datasets[0].data= res.dashboard.registerPerMonth;
           this.lineChart.update();
-            
+
           this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonth;
           this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonth;
           this.lineChart2.config.data.datasets[0].data= res.dashboard.registerPerMonth;
@@ -88,7 +87,7 @@ export class DashboardComponent implements OnInit{
               '#ef8157',
               '#fcc468',
               '#4acccd'
-              
+
             ],
             borderWidth: 0,
 
@@ -198,10 +197,10 @@ export class DashboardComponent implements OnInit{
 
 
     }
-    
-   
 
-      
+
+
+
       //this.chartColor = "#FFFFFF";
       // this.canvas = document.getElementById("chartHours");
       // this.ctx = this.canvas.getContext("2d");

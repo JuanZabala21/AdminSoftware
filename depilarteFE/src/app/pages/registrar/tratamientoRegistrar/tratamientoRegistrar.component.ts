@@ -68,14 +68,12 @@ export class TratamientoRegistrarComponent implements OnInit {
     this.globalService.httpServicesResponse(data,
       environment.Url + 'depilarte/getTreatment').subscribe(
       res => {
-        console.log(res);
         this.setValues(res);
         this.isLoading = false;
         this.create = false;
         this.edit = true;
       },
       e => {
-        console.log(e);
         this.isLoading = false;
       });
   }
@@ -95,7 +93,6 @@ export class TratamientoRegistrarComponent implements OnInit {
 
   register() {
     if(this.form.invalid) return;
-    console.log(this.form.value);
     let data = {
       ...this.form.value
     };
@@ -104,7 +101,6 @@ export class TratamientoRegistrarComponent implements OnInit {
         if(res.type==='error'){
           alertify.error('Error al registrar');
        }else{
-         console.log(this.form.value);
           this.form.reset();
        alertify.success('Registrado con exito');
        }

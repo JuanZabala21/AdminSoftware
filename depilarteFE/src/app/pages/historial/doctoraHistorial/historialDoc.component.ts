@@ -134,7 +134,6 @@ export class HistorialDocComponent implements OnInit {
 
         const result: any = data;
         if (result.type == 'error') {
-          console.log('error')
         } else {
           var file = result.resultEncodedString;
           let sliceSize = 512;

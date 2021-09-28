@@ -68,7 +68,6 @@ export class InventarioComponent implements OnInit {
       ...this.filters.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchProducts').subscribe( res => {
-        console.log(res.resultList);
         this.dataSource = new MatTableDataSource(res.resultList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -91,7 +90,6 @@ export class InventarioComponent implements OnInit {
 
         const result: any = data;
         if (result.type == 'error') {
-          console.log('error')
         } else {
           var file = result.resultEncodedString;
           let sliceSize = 512;

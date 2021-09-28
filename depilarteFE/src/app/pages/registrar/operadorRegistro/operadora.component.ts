@@ -35,7 +35,6 @@ export class OperadoraComponent implements OnInit {
    treatmentTypeList = [];
    treatmentType;
    treatment;
-   userAtt;
    treatmentsList = [];
    productList = [];
    disabled = true;
@@ -127,7 +126,6 @@ export class OperadoraComponent implements OnInit {
         this.edit = true;
       },
       e => {
-        console.log(e);
         this.isLoading = false;
       });
   }
@@ -148,7 +146,6 @@ export class OperadoraComponent implements OnInit {
               this.form.controls['totalPrice'].disable();
           alertify.error('Error al registrar');
        }else{
-         console.log(this.form.value);
               this.form.controls['totalPrice'].disable();
           this.form.reset();
        alertify.success('Registrado con exito');
@@ -200,7 +197,6 @@ export class OperadoraComponent implements OnInit {
     if(this.form.get('treatmentType').value != null){
       this.globalService.httpServicesResponse({ priceAndComision : this.form.get('treatmentType').value},
         environment.Url + '/global/priceAndComision').subscribe(response => {
-          console.log(response);
             this.prices = response.priceResult.precioTratamiento;
         },
         console.log)
@@ -229,11 +225,10 @@ export class OperadoraComponent implements OnInit {
       console.error);
   }
 
-  getReference(){
+  getReference() {
     this.globalService.httpServicesResponse(null,
       environment.Url + '/global/reference').subscribe( response => {
         if (response.type === 'success') {
-          console.log(response);
           this.referenceList = response.reference.filter(rf => rf.id !== -1);
         }
       },
