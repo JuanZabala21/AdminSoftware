@@ -14,7 +14,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static java.sql.JDBCType.NULL;
 
 @Service
 public class DepilarteServices implements DepilarteConstants, GlobalConstants {
