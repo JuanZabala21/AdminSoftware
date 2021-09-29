@@ -360,7 +360,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     result.put("shotsAfter", register.getDisparosDespues());
                     result.put("shotsDifferential", register.getDiferenciaDisparos());
                     result.put("sessions", register.getCantidadSesiones());
-                    System.out.println(register.getCantidadSesiones());
                     result.put("assistents", register.getAsistencia());
                     if(register.getProductoUtilizado() != null){
                         products = productRepository.findProductsById(register.getProductoUtilizado());
