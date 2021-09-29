@@ -161,7 +161,7 @@ public interface DepilarteConstants {
     String CLIENT_PRODUCT = "product";
     String CLIENT_SHOTBEFORE = "beforeShots";
     String CLIENT_SHOTAFTER = "afterShots";
-    String CLIENT_SHOTDIFERENTIAL = "shotDiferential";
+    String CLIENT_SHOTDIFERENTIAL = "diferents";
     String CLIENT_OPERATOR = "userOp";
     String CLIENT_DOCTOR = "userDoc";
     String CLIENT_FORMPAY = "formPay";

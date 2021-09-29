@@ -23,6 +23,7 @@ export class OperadoraComponent implements OnInit {
     disparoAntes: 0,
     disparoDespues: 0,
   };
+  
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
@@ -52,6 +53,7 @@ export class OperadoraComponent implements OnInit {
       this.form.controls['diferents'].disable();
       this.form.controls['comission'].disable();
 
+      
       this.route.queryParams.subscribe( params => {
         const {id} = params;
         this.idPoint = id;
@@ -138,6 +140,7 @@ export class OperadoraComponent implements OnInit {
       this.form.controls['totalPrice'].enable();
       this.form.controls['diferents'].enable();
       this.form.controls['comission'].enable();
+      console.log(this.form.value);
       if(this.form.invalid) return;
       let data = {
         ...this.form.value
