@@ -84,10 +84,10 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                String assistent = (params.containsKey(CLIENT_ASSISTENT) && params.get(CLIENT_ASSISTENT) != null
                        && !params.get(CLIENT_ASSISTENT).toString().isEmpty()) ?
                        params.get(CLIENT_ASSISTENT).toString() : null;
-               Long product = (params.containsKey(CLIENT_PRODUCT) &&
+               String product = (params.containsKey(CLIENT_PRODUCT) &&
                        params.get(CLIENT_PRODUCT) != null &&
                        !params.get(CLIENT_PRODUCT).toString().isEmpty() )
-                       ? Long.valueOf(params.get(CLIENT_PRODUCT).toString()) : null;
+                       ? params.get(CLIENT_PRODUCT).toString() : null;
                String shotBefore = (params.containsKey(CLIENT_SHOTBEFORE) && params.get(CLIENT_SHOTBEFORE) != null
                        && !params.get(CLIENT_SHOTBEFORE).toString().isEmpty()) ?
                        params.get(CLIENT_SHOTBEFORE).toString() : null;

@@ -14,6 +14,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static java.sql.JDBCType.NULL;
+
 @Service
 public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     static Logger log = LogManager.getLogger(DepilarteServices.class);
@@ -65,7 +67,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             Long treatmentZone,
             String countSessions,
             String assistent,
-            Long product,
+            String product,
             String shotBefore,
             String shotAfter,
             String shotDiferential,
@@ -107,7 +109,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setZonaTratamiento(treatmentZone);
             register.setCantidadSesiones(countSessions);
             register.setAsistencia(assistent);
-            register.setProductoUtilizado(String.valueOf(product));
+            register.setProductoUtilizado(product);
             register.setDisparosAntes(shotBefore);
             register.setDisparosDespues(shotAfter);
             register.setDiferenciaDisparos(shotDiferential);
@@ -277,7 +279,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             if (id == null) {
                 products = new Products();
             } else {
-                products = productRepository.findProductsById(id);
+                products = productRepository.findProductsById(id.toString());
             }
 
             products.setNombre(product);
@@ -358,13 +360,13 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     result.put("shotsAfter", register.getDisparosDespues());
                     result.put("shotsDifferential", register.getDiferenciaDisparos());
                     result.put("sessions", register.getCantidadSesiones());
+                    System.out.println(register.getCantidadSesiones());
                     result.put("assistents", register.getAsistencia());
                     if(register.getProductoUtilizado() != null){
-                        products = productRepository.findProductsById(Long.valueOf(register.getProductoUtilizado()));
+                        products = productRepository.findProductsById(register.getProductoUtilizado());
                         result.put("product", products.getNombre());
                     }else{
-                        products = null;
-                        result.put("product", products);
+                        result.put("product", EMPTY);
                     }
                     users = usersRepository.findUsernameById(Long.valueOf(register.getUserAtendio()));
                     result.put("userAttemption", users.getName());
@@ -610,7 +612,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
 
         try {
             Products products = new Products();
-            products = productRepository.findProductsById(id);
+            products = productRepository.findProductsById(id.toString());
 
             result.put("id", products.getId_productos());
             result.put("product", products.getNombre());
