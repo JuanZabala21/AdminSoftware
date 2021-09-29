@@ -244,7 +244,7 @@
                 <mat-label>Abonado</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Abonado</mat-label>
-                  <input matInput  formControlName="bono" type="number">
+                  <input matInput  formControlName="bono" type="number" [(ngModel)]="total.abonado">
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -254,7 +254,7 @@
                 <mat-label>Total de la Venta</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Total</mat-label>
-                  <input matInput [disabled]="disabled" formControlName="totalPrice" [(ngModel)]="prices" type="number" >
+                  <input matInput formControlName="totalPrice" [ngModel]="prices - total.abonado" type="number" >
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>

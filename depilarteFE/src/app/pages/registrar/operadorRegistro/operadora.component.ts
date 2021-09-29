@@ -6,6 +6,9 @@ import {GlobalServices} from '../../../shared/services/global.services';
 
 declare let alertify: any;
 
+
+
+
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
@@ -22,6 +25,7 @@ export class OperadoraComponent implements OnInit {
   total = {
     disparoAntes: 0,
     disparoDespues: 0,
+    abonado: 0,
   };
 
    userList = [
@@ -52,7 +56,6 @@ export class OperadoraComponent implements OnInit {
       this.form.controls['totalPrice'].disable();
       this.form.controls['diferents'].disable();
       this.form.controls['comission'].disable();
-
 
       this.route.queryParams.subscribe( params => {
         const {id} = params;
@@ -208,7 +211,7 @@ export class OperadoraComponent implements OnInit {
   }
 
   changePriceAndComision() {
-    if(this.form.get('treatmentType').value != null){
+    if(this.form.get('treatmentType').value != null) {
       this.globalService.httpServicesResponse({ priceAndComision : this.form.get('treatmentType').value},
         environment.Url + '/global/priceAndComision').subscribe(response => {
             this.prices = response.priceResult.precioTratamiento;
