@@ -23,7 +23,7 @@ export class OperadoraComponent implements OnInit {
     disparoAntes: 0,
     disparoDespues: 0,
   };
-  
+
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
@@ -53,7 +53,7 @@ export class OperadoraComponent implements OnInit {
       this.form.controls['diferents'].disable();
       this.form.controls['comission'].disable();
 
-      
+
       this.route.queryParams.subscribe( params => {
         const {id} = params;
         this.idPoint = id;
@@ -76,7 +76,7 @@ export class OperadoraComponent implements OnInit {
         name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
         lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\\s]+')]),
         identification: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        age: new FormControl(),
+        age: new FormControl('',[Validators.required]),
         phone: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
         email: new FormControl('',[Validators.required]),
         birthday: new FormControl('',[Validators.required]),
@@ -95,7 +95,7 @@ export class OperadoraComponent implements OnInit {
         bono: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
         totalPrice: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
         comission: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        reference: new FormControl(),
+        reference: new FormControl('',[Validators.required]),
         note: new FormControl()
         });
       this.form.controls.userRegister.valueChanges.subscribe(
@@ -104,10 +104,17 @@ export class OperadoraComponent implements OnInit {
             case 1:
               this.showDoctor = true;
               this.showOperative = false;
+              this.form.controls.sessions.setValidators(Validators.required);
+              this.form.controls.product.setValidators(Validators.required);
+              this.form.controls.userDoc.setValidators(Validators.required);
               break;
             case 2:
               this.showDoctor = false;
               this.showOperative = true;
+              this.form.controls.beforeShots.setValidators(Validators.required);
+              this.form.controls.afterShots.setValidators(Validators.required);
+              this.form.controls.diferents.setValidators(Validators.required);
+              this.form.controls.userOp.setValidators(Validators.required);
               break;
           }
         });
@@ -137,11 +144,10 @@ export class OperadoraComponent implements OnInit {
   }
 
     register() {
+      if(this.form.invalid) return;
       this.form.controls['totalPrice'].enable();
       this.form.controls['diferents'].enable();
       this.form.controls['comission'].enable();
-      console.log(this.form.value);
-      if(this.form.invalid) return;
       let data = {
         ...this.form.value
       };
