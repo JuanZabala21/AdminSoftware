@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d711022-6043-4670-b8e9-7a445c2c53e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es2015.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/layouts-admin-layout-admin-layout-module-es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/doctoraHistorial/historialDoc.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/doctoraHistorial/historialDoc.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/empleado-historial/empleado-historial.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/historial/empleado-historial/empleado-historial.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/inventario/inventario.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/inventario/inventario.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/tratamiento/tratamiento.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/productos/tratamiento/tratamiento.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../depilarteFE/src/app/pages/registrar/operadorRegistro/operadora.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../depilarteFE/src/app/pages/registrar/operadorRegistro/operadora.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +39,7 @@
       <workItem from="1632425438414" duration="3337000" />
       <workItem from="1632837312408" duration="487000" />
       <workItem from="1632838015183" duration="1486000" />
+      <workItem from="1632959236084" duration="123000" />
     </task>
     <servers />
   </component>

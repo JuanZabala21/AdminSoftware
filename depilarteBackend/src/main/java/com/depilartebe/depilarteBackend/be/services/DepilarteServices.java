@@ -190,7 +190,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             ArrayList type,
             Long specialist,
             String sessions,
-            String comission,
             String description
     ) {
         Map<String, Object> mapResult = new HashMap<>();
@@ -208,7 +207,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             treatment.setNameTreatment(name);
             treatment.setEspecialista(String.valueOf(specialist));
             treatment.setCantidadSesiones(sessions);
-            treatment.setComisionOperadora(comission);
             treatment.setDescripcionTratamiento(description);
             treatmentRepository.save(treatment);
 
@@ -223,6 +221,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                                         newType.setId_tratamientos(treatment.getId_tratamientos());
                                         newType.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
                                         newType.setPrecioTratamiento(obj.get("-typePrice").toString());
+                                        newType.setComission(obj.get("-comission").toString());
                                         treatmentTypeRepository.save(newType);
                                     }else{
                                         String jsonString = type.get(i).toString().replace(" ", "-");
@@ -232,6 +231,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                                         typeT.setId_tratamientos(treatment.getId_tratamientos());
                                         typeT.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
                                         typeT.setPrecioTratamiento(obj.get("-typePrice").toString());
+                                        typeT.setComission(obj.get("-comission").toString());
                                         treatmentTypeRepository.save(typeT);
                                     }
                             }
@@ -245,6 +245,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     typeTre.setId_tratamientos(treatment.getId_tratamientos());
                     typeTre.setNombreTipo(obj.get("typeTreatment").toString().replace("-", " "));
                     typeTre.setPrecioTratamiento(obj.get("-typePrice").toString());
+                    typeTre.setComission(obj.get("-comission").toString());
                     treatmentTypeRepository.save(typeTre);
                 }
             }
@@ -497,7 +498,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                         result.put("specialist", chargers.getNameCharge());
                         result.put("sessions", treatment.getCantidadSesiones());
                         result.put("price", treatmentType.getPrecioTratamiento());
-                        result.put("comission", treatment.getComisionOperadora());
+                        result.put("comission", treatmentType.getComission());
                         mapList.add(result);
                     }
                 }
@@ -647,7 +648,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             result.put("specialist", Long.valueOf(treatment.getEspecialista()));
             result.put("sessions", treatment.getCantidadSesiones());
             result.put("typePrice", typeTreatmentList);
-            result.put("comission", treatment.getComisionOperadora());
             result.put("description", treatment.getDescripcionTratamiento());
 
         } catch (Exception e) {

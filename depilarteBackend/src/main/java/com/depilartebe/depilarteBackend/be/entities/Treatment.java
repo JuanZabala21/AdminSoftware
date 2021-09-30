@@ -21,9 +21,6 @@ public class Treatment {
     @Column(name="CantidadSesiones")
     private String cantidadSesiones;
 
-    @Column(name="ComisionOperadora")
-    private String comisionOperadora;
-
     @Column(name="DescripcionTratamiento")
     private String descripcionTratamiento;
 
@@ -41,10 +38,6 @@ public class Treatment {
 
     public String getCantidadSesiones() {
         return cantidadSesiones;
-    }
-
-    public String getComisionOperadora() {
-        return comisionOperadora;
     }
 
     public String getDescripcionTratamiento() {
@@ -67,10 +60,6 @@ public class Treatment {
         this.cantidadSesiones = cantidadSesiones;
     }
 
-
-    public void setComisionOperadora(String comisionOperadora) {
-        this.comisionOperadora = comisionOperadora;
-    }
 
     public void setDescripcionTratamiento(String descripcionTratamiento) {
         this.descripcionTratamiento = descripcionTratamiento;

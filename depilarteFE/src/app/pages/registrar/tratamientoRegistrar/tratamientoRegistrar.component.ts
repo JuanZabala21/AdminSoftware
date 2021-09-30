@@ -43,7 +43,6 @@ export class TratamientoRegistrarComponent implements OnInit {
       specialist: new FormControl('',[Validators.required]),
       sessions: new FormControl('',[Validators.required]),
       typePrice: this.fb.array([],[Validators.required]),
-      comission: new FormControl('',[Validators.required]),
       description: new FormControl()
     });
   }
@@ -67,6 +66,7 @@ export class TratamientoRegistrarComponent implements OnInit {
     this.globalService.httpServicesResponse(data,
       environment.Url + 'depilarte/getTreatment').subscribe(
       res => {
+        console.log(res);
         this.setValues(res);
         this.isLoading = false;
         this.create = false;
@@ -82,7 +82,8 @@ export class TratamientoRegistrarComponent implements OnInit {
     values.typePrice.forEach(element => {
       const typePriceFormGroup = this.fb.group({
         typeTreatment: '',
-        typePrice: ''
+        typePrice: '',
+        comission:'',
       });
       this.typePrices.push(typePriceFormGroup);
     });
@@ -118,7 +119,8 @@ export class TratamientoRegistrarComponent implements OnInit {
   addTypePrice() {
     const typePriceFormGroup = this.fb.group({
       typeTreatment: '',
-      typePrice: ''
+      typePrice: '',
+      comission: ''
     });
     this.typePrices.push(typePriceFormGroup);
     this.typeList.push(typePriceFormGroup);

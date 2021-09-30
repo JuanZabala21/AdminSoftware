@@ -6,9 +6,6 @@ import {GlobalServices} from '../../../shared/services/global.services';
 
 declare let alertify: any;
 
-
-
-
 @Component({
     selector: 'user-cmp',
     moduleId: module.id,
@@ -103,7 +100,7 @@ export class OperadoraComponent implements OnInit {
         });
       this.form.controls.userRegister.valueChanges.subscribe(
         value => {
-          switch(value){
+          switch (value) {
             case 1:
               this.showDoctor = true;
               this.showOperative = false;
@@ -230,7 +227,6 @@ export class OperadoraComponent implements OnInit {
       },
       console.error);
   }
-
 
   getProduct() {
     this.globalService.httpServicesResponse(null,

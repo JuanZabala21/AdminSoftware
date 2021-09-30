@@ -228,14 +228,11 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 String sessions = (params.containsKey(TREATMENT_SESSIONS) && params.get(TREATMENT_SESSIONS) != null
                         && !params.get(TREATMENT_SESSIONS).toString().isEmpty()) ?
                         params.get(TREATMENT_SESSIONS).toString() : null;
-                String comission = (params.containsKey(TREATMENT_COMISSION) && params.get(TREATMENT_COMISSION) != null
-                        && !params.get(TREATMENT_COMISSION).toString().isEmpty()) ?
-                        params.get(TREATMENT_COMISSION).toString() : null;
                 String description = (params.containsKey(TREATMENT_DESC) && params.get(TREATMENT_DESC) != null
                         && !params.get(TREATMENT_DESC).toString().isEmpty()) ?
                         params.get(TREATMENT_DESC).toString() : null;
 
-                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typePrice,specialist, sessions,comission,description);
+                mapResponse = depilarteServices.registerTreatments(id,nameTreatment,typePrice,specialist, sessions,description);
 
 
             } catch (Exception e) {

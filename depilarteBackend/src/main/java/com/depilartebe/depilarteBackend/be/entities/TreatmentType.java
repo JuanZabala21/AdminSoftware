@@ -19,6 +19,9 @@ public class TreatmentType {
     @Column(name="typePrice")
     private String typePrice;
 
+    @Column(name = "comission")
+    private String comission;
+
     public Long getId_tipo() {
         return id_tipo;
     }
@@ -49,5 +52,13 @@ public class TreatmentType {
 
     public void setPrecioTratamiento(String typePrice) {
         this.typePrice = typePrice;
+    }
+
+    public String getComission() {
+        return comission;
+    }
+
+    public void setComission(String comission) {
+        this.comission = comission;
     }
 }
