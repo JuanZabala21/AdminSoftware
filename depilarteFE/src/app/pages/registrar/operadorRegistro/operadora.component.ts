@@ -89,7 +89,6 @@ export class OperadoraComponent implements OnInit {
         treatment: new FormControl('',[Validators.required]),
         treatmentType: new FormControl('',[Validators.required]),
         sessions: new FormControl('', [Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
-        assistent: new FormControl(),
         product: new FormControl(),
         beforeShots: new FormControl(),
         afterShots: new FormControl(),
