@@ -22,13 +22,18 @@ export class OperadoraComponent implements OnInit {
   total = {
     disparoAntes: 0,
     disparoDespues: 0,
+  };
+
+  precio = {
+    prices: 0,
     abonado: 0,
   };
+
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
-   prices: null;
+
    comissionPrice: null;
    referenceList = [];
    chargerList = [];
@@ -155,12 +160,12 @@ export class OperadoraComponent implements OnInit {
         res => {
             if(res.type==='error'){
               alertify.error('Error al registrar');
-              this.form.reset();
               this.form.controls['totalPrice'].disable();
               this.form.controls['diferents'].disable();
               this.form.controls['comission'].disable();
        }else{
               alertify.success('Registrado con exito');
+              this.precio.prices = 0;
               this.form.reset();
               this.form.controls['totalPrice'].disable();
               this.form.controls['diferents'].disable();
@@ -212,7 +217,7 @@ export class OperadoraComponent implements OnInit {
     if(this.form.get('treatmentType').value != null) {
       this.globalService.httpServicesResponse({ priceAndComision : this.form.get('treatmentType').value},
         environment.Url + '/global/priceAndComision').subscribe(response => {
-            this.prices = response.priceResult.precioTratamiento;
+            this.precio.prices = response.priceResult.precioTratamiento;
             this.comissionPrice = response.priceResult.comission;
         },
         console.log)

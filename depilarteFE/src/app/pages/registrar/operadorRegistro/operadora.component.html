@@ -205,7 +205,7 @@
                 <mat-label>Diferencia</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Diferencia</mat-label>
-                  <input matInput [disabled]="disabled" formControlName="diferents" [ngModel]="total.disparoAntes - total.disparoDespues">
+                  <input matInput formControlName="diferents" [ngModel]="total.disparoAntes - total.disparoDespues">
                 </mat-form-field>
               </div>
             </div>
@@ -244,7 +244,7 @@
                 <mat-label>Abonado</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Abonado</mat-label>
-                  <input matInput  formControlName="bono" type="number" [(ngModel)]="total.abonado">
+                  <input matInput  formControlName="bono" type="number" [(ngModel)]="precio.abonado">
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -254,7 +254,7 @@
                 <mat-label>Total de la Venta</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Total</mat-label>
-                  <input matInput formControlName="totalPrice" [ngModel]="prices - total.abonado" type="number" >
+                  <input matInput formControlName="totalPrice" [ngModel]="precio.prices - precio.abonado" >
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
@@ -264,14 +264,13 @@
                 <mat-label>Comisión de la Operadora</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Comision</mat-label>
-                  <input matInput  formControlName="comission" [ngModel]="comissionPrice">
+                  <input matInput  formControlName="comission" [(ngModel)]="comissionPrice">
                   <span matPrefix>%&nbsp;</span>
                 </mat-form-field>
               </div>
             </div>
         </div>
         <div class="row">
-
       </div>
           <div class="row">
             <div class="col-md-12">
