@@ -677,7 +677,11 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             result.put("treatment", Long.valueOf(register.getTratamiento()));
             result.put("treatmentType",Long.valueOf(register.getTipoTratamiento()));
             result.put("sessions", register.getCantidadSesiones());
-            result.put("product", Long.valueOf(register.getProductoUtilizado()));
+            if(register.getProductoUtilizado() != null){
+                result.put("product", Long.valueOf(register.getProductoUtilizado()));
+            }else{
+                result.put("product", EMPTY);
+            }
             result.put("reference", Long.valueOf(register.getReference()));
             result.put("beforeShots", register.getDisparosAntes());
             result.put("afterShots", register.getDisparosDespues());

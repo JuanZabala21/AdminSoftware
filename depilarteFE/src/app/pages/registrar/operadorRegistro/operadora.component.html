@@ -187,7 +187,7 @@
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Antes</mat-label>
-                  <input matInput  formControlName="beforeShots" type="number" placeholder="Antes" [(ngModel)]="total.disparoAntes">
+                  <input matInput  formControlName="beforeShots" type="number" placeholder="Antes" [ngModel]="total.disparoAntes">
                 </mat-form-field>
               </div>
             </div>
@@ -196,7 +196,7 @@
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Despues</mat-label>
-                  <input matInput type="number" formControlName="afterShots" placeholder="Despues" [(ngModel)]="total.disparoDespues">
+                  <input matInput type="number" formControlName="afterShots" placeholder="Despues" [ngModel]="total.disparoDespues">
                 </mat-form-field>
               </div>
             </div>

@@ -144,7 +144,9 @@ export class OperadoraComponent implements OnInit {
   }
 
   setValues(values) {
-    this.form.setValue(values);
+      this.total.disparoAntes = values.beforeShots;
+      this.total.disparoDespues = values.afterShots;
+      this.form.setValue(values);
   }
 
     register() {
@@ -200,7 +202,7 @@ export class OperadoraComponent implements OnInit {
   }
 
   changeTypeTreament() {
-      if(this.form.get('treatment').value != null){
+      if(this.form.get('treatment').value != null) {
         this.globalService.httpServicesResponse({ treatmentType : this.form.get('treatment').value},
           environment.Url + '/global/treatmentTypes').subscribe(response => {
               this.treatmentTypeList = response.treatmentTypes.filter(tp => tp.id !== -1);
