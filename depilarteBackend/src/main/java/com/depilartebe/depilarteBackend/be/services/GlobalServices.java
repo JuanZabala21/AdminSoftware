@@ -35,9 +35,6 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
     TreatmentTypeRepository treatmentTypeRepository;
 
     @Autowired
-    TreatmentZoneRepository treatmentZoneRepository;
-
-    @Autowired
     ProductRepository productRepository;
 
     @Autowired
@@ -148,24 +145,6 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
         }
         return mapResult;
     }
-
-
-    public Map<String, Object> getTreatmentZone(String treament) {
-        Map<String, Object> mapResult = new HashMap<>();
-        try {
-            List<TreatmentZone> treatmentZoneList = treatmentZoneRepository.finbTypeTreat(Long.parseLong(treament));
-            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
-            mapResult.put(TREATMENTZONERESULT, treatmentZoneList);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-            log.error("Se produjo un error: " + e.getMessage());
-            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
-            mapResult.put(MESSAGE, MESSAGE_ERROR);
-        }
-        return mapResult;
-    }
-
 
     public Map<String, Object> getProducts() {
         Map<String , Object> mapResult = new HashMap<>();

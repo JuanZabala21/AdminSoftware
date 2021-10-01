@@ -35,9 +35,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     TreatmentTypeRepository treatmentTypeRepository;
 
     @Autowired
-    TreatmentZoneRepository treatmentZoneRepository;
-
-    @Autowired
     ProductRepository productRepository;
 
     @Autowired
@@ -63,9 +60,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             String address,
             Long treatment,
             Long treatmentType,
-            Long treatmentZone,
             String countSessions,
-            String assistent,
             String product,
             String shotBefore,
             String shotAfter,
@@ -79,7 +74,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             String note,
             String phone,
             Long reference
-            
 
     ) {
         Map<String, Object> mapResult = new HashMap<>();
@@ -105,9 +99,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setDireccion(address);
             register.setTratamiento(treatment.toString());
             register.setTipoTratamiento(treatmentType.toString());
-            register.setZonaTratamiento(treatmentZone);
             register.setCantidadSesiones(countSessions);
-            register.setAsistencia(assistent);
             register.setProductoUtilizado(product);
             register.setDisparosAntes(shotBefore);
             register.setDisparosDespues(shotAfter);
@@ -360,7 +352,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     result.put("shotsAfter", register.getDisparosDespues());
                     result.put("shotsDifferential", register.getDiferenciaDisparos());
                     result.put("sessions", register.getCantidadSesiones());
-                    result.put("assistents", register.getAsistencia());
                     if(register.getProductoUtilizado() != null){
                         products = productRepository.findProductsById(register.getProductoUtilizado());
                         result.put("product", products.getNombre());
@@ -619,7 +610,12 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             result.put("cantidad", products.getCantidad());
             result.put("specialist", Long.valueOf(products.getSpecialist()));
             result.put("price", products.getPrecio());
-            result.put("description", products.getDescripcion());
+            if(products.getDescripcion() != null){
+                result.put("description", products.getDescripcion());
+            }else{
+                result.put("description", EMPTY);
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -681,7 +677,6 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             result.put("treatment", Long.valueOf(register.getTratamiento()));
             result.put("treatmentType",Long.valueOf(register.getTipoTratamiento()));
             result.put("sessions", register.getCantidadSesiones());
-            result.put("assistent", register.getAsistencia());
             result.put("product", Long.valueOf(register.getProductoUtilizado()));
             result.put("reference", Long.valueOf(register.getReference()));
             result.put("beforeShots", register.getDisparosAntes());
@@ -699,8 +694,11 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             result.put("totalPrice", register.getPrecioTotal());
             result.put("comission", register.getComision());
             result.put("phone", register.getTelefono());
-            result.put("note", register.getNota());
-
+            if(register.getNota() != null){
+                result.put("note", register.getNota());
+            } else{
+                result.put("note", EMPTY);
+            }
         }catch (Exception e) {
             e.printStackTrace();
             log.error("Se produjo un error: " + e.getMessage());

@@ -264,7 +264,7 @@
                 <mat-label>Comisión de la Operadora</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Comision</mat-label>
-                  <input matInput  formControlName="comission">
+                  <input matInput  formControlName="comission" [ngModel]="comissionPrice">
                   <span matPrefix>%&nbsp;</span>
                 </mat-form-field>
               </div>

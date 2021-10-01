@@ -1,15 +1,11 @@
 package com.depilartebe.depilarteBackend.be.repository;
 
 import com.depilartebe.depilarteBackend.be.entities.TreatmentType;
-import com.depilartebe.depilarteBackend.be.entities.TreatmentZone;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.json.JSONObject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

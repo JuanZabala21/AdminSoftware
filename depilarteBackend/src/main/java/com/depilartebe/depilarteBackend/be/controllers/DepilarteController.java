@@ -74,16 +74,9 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                        params.get(CLIENT_TREATMENTTYPE) != null &&
                        !params.get(CLIENT_TREATMENTTYPE).toString().isEmpty() )
                        ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
-               Long treatmentZone = (params.containsKey(CLIENT_TREATMENTZONE) &&
-                       params.get(CLIENT_TREATMENTZONE) != null &&
-                       !params.get(CLIENT_TREATMENTZONE).toString().isEmpty() )
-                       ? Long.valueOf(params.get(CLIENT_TREATMENTZONE).toString()) : null;
                String countSessions =  (params.containsKey(CLIENT_SESSIONS) && params.get(CLIENT_SESSIONS) != null
                        && !params.get(CLIENT_SESSIONS).toString().isEmpty()) ?
                        params.get(CLIENT_SESSIONS).toString() : null;
-               String assistent = (params.containsKey(CLIENT_ASSISTENT) && params.get(CLIENT_ASSISTENT) != null
-                       && !params.get(CLIENT_ASSISTENT).toString().isEmpty()) ?
-                       params.get(CLIENT_ASSISTENT).toString() : null;
                String product = (params.containsKey(CLIENT_PRODUCT) &&
                        params.get(CLIENT_PRODUCT) != null &&
                        !params.get(CLIENT_PRODUCT).toString().isEmpty() )
@@ -130,8 +123,8 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         ? Long.valueOf(params.get(CLIENT_REFERENCE).toString()) : null;
 
                 mapResponse = depilarteServices.registerClients(id,registerWorker,clientName,clientLastName,identification,age,
-                                                               email,birthday,address,treatment,treatmentType,treatmentZone,countSessions,
-                                                               assistent,product,shotBefore,shotAfter,shotDiferencial,operator,doctor,formPay,
+                                                               email,birthday,address,treatment,treatmentType,countSessions,
+                                                               product,shotBefore,shotAfter,shotDiferencial,operator,doctor,formPay,
                                                                 abonado,priceTotal,comission,note,phone, reference);
 
             } catch (Exception e) {

@@ -41,14 +41,8 @@ import java.util.Date;
     @Column(name = "TipoTratamiento")
     private String TipoTratamiento;
 
-    @Column(name = "ZonaTratamiento")
-    private Long ZonaTratamiento;
-
     @Column(name = "CantidadSesiones")
     private String CantidadSesiones;
-
-    @Column(name = "Asistencia")
-    private String Asistencia;
 
     @Column(name = "ProductoUtilizado")
     private String ProductoUtilizado;
@@ -133,16 +127,8 @@ import java.util.Date;
         return TipoTratamiento;
     }
 
-    public Long getZonaTratamiento() {
-        return ZonaTratamiento;
-    }
-
     public String getCantidadSesiones() {
         return CantidadSesiones;
-    }
-
-    public String getAsistencia() {
-        return Asistencia;
     }
 
     public String getProductoUtilizado() {
@@ -184,7 +170,6 @@ import java.util.Date;
     public Long getReference(){
         return reference;
     }
-
 
 
     public void setId(Long id) {
@@ -231,16 +216,8 @@ import java.util.Date;
         TipoTratamiento = tipoTratamiento;
     }
 
-    public void setZonaTratamiento(Long zonaTratamiento) {
-        ZonaTratamiento = zonaTratamiento;
-    }
-
     public void setCantidadSesiones(String cantidadSesiones) {
         CantidadSesiones = cantidadSesiones;
-    }
-
-    public void setAsistencia(String asistencia) {
-        Asistencia = asistencia;
     }
 
     public void setProductoUtilizado(String productoUtilizado) {
