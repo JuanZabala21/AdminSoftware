@@ -187,7 +187,7 @@
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Antes</mat-label>
-                  <input matInput  formControlName="beforeShots" type="number" placeholder="Antes" [ngModel]="total.disparoAntes">
+                  <input matInput  formControlName="beforeShots" type="number" placeholder="Antes" [(ngModel)]="total.disparoAntes">
                 </mat-form-field>
               </div>
             </div>
@@ -196,7 +196,7 @@
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Despues</mat-label>
-                  <input matInput type="number" formControlName="afterShots" placeholder="Despues" [ngModel]="total.disparoDespues">
+                  <input matInput type="number" formControlName="afterShots" placeholder="Despues" [(ngModel)]="total.disparoDespues">
                 </mat-form-field>
               </div>
             </div>
@@ -284,26 +284,28 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class = row>
+            <div class="form-group">
+              <img [src]="beforeImage" />
+              <img [src]="afterImage" />
+            </div>
+          </div>
+
+
+          <div style="justify-content: center; margin-bottom: 20px" class="row">
+            <div class="form-group">
+              <input type="file" (change)="onFileChangedBefore($event)">
+              <div class="col-md-4 pl-1">
+                <input mat-raised-button color="primary" type="button" value="Foto antes de la sesión" >
+              </div>
+            </div>
               <div class="form-group">
-                <div class="col-md-4 pr-1">
-                  <button
-                    mat-raised-button color="primary"
-                    type="file" (change)="uploadFile($event)">
-                    Foto antes de la sesión
-                    <input type="file" (change)="uploadFile($event)" >
-                  </button>
+                  <input type="file" (change)="onFileChangedAfter($event)">
+                <div class="col-md-4 pl-1">
+                   <input mat-raised-button color="primary" type="button" value="Foto despues de la sesión" >
                 </div>
               </div>
-              <div class="form-group">
-                <div class="col-md-4 pl-1">
-                  <button mat-raised-button color="primary">
-                    Foto despues de la sesión
-                   <input type="file" (change)="uploadFile($event)" >
-                  </button>
-                </div>
              </div>
-          </div>
 
           <div class="row">
             <div class="update ml-auto mr-auto">

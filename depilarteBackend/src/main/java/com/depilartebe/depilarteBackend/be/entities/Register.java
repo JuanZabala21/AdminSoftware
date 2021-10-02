@@ -83,6 +83,12 @@ import java.util.Date;
     @Column(name = "RegisterUser")
     private Long registerUser;
 
+    @Column(name = "imgAfter")
+    private String imgAfter;
+
+    @Column(name = "imgBefore")
+    private String imgBefore;
+
         public Long getId() {
             return id;
         }
@@ -281,5 +287,21 @@ import java.util.Date;
 
         public void setRegisterUser(Long registerUser) {
             this.registerUser = registerUser;
+        }
+
+        public String getImgAfter() {
+            return imgAfter;
+        }
+
+        public String getImgBefore() {
+            return imgBefore;
+        }
+
+        public void setImgAfter(String imgAfter) {
+            this.imgAfter = imgAfter;
+        }
+
+        public void setImgBefore(String imgBefore) {
+            this.imgBefore = imgBefore;
         }
     }

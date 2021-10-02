@@ -171,6 +171,8 @@ public interface DepilarteConstants {
     String CLIENT_NOTE = "note";
     String CLIENT_PHONE = "phone";
     String CLIENT_REFERENCE = "reference";
+    String CLIENT_IMAGE_AFTER = "imageFileAfter";
+    String CLIENT_IMAGE_BEFORE = "imageFileBefore";
 
     String EMPLEADO_ID = "id";
     String EMPLEADO_REGISTER = "userRegister";

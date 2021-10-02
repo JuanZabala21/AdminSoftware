@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare let alertify: any;
 
@@ -15,6 +16,10 @@ declare let alertify: any;
 
 export class OperadoraComponent implements OnInit {
     form: FormGroup;
+    afterImage;
+    beforeImage;
+    baseBeforeImage;
+    baseAfterImage;
   idPoint;
   isLoading = false;
   create = true;
@@ -24,16 +29,17 @@ export class OperadoraComponent implements OnInit {
     disparoDespues: 0,
   };
 
+imageName: any;
+selectedFileAfter: File;
+selectedFileBefore: File;
   precio = {
     prices: 0,
     abonado: 0,
   };
-
    userList = [
      {value: 1, desc: 'Doctora'},
      {value: 2, desc: 'Operadora'}
    ];
-
    comissionPrice: null;
    referenceList = [];
    chargerList = [];
@@ -73,7 +79,8 @@ export class OperadoraComponent implements OnInit {
       private fb: FormBuilder,
       private router: Router,
       private route: ActivatedRoute,
-      private globalService: GlobalServices
+      private globalService: GlobalServices,
+      private sanitizer : DomSanitizer,
     ) {
       this.form = fb.group({
         id: new FormControl(),
@@ -100,7 +107,9 @@ export class OperadoraComponent implements OnInit {
         totalPrice: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
         comission: new FormControl('', [Validators.required, Validators.compose([Validators.pattern("^[0-9-,]*$")])]),
         reference: new FormControl('',[Validators.required]),
-        note: new FormControl()
+        note: new FormControl(),
+        imageAfter: new FormControl(),
+        imageBefore: new FormControl()
         });
       this.form.controls.userRegister.valueChanges.subscribe(
         value => {
@@ -146,6 +155,10 @@ export class OperadoraComponent implements OnInit {
   setValues(values) {
       this.total.disparoAntes = values.beforeShots;
       this.total.disparoDespues = values.afterShots;
+      this.baseAfterImage = values.imageAfter;
+      this.baseBeforeImage = values.imageBefore;
+      this.baseTransformAfter(this.baseAfterImage);
+      this.baseTransformBefore(this.baseBeforeImage);
       this.form.setValue(values);
   }
 
@@ -154,9 +167,13 @@ export class OperadoraComponent implements OnInit {
       this.form.controls['totalPrice'].enable();
       this.form.controls['diferents'].enable();
       this.form.controls['comission'].enable();
+
       let data = {
-        ...this.form.value
+        imageFileAfter: this.afterImage,
+        imageFileBefore: this.beforeImage,
+        ...this.form.value,
       };
+
       this.globalService.httpServicesResponse(data, environment.Url + '/depilarte/registerClient').subscribe(
         res => {
             if(res.type==='error'){
@@ -167,6 +184,8 @@ export class OperadoraComponent implements OnInit {
        }else{
               alertify.success('Registrado con exito');
               this.precio.prices = 0;
+              this.beforeImage = "";
+              this.afterImage = "";
               this.form.reset();
               this.form.controls['totalPrice'].disable();
               this.form.controls['diferents'].disable();
@@ -255,5 +274,59 @@ export class OperadoraComponent implements OnInit {
       },
       console.error);
   }
+
+  public onFileChangedAfter(event) {
+    let me = this;
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      me.afterImage = reader.result;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  public onFileChangedBefore(event) {
+    let me = this;
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      me.beforeImage = reader.result;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  public baseTransformAfter(paramAfter) {
+      if(paramAfter.includes("{changingThisBreaksApplicationSecurity=") && paramAfter.includes("}")){
+        let afterParam = paramAfter.split("{changingThisBreaksApplicationSecurity=")[1]
+        afterParam = afterParam.split("}")[0];
+        let mySrcAfter = this.sanitizer.bypassSecurityTrustUrl(afterParam);
+        this.afterImage = mySrcAfter;
+      }else{
+        let mySrcAfter = this.sanitizer.bypassSecurityTrustUrl(paramAfter);
+        this.afterImage = mySrcAfter;
+      }
+
+  }
+
+  public baseTransformBefore(paramBefore) {
+      if(paramBefore.includes("{changingThisBreaksApplicationSecurity=") && paramBefore.includes("}")){
+        let beforeParam = paramBefore.split("{changingThisBreaksApplicationSecurity=")[1]
+        beforeParam = beforeParam.split("}")[0];
+        let mySrcABefore = this.sanitizer.bypassSecurityTrustUrl(beforeParam);
+        this.beforeImage = mySrcABefore;
+      }else{
+        let mySrcABefore = this.sanitizer.bypassSecurityTrustUrl(paramBefore);
+        this.beforeImage = mySrcABefore;
+      }
+
+
+  }
+
 
 }

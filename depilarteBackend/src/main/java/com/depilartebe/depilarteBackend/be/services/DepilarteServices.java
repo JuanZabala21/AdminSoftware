@@ -73,7 +73,9 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             String comission,
             String note,
             String phone,
-            Long reference
+            Long reference,
+            String imageAfter,
+            String imageBefore
 
     ) {
         Map<String, Object> mapResult = new HashMap<>();
@@ -116,6 +118,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setNota(note);
             register.setTelefono(phone);
             register.setReference(reference);
+            register.setImgAfter(imageAfter);
+            register.setImgBefore(imageBefore);
             register.setFechaAtendido(dt.format(today));
             registerRepository.save(register);
 
@@ -703,6 +707,9 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             } else{
                 result.put("note", EMPTY);
             }
+            result.put("imageAfter", register.getImgAfter());
+            result.put("imageBefore", register.getImgBefore());
+
         }catch (Exception e) {
             e.printStackTrace();
             log.error("Se produjo un error: " + e.getMessage());

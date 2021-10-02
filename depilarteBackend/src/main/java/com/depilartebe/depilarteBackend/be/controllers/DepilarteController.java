@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import com.depilartebe.depilarteBackend.be.services.DepilarteServices;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,11 +122,18 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(CLIENT_REFERENCE) != null &&
                         !params.get(CLIENT_REFERENCE).toString().isEmpty() )
                         ? Long.valueOf(params.get(CLIENT_REFERENCE).toString()) : null;
+                String imageFileAfter = (params.containsKey(CLIENT_IMAGE_AFTER) && params.get(CLIENT_IMAGE_AFTER) != null
+                        && !params.get(CLIENT_IMAGE_AFTER).toString().isEmpty()) ?
+                        params.get(CLIENT_IMAGE_AFTER).toString() : null;
+                String imageFileBefore = (params.containsKey(CLIENT_IMAGE_BEFORE) &&
+                        params.get(CLIENT_IMAGE_BEFORE) != null &&
+                        !params.get(CLIENT_IMAGE_BEFORE).toString().isEmpty()) ?
+                           params.get(CLIENT_IMAGE_BEFORE).toString() : null;
 
                 mapResponse = depilarteServices.registerClients(id,registerWorker,clientName,clientLastName,identification,age,
                                                                email,birthday,address,treatment,treatmentType,countSessions,
                                                                product,shotBefore,shotAfter,shotDiferencial,operator,doctor,formPay,
-                                                                abonado,priceTotal,comission,note,phone, reference);
+                                                                abonado,priceTotal,comission,note,phone, reference,imageFileAfter,imageFileBefore);
 
             } catch (Exception e) {
                 e.printStackTrace();
