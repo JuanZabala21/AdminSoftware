@@ -118,8 +118,16 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setNota(note);
             register.setTelefono(phone);
             register.setReference(reference);
-            register.setImgAfter(imageAfter);
-            register.setImgBefore(imageBefore);
+            if(imageAfter != null){
+                register.setImgAfter(imageAfter);
+            }else{
+                register.setImgAfter(EMPTY);
+            }
+            if(imageBefore != null){
+                register.setImgBefore(imageBefore);
+            }else{
+                register.setImgBefore(EMPTY);
+            }
             register.setFechaAtendido(dt.format(today));
             registerRepository.save(register);
 
