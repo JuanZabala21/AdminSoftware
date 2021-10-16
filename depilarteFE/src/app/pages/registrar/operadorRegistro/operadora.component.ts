@@ -21,6 +21,7 @@ export class OperadoraComponent implements OnInit {
     baseBeforeImage;
     baseAfterImage;
   idPoint;
+  isHistory;
   isLoading = false;
   create = true;
   edit = false;
@@ -67,9 +68,15 @@ selectedFileBefore: File;
 
       this.route.queryParams.subscribe( params => {
         const {id} = params;
+        const {history} = params;
+        this.isHistory = history;
         this.idPoint = id;
-        if (this.idPoint) {
-          this.getDtaByUpdate(id);
+        if (this.isHistory) {
+          this.getDtaByUpdate(id, history);
+        } else {
+          if (this.idPoint) {
+            this.getDtaByUpdate(id, null);
+          }
         }
       });
 
@@ -80,7 +87,7 @@ selectedFileBefore: File;
       private router: Router,
       private route: ActivatedRoute,
       private globalService: GlobalServices,
-      private sanitizer : DomSanitizer,
+      private sanitizer: DomSanitizer,
     ) {
       this.form = fb.group({
         id: new FormControl(),
@@ -109,7 +116,8 @@ selectedFileBefore: File;
         reference: new FormControl('',[Validators.required]),
         note: new FormControl(),
         imageAfter: new FormControl(),
-        imageBefore: new FormControl()
+        imageBefore: new FormControl(),
+        history: new FormControl()
         });
       this.form.controls.userRegister.valueChanges.subscribe(
         value => {
@@ -134,14 +142,16 @@ selectedFileBefore: File;
     }
 
   get f() {return this.form.controls; }
-  getDtaByUpdate(id) {
+  getDtaByUpdate(id, history) {
     this.isLoading = true;
     const data = {
-      id
+      id,
+      history
     };
     this.globalService.httpServicesResponse(data,
       environment.Url + 'depilarte/getPacientes').subscribe(
       res => {
+        console.log(res);
         this.setValues(res);
         this.isLoading = false;
         this.create = false;
@@ -153,12 +163,18 @@ selectedFileBefore: File;
   }
 
   setValues(values) {
-      this.total.disparoAntes = values.beforeShots;
-      this.total.disparoDespues = values.afterShots;
-      this.baseAfterImage = values.imageAfter;
-      this.baseBeforeImage = values.imageBefore;
-      this.baseTransformAfter(this.baseAfterImage);
-      this.baseTransformBefore(this.baseBeforeImage);
+      if (values.history == null ) {
+        this.total.disparoAntes = values.beforeShots;
+        this.total.disparoDespues = values.afterShots;
+        if (values.imageAfter != null) {
+          this.baseAfterImage = values.imageAfter;
+          this.baseTransformAfter(this.baseAfterImage);
+        }
+        if (values.imageBefore != null) {
+          this.baseBeforeImage = values.imageBefore;
+          this.baseTransformBefore(this.baseBeforeImage);
+        } 
+      }
       this.form.setValue(values);
   }
 

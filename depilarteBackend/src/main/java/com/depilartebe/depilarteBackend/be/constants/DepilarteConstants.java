@@ -227,6 +227,7 @@ public interface DepilarteConstants {
     String ID_TREATMENTS = "id";
 
     String ID_PACIENTES = "id";
+    String HISTORY_PACIENTES = "history";
 
 
 

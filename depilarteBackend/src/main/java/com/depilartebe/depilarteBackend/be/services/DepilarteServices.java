@@ -669,54 +669,102 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     }
 
     public Map<String, Object> getPacientes(
-            Long id
+            Long id,
+            Long history
     ){
         Map<String, Object> mapResult = new HashMap<>();
         Map<String, Object> result = new HashMap<>();
         try {
-            Register register = new Register();
-            register = registerRepository.findRegisterById(id);
 
-            result.put("id", id);
-            result.put("userRegister", register.getRegisterUser());
-            result.put("name", register.getNombre());
-            result.put("lastName", register.getApellido());
-            result.put("identification", register.getCedula());
-            result.put("age", register.getEdad());
-            result.put("email", register.getCorreo());
-            result.put("birthday", register.getFechaCumple());
-            result.put("address", register.getDireccion());
-            result.put("treatment", Long.valueOf(register.getTratamiento()));
-            result.put("treatmentType",Long.valueOf(register.getTipoTratamiento()));
-            result.put("sessions", register.getCantidadSesiones());
-            if(register.getProductoUtilizado() != null){
-                result.put("product", Long.valueOf(register.getProductoUtilizado()));
-            }else{
+            if(history == null){
+                Register register = new Register();
+                register = registerRepository.findRegisterById(id);
+
+                result.put("id", id);
+                result.put("userRegister", register.getRegisterUser());
+                result.put("name", register.getNombre());
+                result.put("lastName", register.getApellido());
+                result.put("identification", register.getCedula());
+                result.put("age", register.getEdad());
+                result.put("email", register.getCorreo());
+                result.put("birthday", register.getFechaCumple());
+                result.put("address", register.getDireccion());
+                result.put("treatment", Long.valueOf(register.getTratamiento()));
+                result.put("treatmentType",Long.valueOf(register.getTipoTratamiento()));
+                result.put("sessions", register.getCantidadSesiones());
+                if(register.getProductoUtilizado() != null){
+                    result.put("product", Long.valueOf(register.getProductoUtilizado()));
+                }else{
+                    result.put("product", EMPTY);
+                }
+                result.put("reference", Long.valueOf(register.getReference()));
+                result.put("beforeShots", register.getDisparosAntes());
+                result.put("afterShots", register.getDisparosDespues());
+                result.put("diferents", register.getDiferenciaDisparos());
+                if(register.getRegisterUser() == 1){
+                    result.put("userDoc", Long.valueOf(register.getUserAtendio()));
+                    result.put("userOp", EMPTY);
+                }else{
+                    result.put("userOp",  Long.valueOf(register.getUserAtendio()));
+                    result.put("userDoc",EMPTY);
+                }
+                result.put("bono", register.getAbonado());
+                result.put("formPay", Long.valueOf(register.getFormaPago()));
+                result.put("totalPrice", register.getPrecioTotal());
+                result.put("comission", register.getComision());
+                result.put("phone", register.getTelefono());
+                if(register.getNota() != null){
+                    result.put("note", register.getNota());
+                } else{
+                    result.put("note", EMPTY);
+                }
+                if(register.getImgAfter() != null && register.getImgBefore() != null){
+                    result.put("imageAfter", register.getImgAfter());
+                    result.put("imageBefore", register.getImgBefore());
+                }else{
+                    result.put("imageAfter", EMPTY);
+                    result.put("imageBefore", EMPTY);
+                }
+                result.put("history", null);
+
+            } else {
+                Register register = new Register();
+                register = registerRepository.findRegisterById(id);
+
+                /* EMPTY REGISTER */
+                result.put("id", null);
+                result.put("userRegister", EMPTY);
+                result.put("treatment",EMPTY);
+                result.put("treatmentType",EMPTY);
+                result.put("sessions", EMPTY);
                 result.put("product", EMPTY);
-            }
-            result.put("reference", Long.valueOf(register.getReference()));
-            result.put("beforeShots", register.getDisparosAntes());
-            result.put("afterShots", register.getDisparosDespues());
-            result.put("diferents", register.getDiferenciaDisparos());
-            if(register.getRegisterUser() == 1){
-                result.put("userDoc", Long.valueOf(register.getUserAtendio()));
+                result.put("reference", EMPTY);
+                result.put("beforeShots", EMPTY);
+                result.put("afterShots", EMPTY);
+                result.put("diferents", EMPTY);
+                result.put("userDoc", EMPTY);
                 result.put("userOp", EMPTY);
-            }else{
-                result.put("userOp",  Long.valueOf(register.getUserAtendio()));
-                result.put("userDoc",EMPTY);
-            }
-            result.put("bono", register.getAbonado());
-            result.put("formPay", Long.valueOf(register.getFormaPago()));
-            result.put("totalPrice", register.getPrecioTotal());
-            result.put("comission", register.getComision());
-            result.put("phone", register.getTelefono());
-            if(register.getNota() != null){
-                result.put("note", register.getNota());
-            } else{
+                result.put("bono", EMPTY);
+                result.put("formPay",EMPTY);
+                result.put("totalPrice",EMPTY);
+                result.put("comission", EMPTY);
+                result.put("phone", register.getTelefono());
                 result.put("note", EMPTY);
+                result.put("imageAfter", EMPTY);
+                result.put("imageBefore", EMPTY);
+
+                /* DATA USER FOR HISTORY */
+                result.put("name", register.getNombre());
+                result.put("lastName", register.getApellido());
+                result.put("identification", register.getCedula());
+                result.put("age", register.getEdad());
+                result.put("email", register.getCorreo());
+                result.put("birthday", register.getFechaCumple());
+                result.put("address", register.getDireccion());
+                result.put("phone", register.getTelefono());
+                result.put("history", 1);
             }
-            result.put("imageAfter", register.getImgAfter());
-            result.put("imageBefore", register.getImgBefore());
+
 
         }catch (Exception e) {
             e.printStackTrace();

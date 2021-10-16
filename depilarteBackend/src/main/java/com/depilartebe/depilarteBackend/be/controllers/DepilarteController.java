@@ -556,8 +556,12 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(ID_PACIENTES) != null &&
                         !params.get(ID_PACIENTES).toString().isEmpty())
                         ? Long.valueOf(params.get(ID_PACIENTES).toString()) : null;
+                Long isHistory = (params.containsKey(HISTORY_PACIENTES) &&
+                        params.get(HISTORY_PACIENTES) != null &&
+                        !params.get(HISTORY_PACIENTES).toString().isEmpty())
+                        ? Long.valueOf(params.get(HISTORY_PACIENTES).toString()) : null;
 
-                mapResponse = depilarteServices.getPacientes(idPacientes);
+                mapResponse = depilarteServices.getPacientes(idPacientes,isHistory);
 
 
             } catch (Exception e) {

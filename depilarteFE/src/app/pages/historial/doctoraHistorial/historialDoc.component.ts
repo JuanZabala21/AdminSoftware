@@ -108,6 +108,11 @@ export class HistorialDocComponent implements OnInit {
       { relativeTo: this.route,queryParams:{id}});
   }
 
+  goNew(id,history) {
+    this.router.navigate(['/registrar-paciente'],
+      { relativeTo: this.route,queryParams:{id,history}});
+  }
+
   changeCharger() {
     if(this.filters.get('user').value != null){
       this.globalServices.httpServicesResponse({ charger : this.filters.get('user').value},
