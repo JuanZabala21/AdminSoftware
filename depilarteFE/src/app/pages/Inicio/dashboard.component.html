@@ -10,7 +10,7 @@
           </div>
           <div class="col-9 col-md-10">
             <div class="numbers">
-              <p class="card-category">Pacientes Registrados</p><br>
+              <p class="card-category" style="color: black;">Pacientes Registrados</p><br>
               <p class="card-title">  {{registerCount}}  </p>
                 
             </div>
@@ -36,7 +36,7 @@
           </div>
           <div class="col-9 col-md-10">
             <div class="numbers">
-              <p class="card-category">Tratamientos Registrados</p><br>
+              <p class="card-category" style="color: black;">Tratamientos Registrados</p><br>
               <p class="card-title">{{tratamientosCount}}</p>
             </div>
           </div>
@@ -61,7 +61,7 @@
           </div>
           <div class="col-9 col-md-10">
             <div class="numbers">
-              <p class="card-category" style="width: 100%;">Empleados Registrados</p><br>
+              <p class="card-category" style="width: 100%; color: black;">Empleados Registrados</p><br>
               <p class="card-title">{{empleadosCount}}
                 <p>
             </div>
@@ -87,7 +87,7 @@
           </div>
           <div class="col-9 col-md-10">
             <div class="numbers">
-              <p class="card-category">Productos Registrados</p><br>
+              <p class="card-category" style="color: black;">Productos Registrados</p><br>
               <p class="card-title">{{productosCount}}
                 <p>
             </div>
@@ -101,6 +101,18 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12" >
+  <div class="card card-stats">
+    <form action="">
+      <div class="row" id="contain">
+            <p class="card-category">Disparos Actuales de la Pistola </p>
+            <input matInput placeholder="Indique los Disparos" type="number"> 
+            <button mat-raised-button type="submit" >Actualizar</button>
+      </div>
+     </form>
   </div>
 </div>
 

@@ -9,7 +9,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
     selector: 'dashboard-cmp',
     moduleId: module.id,
-    templateUrl: 'dashboard.component.html'
+    templateUrl: 'dashboard.component.html',
+    styleUrls: ['dashboard.component.scss']
 })
 
 

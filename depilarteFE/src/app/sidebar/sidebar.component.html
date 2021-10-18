@@ -8,7 +8,7 @@
       <mat-expansion-panel class="mat-elevation-z0" style="width: 99%">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <p>Registrar</p>
+            <p class="titles">Registrar</p>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{menuItem.class}}">
@@ -21,7 +21,7 @@
 
       <mat-expansion-panel class="mat-elevation-z0" style="width: 99%" >
         <mat-expansion-panel-header >
-            <p>Historial</p>
+            <p class="titles">Historial</p>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
         <li *ngFor="let menuItem2 of menuItems2" routerLinkActive="active" class="{{menuItem2.class}}">
@@ -35,7 +35,7 @@
 
       <mat-expansion-panel class="mat-elevation-z0" style="width: 99%" >
         <mat-expansion-panel-header >
-          <p>Productos</p>
+          <p class="titles">Productos</p>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
           <li *ngFor="let menuItem3 of menuItems3" routerLinkActive="active" class="{{menuItem3.class}}">
