@@ -186,7 +186,7 @@
               <div class="form-group">
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Antes</mat-label>
+                  <mat-label>Antes del tratamiento</mat-label>
                   <input matInput  formControlName="beforeShots" type="number" placeholder="Antes" [(ngModel)]="total.disparoAntes">
                 </mat-form-field>
               </div>
@@ -195,17 +195,17 @@
               <div class="form-group">
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Despues</mat-label>
+                  <mat-label>Utilizados</mat-label>
                   <input matInput type="number" formControlName="afterShots" placeholder="Despues" [(ngModel)]="total.disparoDespues">
                 </mat-form-field>
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <mat-label>Diferencia</mat-label>
+                <mat-label>Disparos Finales</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Diferencia</mat-label>
-                  <input matInput formControlName="diferents" [ngModel]="total.disparoDespues - total.disparoAntes">
+                  <mat-label>Totales</mat-label>
+                  <input matInput formControlName="diferents" [ngModel]="total.disparoDespues + total.disparoAntes">
                 </mat-form-field>
               </div>
             </div>

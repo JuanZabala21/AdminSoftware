@@ -39,6 +39,10 @@ import { saveAs } from 'file-saver';
 export class HistorialDocComponent implements OnInit {
   filters: FormGroup;
   fileName : string = 'Registros.xlsx';
+  totalPagoM = 0;
+  totalZelle = 0;
+  totalEfectivo = 0;
+  totalAbonado = 0;
   chargerList = [];
   usuarioList = [
     {value: 1, desc: 'Doctora'},
@@ -96,6 +100,11 @@ export class HistorialDocComponent implements OnInit {
       ...this.filters.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRegister').subscribe( res => {
+        const position = res.resultList.length - 1;
+        this.totalZelle = res.resultList[position].zelleTotal;
+        this.totalPagoM = res.resultList[position].pagoMTotal;
+        this.totalAbonado = res.resultList[position].abonoTotal;
+        this.totalEfectivo = res.resultList[position].efectivoTotal;
         this.dataSource = new MatTableDataSource(res.resultList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

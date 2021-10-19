@@ -5,6 +5,7 @@ import {GlobalServices} from '../../shared/services/global.services';
 import {environment} from '../../../environments/environment';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
+declare let alertify: any;
 
 @Component({
     selector: 'dashboard-cmp',
@@ -38,10 +39,7 @@ export class DashboardComponent implements OnInit{
     private globalServices: GlobalServices,
     private fb: FormBuilder) {
       this.filters = fb.group({
-        registerCount: new FormControl(),
-        empleadoCount: new FormControl(),
-        productosCount: new FormControl(),
-        tratamientoCount: new FormControl(),
+        gunValue: new FormControl()
       });
     }
 
@@ -190,5 +188,25 @@ export class DashboardComponent implements OnInit{
         options: chartOptions
       });
     }
+
+    updateGun() {
+      const data = {
+        ...this.filters.value
+      };
+      this.globalServices.httpServicesResponse(data,
+        environment.Url + '/global/updateGun').subscribe( response => {
+          if (response.type === 'error') {
+            alertify.success('Ha ocurrido un error al actualizar');
+          } else {
+            this.filters.reset();
+            alertify.success('Disparos de pistola han sido actualizados');
+          }
+        },
+        console.error);
+    }
+
+
+
+
 }
 

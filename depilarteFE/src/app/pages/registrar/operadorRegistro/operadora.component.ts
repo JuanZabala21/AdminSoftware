@@ -63,6 +63,7 @@ selectedFileBefore: File;
       this.changeCharger();
       this.getReference();
       this.form.controls['totalPrice'].disable();
+      this.form.controls['beforeShots'].disable();
       this.form.controls['diferents'].disable();
       this.form.controls['comission'].disable();
 
@@ -173,7 +174,7 @@ selectedFileBefore: File;
         if (values.imageBefore != null) {
           this.baseBeforeImage = values.imageBefore;
           this.baseTransformBefore(this.baseBeforeImage);
-        } 
+        }
       }
       this.form.setValue(values);
   }
@@ -183,7 +184,7 @@ selectedFileBefore: File;
       this.form.controls['totalPrice'].enable();
       this.form.controls['diferents'].enable();
       this.form.controls['comission'].enable();
-
+      this.form.controls['beforeShots'].enable();
       let data = {
         imageFileAfter: this.afterImage,
         imageFileBefore: this.beforeImage,
@@ -197,6 +198,7 @@ selectedFileBefore: File;
               this.form.controls['totalPrice'].disable();
               this.form.controls['diferents'].disable();
               this.form.controls['comission'].disable();
+              this.form.controls['beforeShots'].disable();
        }else{
               alertify.success('Registrado con exito');
               this.precio.prices = 0;
@@ -206,6 +208,7 @@ selectedFileBefore: File;
               this.form.controls['totalPrice'].disable();
               this.form.controls['diferents'].disable();
               this.form.controls['comission'].disable();
+              this.form.controls['beforeShots'].disable();
        }
         },
           console.log)
@@ -229,6 +232,8 @@ selectedFileBefore: File;
       this.globalService.httpServicesResponse({ charger : this.form.get('userRegister').value},
         environment.Url + '/global/chargers').subscribe(response => {
             this.chargerList = response.chargers.filter(ch => ch.id !== -1);
+            this.total.disparoAntes = response.gunValueResult;
+
         },
         console.log)
     } else {
