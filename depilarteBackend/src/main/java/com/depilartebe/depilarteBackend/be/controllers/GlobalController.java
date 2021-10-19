@@ -198,4 +198,32 @@ public class GlobalController implements GlobalConstants {
 
         return mapResponse;
     }
+
+    @ApiMethod(consumes = CONTENT_TYPE, produces = ACCEPT, description = UPDATEGUN_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = UPDATEGUN, produces = ACCEPT)
+    public Map<String, Object> updateGun(@ApiBodyObject(clazz = String.class) @RequestBody String json){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+            String gunValue =  (params.containsKey(GUN_VALUE) && params.get(GUN_VALUE) != null && !params.get(GUN_VALUE).toString().isEmpty()) ? params.get(GUN_VALUE).toString() : null;
+            if(gunValue != null){
+                mapResponse = globalServices.updateGun(gunValue);
+            }else{
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
 }

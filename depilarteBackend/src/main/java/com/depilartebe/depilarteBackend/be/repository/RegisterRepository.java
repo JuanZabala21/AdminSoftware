@@ -55,4 +55,38 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
         @Query(nativeQuery = true, value = FIND_REFERENCE_PER_MONTH_OTROS)
         List<List<Integer>> findReferenceByMonthOtros();
 
+    String TOTAL_ZELLE = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
+            " FormaPago = '1' AND " +
+            "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
+            "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
+    @Query(nativeQuery = true, value = TOTAL_ZELLE)
+    Integer findTotalZelle(@Param("initialDate")String initialDate,
+                            @Param("finalDate") String finalDate);
+
+    String TOTAL_PAGOM = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
+            " FormaPago = '2' AND " +
+            "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
+            "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
+    @Query(nativeQuery = true, value = TOTAL_PAGOM)
+    Integer findTotalPagoM(@Param("initialDate")String initialDate,
+                            @Param("finalDate") String finalDate);
+
+    String TOTAL_EFECTIVO = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
+            " FormaPago = '3' AND " +
+            "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
+            "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
+    @Query(nativeQuery = true, value = TOTAL_EFECTIVO)
+    Integer findTotalEfectivo(@Param("initialDate")String initialDate,
+                               @Param("finalDate") String finalDate);
+
+    String TOTAL_ABONADO = "SELECT SUM(Abonado) FROM `depilarte_registros` WHERE " +
+            "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
+            "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
+    @Query(nativeQuery = true, value = TOTAL_ABONADO)
+    Integer findTotalAbonado(@Param("initialDate")String initialDate,
+                               @Param("finalDate") String finalDate);
+
+
+
+
 }

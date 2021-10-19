@@ -43,6 +43,9 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
     @Autowired
     ReferenceRepository referenceRepository;
 
+    @Autowired
+    GunValueRepository gunValueRepository;
+
    public Map<String, Object> getPayMethods() {
        Map<String , Object> mapResult = new HashMap<>();
 
@@ -98,9 +101,12 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
    public Map<String, Object> getChargers(String charger) {
        Map<String, Object> mapResult = new HashMap<>();
+
        try {
            List<Empleado> empleados = empleadoRepository.findEmpleados(Long.parseLong(charger));
+           Integer gunValue = gunValueRepository.getGunValue();
            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+           mapResult.put(GUNVALUERESULT, gunValue);
            mapResult.put(CHARGERRESULT, empleados);
 
        }catch (Exception e) {
@@ -296,5 +302,28 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
         }
 
     }
+
+    public Map<String, Object> updateGun(
+            String gunValue
+    ) {
+        Map<String , Object> mapResult = new HashMap<>();
+
+        try{
+           GunValue values = gunValueRepository.findByIdUpdate();
+           values.setCantidadDisparos(gunValue);
+           gunValueRepository.save(values);
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+
+    }
+
+
 
 }

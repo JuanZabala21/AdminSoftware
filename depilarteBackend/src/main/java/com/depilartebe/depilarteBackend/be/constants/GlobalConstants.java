@@ -24,6 +24,7 @@ public interface GlobalConstants {
     String REFERENCE = "reference";
     String PRINCE_AND_COMISION = "priceAndComision";
     String PRICE_RESULT = "priceResult";
+    String GUN_VALUE = "gunValue";
 
 
     String METHODS_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener metodos de Pago </span></u></h3>"
@@ -46,6 +47,7 @@ public interface GlobalConstants {
 
     String CHARGERS = "charger";
     String CHARGERRESULT = "chargers";
+    String GUNVALUERESULT = "gunValueResult";
 
     String TREATMENTTYPE_URI = "treatmentTypes";
     String TREATMENTTYPE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Cargos por Usuario </span></u></h3>"
@@ -68,6 +70,10 @@ public interface GlobalConstants {
     String DASHBOARD = "dashboard";
     String DASHBOARD_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Datos del Inicio </span></u></h3>"
     + "Método que retorna los datos del inicio. </div>";
+
+    String UPDATEGUN = "updateGun";
+    String UPDATEGUN_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Productos </span></u></h3>"
+            + "Método que retorna los productors. </div>";
 
     int ZERO = 0;
     int ONE = 1;
