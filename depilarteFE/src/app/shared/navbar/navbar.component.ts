@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
               return this.listTitles[item].title;
           }
       }
-      return 'Principal';
+      return 'Historial';
     }
     sidebarToggle() {
         if (this.sidebarVisible === false) {

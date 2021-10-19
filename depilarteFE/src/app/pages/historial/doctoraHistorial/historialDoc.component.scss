@@ -17,6 +17,10 @@
   max-width: 100%;
   overflow: auto;
 }
+#saldos{
+  margin-top: 15px;
+}
+
 
 th{
    font-size: 15px;
@@ -24,4 +28,12 @@ th{
 }
 .card-title{
   font-size: 18px;
+}
+
+#carta{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: large;
+  p{}
 }
