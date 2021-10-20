@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {environment} from '../../../../environments/environment';
 import { saveAs } from 'file-saver';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
  interface HistorialData {
    dateA: String;
@@ -37,6 +38,7 @@ import { saveAs } from 'file-saver';
 })
 
 export class HistorialDocComponent implements OnInit {
+  closeResult: string;
   filters: FormGroup;
   fileName : string = 'Registros.xlsx';
   totalPagoM = 0;
@@ -48,6 +50,7 @@ export class HistorialDocComponent implements OnInit {
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
     ];
+
   displayedColumns: string[] =
     [
       'dateA',
@@ -79,7 +82,8 @@ export class HistorialDocComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private globalServices: GlobalServices) {
+              private globalServices: GlobalServices,
+              private modalService: NgbModal) {
     this.filters = fb.group({
       name: new FormControl(),
       lastName: new FormControl(),
@@ -87,7 +91,8 @@ export class HistorialDocComponent implements OnInit {
       initialDate: new FormControl(),
       finalDate: new FormControl(),
       user: new FormControl(),
-      userName: new FormControl()
+      userName: new FormControl(),
+      
     });
   }
 
@@ -166,6 +171,24 @@ export class HistorialDocComponent implements OnInit {
         //error
       }
     );
+  }
+  
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
 }

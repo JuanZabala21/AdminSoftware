@@ -236,7 +236,7 @@
     <div class="card card-stats">
       <div class="card-body ">
         <div class="row"  id="carta">
-              <p class="card-category">Ventas en Pago Movil (al cambio)</p><br>
+              <p class="card-category">Ventas Pago Movil(al cambio)</p><br>
               <p class="card-title">${{totalPagoM}}</p>
         </div>
       </div>
@@ -259,3 +259,37 @@
 
 
 </div>
+
+<div>
+  <button mat-raised-button mat-stroked-button type="submit" (click)="open(content)">Retirar Efectivo</button>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Retirar</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+       
+        <mat-form-field>
+          <mat-select  placeholder="Nombre del Usuario">
+            <mat-option >
+              
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+        <label for="firstname">Monto a retirar</label>
+        <div class="input-group">
+          <input id="retiro" type="number" class="form-control" >
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Guardar</button>
+  </div>
+</ng-template>
