@@ -129,11 +129,15 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(CLIENT_IMAGE_BEFORE) != null &&
                         !params.get(CLIENT_IMAGE_BEFORE).toString().isEmpty()) ?
                            params.get(CLIENT_IMAGE_BEFORE).toString() : null;
+                String paymentFavor =  (params.containsKey(CLIENT_PAYMENT_FAVOR) &&
+                        params.get(CLIENT_PAYMENT_FAVOR) != null &&
+                        !params.get(CLIENT_PAYMENT_FAVOR).toString().isEmpty()) ?
+                        params.get(CLIENT_PAYMENT_FAVOR).toString() : null;
 
                 mapResponse = depilarteServices.registerClients(id,registerWorker,clientName,clientLastName,identification,age,
                                                                email,birthday,address,treatment,treatmentType,countSessions,
                                                                product,shotBefore,shotAfter,shotDiferencial,operator,doctor,formPay,
-                                                                abonado,priceTotal,comission,note,phone, reference,imageFileAfter,imageFileBefore);
+                                                                abonado,priceTotal,comission,note,phone, reference,imageFileAfter,imageFileBefore,paymentFavor);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -327,8 +331,12 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
                         && !params.get(FINAL_DATE).toString().isEmpty()) ?
                         params.get(FINAL_DATE).toString() : null;
+                Long formPay = (params.containsKey(FORM_PAY) &&
+                        params.get(FORM_PAY) != null &&
+                        !params.get(FORM_PAY).toString().isEmpty())
+                        ? Long.valueOf(params.get(FORM_PAY).toString()) : null;
 
-                mapResponse = depilarteServices.searchRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
+                mapResponse = depilarteServices.searchRegister(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate,formPay);
 
 
 
@@ -720,8 +728,12 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                 String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
                         && !params.get(FINAL_DATE).toString().isEmpty()) ?
                         params.get(FINAL_DATE).toString() : null;
+                Long formPay = (params.containsKey(FORM_PAY) &&
+                        params.get(FORM_PAY) != null &&
+                        !params.get(FORM_PAY).toString().isEmpty())
+                        ? Long.valueOf(params.get(FORM_PAY).toString()) : null;
 
-                mapResponse = depilarteServices.generatePacientesExcel(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate);
+                mapResponse = depilarteServices.generatePacientesExcel(nameClient,lastNameClient,cedula,user,nameUser,initialDate,finalDate,formPay);
 
 
 

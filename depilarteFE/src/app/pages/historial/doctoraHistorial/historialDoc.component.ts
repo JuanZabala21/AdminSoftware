@@ -27,6 +27,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
    payForm: String,
    subscriber: String,
    comission: String,
+   paymentFavor: String,
    price: String;
 }
 
@@ -50,6 +51,8 @@ export class HistorialDocComponent implements OnInit {
     {value: 1, desc: 'Doctora'},
     {value: 2, desc: 'Operadora'}
     ];
+  formPayList = [];
+  workerList = [];
 
   displayedColumns: string[] =
     [
@@ -72,6 +75,7 @@ export class HistorialDocComponent implements OnInit {
       'subscriber',
       'comission',
       'price',
+      'paymentFavor',
       'actions'
     ];
 
@@ -92,12 +96,14 @@ export class HistorialDocComponent implements OnInit {
       finalDate: new FormControl(),
       user: new FormControl(),
       userName: new FormControl(),
-      
+      formPay: new FormControl()
+
     });
   }
 
   ngOnInit() {
-
+    this.getMethodsPay();
+    this.getWorkers();
   }
 
   search() {
@@ -110,6 +116,7 @@ export class HistorialDocComponent implements OnInit {
         this.totalPagoM = res.resultList[position].pagoMTotal;
         this.totalAbonado = res.resultList[position].abonoTotal;
         this.totalEfectivo = res.resultList[position].efectivoTotal;
+        res.resultList.pop();
         this.dataSource = new MatTableDataSource(res.resultList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -172,15 +179,36 @@ export class HistorialDocComponent implements OnInit {
       }
     );
   }
-  
-  open(content) {
+
+  getMethodsPay() {
+    this.globalServices.httpServicesResponse(null,
+      environment.Url + '/global/methodsPay').subscribe( response => {
+        if (response.type === 'success') {
+          this.formPayList = response.methodsPay.filter(mp => mp.id !== -1);
+        }
+      },
+      console.error);
+  }
+
+  getWorkers() {
+    this.globalServices.httpServicesResponse(null,
+      environment.Url + '/global/workersUri').subscribe( response => {
+        if (response.type === 'success') {
+          this.workerList = response.empleadoResult.filter(we => we.id !== -1);
+        }
+      },
+      console.error);
+  }
+
+  open(content, worker) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+     console.log(worker);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

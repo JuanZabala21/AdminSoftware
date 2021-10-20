@@ -324,6 +324,23 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
 
     }
 
+    public Map<String, Object> getWorkers() {
+        Map<String , Object> mapResult = new HashMap<>();
+
+        try{
+            List<Empleado> empleadoList = empleadoRepository.findAll();
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+            mapResult.put(EMPLEADORESULT, empleadoList);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
 
 
 }

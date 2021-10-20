@@ -78,7 +78,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             String phone,
             Long reference,
             String imageAfter,
-            String imageBefore
+            String imageBefore,
+            String paymentFavor
 
     ) {
         Map<String, Object> mapResult = new HashMap<>();
@@ -131,11 +132,16 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             }else{
                 register.setImgBefore(EMPTY);
             }
+            if(paymentFavor != null){
+                register.setPaymentFavor(paymentFavor);
+            } else {
+                register.setPaymentFavor(ZERO_STRING);
+            }
             register.setFechaAtendido(dt.format(today));
             registerRepository.save(register);
 
             GunValue values = gunValueRepository.findByIdUpdate();
-            values.setCantidadDisparos(shotDiferential);
+            values.setCantidadDisparos(shotAfter);
             gunValueRepository.save(values);
 
 
@@ -318,7 +324,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             Long user,
             Long nameUser,
             String initialDate,
-            String finalDate
+            String finalDate,
+            Long formPayment
 
     ) {
         Register registerPay = new Register();
@@ -348,7 +355,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 pagoM = registerRepository.findTotalPagoM(initial, finale);
                 efectivo = registerRepository.findTotalEfectivo(initial,finale);
                 abono = registerRepository.findTotalAbonado(initial,finale);
-                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initial, finale);
+                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initial, finale,formPayment);
             } else if (initialDate != null) {
                 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 Date dateInitial = inputFormat.parse(initialDate);
@@ -357,7 +364,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 pagoM = registerRepository.findTotalPagoM(initial, finalDate);
                 efectivo = registerRepository.findTotalEfectivo(initial,finalDate);
                 abono = registerRepository.findTotalAbonado(initial,finalDate);
-                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate);
+                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate,formPayment);
             } else if (finalDate != null) {
                 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 Date dateFinal = inputFormat.parse(finalDate);
@@ -366,13 +373,13 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 pagoM = registerRepository.findTotalPagoM(initialDate, finale);
                 efectivo = registerRepository.findTotalEfectivo(initialDate,finale);
                 abono = registerRepository.findTotalAbonado(initialDate,finale);
-                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale);
+                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale,formPayment);
             } else {
                 zelleTotal = registerRepository.findTotalZelle(initialDate, finalDate);
                 pagoM = registerRepository.findTotalPagoM(initialDate, finalDate);
                 efectivo = registerRepository.findTotalEfectivo(initialDate,finalDate);
                 abono = registerRepository.findTotalAbonado(initialDate,finalDate);
-                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate);
+                registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate,formPayment);
             }
             if (registerList != null) {
                 for (Register register : registerList) {
@@ -405,6 +412,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     result.put("formpay", formPay.getMetodoPago());
                     result.put("abonado", register.getAbonado());
                     result.put("comission", register.getComision());
+                    result.put("paymentFavor", register.getPaymentFavor());
                     result.put("price", register.getPrecioTotal());
                     mapList.add(result);
                 }
@@ -787,6 +795,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 result.put("note", EMPTY);
                 result.put("imageAfter", EMPTY);
                 result.put("imageBefore", EMPTY);
+                result.put("paymentFavor",EMPTY);
 
                 /* DATA USER FOR HISTORY */
                 result.put("name", register.getNombre());
@@ -797,9 +806,13 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 result.put("birthday", register.getFechaCumple());
                 result.put("address", register.getDireccion());
                 result.put("phone", register.getTelefono());
+                if(register.getPaymentFavor() != null || register.getPaymentFavor() != ZERO_STRING){
+                    result.put("bono", register.getPaymentFavor());
+                }else{
+                    result.put("bono", EMPTY);
+                }
                 result.put("history", 1);
             }
-
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -1018,10 +1031,11 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             Long user,
             Long nameUser,
             String initialDate,
-            String finalDate
+            String finalDate,
+            Long formPayment
     ) {
         Map<String, Object> mapResult = new HashMap<String, Object>();
-        Map<String, Object> result = searchRegister(nameClient, lastNameClient,cedula, user,nameUser,initialDate,finalDate);
+        Map<String, Object> result = searchRegister(nameClient, lastNameClient,cedula, user,nameUser,initialDate,finalDate,formPayment);
         List<HashMap<String, Object>> map = (List<HashMap<String, Object>>) result.get(RESULT_LIST_MAP);
         List<String[]> values = new ArrayList<>();
 
@@ -1048,32 +1062,36 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setFormaPago((String) elemnent.get("formpay"));
             register.setAbonado((String) elemnent.get("abonado"));
             register.setComision((String) elemnent.get("comission"));
+            register.setPaymentFavor((String) elemnent.get("paymentFavor"));
             register.setPrecioTotal((String) elemnent.get("price"));
             registerList.add(register);
         }
 
         for (Register register : registerList) {
-            String[] item = {
-                    register.getFechaAtendido(),
-                    register.getNombre(),
-                    register.getApellido(),
-                    register.getCedula(),
-                    register.getFechaCumple(),
-                    register.getEdad(),
-                    register.getTelefono(),
-                    register.getTratamiento(),
-                    register.getTipoTratamiento(),
-                    register.getDisparosAntes(),
-                    register.getDisparosDespues(),
-                    register.getDiferenciaDisparos(),
-                    register.getUserAtendio(),
-                    register.getProductoUtilizado(),
-                    register.getFormaPago(),
-                    register.getAbonado() + DOLLAR,
-                    register.getComision() + PERCENTAGE,
-                    register.getPrecioTotal() + DOLLAR
-            };
-            values.add(item);
+            if(register.getPrecioTotal() != null){
+                String[] item = {
+                        register.getFechaAtendido(),
+                        register.getNombre(),
+                        register.getApellido(),
+                        register.getCedula(),
+                        register.getFechaCumple(),
+                        register.getEdad(),
+                        register.getTelefono(),
+                        register.getTratamiento(),
+                        register.getTipoTratamiento(),
+                        register.getDisparosAntes(),
+                        register.getDisparosDespues(),
+                        register.getDiferenciaDisparos(),
+                        register.getUserAtendio(),
+                        register.getProductoUtilizado(),
+                        register.getFormaPago(),
+                        register.getAbonado() + DOLLAR,
+                        register.getPaymentFavor() + DOLLAR,
+                        register.getComision() + PERCENTAGE,
+                        register.getPrecioTotal() + DOLLAR
+                };
+                values.add(item);
+            }
         }
 
         try {
@@ -1094,6 +1112,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     REGISTER_EXCEL_PRODUCT,
                     REGISTER_EXCEL_FORMPAY,
                     REGISTER_EXCEL_ABONADO,
+                    REGISTER_EXCEL_FAVOR,
                     REGISTER_EXCEL_COMISSION,
                     REGISTER_EXCEL_PRICETOTAL
             };

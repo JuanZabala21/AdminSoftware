@@ -195,17 +195,17 @@
               <div class="form-group">
                 <mat-label>Disparos de la Pistola</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Utilizados</mat-label>
+                  <mat-label>Despues del tratamiento</mat-label>
                   <input matInput type="number" formControlName="afterShots" placeholder="Despues" [(ngModel)]="total.disparoDespues">
                 </mat-form-field>
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <mat-label>Disparos Finales</mat-label>
+                <mat-label>Disparos Utilizados</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Totales</mat-label>
-                  <input matInput formControlName="diferents" [ngModel]="total.disparoDespues + total.disparoAntes">
+                  <mat-label>Diferencia</mat-label>
+                  <input matInput formControlName="diferents" [ngModel]="total.disparoDespues - total.disparoAntes">
                 </mat-form-field>
               </div>
             </div>
@@ -241,9 +241,9 @@
           <div class="row">
             <div class="col-md-4 pr-1">
               <div class="form-group">
-                <mat-label>Abonado</mat-label>
+                <mat-label>Monto a recibir</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
-                  <mat-label>Abonado</mat-label>
+                  <mat-label>Total</mat-label>
                   <input matInput  formControlName="bono" type="number" [(ngModel)]="precio.abonado">
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
@@ -251,17 +251,17 @@
             </div>
             <div class="col-md-4 px-1">
               <div class="form-group">
-                <mat-label>Total de la Venta</mat-label>
+                <mat-label>Precio del Tratamiento</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Total</mat-label>
-                  <input matInput formControlName="totalPrice" [ngModel]="precio.prices - precio.abonado" >
+                  <input matInput formControlName="totalPrice" [ngModel]="precio.prices" >
                   <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <mat-label>Comisión de la Operadora</mat-label>
+                <mat-label>Comisión de personal</mat-label>
                 <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                   <mat-label>Comision</mat-label>
                   <input matInput  formControlName="comission" [(ngModel)]="comissionPrice">
@@ -270,6 +270,20 @@
               </div>
             </div>
         </div>
+          <div class="row">
+
+            <div class="col-md-4 pr-1">
+              <div class="form-group">
+                <mat-label>Bono a Favor</mat-label>
+                <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
+                  <mat-label>Total</mat-label>
+                  <input matInput  formControlName="paymentFavor" [ngModel]="precio.abonado - precio.prices">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
         <div class="row">
       </div>
           <div class="row">

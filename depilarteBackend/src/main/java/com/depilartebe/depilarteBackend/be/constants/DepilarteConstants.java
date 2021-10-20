@@ -132,13 +132,14 @@ public interface DepilarteConstants {
     String REGISTER_EXCEL_TYPE_TREATMENT = "Tipo de Tratamiento";
     String REGISTER_EXCEL_DISPAROS_BEFORE = "Disparos Iniciales";
     String REGISTER_EXCEL_DISPAROS_AFTER = "Disparos Despues";
-    String REGISTER_EXCEL_DISPAROS_DIFFERENTIAL = "Disparos restantes";
+    String REGISTER_EXCEL_DISPAROS_DIFFERENTIAL = "Diferencia";
     String REGISTER_EXCEL_PERSONAL = "Personal de Atención";
     String REGISTER_EXCEL_PRODUCT = "Producto Utilizado";
     String REGISTER_EXCEL_FORMPAY = "Forma de Pago";
-    String REGISTER_EXCEL_ABONADO = "Pago Abonado";
+    String REGISTER_EXCEL_ABONADO = "Pago Realizado";
+    String REGISTER_EXCEL_FAVOR = "Monto a favor";
     String REGISTER_EXCEL_COMISSION = "Comisión de Personal";
-    String REGISTER_EXCEL_PRICETOTAL = "Precio Total";
+    String REGISTER_EXCEL_PRICETOTAL = "Precio de la Venta";
 
 
 
@@ -173,6 +174,7 @@ public interface DepilarteConstants {
     String CLIENT_REFERENCE = "reference";
     String CLIENT_IMAGE_AFTER = "imageFileAfter";
     String CLIENT_IMAGE_BEFORE = "imageFileBefore";
+    String CLIENT_PAYMENT_FAVOR = "paymentFavor";
 
     String EMPLEADO_ID = "id";
     String EMPLEADO_REGISTER = "userRegister";
@@ -211,6 +213,7 @@ public interface DepilarteConstants {
     String SEARCH_NAMEUSER = "userName";
     String INITIAL_DATE = "initialDate";
     String FINAL_DATE = "finalDate";
+    String FORM_PAY = "formPay";
 
     String WORKER_NAME = "name";
     String WORKER_IDENTIFICATION = "identification";

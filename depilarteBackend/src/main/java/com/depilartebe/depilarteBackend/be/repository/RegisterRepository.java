@@ -19,6 +19,7 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
             "(:lastName IS NULL OR Apellido LIKE %:lastName%) AND " +
             "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
             "(:userAt IS NULL OR RegisterUser = :userAt) AND " +
+            "(:formPay IS NULL OR FormaPago = :formPay) AND" +
             "(:nameUser IS NULL OR UserAtendio = :nameUser) AND "+
             "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
             "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
@@ -29,7 +30,8 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
                                 @Param("userAt") Long userAt,
                                 @Param("nameUser") Long nameUser,
                                 @Param("initialDate")String initialDate,
-                                @Param("finalDate") String finalDate);
+                                @Param("finalDate") String finalDate,
+                                @Param("formPay") Long formPay);
 
         String FIND_REGISTER_COUNT = "SELECT count(*) FROM `depilarte_registros`";
         @Query(nativeQuery = true, value = FIND_REGISTER_COUNT)

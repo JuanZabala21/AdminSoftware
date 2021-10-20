@@ -47,6 +47,7 @@ selectedFileBefore: File;
    methodsList = [];
    treatmentTypeList = [];
    treatmentsList = [];
+   workersList = [];
    productList = [];
    disabled = true;
    show : boolean = true;
@@ -64,6 +65,7 @@ selectedFileBefore: File;
       this.getReference();
       this.form.controls['totalPrice'].disable();
       this.form.controls['beforeShots'].disable();
+      this.form.controls['paymentFavor'].disable();
       this.form.controls['diferents'].disable();
       this.form.controls['comission'].disable();
 
@@ -118,7 +120,8 @@ selectedFileBefore: File;
         note: new FormControl(),
         imageAfter: new FormControl(),
         imageBefore: new FormControl(),
-        history: new FormControl()
+        history: new FormControl(),
+        paymentFavor: new FormControl()
         });
       this.form.controls.userRegister.valueChanges.subscribe(
         value => {
@@ -185,6 +188,7 @@ selectedFileBefore: File;
       this.form.controls['diferents'].enable();
       this.form.controls['comission'].enable();
       this.form.controls['beforeShots'].enable();
+      this.form.controls['paymentFavor'].enable();
       let data = {
         imageFileAfter: this.afterImage,
         imageFileBefore: this.beforeImage,
@@ -199,6 +203,7 @@ selectedFileBefore: File;
               this.form.controls['diferents'].disable();
               this.form.controls['comission'].disable();
               this.form.controls['beforeShots'].disable();
+              this.form.controls['paymentFavor'].disable();
        }else{
               alertify.success('Registrado con exito');
               this.precio.prices = 0;
@@ -209,6 +214,7 @@ selectedFileBefore: File;
               this.form.controls['diferents'].disable();
               this.form.controls['comission'].disable();
               this.form.controls['beforeShots'].disable();
+              this.form.controls['paymentFavor'].disable();
        }
         },
           console.log)

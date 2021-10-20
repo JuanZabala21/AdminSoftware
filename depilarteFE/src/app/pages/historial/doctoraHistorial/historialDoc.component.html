@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4 pr-1">
+            <div class="col-md-3 pr-1">
               <mat-form-field>
               <mat-label>Nombre</mat-label>
               <input matInput formControlName="name" >
@@ -15,7 +15,7 @@
               </mat-error>
             </mat-form-field>
             </div>
-            <div class="col-md-4 px-1">
+            <div class="col-md-3 px-1">
               <mat-form-field>
                 <mat-label>Apellido</mat-label>
                 <input matInput formControlName="lastName" >
@@ -23,15 +23,27 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-md-4 pl-1">
+            <div class="col-md-3 px-1">
+          <mat-form-field>
+            <mat-label>Cédula</mat-label>
+            <input matInput formControlName="identification" >
+            <mat-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+            <div class="col-md-3 pl-1">
               <mat-form-field>
-                <mat-label>Cédula</mat-label>
-                <input matInput formControlName="identification" >
+                <mat-label>Forma de Pago</mat-label>
+                <mat-select  formControlName="formPay" name="Pago">
+                  <mat-option *ngFor="let mp of formPayList" [value]="mp.id">
+                    {{mp.metodoPago}}
+                  </mat-option>
+                </mat-select>
                 <mat-error>
                 </mat-error>
               </mat-form-field>
             </div>
-          </div>
+        </div>
           <div  class="row">
             <div class="col-md-3 pr-1">
                 <mat-form-field>
@@ -156,27 +168,32 @@
 
           <ng-container  matColumnDef="countSession">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Cantidad de Sesiones </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.sessions}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.sessions}}</td>
           </ng-container>
 
           <ng-container  matColumnDef="payForm">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Forma de Pago </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.formpay}} </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.formpay}}</td>
           </ng-container>
 
           <ng-container  matColumnDef="subscriber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Abonado </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.abonado}}$ </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Pago Realizado </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">${{row.abonado}}</td>
           </ng-container>
 
           <ng-container  matColumnDef="comission">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Comisión </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.comission}}% </td>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">{{row.comission}}%</td>
           </ng-container>
 
           <ng-container  matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Precio Total </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id"> {{row.price}}$ </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Precio de la Venta </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">${{row.price}}</td>
+          </ng-container>
+
+          <ng-container  matColumnDef="paymentFavor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Pago a Favor </th>
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">${{row.paymentFavor}}</td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
@@ -236,20 +253,8 @@
     <div class="card card-stats">
       <div class="card-body ">
         <div class="row"  id="carta">
-              <p class="card-category">Ventas Pago Movil(al cambio)</p><br>
+              <p class="card-category">Ventas Pago Móvil (Al cambio) </p><br>
               <p class="card-title">${{totalPagoM}}</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="col-lg-3 col-md-6 col-sm-6">
-    <div class="card card-stats">
-      <div class="card-body ">
-        <div class="row"  id="carta">
-          <p class="card-category">Abonado</p><br>
-          <p class="card-title">${{totalAbonado}}</p>
         </div>
       </div>
 
@@ -274,14 +279,14 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-       
+
         <mat-form-field>
           <mat-select  placeholder="Nombre del Usuario">
-            <mat-option >
-              
+            <mat-option *ngFor="let we of workerList" [value]="we.value">
+              {{we.id}}
             </mat-option>
           </mat-select>
-        </mat-form-field> 
+        </mat-form-field>
         <label for="firstname">Monto a retirar</label>
         <div class="input-group">
           <input id="retiro" type="number" class="form-control" >

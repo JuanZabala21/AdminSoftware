@@ -18,6 +18,7 @@ public interface GlobalConstants {
 
     String DATE_FORMAT = "yyyy/MM/dd ";
     String METHODSPAY = "methodsPay";
+    String EMPLEADORESULT = "empleadoResult";
     String TREATMENTS = "treatments";
     String TREATMENTTYPE = "treatmentType";
     String TREATMENTTYPERESULT = "treatmentTypes";
@@ -32,6 +33,10 @@ public interface GlobalConstants {
 
     String METHODSPAY_URI = "methodsPay";
     String TREATMENTSS_URI = "treatments";
+
+    String WORKERS_URI = "workersUri";
+    String WORKERS_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Trabajadores </span></u></h3>"
+            + "Método que retorna las referencias. </div>";
 
     String REFERENCE_URI = "reference";
     String REFERENCE_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Referencias </span></u></h3>"
@@ -75,6 +80,7 @@ public interface GlobalConstants {
     String UPDATEGUN_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Productos </span></u></h3>"
             + "Método que retorna los productors. </div>";
 
+    String ZERO_STRING = "0";
     int ZERO = 0;
     int ONE = 1;
     String EMPTY_STRING = "";

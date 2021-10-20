@@ -89,6 +89,9 @@ import java.util.Date;
     @Column(name = "imgBefore")
     private String imgBefore;
 
+    @Column(name = "paymentFavor")
+    private String paymentFavor;
+
         public Long getId() {
             return id;
         }
@@ -178,7 +181,15 @@ import java.util.Date;
     }
 
 
-    public void setId(Long id) {
+        public String getPaymentFavor() {
+            return paymentFavor;
+        }
+
+        public void setPaymentFavor(String paymentFavor) {
+            this.paymentFavor = paymentFavor;
+        }
+
+        public void setId(Long id) {
         this.id = id;
     }
 
