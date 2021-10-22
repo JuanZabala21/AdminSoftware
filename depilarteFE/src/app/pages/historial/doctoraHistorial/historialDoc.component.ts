@@ -53,6 +53,7 @@ export class HistorialDocComponent implements OnInit {
     ];
   formPayList = [];
   workerList = [];
+  show = false;
 
   displayedColumns: string[] =
     [
@@ -200,23 +201,10 @@ export class HistorialDocComponent implements OnInit {
       console.error);
   }
 
-  open(content, worker) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-     console.log(worker);
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  boton(){
+    this.show = true;
   }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  cancelar(){
+    this.show = false;
   }
-
 }

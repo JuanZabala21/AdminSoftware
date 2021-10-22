@@ -219,17 +219,12 @@
   </mat-card>
 </div>
 
-
-
-
-
-
 <div class="row" id="saldos">
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-body ">
         <div class="row"  id="carta">
-              <p class="card-category" >Ventas en Efectivo</p><br>
+              <p class="card-category">Efectivo</p><br>
               <p class="card-title">${{totalEfectivo}}</p>
 
         </div>
@@ -241,7 +236,7 @@
     <div class="card card-stats">
       <div class="card-body ">
         <div class="row"  id="carta">
-              <p class="card-category">Ventas en Zelle</p><br>
+              <p class="card-category">Zelle</p><br>
               <p class="card-title">${{totalZelle}}</p>
 
         </div>
@@ -253,37 +248,26 @@
     <div class="card card-stats">
       <div class="card-body ">
         <div class="row"  id="carta">
-              <p class="card-category">Ventas Pago Móvil (Al cambio) </p><br>
+              <p class="card-category">Pago Móvil (Al cambio)</p><br>
               <p class="card-title">${{totalPagoM}}</p>
         </div>
       </div>
-
     </div>
+
   </div>
 
-
-
 </div>
-
 <div>
-  <button mat-raised-button mat-stroked-button type="submit" (click)="open(content)">Retirar Efectivo</button>
+  <button mat-raised-button mat-stroked-button type="submit" (click)="boton()" >Retirar Efectivo</button>
 </div>
 
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Retirar</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
+  <div *ngIf="show" class="panel-retire">
     <form>
       <div class="form-group">
-
         <mat-form-field>
           <mat-select  placeholder="Nombre del Usuario">
-            <mat-option *ngFor="let we of workerList" [value]="we.value">
-              {{we.id}}
+            <mat-option *ngFor="let we of workerList" [value]="we.id">
+              {{we.nombre}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -293,8 +277,12 @@
         </div>
       </div>
     </form>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" >Guardar</button>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="cancelar()" >Cancelar</button>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Guardar</button>
-  </div>
-</ng-template>
+
+
