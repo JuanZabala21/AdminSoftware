@@ -30,6 +30,11 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
    paymentFavor: String,
    price: String;
 }
+interface historialRegistro {
+  dateRegistro: String;
+  usuario: String;
+  monto: String;
+}
 
 @Component({
   selector: 'historialDoc',
@@ -83,6 +88,10 @@ export class HistorialDocComponent implements OnInit {
   dataSource: MatTableDataSource<HistorialData>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  dataSource1: MatTableDataSource<historialRegistro>;
+  @ViewChild(MatPaginator) paginator1: MatPaginator;
+  @ViewChild(MatSort) sort1: MatSort;
 
   constructor(private fb: FormBuilder,
               private router: Router,
