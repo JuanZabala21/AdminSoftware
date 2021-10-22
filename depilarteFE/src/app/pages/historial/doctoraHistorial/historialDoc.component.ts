@@ -50,7 +50,7 @@ export class HistorialDocComponent implements OnInit {
   totalZelle = 0;
   totalEfectivo = 0;
   totalAbonado = 0;
-  totalRetiro = 0;
+  efectivoRetiro = 0;
   totalRetiroUser = 0;
   chargerList = [];
   usuarioList = [
@@ -125,6 +125,7 @@ export class HistorialDocComponent implements OnInit {
   ngOnInit() {
     this.getMethodsPay();
     this.getWorkers();
+    this.getSaldo();
   }
 
   search() {
@@ -150,7 +151,6 @@ export class HistorialDocComponent implements OnInit {
       workerRetire: this.filters.controls.workerRetire.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRetirement').subscribe( res => {
-        console.log(res.resultList);
         const position = res.resultList.length - 1;
         this.totalRetiroUser = res.resultList[position].totalRetirado;
         res.resultList.pop();
@@ -232,6 +232,17 @@ export class HistorialDocComponent implements OnInit {
         //error
       }
     );
+  }
+
+  getSaldo(){
+    this.globalServices.httpServicesResponse(null,
+      environment.Url + '/global/getSaldo').subscribe( response => {
+        if (response.type === 'success') {
+          console.log(response);
+          this.efectivoRetiro = response.empleadoResult;
+        }
+      },
+      console.error);
   }
 
   getMethodsPay() {

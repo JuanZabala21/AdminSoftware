@@ -244,4 +244,22 @@ public class GlobalController implements GlobalConstants {
         return mapResponse;
     }
 
+    @ApiMethod(consumes = TEXT_JSON, produces = ACCEPT, description = GETSALDO_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SALDO_URI, produces = ACCEPT)
+    public Map<String, Object> getSaldo(){
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+        try {
+            mapResponse = globalServices.getSaldo();
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            return mapResponse;
+        }
+
+        return mapResponse;
+    }
+
 }

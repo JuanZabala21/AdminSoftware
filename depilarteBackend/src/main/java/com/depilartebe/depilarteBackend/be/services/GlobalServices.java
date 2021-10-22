@@ -46,6 +46,9 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
     @Autowired
     GunValueRepository gunValueRepository;
 
+    @Autowired
+    TotalesRepository totalesRepository;
+
    public Map<String, Object> getPayMethods() {
        Map<String , Object> mapResult = new HashMap<>();
 
@@ -331,6 +334,23 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
             List<Empleado> empleadoList = empleadoRepository.findAll();
             mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
             mapResult.put(EMPLEADORESULT, empleadoList);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
+    public Map<String, Object> getSaldo() {
+        Map<String , Object> mapResult = new HashMap<>();
+
+        try{
+            Totales efectivo = totalesRepository.findByIdUpdate();
+            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+            mapResult.put(EMPLEADORESULT, efectivo.getEfectivo());
 
         }catch (Exception e) {
             e.printStackTrace();

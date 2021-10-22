@@ -12,4 +12,5 @@ public interface TotalesRepository extends JpaRepository<Totales , Long> {
     @Query(nativeQuery = true, value = FIND_UPDATE_BY_ID)
     Totales findByIdUpdate();
 
+
 }

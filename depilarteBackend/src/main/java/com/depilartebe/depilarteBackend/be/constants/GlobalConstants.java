@@ -80,6 +80,10 @@ public interface GlobalConstants {
     String UPDATEGUN_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Productos </span></u></h3>"
             + "Método que retorna los productors. </div>";
 
+    String SALDO_URI = "getSaldo";
+    String GETSALDO_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener Productos </span></u></h3>\"\n" +
+            "            + \"Método que retorna los productors. </div>";
+
     String ZERO_STRING = "0";
     int ZERO = 0;
     int ONE = 1;
