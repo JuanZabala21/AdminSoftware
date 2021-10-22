@@ -276,12 +276,29 @@
         <div class="input-group">
           <input formControlName="amountRetire" type="number" class="form-control" >
         </div>
+        <div style="display: flex; justify-content: space-between; flex-direction: row;" class="col-md-12 px-1">
+          <mat-form-field>
+            <mat-label>Fecha Inicial</mat-label>
+            <input matInput formControlName="initialDateRetire" [matDatepicker]="initialDate">
+            <mat-datepicker-toggle matSuffix [for]="initialDate"></mat-datepicker-toggle>
+            <mat-datepicker #initialDate disabled="false"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field style="margin-left: 5px;">
+            <mat-label>Fecha Final</mat-label>
+            <input matInput formControlName="finalDateRetire" [matDatepicker]="finalDate">
+            <mat-datepicker-toggle matSuffix [for]="finalDate"></mat-datepicker-toggle>
+            <mat-datepicker #finalDate disabled="false"></mat-datepicker>
+          </mat-form-field>
+      </div>
+   
+         
+    
       </div>
     <div class="modal-footer" style="display: flex; flex-direction: row; justify-content: center">
-      <button type="button" class="btn btn-outline-dark" style="margin-left: 10px;" (click)="saveRetire()" >Guardar</button>
+      <button type="button" class="btn btn-outline-dark" style="margin-left: 10px; background-color: lightgreen;" (click)="saveRetire()" >Guardar</button>
       <button type="button" class="btn btn-outline-dark" style="margin-left: 10px;" (click)="searchRetire()" >Buscar</button>
       <button type="button" class="btn btn-outline-dark" style="margin-left: 10px;" type="reset" >Limpiar</button>
-      <button type="button" class="btn btn-outline-dark" style="margin-left: 10px" (click)="cancelar()" >Cancelar</button>
+      <button type="button" class="btn btn-outline-dark" style="margin-left: 10px; background-color: rgb(223, 65, 65);" (click)="cancelar()" >Cancelar</button>
     </div>
     </form>
   </div>

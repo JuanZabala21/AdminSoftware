@@ -136,5 +136,12 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
                              @Param("finalDate") String finalDate,
                              @Param("formPay") Long formPay);
 
-    
+        String TOTAL_EFECTIVO_RETIRE = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
+        " FormaPago = '3' AND " +
+        "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
+        "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
+@Query(nativeQuery = true, value = TOTAL_EFECTIVO_RETIRE)
+Integer findTotalEfectivoRetire(@Param("initialDate")String initialDate,
+                                @Param("finalDate") String finalDate);                          
+
 }

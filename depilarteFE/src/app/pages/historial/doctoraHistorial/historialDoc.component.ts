@@ -116,7 +116,9 @@ export class HistorialDocComponent implements OnInit {
       formPay: new FormControl(),
       workerRetire: new FormControl(),
       amountRetire: new FormControl(),
-      nameRetirement: new FormControl()
+      nameRetirement: new FormControl(),
+      initialDateRetire: new FormControl(),
+      finalDateRetire: new FormControl()
 
     });
   }
@@ -148,11 +150,15 @@ export class HistorialDocComponent implements OnInit {
 
   searchRetire() {
     const data = {
-      workerRetire: this.filters.controls.workerRetire.value
+      workerRetire: this.filters.controls.workerRetire.value,
+      initialDate: this.filters.controls.initialDateRetire.value,
+      finalDate: this.filters.controls.finalDateRetire.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRetirement').subscribe( res => {
-        const position = res.resultList.length - 1;
+      console.log(res.resultList);  
+      const position = res.resultList.length - 1;
         this.totalRetiroUser = res.resultList[position].totalRetirado;
+        this.efectivoRetiro = res.resultList[position].saldoRestante;
         res.resultList.pop();
         this.dataSource1 = new MatTableDataSource(res.resultList);
         this.dataSource1.paginator = this.paginator1;
@@ -165,6 +171,7 @@ export class HistorialDocComponent implements OnInit {
     const data = {
       workerRetire: this.filters.controls.workerRetire.value,
       amountRetire: this.filters.controls.amountRetire.value
+  
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/saveRetirement').subscribe( res => {
       if(res.type==='error'){
@@ -239,7 +246,6 @@ export class HistorialDocComponent implements OnInit {
       environment.Url + '/global/getSaldo').subscribe( response => {
         if (response.type === 'success') {
           console.log(response);
-          this.efectivoRetiro = response.empleadoResult;
         }
       },
       console.error);

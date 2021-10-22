@@ -791,8 +791,14 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(RETIRE_WORKER) != null &&
                         !params.get(RETIRE_WORKER).toString().isEmpty())
                         ? Long.valueOf(params.get(RETIRE_WORKER).toString()) : null;
+                String initialDate = (params.containsKey(INITIAL_DATE) && params.get(INITIAL_DATE) != null
+                        && !params.get(INITIAL_DATE).toString().isEmpty()) ?
+                        params.get(INITIAL_DATE).toString() : null;
+                String finalDate = (params.containsKey(FINAL_DATE) && params.get(FINAL_DATE) != null
+                        && !params.get(FINAL_DATE).toString().isEmpty()) ?
+                        params.get(FINAL_DATE).toString() : null;
 
-                mapResponse = depilarteServices.searchRetire(nameUser);
+                mapResponse = depilarteServices.searchRetire(nameUser,initialDate,finalDate);
 
             } catch (Exception e) {
                 e.printStackTrace();

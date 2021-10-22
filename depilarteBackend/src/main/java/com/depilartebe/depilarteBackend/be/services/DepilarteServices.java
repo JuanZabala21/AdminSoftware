@@ -146,10 +146,12 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             register.setFechaAtendido(dt.format(today));
             registerRepository.save(register);
 
-            GunValue values = gunValueRepository.findByIdUpdate();
-            values.setCantidadDisparos(shotAfter);
-            gunValueRepository.save(values);
-
+            if(shotAfter != null){
+                GunValue values = gunValueRepository.findByIdUpdate();
+                values.setCantidadDisparos(shotAfter);
+                gunValueRepository.save(values);
+            }
+      
             Totales totales = totalesRepository.findByIdUpdate();
             if (formPay == 1) {
                 totales.setZelle(totales.getZelle() + abonado);
@@ -1181,13 +1183,46 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     }
 
     public Map<String, Object> searchRetire(
-            Long user
+            Long user, 
+            String initialDate,
+            String finalDate
     ){
         Map<String, Object> mapResult = new HashMap<>();
         List<Map<String, Object>> mapList = new ArrayList<>();
         SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        List<Retiros> retirosList = new ArrayList<>();
+        Integer totalesRetiros = 0;
+        Integer efectivoRango = 0;
         try{
-            List<Retiros> retirosList = retirosRepository.findByIdName(user);
+            if(initialDate != null && finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                String initial = dt.format(dateInitial);
+                 totalesRetiros = retirosRepository.findTotales(user,initial,finale);
+                 efectivoRango = registerRepository.findTotalEfectivoRetire(initial, finale);
+                retirosList = retirosRepository.findByIdName(user,initial,finale);
+            } else if(initialDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateInitial = inputFormat.parse(initialDate);
+                String initial = dt.format(dateInitial);
+                totalesRetiros = retirosRepository.findTotales(user,initial,finalDate);
+                efectivoRango = registerRepository.findTotalEfectivoRetire(initial, finalDate);
+                retirosList = retirosRepository.findByIdName(user,initial,finalDate);
+            } else if(finalDate != null){
+                DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                Date dateFinal = inputFormat.parse(finalDate);
+                String finale = dt.format(dateFinal);
+                totalesRetiros = retirosRepository.findTotales(user,initialDate,finale);
+                efectivoRango = registerRepository.findTotalEfectivoRetire(initialDate, finale);
+                retirosList = retirosRepository.findByIdName(user,initialDate,finale);
+            }else{
+                totalesRetiros = retirosRepository.findTotales(user,initialDate,finalDate);
+                efectivoRango = registerRepository.findTotalEfectivoRetire(initialDate, finalDate);
+               retirosList = retirosRepository.findByIdName(user,initialDate,finalDate);
+            }
+                   
             if(retirosList != null){
                 for(Retiros retiros : retirosList){
                     Map<String, Object> result = new HashMap<>();
@@ -1198,14 +1233,25 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     result.put("monto", retiros.getMoneyRetirement());
                     mapList.add(result);
                 }
-                Map<String, Object> result = new HashMap<>();
-                 Integer totalesRetiros = retirosRepository.findTotales(user);
-                 result.put("totalRetirado" , totalesRetiros);
-                 mapList.add(result);
-
-                mapResult.put(RESULT_LIST_MAP, mapList);
+                if(totalesRetiros != null && efectivoRango != null){
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("totalRetirado" , totalesRetiros);
+                    result.put("saldoRestante", efectivoRango - totalesRetiros);
+                    mapList.add(result);  
+                }else if(totalesRetiros != null){
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("totalRetirado" , totalesRetiros);
+                    result.put("saldoRestante", 0);
+                    mapList.add(result); 
+                }else{
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("totalRetirado" , 0);
+                    result.put("saldoRestante", 0);
+                    mapList.add(result); 
+                }
+                        
             }
-
+            mapResult.put(RESULT_LIST_MAP, mapList);
 
 
 

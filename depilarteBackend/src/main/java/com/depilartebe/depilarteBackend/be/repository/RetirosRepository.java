@@ -10,13 +10,21 @@ import java.util.List;
 public interface RetirosRepository extends JpaRepository<Retiros, Long> {
 
         String SEARCH_RETIREMENT = "SELECT * FROM `depilarte_retiros` WHERE " +
-                "(:name IS NULL OR usuario = :name)";
+                "(:name IS NULL OR usuario = :name) AND" +
+                "(:initialDate IS NULL OR fechaRetiro >= :initialDate) AND "+
+                "(:finalDate IS NULL OR fechaRetiro <= :finalDate)";
          @Query(nativeQuery = true, value = SEARCH_RETIREMENT)
-         List<Retiros> findByIdName(@Param("name") Long name);
+         List<Retiros> findByIdName(@Param("name") Long name,
+                                   @Param("initialDate") String initialDate,
+                                   @Param("finalDate") String finalDate);
 
     String TOTALES_RETIREMENT = "SELECT SUM(cantidadDinero) FROM `depilarte_retiros` WHERE " +
-            "(:name IS NULL OR usuario = :name)";
+            "(:name IS NULL OR usuario = :name) AND" +
+            "(:initialDate IS NULL OR fechaRetiro >= :initialDate) AND "+
+            "(:finalDate IS NULL OR fechaRetiro <= :finalDate)";;
         @Query(nativeQuery = true, value = TOTALES_RETIREMENT)
-        Integer findTotales(@Param("name") Long name);
+        Integer findTotales(@Param("name") Long name,
+                           @Param("initialDate") String initialDate,
+                           @Param("finalDate") String finalDate);
 
 }
