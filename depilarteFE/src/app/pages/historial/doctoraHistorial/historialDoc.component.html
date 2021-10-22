@@ -261,9 +261,9 @@
   <button mat-raised-button mat-stroked-button type="submit" (click)="boton()" >Retirar Efectivo</button>
 </div>
 
-  <div *ngIf="show" class="panel-retire">
+  <div *ngIf="show" class="panel-retire" id="panel" style="width: 600px; margin-top: 20px; margin-left: 250px;">
     <form>
-      <div class="form-group">
+      <div class="form-group" id="forma">
         <mat-form-field>
           <mat-select  placeholder="Nombre del Usuario">
             <mat-option *ngFor="let we of workerList" [value]="we.id">
@@ -277,12 +277,12 @@
         </div>
       </div>
     </form>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" >Guardar</button>
-    </div>
-    <div class="modal-footer">
+    <div class="modal-footer" style="display: flex; flex-direction: row;">
       <button type="button" class="btn btn-outline-dark" (click)="cancelar()" >Cancelar</button>
+      <button type="button" class="btn btn-outline-dark" style="margin-left: 10px;" >Guardar</button>
     </div>
+    
+      
   </div>
 
 
