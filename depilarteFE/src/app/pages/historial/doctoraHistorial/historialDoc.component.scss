@@ -19,8 +19,8 @@
 }
 #saldos{
   margin-top: 15px;
+  justify-content: center;
 }
-
 
 th{
    font-size: 15px;
@@ -35,4 +35,9 @@ th{
   flex-direction: row;
   justify-content: space-around;
   font-size: large;
+}
+
+#tableRetirement{
+flex: auto;
+width: 100%;
 }

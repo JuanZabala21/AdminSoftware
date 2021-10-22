@@ -82,6 +82,16 @@ public interface DepilarteConstants {
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Obtener los registros de los Tratamientos </span></u></h3>"
                     + "Método que genera Tratamientos. </div>";
 
+    String SAVE_RETIREMENT_URI = "saveRetirement";
+    String SAVE_RETIREMENT_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Guardar los retiros de los operadores </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
+    String SEARCH_RETIREMENT_URI = "searchRetirement";
+    String SEARCH_RETIREMENT_DESCRIPTION =
+            "<div class='alert alert-info'><h3><u><span class='label label-default'> Guardar los retiros de los operadores </span></u></h3>"
+                    + "Método que genera Tratamientos. </div>";
+
 
     //Excel
     static final String DATE_FORMAT_EXCEL                           = "dd/MM/yyyy HH:mm:ss";
@@ -231,6 +241,9 @@ public interface DepilarteConstants {
 
     String ID_PACIENTES = "id";
     String HISTORY_PACIENTES = "history";
+
+    String RETIRE_WORKER = "workerRetire";
+    String RETIRE_AMOUNT = "amountRetire";
 
 
 

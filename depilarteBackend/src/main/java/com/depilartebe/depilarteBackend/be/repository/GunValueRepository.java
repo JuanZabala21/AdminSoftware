@@ -3,7 +3,6 @@ package com.depilartebe.depilarteBackend.be.repository;
 import com.depilartebe.depilarteBackend.be.entities.GunValue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 public interface GunValueRepository  extends JpaRepository<GunValue, Long> {
 

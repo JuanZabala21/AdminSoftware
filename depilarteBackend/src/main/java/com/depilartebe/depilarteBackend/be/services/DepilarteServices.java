@@ -49,6 +49,12 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     @Autowired
     GunValueRepository gunValueRepository;
 
+    @Autowired
+    TotalesRepository totalesRepository;
+
+    @Autowired
+    RetirosRepository retirosRepository;
+
 
     public Map<String, Object> registerClients(
 
@@ -143,6 +149,16 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             GunValue values = gunValueRepository.findByIdUpdate();
             values.setCantidadDisparos(shotAfter);
             gunValueRepository.save(values);
+
+            Totales totales = totalesRepository.findByIdUpdate();
+            if (formPay == 1) {
+                totales.setZelle(totales.getZelle() + abonado);
+            } else if (formPay == 2) {
+                totales.setPagoMovil(totales.getPagoMovil() + abonado);
+            } else if (formPay == 3) {
+                totales.setEfectivo(totales.getEfectivo() + abonado);
+            }
+            totalesRepository.save(totales);
 
 
         } catch (Exception e) {
@@ -351,34 +367,34 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 Date dateFinal = inputFormat.parse(finalDate);
                 String finale = dt.format(dateFinal);
                 String initial = dt.format(dateInitial);
-                zelleTotal = registerRepository.findTotalZelle(initial, finale);
-                pagoM = registerRepository.findTotalPagoM(initial, finale);
-                efectivo = registerRepository.findTotalEfectivo(initial,finale);
-                abono = registerRepository.findTotalAbonado(initial,finale);
+                zelleTotal = registerRepository.findTotalZelle(nameClient, lastNameClient, cedula, user, nameUser, initial, finale,formPayment);
+                pagoM = registerRepository.findTotalPagoM(nameClient, lastNameClient, cedula, user, nameUser, initial, finale,formPayment);
+                efectivo = registerRepository.findTotalEfectivo(nameClient, lastNameClient, cedula, user, nameUser, initial, finale,formPayment);
+                abono = registerRepository.findTotalAbonado(nameClient, lastNameClient, cedula, user, nameUser, initial, finale,formPayment);
                 registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initial, finale,formPayment);
             } else if (initialDate != null) {
                 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 Date dateInitial = inputFormat.parse(initialDate);
                 String initial = dt.format(dateInitial);
-                zelleTotal = registerRepository.findTotalZelle(initial, finalDate);
-                pagoM = registerRepository.findTotalPagoM(initial, finalDate);
-                efectivo = registerRepository.findTotalEfectivo(initial,finalDate);
-                abono = registerRepository.findTotalAbonado(initial,finalDate);
+                zelleTotal = registerRepository.findTotalZelle(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate,formPayment);
+                pagoM = registerRepository.findTotalPagoM(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate,formPayment);
+                efectivo = registerRepository.findTotalEfectivo(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate,formPayment);
+                abono = registerRepository.findTotalAbonado(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate,formPayment);
                 registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initial, finalDate,formPayment);
             } else if (finalDate != null) {
                 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 Date dateFinal = inputFormat.parse(finalDate);
                 String finale = dt.format(dateFinal);
-                zelleTotal = registerRepository.findTotalZelle(initialDate, finale);
-                pagoM = registerRepository.findTotalPagoM(initialDate, finale);
-                efectivo = registerRepository.findTotalEfectivo(initialDate,finale);
-                abono = registerRepository.findTotalAbonado(initialDate,finale);
+                zelleTotal = registerRepository.findTotalZelle(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale,formPayment);
+                pagoM = registerRepository.findTotalPagoM(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale,formPayment);
+                efectivo = registerRepository.findTotalEfectivo(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale,formPayment);
+                abono = registerRepository.findTotalAbonado(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale,formPayment);
                 registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finale,formPayment);
             } else {
-                zelleTotal = registerRepository.findTotalZelle(initialDate, finalDate);
-                pagoM = registerRepository.findTotalPagoM(initialDate, finalDate);
-                efectivo = registerRepository.findTotalEfectivo(initialDate,finalDate);
-                abono = registerRepository.findTotalAbonado(initialDate,finalDate);
+                zelleTotal = registerRepository.findTotalZelle(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate,formPayment);
+                pagoM = registerRepository.findTotalPagoM(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate,formPayment);
+                efectivo = registerRepository.findTotalEfectivo(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate,formPayment);
+                abono = registerRepository.findTotalAbonado(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate,formPayment);
                 registerList = registerRepository.findRegister(nameClient, lastNameClient, cedula, user, nameUser, initialDate, finalDate,formPayment);
             }
             if (registerList != null) {
@@ -1134,6 +1150,73 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         return mapResult;
     }
 
+    public Map<String, Object> saveRetire(
+            Long user,
+            String amount
+    ) {
+        Map<String, Object> mapResult = new HashMap<>();
+        try {
+            Date today = new Date();
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+            Retiros retiros = new Retiros();
+
+            /** Registrando **/
+           retiros.setDateRetirement(today);
+           retiros.setUserRetirement(user);
+           retiros.setMoneyRetirement(amount);
+           retirosRepository.save(retiros);
+
+           Totales totales = totalesRepository.findByIdUpdate();
+           Integer efectivo = Integer.parseInt(totales.getEfectivo()) - Integer.parseInt(amount);
+           totales.setEfectivo(efectivo.toString());
+           totalesRepository.save(totales);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
+
+    public Map<String, Object> searchRetire(
+            Long user
+    ){
+        Map<String, Object> mapResult = new HashMap<>();
+        List<Map<String, Object>> mapList = new ArrayList<>();
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            List<Retiros> retirosList = retirosRepository.findByIdName(user);
+            if(retirosList != null){
+                for(Retiros retiros : retirosList){
+                    Map<String, Object> result = new HashMap<>();
+                    String dateRegister = dt.format(retiros.getDateRetirement());
+                    result.put("dateRegistro", dateRegister);
+                    Users usuarios = usersRepository.findUsernameById(retiros.getUserRetirement());
+                    result.put("nameRetirement", usuarios.getName());
+                    result.put("monto", retiros.getMoneyRetirement());
+                    mapList.add(result);
+                }
+                Map<String, Object> result = new HashMap<>();
+                 Integer totalesRetiros = retirosRepository.findTotales(user);
+                 result.put("totalRetirado" , totalesRetiros);
+                 mapList.add(result);
+
+                mapResult.put(RESULT_LIST_MAP, mapList);
+            }
+
+
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
 
 }
 

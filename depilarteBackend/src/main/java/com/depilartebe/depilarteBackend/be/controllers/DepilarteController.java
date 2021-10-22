@@ -747,4 +747,61 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         return mapResponse;
     }
 
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SAVE_RETIREMENT_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SAVE_RETIREMENT_URI)
+    public Map<String, Object> saveRetirement(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long nameUser = (params.containsKey(RETIRE_WORKER) &&
+                        params.get(RETIRE_WORKER) != null &&
+                        !params.get(RETIRE_WORKER).toString().isEmpty())
+                        ? Long.valueOf(params.get(RETIRE_WORKER).toString()) : null;
+                String amountRetire = (params.containsKey(RETIRE_AMOUNT) && params.get(RETIRE_AMOUNT) != null
+                        && !params.get(RETIRE_AMOUNT).toString().isEmpty()) ?
+                        params.get(RETIRE_AMOUNT).toString() : null;
+
+                mapResponse = depilarteServices.saveRetire(nameUser,amountRetire);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = SEARCH_RETIREMENT_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = SEARCH_RETIREMENT_URI)
+    public Map<String, Object> searchRetirement(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
+
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long nameUser = (params.containsKey(RETIRE_WORKER) &&
+                        params.get(RETIRE_WORKER) != null &&
+                        !params.get(RETIRE_WORKER).toString().isEmpty())
+                        ? Long.valueOf(params.get(RETIRE_WORKER).toString()) : null;
+
+                mapResponse = depilarteServices.searchRetire(nameUser);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+        }
+        return mapResponse;
+    }
+
 }

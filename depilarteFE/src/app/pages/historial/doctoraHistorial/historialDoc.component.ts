@@ -7,7 +7,8 @@ import {MatSort} from '@angular/material/sort';
 import {GlobalServices} from '../../../shared/services/global.services';
 import {environment} from '../../../../environments/environment';
 import { saveAs } from 'file-saver';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+declare let alertify: any;
 
  interface HistorialData {
    dateA: String;
@@ -30,9 +31,8 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
    paymentFavor: String,
    price: String;
 }
-interface historialRegistro {
+interface HistorialRetiros {
   dateRegistro: String;
-  usuario: String;
   monto: String;
 }
 
@@ -44,13 +44,14 @@ interface historialRegistro {
 })
 
 export class HistorialDocComponent implements OnInit {
-  closeResult: string;
   filters: FormGroup;
   fileName : string = 'Registros.xlsx';
   totalPagoM = 0;
   totalZelle = 0;
   totalEfectivo = 0;
   totalAbonado = 0;
+  totalRetiro = 0;
+  totalRetiroUser = 0;
   chargerList = [];
   usuarioList = [
     {value: 1, desc: 'Doctora'},
@@ -59,6 +60,13 @@ export class HistorialDocComponent implements OnInit {
   formPayList = [];
   workerList = [];
   show = false;
+
+  displayedRetires: string[] =
+    [
+      'dateRegistro',
+      'nameRetirement',
+      'monto'
+    ];
 
   displayedColumns: string[] =
     [
@@ -89,15 +97,14 @@ export class HistorialDocComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  dataSource1: MatTableDataSource<historialRegistro>;
-  @ViewChild(MatPaginator) paginator1: MatPaginator;
+  dataSource1: MatTableDataSource<HistorialRetiros>;
+  @ViewChild("PAGINATOR") paginator1: MatPaginator;
   @ViewChild(MatSort) sort1: MatSort;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private globalServices: GlobalServices,
-              private modalService: NgbModal) {
+              private globalServices: GlobalServices) {
     this.filters = fb.group({
       name: new FormControl(),
       lastName: new FormControl(),
@@ -106,10 +113,14 @@ export class HistorialDocComponent implements OnInit {
       finalDate: new FormControl(),
       user: new FormControl(),
       userName: new FormControl(),
-      formPay: new FormControl()
+      formPay: new FormControl(),
+      workerRetire: new FormControl(),
+      amountRetire: new FormControl(),
+      nameRetirement: new FormControl()
 
     });
   }
+
 
   ngOnInit() {
     this.getMethodsPay();
@@ -130,6 +141,39 @@ export class HistorialDocComponent implements OnInit {
         this.dataSource = new MatTableDataSource(res.resultList);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+      }
+    )
+  }
+
+  searchRetire() {
+    const data = {
+      workerRetire: this.filters.controls.workerRetire.value
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRetirement').subscribe( res => {
+        console.log(res.resultList);
+        const position = res.resultList.length - 1;
+        this.totalRetiroUser = res.resultList[position].totalRetirado;
+        res.resultList.pop();
+        this.dataSource1 = new MatTableDataSource(res.resultList);
+        this.dataSource1.paginator = this.paginator1;
+        this.dataSource1.sort = this.sort1;
+      }
+    )
+  }
+
+  saveRetire() {
+    const data = {
+      workerRetire: this.filters.controls.workerRetire.value,
+      amountRetire: this.filters.controls.amountRetire.value
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/saveRetirement').subscribe( res => {
+      if(res.type==='error'){
+        alertify.error('Error al registrar');
+      }else{
+        alertify.success('Guardado retiros con exito');
+        this.filters.controls.workerRetire.reset();
+        this.filters.controls.amountRetire.reset();
+      }
       }
     )
   }
@@ -210,10 +254,10 @@ export class HistorialDocComponent implements OnInit {
       console.error);
   }
 
-  boton(){
+  boton() {
     this.show = true;
   }
-  cancelar(){
+  cancelar() {
     this.show = false;
   }
 }

@@ -59,36 +59,82 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
 
     String TOTAL_ZELLE = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
             " FormaPago = '1' AND " +
+            "(:name IS NULL OR Nombre LIKE %:name%) AND " +
+            "(:lastName IS NULL OR Apellido LIKE %:lastName%) AND " +
+            "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
+            "(:userAt IS NULL OR RegisterUser = :userAt) AND " +
+            "(:formPay IS NULL OR FormaPago = :formPay) AND" +
+            "(:nameUser IS NULL OR UserAtendio = :nameUser) AND "+
             "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
             "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
     @Query(nativeQuery = true, value = TOTAL_ZELLE)
-    Integer findTotalZelle(@Param("initialDate")String initialDate,
-                            @Param("finalDate") String finalDate);
+    Integer findTotalZelle(@Param("name") String name,
+                           @Param("lastName") String lastName,
+                           @Param("cedula") String cedula,
+                           @Param("userAt") Long userAt,
+                           @Param("nameUser") Long nameUser,
+                            @Param("initialDate")String initialDate,
+                            @Param("finalDate") String finalDate,
+                           @Param("formPay") Long formPay);
 
     String TOTAL_PAGOM = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
             " FormaPago = '2' AND " +
+            "(:name IS NULL OR Nombre LIKE %:name%) AND " +
+            "(:lastName IS NULL OR Apellido LIKE %:lastName%) AND " +
+            "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
+            "(:userAt IS NULL OR RegisterUser = :userAt) AND " +
+            "(:formPay IS NULL OR FormaPago = :formPay) AND" +
+            "(:nameUser IS NULL OR UserAtendio = :nameUser) AND "+
             "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
             "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
     @Query(nativeQuery = true, value = TOTAL_PAGOM)
-    Integer findTotalPagoM(@Param("initialDate")String initialDate,
-                            @Param("finalDate") String finalDate);
+    Integer findTotalPagoM(@Param("name") String name,
+                           @Param("lastName") String lastName,
+                           @Param("cedula") String cedula,
+                           @Param("userAt") Long userAt,
+                           @Param("nameUser") Long nameUser,
+                           @Param("initialDate")String initialDate,
+                           @Param("finalDate") String finalDate,
+                           @Param("formPay") Long formPay);
 
     String TOTAL_EFECTIVO = "SELECT SUM(PrecioTotal) FROM `depilarte_registros` WHERE " +
             " FormaPago = '3' AND " +
+            "(:name IS NULL OR Nombre LIKE %:name%) AND " +
+            "(:lastName IS NULL OR Apellido LIKE %:lastName%) AND " +
+            "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
+            "(:userAt IS NULL OR RegisterUser = :userAt) AND " +
+            "(:formPay IS NULL OR FormaPago = :formPay) AND" +
+            "(:nameUser IS NULL OR UserAtendio = :nameUser) AND "+
             "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
             "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
     @Query(nativeQuery = true, value = TOTAL_EFECTIVO)
-    Integer findTotalEfectivo(@Param("initialDate")String initialDate,
-                               @Param("finalDate") String finalDate);
+    Integer findTotalEfectivo(@Param("name") String name,
+                              @Param("lastName") String lastName,
+                              @Param("cedula") String cedula,
+                              @Param("userAt") Long userAt,
+                              @Param("nameUser") Long nameUser,
+                              @Param("initialDate")String initialDate,
+                              @Param("finalDate") String finalDate,
+                              @Param("formPay") Long formPay);
 
     String TOTAL_ABONADO = "SELECT SUM(Abonado) FROM `depilarte_registros` WHERE " +
+            "(:name IS NULL OR Nombre LIKE %:name%) AND " +
+            "(:lastName IS NULL OR Apellido LIKE %:lastName%) AND " +
+            "(:cedula IS NULL OR Cedula LIKE %:cedula%) AND " +
+            "(:userAt IS NULL OR RegisterUser = :userAt) AND " +
+            "(:formPay IS NULL OR FormaPago = :formPay) AND" +
+            "(:nameUser IS NULL OR UserAtendio = :nameUser) AND "+
             "(:initialDate IS NULL OR fechaAtendido >= :initialDate) AND "+
             "(:finalDate IS NULL OR fechaAtendido <= :finalDate)";
     @Query(nativeQuery = true, value = TOTAL_ABONADO)
-    Integer findTotalAbonado(@Param("initialDate")String initialDate,
-                               @Param("finalDate") String finalDate);
+    Integer findTotalAbonado(@Param("name") String name,
+                             @Param("lastName") String lastName,
+                             @Param("cedula") String cedula,
+                             @Param("userAt") Long userAt,
+                             @Param("nameUser") Long nameUser,
+                             @Param("initialDate")String initialDate,
+                             @Param("finalDate") String finalDate,
+                             @Param("formPay") Long formPay);
 
-
-
-
+    
 }
