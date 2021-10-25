@@ -786,6 +786,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                     result.put("imageAfter", EMPTY);
                     result.put("imageBefore", EMPTY);
                 }
+                result.put("paymentFavor",EMPTY);
                 result.put("history", null);
 
             } else {
@@ -810,7 +811,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 result.put("totalPrice",EMPTY);
                 result.put("comission", EMPTY);
                 result.put("phone", register.getTelefono());
-                result.put("note", EMPTY);
+                result.put("note",register.getNota());
                 result.put("imageAfter", EMPTY);
                 result.put("imageBefore", EMPTY);
                 result.put("paymentFavor",EMPTY);
