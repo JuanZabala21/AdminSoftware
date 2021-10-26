@@ -154,11 +154,11 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
       
             Totales totales = totalesRepository.findByIdUpdate();
             if (formPay == 1) {
-                totales.setZelle(totales.getZelle() + abonado);
+                totales.setZelle(String.valueOf(Integer.parseInt(totales.getZelle()) + Integer.parseInt(abonado)));
             } else if (formPay == 2) {
-                totales.setPagoMovil(totales.getPagoMovil() + abonado);
+                totales.setPagoMovil(String.valueOf(Integer.parseInt(totales.getPagoMovil()) + Integer.parseInt(abonado)));
             } else if (formPay == 3) {
-                totales.setEfectivo(totales.getEfectivo() + abonado);
+                totales.setEfectivo(String.valueOf(Integer.parseInt(totales.getEfectivo()) + Integer.parseInt(abonado)));
             }
             totalesRepository.save(totales);
 
