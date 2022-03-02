@@ -47,7 +47,8 @@
           <div  class="row">
             <div class="col-md-3 pr-1">
                 <mat-form-field>
-                  <mat-select (ngModelChange)="changeCharger()"  formControlName="user" placeholder="Usuario de atención">
+                  <mat-label>Usuario de atención</mat-label>
+                  <mat-select (ngModelChange)="changeCharger()"  formControlName="user" >
                     <mat-option *ngFor="let el of usuarioList" [value]="el.value">
                       {{el.desc}}
                     </mat-option>
@@ -56,7 +57,8 @@
             </div>
             <div class="col-md-3 px-1">
                 <mat-form-field>
-                  <mat-select formControlName="userName" placeholder="Nombre del Usuario">
+                  <mat-label>Nombre del Usuario</mat-label>
+                  <mat-select formControlName="userName" >
                     <mat-option *ngFor="let ch of chargerList" [value]="ch.id">
                       {{ch.nombre}}
                     </mat-option>
@@ -199,12 +201,15 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
             <td mat-cell *matCellDef="let row" class="mat-cell-id">
-              <div fxFlex="row">
+              <div fxFlex="row" style="display: flex; flex-wrap: nowrap;">
                 <div fxLayout="column" mat-stroked-button class="pointer" (click)="goEdit(row.id);">
                   <i style="font-size: 25px; float:left" class="nc-icon nc-tap-01" title="Editar"></i>
                 </div>
                 <div fxLayout="column" mat-stroked-button class="pointer" (click)="goNew(row.id,1);">
                   <i style="font-size: 25px; float:end" class="nc-icon nc-badge" title="Nuevo"></i>
+                </div>
+                <div fxLayout="column" mat-stroked-button class="pointer" (click)="deleteRegister(row.id,1);">
+                  <i style="font-size: 25px; float:end" class="nc-icon nc-simple-remove" title="Eliminar"></i>
                 </div>
             </div>
             </td>

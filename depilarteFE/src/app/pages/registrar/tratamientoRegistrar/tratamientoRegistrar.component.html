@@ -62,7 +62,7 @@
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>precio</mat-label>
                      <input matInput [attr.id]="'typePrice' + i" formControlName="typePrice" [ngModel]="typeList[i].precioTratamiento" type="number">
-                     <span matPrefix>$</span>
+                     <span matSuffix>$</span>
                    </mat-form-field>
                  </div>
                </div>
@@ -73,7 +73,7 @@
                    <mat-form-field appearance="outline" class="form-group" style="width: 100%;">
                      <mat-label>Comision</mat-label>
                      <input matInput [attr.id]="'comission' + i"   formControlName="comission" [ngModel]="typeList[i].comission" type="number">
-                     <span matPrefix>%&nbsp;</span>
+                     <span matSuffix>%&nbsp;</span>
                    </mat-form-field>
                  </div>
                </div>

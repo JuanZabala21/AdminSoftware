@@ -68,7 +68,7 @@ selectedFileBefore: File;
       this.form.controls['paymentFavor'].disable();
       this.form.controls['diferents'].disable();
       this.form.controls['comission'].disable();
-
+      console.log(this.form.controls.treatmentType.value);
       this.route.queryParams.subscribe( params => {
         const {id} = params;
         const {history} = params;

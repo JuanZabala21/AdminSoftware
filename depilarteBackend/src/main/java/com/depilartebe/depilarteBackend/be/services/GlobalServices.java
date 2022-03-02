@@ -138,13 +138,34 @@ public class GlobalServices implements GlobalConstants, DepilarteConstants {
         return mapResult;
     }
 
-    public Map<String, Object> getPriceAndComision(String treament) {
+    public Map<String, Object> getPriceAndComision(String[] treatment) {
         Map<String, Object> mapResult = new HashMap<>();
-        try {
-            TreatmentType treatmentTypeList = treatmentTypeRepository.findPriceAndComision(Long.parseLong(treament));
-            mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
-            mapResult.put(PRICE_RESULT, treatmentTypeList);
+        Integer comision = 0;
+        Integer price = 0;
 
+        try {
+            TreatmentType treatmentType= new TreatmentType();
+            if(!treatment[0].isEmpty()){
+                for(String tratamiento: treatment){
+
+                    treatmentType = treatmentTypeRepository.findPriceAndComision(Long.parseLong(tratamiento));
+                    mapResult.put(TYPE, MESSAGE_TYPE_SUCCESS);
+                    comision += Integer.valueOf(treatmentType.getComission());
+                    price += Integer.valueOf(treatmentType.getPrecioTratamiento());
+                }
+                TreatmentType treatmentResult = new TreatmentType();
+                treatmentResult.setComission(comision.toString());
+                treatmentResult.setPrecioTratamiento(price.toString());
+
+                mapResult.put(PRICE_RESULT, treatmentResult);
+
+            }else{
+                TreatmentType treatmentResult = new TreatmentType();
+                treatmentResult.setComission("0");
+                treatmentResult.setPrecioTratamiento("0");
+
+                mapResult.put(PRICE_RESULT, treatmentResult);
+            }
 
         }catch (Exception e) {
             e.printStackTrace();

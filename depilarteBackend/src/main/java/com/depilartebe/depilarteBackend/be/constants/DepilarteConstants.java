@@ -92,6 +92,10 @@ public interface DepilarteConstants {
             "<div class='alert alert-info'><h3><u><span class='label label-default'> Guardar los retiros de los operadores </span></u></h3>"
                     + "Método que genera Tratamientos. </div>";
 
+    String DELETE_REGISTER = "deleteRegister";
+    String DELETE_REGISTER_DESCRIPTION = "<div class='alert alert-info'><h3><u><span class='label label-default'> Guardar los retiros de los operadores </span></u></h3>\"\n" +
+            "                    + \"Método que genera Tratamientos. </div>";
+
 
     //Excel
     static final String DATE_FORMAT_EXCEL                           = "dd/MM/yyyy HH:mm:ss";

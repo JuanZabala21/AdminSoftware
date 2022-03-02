@@ -71,10 +71,9 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                        params.get(CLIENT_TREATMENT) != null &&
                        !params.get(CLIENT_TREATMENT).toString().isEmpty() )
                        ? Long.valueOf(params.get(CLIENT_TREATMENT).toString()) : null;
-               Long treatmentType = (params.containsKey(CLIENT_TREATMENTTYPE) &&
-                       params.get(CLIENT_TREATMENTTYPE) != null &&
-                       !params.get(CLIENT_TREATMENTTYPE).toString().isEmpty() )
-                       ? Long.valueOf(params.get(CLIENT_TREATMENTTYPE).toString()) : null;
+               String[] treatmentType = (params.containsKey(CLIENT_TREATMENTTYPE) && params.get(CLIENT_TREATMENTTYPE) != null
+                       && !params.get(CLIENT_TREATMENTTYPE).toString().isEmpty()) ?
+                       params.get(CLIENT_TREATMENTTYPE).toString().replace("[","").replace("]","").replace(" ","").split(",") : null;
                String countSessions =  (params.containsKey(CLIENT_SESSIONS) && params.get(CLIENT_SESSIONS) != null
                        && !params.get(CLIENT_SESSIONS).toString().isEmpty()) ?
                        params.get(CLIENT_SESSIONS).toString() : null;
@@ -809,5 +808,31 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
         }
         return mapResponse;
     }
+    @ApiMethod(consumes = TEXT_JSON, produces = APPLICATION_JSON, description = DELETE_REGISTER_DESCRIPTION)
+    @ApiResponseObject
+    @RequestMapping(method = RequestMethod.POST, value = DELETE_REGISTER)
+    public Map<String, Object> deleteRegister(@ApiBodyObject(clazz = String.class) @RequestBody String json) {
+        Map<String, Object> mapResponse = new HashMap<String, Object>();
 
+        if (json != null && !json.isEmpty()) {
+            try {
+                Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
+
+                Long id =  (params.containsKey(EMPLEADO_ID) &&
+                        params.get(EMPLEADO_ID) != null &&
+                        !params.get(EMPLEADO_ID).toString().isEmpty() )
+                        ? Long.valueOf(params.get(EMPLEADO_ID).toString()) : null;
+
+                mapResponse = depilarteServices.deleteRegister(id);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                log.error("Se produjo un error: " + e.getMessage());
+                mapResponse.put(TYPE, MESSAGE_TYPE_ERROR);
+                mapResponse.put(MESSAGE, MESSAGE_ERROR);
+            }
+
+        }
+        return mapResponse;
+    }
 }

@@ -277,4 +277,20 @@ export class HistorialDocComponent implements OnInit {
   cancelar() {
     this.show = false;
   }
+
+  deleteRegister(id: number){
+      const data = {
+     id : id
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/deleteRegister').subscribe( res => {
+      if(res.type==='error'){
+        alertify.error('Error al eliminar');
+      }else{
+        alertify.success('Eliminado con exito');
+        this.ngOnInit;
+      }
+      }
+    )
+    this.search();
+  }
 }

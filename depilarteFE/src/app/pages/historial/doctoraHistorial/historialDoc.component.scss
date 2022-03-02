@@ -2,42 +2,49 @@
   font-size: 14px;
   width: 100%;
 }
-.mat-cell{
+.mat-cell {
   width: auto;
 }
-.mat-cell-id{
+.mat-cell-id {
   width: 100px;
 }
 .margin-btn-filter {
   margin-bottom: 5px;
 }
-.container-tab{
+.container-tab {
   height: auto;
   width: 100%;
   max-width: 100%;
   overflow: auto;
 }
-#saldos{
+#saldos {
   margin-top: 15px;
   justify-content: center;
 }
 
-th{
-   font-size: 15px;
-   font-weight: 600;
+th {
+  font-size: 15px;
+  font-weight: 600;
 }
-.card-title{
+.card-title {
   font-size: 18px;
 }
 
-#carta{
+#carta {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   font-size: large;
 }
 
-#tableRetirement{
-flex: auto;
-width: 100%;
+#tableRetirement {
+  flex: auto;
+  width: 100%;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+mat-label {
+  font-size: 16px;
 }

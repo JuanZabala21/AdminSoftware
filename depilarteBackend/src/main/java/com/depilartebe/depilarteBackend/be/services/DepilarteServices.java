@@ -68,7 +68,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             String birthday,
             String address,
             Long treatment,
-            Long treatmentType,
+            String[] treatmentType,
             String countSessions,
             String product,
             String shotBefore,
@@ -94,74 +94,77 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
             Date today = new Date();
             SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 
-            if (id == null) {
-                register = new Register();
-            } else {
-                register = registerRepository.findRegisterById(id);
-            }
+            for(String tipoTratamiento: treatmentType ){
+                if (id == null) {
+                    register = new Register();
+                } else {
+                    register = registerRepository.findRegisterById(id);
+                }
+                /** Registrando **/
+                register.setNombre(clientName);
+                register.setRegisterUser(registerWorker);
+                register.setApellido(clientLastName);
+                register.setCedula(identification);
+                register.setEdad(age);
+                register.setCorreo(email);
+                register.setFechaCumple(birthday);
+                register.setDireccion(address);
+                register.setTratamiento(treatment.toString());
+                register.setTipoTratamiento(tipoTratamiento);
+                TreatmentType precioTratamiento = treatmentTypeRepository.findPriceAndComision(Long.valueOf(tipoTratamiento));
+                register.setCantidadSesiones(countSessions);
+                register.setProductoUtilizado(product);
+                register.setDisparosAntes(shotBefore);
+                register.setDisparosDespues(shotAfter);
+                register.setDiferenciaDisparos(shotDiferential);
+                if (registerWorker == 1) {
+                    register.setUserAtendio(String.valueOf(doctor));
+                } else {
+                    register.setUserAtendio(String.valueOf(operator));
+                }
+                register.setFormaPago(formPay.toString());
+                register.setAbonado(abonado);
+                register.setPrecioTotal(precioTratamiento.getPrecioTratamiento());
+                register.setComision(precioTratamiento.getComission());
+                register.setNota(note);
+                register.setTelefono(phone);
+                register.setReference(reference);
+                if(imageAfter != null){
+                    register.setImgAfter(imageAfter);
+                }else{
+                    register.setImgAfter(EMPTY);
+                }
+                if(imageBefore != null){
+                    register.setImgBefore(imageBefore);
+                }else{
+                    register.setImgBefore(EMPTY);
+                }
+                if(paymentFavor != null){
+                    register.setPaymentFavor(paymentFavor);
+                } else {
+                    register.setPaymentFavor(ZERO_STRING);
+                }
+                register.setFechaAtendido(dt.format(today));
+                registerRepository.save(register);
 
-            /** Registrando **/
-            register.setNombre(clientName);
-            register.setRegisterUser(registerWorker);
-            register.setApellido(clientLastName);
-            register.setCedula(identification);
-            register.setEdad(age);
-            register.setCorreo(email);
-            register.setFechaCumple(birthday);
-            register.setDireccion(address);
-            register.setTratamiento(treatment.toString());
-            register.setTipoTratamiento(treatmentType.toString());
-            register.setCantidadSesiones(countSessions);
-            register.setProductoUtilizado(product);
-            register.setDisparosAntes(shotBefore);
-            register.setDisparosDespues(shotAfter);
-            register.setDiferenciaDisparos(shotDiferential);
-            if (registerWorker == 1) {
-                register.setUserAtendio(String.valueOf(doctor));
-            } else {
-                register.setUserAtendio(String.valueOf(operator));
-            }
-            register.setFormaPago(formPay.toString());
-            register.setAbonado(abonado);
-            register.setPrecioTotal(priceTotal);
-            register.setComision(comission);
-            register.setNota(note);
-            register.setTelefono(phone);
-            register.setReference(reference);
-            if(imageAfter != null){
-                register.setImgAfter(imageAfter);
-            }else{
-                register.setImgAfter(EMPTY);
-            }
-            if(imageBefore != null){
-                register.setImgBefore(imageBefore);
-            }else{
-                register.setImgBefore(EMPTY);
-            }
-            if(paymentFavor != null){
-                register.setPaymentFavor(paymentFavor);
-            } else {
-                register.setPaymentFavor(ZERO_STRING);
-            }
-            register.setFechaAtendido(dt.format(today));
-            registerRepository.save(register);
+                if(shotAfter != null){
+                    GunValue values = gunValueRepository.findByIdUpdate();
+                    values.setCantidadDisparos(shotAfter);
+                    gunValueRepository.save(values);
+                }
 
-            if(shotAfter != null){
-                GunValue values = gunValueRepository.findByIdUpdate();
-                values.setCantidadDisparos(shotAfter);
-                gunValueRepository.save(values);
-            }
-      
-            Totales totales = totalesRepository.findByIdUpdate();
-            if (formPay == 1) {
-                totales.setZelle(String.valueOf(Integer.parseInt(totales.getZelle()) + Integer.parseInt(abonado)));
-            } else if (formPay == 2) {
-                totales.setPagoMovil(String.valueOf(Integer.parseInt(totales.getPagoMovil()) + Integer.parseInt(abonado)));
-            } else if (formPay == 3) {
-                totales.setEfectivo(String.valueOf(Integer.parseInt(totales.getEfectivo()) + Integer.parseInt(abonado)));
-            }
-            totalesRepository.save(totales);
+                Totales totales = totalesRepository.findByIdUpdate();
+                if (formPay == 1) {
+                    totales.setZelle(String.valueOf(Integer.parseInt(totales.getZelle()) + Integer.parseInt(abonado)));
+                } else if (formPay == 2) {
+                    totales.setPagoMovil(String.valueOf(Integer.parseInt(totales.getPagoMovil()) + Integer.parseInt(abonado)));
+                } else if (formPay == 3) {
+                    totales.setEfectivo(String.valueOf(Integer.parseInt(totales.getEfectivo()) + Integer.parseInt(abonado)));
+                }
+                totalesRepository.save(totales);
 
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1265,6 +1268,22 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
         return mapResult;
     }
 
+    public Map<String, Object> deleteRegister(
+            Long id
+    ) {
+        Map<String, Object> mapResult = new HashMap<>();
+        try {
+            Register register = registerRepository.findRegisterById(id);
+            registerRepository.delete(register);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("Se produjo un error: " + e.getMessage());
+            mapResult.put(TYPE, MESSAGE_TYPE_ERROR);
+            mapResult.put(MESSAGE, MESSAGE_ERROR);
+        }
+        return mapResult;
+    }
 }
 
 

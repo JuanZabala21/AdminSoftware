@@ -161,7 +161,9 @@ public class GlobalController implements GlobalConstants {
         try {
             Map<String, Object> params = new ObjectMapper().readerFor(Map.class).readValue(json);
 
-            String treatment =  (params.containsKey(PRINCE_AND_COMISION) && params.get(PRINCE_AND_COMISION) != null && !params.get(PRINCE_AND_COMISION).toString().isEmpty()) ? params.get(PRINCE_AND_COMISION).toString() : null;
+            String[] treatment=  (params.containsKey(PRINCE_AND_COMISION) && params.get(PRINCE_AND_COMISION) != null
+                    && !params.get(PRINCE_AND_COMISION).toString().isEmpty()) ?
+                    params.get(PRINCE_AND_COMISION).toString().replace("[","").replace("]","").replace(" ","").split(",") : null;
             if(treatment != null){
                 mapResponse = globalServices.getPriceAndComision(treatment);
             }else{
