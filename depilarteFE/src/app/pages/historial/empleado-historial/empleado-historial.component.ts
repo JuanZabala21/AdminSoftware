@@ -8,6 +8,8 @@ import {environment} from '../../../../environments/environment';
 import {GlobalServices} from '../../../shared/services/global.services';
 import { saveAs } from 'file-saver';
 
+declare let alertify: any;
+
 interface HistorialData {
   name: String;
   lastName: String;
@@ -123,6 +125,23 @@ export class EmpleadoHistorialComponent implements OnInit {
         //error
       }
     );
+  }
+
+  deleteRegister(id: number, type: number){
+    const data = {
+      id : id,
+      type: type
+    };
+    this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/deleteRegister').subscribe( res => {
+        if(res.type==='error'){
+          alertify.error('Error al eliminar');
+        }else{
+          alertify.success('Eliminado con exito');
+          this.ngOnInit;
+        }
+      }
+    )
+    this.search();
   }
 
 

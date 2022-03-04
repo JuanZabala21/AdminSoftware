@@ -200,6 +200,7 @@ public interface DepilarteConstants {
     String EMPLEADO_ADDRESS = "address";
     String CARGO = "charge";
     String EMPLEADO_TELEFONO = "phone";
+    String TYPE_DELETE = "type";
 
     String TREATMENT_ID = "id";
     String TREATMENT_NAME = "treatmentName";
@@ -248,7 +249,6 @@ public interface DepilarteConstants {
 
     String RETIRE_WORKER = "workerRetire";
     String RETIRE_AMOUNT = "amountRetire";
-
 
 
 }

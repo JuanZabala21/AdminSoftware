@@ -822,8 +822,12 @@ public class DepilarteController implements GlobalConstants, DepilarteConstants 
                         params.get(EMPLEADO_ID) != null &&
                         !params.get(EMPLEADO_ID).toString().isEmpty() )
                         ? Long.valueOf(params.get(EMPLEADO_ID).toString()) : null;
+                Long type = (params.containsKey(TYPE_DELETE) &&
+                        params.get(TYPE_DELETE) != null &&
+                        !params.get(TYPE_DELETE).toString().isEmpty())
+                        ? Long.valueOf(params.get(TYPE_DELETE).toString()) : null;
 
-                mapResponse = depilarteServices.deleteRegister(id);
+                mapResponse = depilarteServices.deleteRegister(id,type);
 
             } catch (Exception e) {
                 e.printStackTrace();

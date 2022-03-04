@@ -155,7 +155,6 @@ export class HistorialDocComponent implements OnInit {
       finalDate: this.filters.controls.finalDateRetire.value
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/searchRetirement').subscribe( res => {
-      console.log(res.resultList);  
       const position = res.resultList.length - 1;
         this.totalRetiroUser = res.resultList[position].totalRetirado;
         this.efectivoRetiro = res.resultList[position].saldoRestante;
@@ -171,7 +170,7 @@ export class HistorialDocComponent implements OnInit {
     const data = {
       workerRetire: this.filters.controls.workerRetire.value,
       amountRetire: this.filters.controls.amountRetire.value
-  
+
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/saveRetirement').subscribe( res => {
       if(res.type==='error'){
@@ -241,11 +240,10 @@ export class HistorialDocComponent implements OnInit {
     );
   }
 
-  getSaldo(){
+  getSaldo() {
     this.globalServices.httpServicesResponse(null,
       environment.Url + '/global/getSaldo').subscribe( response => {
         if (response.type === 'success') {
-          console.log(response);
         }
       },
       console.error);
@@ -278,9 +276,10 @@ export class HistorialDocComponent implements OnInit {
     this.show = false;
   }
 
-  deleteRegister(id: number){
+  deleteRegister(id: number, type: number){
       const data = {
-     id : id
+     id : id,
+     type: type
     };
     this.globalServices.httpServicesResponse(data, environment.Url + '/depilarte/deleteRegister').subscribe( res => {
       if(res.type==='error'){

@@ -738,6 +738,7 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     ){
         Map<String, Object> mapResult = new HashMap<>();
         Map<String, Object> result = new HashMap<>();
+        List<Long> treatmentLongs = new ArrayList<>();
         try {
 
             if(history == null){
@@ -754,7 +755,8 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
                 result.put("birthday", register.getFechaCumple());
                 result.put("address", register.getDireccion());
                 result.put("treatment", Long.valueOf(register.getTratamiento()));
-                result.put("treatmentType",Long.valueOf(register.getTipoTratamiento()));
+                treatmentLongs.add(Long.valueOf(register.getTipoTratamiento()));
+                result.put("treatmentType", treatmentLongs);
                 result.put("sessions", register.getCantidadSesiones());
                 if(register.getProductoUtilizado() != null){
                     result.put("product", Long.valueOf(register.getProductoUtilizado()));
@@ -1269,12 +1271,25 @@ public class DepilarteServices implements DepilarteConstants, GlobalConstants {
     }
 
     public Map<String, Object> deleteRegister(
-            Long id
+            Long id,
+            Long type
     ) {
         Map<String, Object> mapResult = new HashMap<>();
         try {
-            Register register = registerRepository.findRegisterById(id);
-            registerRepository.delete(register);
+
+            if (type == 1) {
+                Register register = registerRepository.findRegisterById(id);
+                registerRepository.delete(register);
+            } else if (type == 2) {
+                Empleado empleado = empleadoRepository.findWorkersById(id);
+                empleadoRepository.delete(empleado);
+            } else if (type == 3) {
+                Treatment treatment = treatmentRepository.findTreatmentById(id);
+                treatmentRepository.delete(treatment);
+            } else if (type == 4) {
+                Products products = productRepository.findProductsById(String.valueOf(id));
+                productRepository.delete(products);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

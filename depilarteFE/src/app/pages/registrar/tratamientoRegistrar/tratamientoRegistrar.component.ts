@@ -66,7 +66,6 @@ export class TratamientoRegistrarComponent implements OnInit {
     this.globalService.httpServicesResponse(data,
       environment.Url + 'depilarte/getTreatment').subscribe(
       res => {
-        console.log(res);
         this.setValues(res);
         this.isLoading = false;
         this.create = false;

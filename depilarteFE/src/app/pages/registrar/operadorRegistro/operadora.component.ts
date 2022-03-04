@@ -155,7 +155,6 @@ selectedFileBefore: File;
     this.globalService.httpServicesResponse(data,
       environment.Url + 'depilarte/getPacientes').subscribe(
       res => {
-        console.log(res);
         this.setValues(res);
         this.isLoading = false;
         this.create = false;
