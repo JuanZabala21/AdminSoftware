@@ -138,10 +138,11 @@ export class EmpleadoHistorialComponent implements OnInit {
         }else{
           alertify.success('Eliminado con exito');
           this.ngOnInit;
+          this.search();
         }
       }
     )
-    this.search();
+    
   }
 
 
