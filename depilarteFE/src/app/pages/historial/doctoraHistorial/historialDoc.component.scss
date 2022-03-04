@@ -25,6 +25,10 @@
 th {
   font-size: 15px;
   font-weight: 600;
+  padding-left: 2px;
+}
+td {
+  text-align: left;
 }
 .card-title {
   font-size: 18px;
@@ -47,4 +51,7 @@ th {
 }
 mat-label {
   font-size: 16px;
+}
+:host ::ng-deep .mat-sort-header-content {
+  text-align: left !important;
 }

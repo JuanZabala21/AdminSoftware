@@ -133,7 +133,7 @@ export class TratamientoComponent implements OnInit {
         }
       }
     )
-    this.search();
+   this.search();
   }
 
 

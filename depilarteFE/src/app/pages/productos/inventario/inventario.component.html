@@ -86,7 +86,8 @@
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Acciones </th>
-            <td mat-cell *matCellDef="let row" class="mat-cell-id">  <div fxFlex="row">
+            <td mat-cell *matCellDef="let row" class="mat-cell-id">  
+              <div fxFlex="row" style="display: flex; flex-wrap: nowrap;">
               <div fxLayout="column" mat-stroked-button class="pointer"
                    (click)="goEdit(row.id);">
                 <i style="font-size: 25px" class="nc-icon nc-tap-01" title="Editar"></i>

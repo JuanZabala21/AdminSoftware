@@ -24,7 +24,14 @@
 th {
   font-size: 15px;
   font-weight: 600;
+  align-items: left;
 }
 mat-label {
   font-size: 16px;
+}
+:host ::ng-deep .mat-sort-header-content {
+  text-align: left !important;
+}
+.pointer:hover {
+  cursor: pointer;
 }
